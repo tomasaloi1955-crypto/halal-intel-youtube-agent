@@ -1,0 +1,30 @@
+# Render deploy: фоновый воркер (24/7 планировщик) + постоянный диск для состояния.
+services:
+  - type: worker
+    name: halal-intelligence-agent
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter            # always-on воркер (free-тариф усыпляет — не подходит)
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /data       # сюда пишутся очередь, токен, озвучки, seen
+      sizeGB: 1
+    envVars:
+      - key: DATA_DIR
+        value: /data
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: PIXABAY_API_KEY
+        sync: false
+      # Telegram: интейк озвучек + алерты
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ALERT_CHAT_ID
+        sync: false

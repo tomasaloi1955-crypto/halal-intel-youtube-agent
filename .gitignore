@@ -1,0 +1,21 @@
+# Секреты и состояние — НЕ коммитим (идут через env / Secret Files / диск Render)
+.env
+youtube_token.json
+youtube_credentials.json
+*_token.json
+seen_articles.json
+used_topics.json
+researched_topics.json
+long_queue.json
+
+# Озвучки и временные медиа
+my_voice/*.mp3
+my_voice/*.m4a
+my_voice/*.wav
+my_voice/*.ogg
+output/
+
+# Логи и кэш
+agent.log
+__pycache__/
+*.pyc
