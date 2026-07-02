@@ -228,6 +228,13 @@ def start_scheduler():
     log.info("Пн Вт Чт Пт Вс — дайджест | Ср Сб — автоматизация")
     log.info("Shorts → ElevenLabs | Длинные → твоя озвучка из my_voice/")
 
+    # Telegram-приём озвучек (/next → текст, аудио → сохранение) фоновым потоком
+    if os.getenv("TELEGRAM_BOT_TOKEN"):
+        import threading
+        from telegram_intake import poll_loop
+        threading.Thread(target=poll_loop, daemon=True).start()
+        log.info("📩 Telegram-интейк озвучек включён")
+
     run_agent()
     schedule.every().day.at("04:00").do(run_agent)  # 09:00 Алматы = 04:00 UTC
 
