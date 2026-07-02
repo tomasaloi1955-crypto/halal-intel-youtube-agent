@@ -7,6 +7,7 @@ seen_articles.json
 used_topics.json
 researched_topics.json
 long_queue.json
+tg_offset.txt
 
 # Озвучки и временные медиа
 my_voice/*.mp3

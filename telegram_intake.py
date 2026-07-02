@@ -8,8 +8,10 @@ import os
 import json
 import time
 import requests
+from dotenv import load_dotenv
 from paths import dpath
 
+load_dotenv()
 TG_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 ALLOWED_CHAT = str(os.getenv("TELEGRAM_ALERT_CHAT_ID", "")).strip()
 QUEUE_FILE = dpath("long_queue.json")

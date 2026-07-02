@@ -130,8 +130,21 @@ def run_automation():
 
 
 from paths import dpath
+import shutil
 QUEUE_FILE = dpath("long_queue.json")
 VOICE_DIR = dpath("my_voice")
+SEED_QUEUE = "seed/queue_seed.json"
+
+
+def _seed_data():
+    """На свежем диске (Render) разворачиваем стартовую очередь из seed/ в DATA_DIR."""
+    try:
+        if not os.path.exists(QUEUE_FILE) and os.path.exists(SEED_QUEUE):
+            os.makedirs(os.path.dirname(QUEUE_FILE) or ".", exist_ok=True)
+            shutil.copyfile(SEED_QUEUE, QUEUE_FILE)
+            log.info("Очередь длинных развёрнута из seed/")
+    except Exception as e:
+        log.error(f"seed error: {e}")
 
 
 def _find_recording(slug):
@@ -203,6 +216,7 @@ def run_long_queue():
 
 
 def run_agent():
+    _seed_data()
     info = get_schedule_info()
     log.info("=" * 55)
     log.info(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {info['day']} | {info['label']}")
@@ -227,6 +241,8 @@ def start_scheduler():
     log.info("🕌 Халяль Интеллидженс агент запущен")
     log.info("Пн Вт Чт Пт Вс — дайджест | Ср Сб — автоматизация")
     log.info("Shorts → ElevenLabs | Длинные → твоя озвучка из my_voice/")
+
+    _seed_data()  # развернуть очередь на свежем диске (Render) до старта приёма
 
     # Telegram-приём озвучек (/next → текст, аудио → сохранение) фоновым потоком
     if os.getenv("TELEGRAM_BOT_TOKEN"):
