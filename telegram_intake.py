@@ -56,11 +56,34 @@ def _next_pending_item():
     for it in q:
         if it.get("published"):
             continue
+        if it.get("audio_file_id"):
+            continue  # аудио уже прислано (file_id в очереди)
         slug = it["slug"]
         if any(os.path.exists(os.path.join(VOICE_DIR, f"{slug}.{e}")) for e in AUDIO_EXTS):
-            continue  # запись уже есть
+            continue  # запись уже есть локально
         return it
     return None
+
+
+def _save_audio_ref(slug, file_id, ext):
+    """Сохраняет ссылку на аудио (file_id) в очередь — само аудио скачаем при публикации.
+    Так запись не теряется на «чистом» GitHub Actions между запусками."""
+    try:
+        q = json.load(open(QUEUE_FILE, encoding="utf-8"))
+    except Exception:
+        return False
+    for it in q:
+        if it["slug"] == slug:
+            it["audio_file_id"] = file_id
+            it["audio_ext"] = ext if ext in AUDIO_EXTS else "m4a"
+    with open(QUEUE_FILE, "w", encoding="utf-8") as f:
+        json.dump(q, f, ensure_ascii=False, indent=2)
+    return True
+
+
+def download_by_file_id(file_id, dest):
+    """Скачивает файл Telegram по file_id (вызывается при публикации)."""
+    return _download_file(file_id, dest)
 
 
 def _download_file(file_id, dest):
@@ -127,13 +150,46 @@ def _handle(msg):
     if not item:
         _send(chat_id, "Сейчас нет длинных видео, ожидающих озвучку. Очередь пуста или всё уже записано.")
         return
-    dest = os.path.join(VOICE_DIR, f"{item['slug']}.{ext}")
-    if _download_file(file_id, dest):
+    if _save_audio_ref(item["slug"], file_id, ext):
         _send(chat_id, f"✅ Получила запись для «{item['topic'][:45]}» ({item['slug']}).\n"
                        f"Смонтирую и опубликую по расписанию: {item['publish_date']}.")
-        print(f"[TG-INTAKE] Сохранено: {dest}")
+        print(f"[TG-INTAKE] Ссылка на аудио сохранена: {item['slug']}")
     else:
-        _send(chat_id, "Не удалось скачать файл — попробуй прислать ещё раз.")
+        _send(chat_id, "Не удалось сохранить запись — попробуй ещё раз.")
+
+
+def _read_offset():
+    try:
+        if os.path.exists(OFFSET_FILE):
+            return int(open(OFFSET_FILE).read().strip() or 0)
+    except Exception:
+        pass
+    return 0
+
+
+def _write_offset(offset):
+    try:
+        os.makedirs(os.path.dirname(OFFSET_FILE) or ".", exist_ok=True)
+        open(OFFSET_FILE, "w").write(str(offset))
+    except Exception:
+        pass
+
+
+def poll_once():
+    """Разовый опрос Telegram — забирает все новые сообщения и выходит (для GitHub Actions)."""
+    if not TG_TOKEN:
+        return
+    offset = _read_offset()
+    try:
+        res = _api("getUpdates", offset=offset, timeout=1)
+        for upd in res.get("result", []):
+            offset = upd["update_id"] + 1
+            m = upd.get("message") or upd.get("channel_post")
+            if m:
+                _handle(m)
+        _write_offset(offset)
+    except Exception as e:
+        print(f"[TG-INTAKE] poll_once: {e}")
 
 
 def poll_loop():

@@ -181,9 +181,20 @@ def run_long_queue():
             continue  # ещё рано
 
         audio = _find_recording(item["slug"])
+        # Если локального файла нет, но есть ссылка из Telegram — скачиваем сейчас
+        if not audio and item.get("audio_file_id"):
+            ext = item.get("audio_ext", "oga")
+            dest = os.path.join(VOICE_DIR, f"{item['slug']}.{ext}")
+            try:
+                from telegram_intake import download_by_file_id
+                if download_by_file_id(item["audio_file_id"], dest):
+                    audio = dest
+                    log.info(f"Озвучка скачана из Telegram: {item['slug']}")
+            except Exception as e:
+                log.error(f"Не удалось скачать озвучку из Telegram: {e}")
         if not audio:
             log.warning(f"⏳ Длинное «{item['topic'][:45]}» к публикации ({item['publish_date']}), "
-                        f"но нет записи my_voice/{item['slug']}.mp3 — жду.")
+                        f"но озвучки ещё нет — жду (пришли аудио боту).")
             continue
 
         c = item["content"]
@@ -263,6 +274,13 @@ if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1:
         if sys.argv[1] == "--once":
+            _seed_data()
+            # Разовый опрос Telegram — забрать присланные озвучки (для GitHub Actions)
+            try:
+                from telegram_intake import poll_once
+                poll_once()
+            except Exception as e:
+                log.error(f"tg poll_once: {e}")
             run_agent()
         elif sys.argv[1] == "--digest":
             run_digest()

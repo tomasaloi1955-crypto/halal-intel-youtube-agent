@@ -1,20 +1,25 @@
-# Секреты и состояние — НЕ коммитим (идут через env / Secret Files / диск Render)
+# Секреты — НЕ коммитим никогда
 .env
 youtube_token.json
 youtube_credentials.json
 *_token.json
-seen_articles.json
-used_topics.json
-researched_topics.json
-long_queue.json
-tg_offset.txt
 
-# Озвучки и временные медиа
+# Локальное состояние в корне (DATA_DIR="."). На GitHub Actions состояние в state/ и коммитится.
+/seen_articles.json
+/used_topics.json
+/researched_topics.json
+/long_queue.json
+/tg_offset.txt
+
+# Озвучки и временные медиа (аудио не коммитим нигде)
 my_voice/*.mp3
 my_voice/*.m4a
 my_voice/*.wav
 my_voice/*.ogg
+my_voice/*.oga
 output/
+state/output/
+state/my_voice/
 
 # Логи и кэш
 agent.log
