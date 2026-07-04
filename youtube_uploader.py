@@ -36,9 +36,16 @@ def get_youtube_service():
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
     if not creds or not creds.valid:
+        refreshed = False
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+            try:
+                creds.refresh(Request())
+                refreshed = True
+            except Exception as e:
+                # Токен отозван/протух (invalid_grant) — падаем в браузерную авторизацию.
+                print(f"[YOUTUBE] refresh не удался ({e}) — нужна повторная авторизация.")
+                creds = None
+        if not refreshed:
             if not os.path.exists(CREDENTIALS_FILE):
                 raise FileNotFoundError(
                     f"Missing {CREDENTIALS_FILE}. "
