@@ -1,0 +1,12 @@
+name: autopilot8
+on: { workflow_dispatch: {} }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+        run: echo "gemini=${#GEMINI_API_KEY} el=${#ELEVENLABS_API_KEY} vid=${#ELEVENLABS_VOICE_ID}"
