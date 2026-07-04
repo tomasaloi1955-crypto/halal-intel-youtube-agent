@@ -1,0 +1,11 @@
+name: autopilot6
+on: { workflow_dispatch: {} }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        env:
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          YOUTUBE_CREDENTIALS_JSON: ${{ secrets.YOUTUBE_CREDENTIALS_JSON }}
+        run: echo "len_token=${#YOUTUBE_TOKEN_JSON} len_cred=${#YOUTUBE_CREDENTIALS_JSON}"
