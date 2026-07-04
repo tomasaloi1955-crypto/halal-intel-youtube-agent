@@ -1,0 +1,11 @@
+name: autopilot9
+on: { workflow_dispatch: {} }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+        run: echo "tg=${#TELEGRAM_BOT_TOKEN} chat=${#TELEGRAM_ALERT_CHAT_ID}"
