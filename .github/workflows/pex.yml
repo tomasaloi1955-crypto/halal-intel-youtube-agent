@@ -1,0 +1,8 @@
+name: pex
+on: { workflow_dispatch: {} }
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    steps:
+      - env: { K: "${{ secrets.PEXELS_API_KEY }}" }
+        run: echo "pexels=${#K}"
