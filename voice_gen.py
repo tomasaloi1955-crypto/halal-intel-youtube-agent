@@ -1,4 +1,5 @@
 # voice_gen.py — ElevenLabs для Shorts, файл для длинных
+import re
 import requests
 import os
 from dotenv import load_dotenv
@@ -11,8 +12,29 @@ from paths import dpath
 HUMAN_VOICE_DIR = dpath("my_voice")  # папка куда Фрея кладёт свои записи
 
 
+def clean_for_tts(text):
+    """Готовит текст к синтезу: убирает режиссёрские пометки, чтобы голос их НЕ проговаривал.
+    Иначе ElevenLabs читает вслух «пауза», «[ИНТРО]» и т.п."""
+    if not text:
+        return text
+    # пометки в квадратных/фигурных скобках: [ПАУЗА], [ИНТРО], {...}
+    text = re.sub(r"[\[\{][^\]\}]*[\]\}]", " ", text)
+    # скобочные ремарки-подсказки: (пауза), (pause), (вздох), (смех)
+    text = re.sub(r"\(\s*(?:пауза|pause|вздох|смех|интро|интонация)[^)]*\)", " ", text, flags=re.IGNORECASE)
+    # отдельно стоящие слова-ремарки «пауза» / «pause»
+    text = re.sub(r"(?<![а-яёa-zА-ЯЁA-Z])(?:пауза|pause)(?![а-яёa-zА-ЯЁA-Z])", " ", text, flags=re.IGNORECASE)
+    # markdown-разметка
+    text = text.replace("**", "").replace("__", "")
+    text = re.sub(r"(?m)^\s*[\*\-•]\s+", "", text)
+    # схлопнуть лишние пробелы/переносы
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\s*\n\s*", "\n", text)
+    return text.strip()
+
+
 def generate_voice_elevenlabs(text, output_path):
     """ElevenLabs для Shorts."""
+    text = clean_for_tts(text)
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
     headers = {
         "xi-api-key": ELEVENLABS_API_KEY,
