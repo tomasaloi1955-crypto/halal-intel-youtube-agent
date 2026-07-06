@@ -10,7 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",  # чтобы видеть, на какой канал грузим
+]
 TOKEN_FILE = dpath("youtube_token.json")
 CREDENTIALS_FILE = os.getenv("YOUTUBE_CREDENTIALS_FILE", "youtube_credentials.json")
 
@@ -52,7 +55,9 @@ def get_youtube_service():
                     "Download it from Google Cloud Console → APIs → YouTube Data API v3 → Credentials"
                 )
             flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
-            creds = flow.run_local_server(port=0)
+            # prompt="select_account consent" — заставляет Google показать выбор аккаунта/канала,
+            # иначе может молча взять канал по умолчанию (не тот).
+            creds = flow.run_local_server(port=0, prompt="select_account consent")
 
         with open(TOKEN_FILE, "w") as f:
             f.write(creds.to_json())
