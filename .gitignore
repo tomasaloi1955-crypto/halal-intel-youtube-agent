@@ -2,6 +2,7 @@
 .env
 youtube_token.json
 youtube_credentials.json
+tiktok_token.json
 *_token.json
 
 # Локальное состояние в корне (DATA_DIR="."). На GitHub Actions состояние в state/ и коммитится.

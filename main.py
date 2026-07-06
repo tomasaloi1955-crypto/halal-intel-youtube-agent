@@ -15,6 +15,7 @@ from ai_processor import process_digest, process_automation, pick_most_interesti
 from voice_gen import generate_voice
 from video_maker import make_video, create_thumbnail
 from youtube_uploader import upload_video
+from tiktok_uploader import upload_to_tiktok
 from content_schedule import get_today_content_type, get_automation_topic, get_schedule_info
 from telegram_notify import alert_fail, alert_ok
 
@@ -60,6 +61,17 @@ def publish_shorts(content, slug):
         alert_ok(f"Shorts опубликован: https://youtube.com/shorts/{vid_id}")
     else:
         alert_fail("Shorts — заливка", content.get("title_shorts", "")[:60])
+
+    # Тот же вертикальный ролик — в TikTok (пропускается, если TikTok не настроен)
+    try:
+        tags = content.get("tags", []) or []
+        caption = content.get("title_shorts", "")[:150] + " " + " ".join(f"#{t.replace(' ', '')}" for t in tags[:5])
+        pid = upload_to_tiktok(video, caption=caption.strip())
+        if pid:
+            log.info(f"✅ TikTok: черновик отправлен (publish_id={pid})")
+    except Exception as e:
+        log.error(f"TikTok публикация: {e}")
+
     return vid_id
 
 
