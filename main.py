@@ -16,6 +16,7 @@ from voice_gen import generate_voice
 from video_maker import make_video, create_thumbnail
 from youtube_uploader import upload_video
 from tiktok_uploader import upload_to_tiktok
+from threads_poster import post_once as threads_post_once
 from content_schedule import get_today_content_type, get_automation_topic, get_schedule_info
 from telegram_notify import alert_fail, alert_ok
 
@@ -256,6 +257,12 @@ def run_agent():
     except Exception as e:
         log.exception("Критический сбой цикла")
         alert_fail("Цикл агента", str(e)[:200])
+
+    # Текстовый пост в Threads — раз в день (не роняет цикл при ошибке)
+    try:
+        threads_post_once()
+    except Exception as e:
+        log.error(f"Threads пост: {e}")
 
     log.info("Цикл завершён.")
 
