@@ -51,6 +51,7 @@ jobs:
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_ENABLED: "true"
+          THREADS_TOKEN_EXPIRES: "2026-09-07"
           IMAGE_PROBABILITY: "0.55"
           AUTHOR_ROLE: "эксперт по автоматизации бизнеса и рутины с помощью нейросетей"
           AUTHOR_TELEGRAM: "https://t.me/Halalaifreya"

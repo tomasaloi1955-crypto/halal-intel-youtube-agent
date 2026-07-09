@@ -43,12 +43,14 @@ def publish_shorts(content, slug):
     audio = generate_voice(content["shorts_script"], audio_path, is_shorts=True)
     if not audio:
         log.error("Shorts: озвучка не удалась")
+        alert_fail("Shorts — озвучка (ElevenLabs)", content.get("title_shorts", "")[:60])
         return None
 
     video = make_video(audio, content["pexels_keywords"], f"{slug}_s",
                        is_shorts=True, script_text=content["shorts_script"])
     if not video:
         log.error("Shorts: монтаж не удался")
+        alert_fail("Shorts — монтаж видео", content.get("title_shorts", "")[:60])
         return None
 
     thumb = os.path.join(OUTPUT_DIR, f"{slug}_s_thumb.jpg")
