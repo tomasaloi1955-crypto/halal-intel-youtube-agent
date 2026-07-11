@@ -83,7 +83,7 @@ def process_digest(article):
   "cover_text": "3-5 слов для обложки",
   "cover_subtitle": "подзаголовок 4-6 слов",
   "tags": ["ИИ", "искусственный интеллект", "нейросети", "технологии", "халяль"],
-  "pexels_keywords": ["artificial intelligence", "technology", "digital future"],
+  "pexels_keywords": ["2-3 ПРЕДМЕТНЫХ англ. запроса по сути новости, БЕЗ людей/лиц/тела/медицины — техника/роботы/чипы/устройства и НАЗВАНИЕ компании из новости если есть, напр. 'humanoid robot','data center','nvidia chip'"],
   "description": "описание 150-200 слов на русском. В конце мощный призыв: 'Хочешь зарабатывать на ИИ и автоматизировать бизнес? Разбираю это в Telegram → {CHANNEL_LINK}. Внедрение под ключ — {BRAND_HANDLE}.' и 5-7 хэштегов"
 }}
 
@@ -113,7 +113,7 @@ def process_automation(topic):
   "cover_text": "3-5 слов — результат или экономия времени",
   "cover_subtitle": "подзаголовок 4-6 слов",
   "tags": ["автоматизация бизнеса", "бот для бизнеса", "ИИ", "предприниматель", "халяль бизнес"],
-  "pexels_keywords": ["{topic['keywords'][0] if topic.get('keywords') else 'business automation'}", "entrepreneur", "technology business"],
+  "pexels_keywords": ["{topic['keywords'][0] if topic.get('keywords') else 'business automation'}", "automation technology", "robot office workflow"],
   "description": "описание 200-250 слов на русском. Объясни пользу для предпринимателя. В конце:\\n\\nХочешь такое решение для своего бизнеса?\\n👉 {BRAND_HANDLE}\\n{CHANNEL_LINK}\\n\\n#автоматизациябизнеса #бизнесбот #ИИ #предприниматель #халяль"
 }}
 

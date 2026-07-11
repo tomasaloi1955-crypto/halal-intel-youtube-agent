@@ -18,12 +18,15 @@ OUTPUT_DIR = "output"
 
 # Шрифты с поддержкой кириллицы — кросс-платформенно (Windows / Linux / Mac)
 _FONT_CANDIDATES = {
-    True: [  # bold
+    True: [  # bold — сначала вшитый современный Montserrat (одинаково на ПК и в облаке)
+        "brand/fonts/Montserrat-ExtraBold.ttf",
+        "brand/fonts/Montserrat-Bold.ttf",
         "C:/Windows/Fonts/arialbd.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
     ],
     False: [  # regular
+        "brand/fonts/Montserrat-Bold.ttf",
         "C:/Windows/Fonts/arial.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/System/Library/Fonts/Supplemental/Arial.ttf",
@@ -42,7 +45,9 @@ def load_font(size, bold=False):
 
 # Ссылка на ТГ-канал — плашка внизу каждого Shorts
 TG_CHANNEL = "t.me/halal_intelligence"
-AUTOMATION_BANNER = "Автоматизация бизнес-процессов"
+# Короткий баннер — влезает в кадр шортса (720px), современный синий шрифт
+AUTOMATION_BANNER = "БИЗНЕС НА АВТОПИЛОТЕ"
+BANNER_BLUE = "0x2E9BFF"  # модный электрик-синий (ffmpeg 0xRRGGBB)
 
 
 def _ffmpeg_fontfile():
@@ -91,17 +96,43 @@ def _build_overlay_filter(add_automation):
     if not font:
         return None
     parts = [
+        # ТГ-канал снизу — Montserrat, тонкая тёмная плашка
         f"drawtext=fontfile={font}:text='{TG_CHANNEL}':"
-        f"fontcolor=white:fontsize=34:box=1:boxcolor=black@0.55:boxborderw=14:"
-        f"x=(w-text_w)/2:y=h-text_h-55"
+        f"fontcolor=white:fontsize=32:box=1:boxcolor=black@0.5:boxborderw=16:"
+        f"borderw=1:bordercolor=black@0.6:x=(w-text_w)/2:y=h-text_h-60"
     ]
     if add_automation:
+        # Верхний баннер: короткий, синий-электрик, современный шрифт, с обводкой чтобы читался на любом фоне.
+        # fontsize=42: текст ~600px + плашка ≈ 650px < 720px — с комфортным отступом от краёв.
         parts.append(
             f"drawtext=fontfile={font}:text='{AUTOMATION_BANNER}':"
-            f"fontcolor=0xD4AF37:fontsize=36:box=1:boxcolor=black@0.55:boxborderw=14:"
-            f"x=(w-text_w)/2:y=95"
+            f"fontcolor={BANNER_BLUE}:fontsize=42:box=1:boxcolor=black@0.45:boxborderw=20:"
+            f"borderw=3:bordercolor=white@0.85:x=(w-text_w)/2:y=120"
         )
     return ",".join(parts)
+
+
+def _build_shorts_overlay(add_automation, logos, duration, w, h):
+    """Оверлеи Shorts: drawtext (ТГ снизу + баннер сверху) + лого брендов картинкой в правом углу."""
+    draw = _build_overlay_filter(add_automation)  # цепочка drawtext или None
+    logos = (logos or [])[:2]  # на маленьком экране максимум 2 знака
+    segs, inputs, cur = [], [], "0:v"
+    if draw:
+        segs.append(f"[{cur}]{draw}[txt]")
+        cur = "txt"
+    for k, logo in enumerate(logos):
+        idx = 2 + k  # входы pass2: 0=montage, 1=audio, 2..=лого
+        inputs += ["-i", logo]
+        a = max(1.0, (k + 1) * duration / (len(logos) + 1) - 2.0)
+        b = a + 4.5
+        segs.append(f"[{idx}:v]scale=-1:120[lg{k}]")
+        segs.append(f"[{cur}][lg{k}]overlay=W-w-40:230:"
+                    f"enable='between(t,{a:.1f},{b:.1f})'[ov{k}]")
+        cur = f"ov{k}"
+    if not segs:
+        return None, []
+    segs[-1] = re.sub(rf"\[{cur}\]$", "[outv]", segs[-1])
+    return ";".join(segs), inputs
 
 # ---- ТЕХНО b-roll (канал про технологии): роботы, компьютеры, ИИ, чипы, техно-города, машины ----
 BROLL_QUERIES = [
@@ -119,11 +150,20 @@ BROLL_QUERIES = [
 
 
 # Доп. тематические техно-запросы по ключевым словам новости/урока
+def _sanitize_keyword(kw):
+    """Выкидывает из ключа «людские»/«здоровье» слова. Возвращает очищенную строку или ''."""
+    kw = (kw or "").lower().strip()
+    words = [w for w in re.split(r"[\s,]+", kw) if w and w not in BANNED_QUERY_WORDS]
+    return " ".join(words).strip()
+
+
 def _topical_tech(keywords):
+    """Тематические ОБЪЕКТНЫЕ запросы по смыслу новости: тема + техно-модификатор, без людей."""
     out = []
-    for kw in (keywords or [])[:2]:
-        if kw:
-            out.append(f"{kw} technology")
+    for kw in (keywords or []):
+        clean = _sanitize_keyword(kw)
+        if clean:
+            out.append(f"{clean} {random.choice(OBJECT_MODIFIERS)}")
     return out
 
 
@@ -181,18 +221,44 @@ BRAND_DOMAINS = {
     "whatsapp": "whatsapp.com", "вотсап": "whatsapp.com", "ватсап": "whatsapp.com",
     "instagram": "instagram.com", "инстаграм": "instagram.com",
     "openai": "openai.com", "chatgpt": "openai.com", "чат gpt": "openai.com", "чатгпт": "openai.com",
+    "altman": "openai.com", "альтман": "openai.com",
     "youtube": "youtube.com", "ютуб": "youtube.com",
     "gemini": "google.com", "google": "google.com", "гугл": "google.com",
+    "deepmind": "deepmind.com", "pichai": "google.com", "пичаи": "google.com",
     "anthropic": "anthropic.com", "claude": "anthropic.com", "клод": "anthropic.com",
     "apple": "apple.com", "эпл": "apple.com", "айфон": "apple.com", "iphone": "apple.com",
+    "тим кук": "apple.com", "cook": "apple.com",
     " hp ": "hp.com", "hewlett": "hp.com",
     "microsoft": "microsoft.com", "майкрософт": "microsoft.com", "copilot": "microsoft.com",
+    "gates": "microsoft.com", "гейтс": "microsoft.com",
     "tesla": "tesla.com", "тесла": "tesla.com",
-    "nvidia": "nvidia.com", "нвидиа": "nvidia.com",
+    "nvidia": "nvidia.com", "нвидиа": "nvidia.com", "huang": "nvidia.com", "хуанг": "nvidia.com",
     "samsung": "samsung.com", "самсунг": "samsung.com",
-    " meta ": "meta.com", "facebook": "meta.com",
+    " meta ": "meta.com", "facebook": "meta.com", "цукерберг": "meta.com", "zuckerberg": "meta.com",
     "tiktok": "tiktok.com", "тикток": "tiktok.com",
+    # люди → бренд компании (показываем фирменный знак)
+    "amazon": "amazon.com", "амазон": "amazon.com", "aws": "amazon.com",
+    "bezos": "amazon.com", "безос": "amazon.com",
+    "musk": "tesla.com", "маск": "tesla.com", "spacex": "spacex.com", "спейсикс": "spacex.com",
+    " xai": "x.ai", "grok": "x.ai", "грок": "x.ai",
+    "intel": "intel.com", "интел": "intel.com", "amd": "amd.com",
+    "sony": "sony.com", "сони": "sony.com",
+    "deepseek": "deepseek.com", "дипсик": "deepseek.com",
+    "mistral": "mistral.ai", "perplexity": "perplexity.ai", "midjourney": "midjourney.com",
+    "boston dynamics": "bostondynamics.com", "бостон дайнамикс": "bostondynamics.com",
 }
+
+# Слова, которые НЕ должны попадать в поиск видеоряда (люди/тело/здоровье и т.п.) —
+# канал про технику: минимум людей, никаких «учёных»/«докторов»/«тела».
+BANNED_QUERY_WORDS = {
+    "people", "person", "man", "woman", "women", "men", "girl", "boy", "human", "face",
+    "body", "portrait", "model", "crowd", "team", "doctor", "nurse", "patient", "health",
+    "healthcare", "medical", "medicine", "hospital", "fitness", "gym", "yoga", "beauty",
+    "scientist", "laboratory", "lab", "student", "teacher", "worker", "hands", "smile",
+    "человек", "люди", "женщина", "мужчина", "девушка", "врач", "здоровье", "учёный", "ученый",
+}
+# Чем заменяем/дополняем тематику, чтобы кадр был про технику, а не про людей.
+OBJECT_MODIFIERS = ["technology", "robot", "abstract 3d render", "close up macro"]
 
 
 def _logo_chip(im, size=132, pad=20, radius=26):
@@ -521,8 +587,7 @@ def assemble_video(audio_path, media_clips, output_path, is_shorts=False,
 
     # --- Проход 2: длина под аудио + звук + оверлеи ---
     if is_shorts:
-        overlay, extra_inputs = _build_overlay_filter(add_automation), []
-        overlay = f"[0:v]{overlay}[outv]" if overlay else None
+        overlay, extra_inputs = _build_shorts_overlay(add_automation, logos, duration, w, h)
     else:
         overlay, extra_inputs = _build_long_overlay(captions, logos, duration, w, h)
 
@@ -553,11 +618,12 @@ def assemble_video(audio_path, media_clips, output_path, is_shorts=False,
 
 
 def _build_queries(pexels_keywords):
-    """Техно-видеоряд в приоритете (роботы/компьютеры/чипы) + максимум 1 тематический запрос."""
+    """Сначала ТЕМАТИЧЕСКИЕ объектные запросы (кадр по смыслу текста), потом техно-пул (роботы/чипы).
+    Так видеоряд согласуется с новостью, а не берётся наугад."""
+    topical = _topical_tech(pexels_keywords)[:3]
     pool = list(BROLL_QUERIES)
     random.shuffle(pool)
-    topical = _topical_tech(pexels_keywords)[:1]  # тематику по минимуму — больше техно/роботов
-    return (pool + topical)[:20]
+    return (topical + pool)[:20]
 
 
 def make_video(audio_path, pexels_keywords, title_slug, is_shorts=False, script_text=""):
@@ -566,9 +632,10 @@ def make_video(audio_path, pexels_keywords, title_slug, is_shorts=False, script_
     queries = _build_queries(pexels_keywords)
 
     if is_shorts:
-        # Shorts: немного предметных клипов (короткое видео)
+        # Shorts: немного предметных клипов + лого упомянутых брендов (Amazon/Apple/Claude…)
         clips = fetch_diverse_clips(queries, target=6, slug=f"{title_slug}_s")
-        captions, logos = None, None
+        captions = None
+        logos = fetch_brand_logos(script_text, f"{title_slug}_s", max_logos=2)
     else:
         # Длинное: много уникальных клипов под всю длину + подписи + лого брендов
         target = min(45, max(14, int(duration / 10) + 4))
