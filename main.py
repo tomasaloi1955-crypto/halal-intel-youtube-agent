@@ -11,13 +11,13 @@ for _stream in (sys.stdout, sys.stderr):
         pass
 
 from rss_parser import fetch_latest_news, mark_seen
-from ai_processor import process_digest, process_automation, pick_most_interesting
+from ai_processor import process_digest, process_automation, process_tool_review, pick_most_interesting
 from voice_gen import generate_voice
 from video_maker import make_video, create_thumbnail
 from youtube_uploader import upload_video
 from tiktok_uploader import upload_to_tiktok
 from threads_poster import post_once as threads_post_once
-from content_schedule import get_today_content_type, get_automation_topic, get_schedule_info
+from content_schedule import get_today_content_type, get_automation_topic, get_tool_review_topic, get_schedule_info
 from telegram_notify import alert_fail, alert_ok
 
 load_dotenv()
@@ -144,6 +144,18 @@ def run_automation():
     publish_shorts(content, slug)
 
 
+def run_tool_review():
+    log.info("=== ОБЗОР ИИ-ИНСТРУМЕНТА ===")
+    topic = get_tool_review_topic()
+    log.info(f"Инструмент: {topic['tool_name']}")
+    content = process_tool_review(topic)
+    if not content:
+        return
+    slug = slugify(topic["title"])
+
+    publish_shorts(content, slug)
+
+
 from paths import dpath
 import shutil
 QUEUE_FILE = dpath("long_queue.json")
@@ -248,9 +260,12 @@ def run_agent():
     log.info(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {info['day']} | {info['label']}")
 
     try:
-        # Shorts по новостям — каждый день
-        if get_today_content_type() == "digest":
+        # Shorts — каждый день, тип по расписанию (новости / обзор инструмента / автоматизация)
+        content_type = get_today_content_type()
+        if content_type == "digest":
             run_digest()
+        elif content_type == "tool_review":
+            run_tool_review()
         else:
             run_automation()
 
@@ -271,7 +286,7 @@ def run_agent():
 
 def start_scheduler():
     log.info("🕌 Халяль Интеллидженс агент запущен")
-    log.info("Пн Вт Чт Пт Вс — дайджест | Ср Сб — автоматизация")
+    log.info("Пн Чт Вс — новости ИИ | Вт Пт — обзор ИИ-инструмента | Ср Сб — автоматизация")
     log.info("Shorts → ElevenLabs | Длинные → твоя озвучка из my_voice/")
 
     _seed_data()  # развернуть очередь на свежем диске (Render) до старта приёма
@@ -307,6 +322,8 @@ if __name__ == "__main__":
             run_digest()
         elif sys.argv[1] == "--automation":
             run_automation()
+        elif sys.argv[1] == "--tool-review":
+            run_tool_review()
         elif sys.argv[1] == "--check-voice":
             # Проверяет папку my_voice и монтирует если есть файлы
             import glob
