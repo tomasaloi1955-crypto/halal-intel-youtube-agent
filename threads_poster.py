@@ -147,7 +147,9 @@ def _groq_chat(system, user):
     key = _env("GROQ_API_KEY")
     if not key:
         raise RuntimeError("GROQ_API_KEY не задан")
-    model = _env("GROQ_MODEL", "llama-3.3-70b-versatile")
+    # llama-3.3-70b-versatile отключена Groq для free/developer-тарифа 16.08.2026.
+    # Актуальная production-модель: openai/gpt-oss-120b (можно переопределить GROQ_MODEL).
+    model = _env("GROQ_MODEL", "openai/gpt-oss-120b")
     r = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}"},
