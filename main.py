@@ -153,6 +153,8 @@ def run_digest():
 
     content = process_digest(article)
     if not content:
+        log.error("Дайджест: генерация сценария не удалась (см. лог выше — часто это квота Gemini)")
+        alert_fail("Дайджест — генерация сценария (Gemini)", article["title"][:60])
         return None
     slug = slugify(article["title"])
 
@@ -169,6 +171,8 @@ def run_automation():
     log.info(f"Тема: {topic['title']}")
     content = process_automation(topic)
     if not content:
+        log.error("Автоматизация: генерация сценария не удалась (см. лог выше — часто это квота Gemini)")
+        alert_fail("Автоматизация — генерация сценария (Gemini)", topic["title"][:60])
         return None
     slug = slugify(topic["title"])
 
@@ -185,6 +189,8 @@ def run_tool_review():
     log.info(f"Инструмент: {topic['tool_name']}")
     content = process_tool_review(topic)
     if not content:
+        log.error("Обзор инструмента: генерация сценария не удалась (см. лог выше — часто это квота Gemini)")
+        alert_fail("Обзор инструмента — генерация сценария (Gemini)", topic["title"][:60])
         return None
     slug = slugify(topic["title"])
 
