@@ -3,11 +3,17 @@ import google.generativeai as genai
 import json
 import os
 import random
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
+
+# Резерв на случай сбоя Gemini (в т.ч. дневная квота 20 запросов/сутки на бесплатном
+# тарифе — см. GROQ_MODEL комментарий ниже). Отдельная квота, ключ уже настроен для
+# threads_poster.py, ничего нового заводить не нужно.
+GROQ_FALLBACK_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 BRAND_HANDLE = "@Freya2013"
 CHANNEL_LINK = "https://t.me/halal_intelligence"
@@ -159,15 +165,45 @@ def process_tool_review(topic):
     return _call_gemini(prompt)
 
 
+def _call_groq_fallback(prompt):
+    key = os.getenv("GROQ_API_KEY")
+    if not key:
+        raise RuntimeError("GROQ_API_KEY не задан — резерва нет")
+    r = requests.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        headers={"Authorization": f"Bearer {key}"},
+        json={"model": GROQ_FALLBACK_MODEL,
+              "messages": [{"role": "user", "content": prompt}], "temperature": 0.8},
+        timeout=90,
+    )
+    r.raise_for_status()
+    return r.json()["choices"][0]["message"]["content"].strip()
+
+
 def _call_gemini(prompt):
+    """Основной движок — Gemini (лучше держит длинный структурированный JSON на русском).
+    При сбое Gemini (сеть, отказ модели и особенно дневная квота 20 запросов/сутки на
+    бесплатном тарифе) автоматически переключается на Groq — у него отдельная квота,
+    никак не связанная с Gemini, так что один упавший провайдер не останавливает контент."""
+    text = None
     try:
         response = model.generate_content(prompt)
         text = response.text.strip()
+    except Exception as e:
+        print(f"[AI] Gemini недоступен ({e}), пробую резерв — Groq...")
+        try:
+            text = _call_groq_fallback(prompt)
+            print("[AI] Резерв Groq сработал")
+        except Exception as e2:
+            print(f"[AI] Groq тоже недоступен: {e2}")
+            return None
+
+    try:
         if text.startswith("```"):
             text = text.split("```")[1]
             if text.startswith("json"):
                 text = text[4:]
         return json.loads(text.strip())
     except Exception as e:
-        print(f"[AI] Ошибка: {e}")
+        print(f"[AI] Ошибка разбора JSON: {e}")
         return None
