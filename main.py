@@ -1,5 +1,5 @@
 # main.py
-import os, re, sys, time, json, schedule, logging
+import os, re, sys, time, json, glob, schedule, logging
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -10,13 +10,14 @@ for _stream in (sys.stdout, sys.stderr):
     except Exception:
         pass
 
-from rss_parser import fetch_latest_news, mark_seen
+from rss_parser import fetch_latest_news, mark_seen, fetch_article_text
 from ai_processor import process_digest, process_automation, process_tool_review, pick_most_interesting
 from voice_gen import generate_voice
 from video_maker import make_video, create_thumbnail
 from youtube_uploader import upload_video
 from tiktok_uploader import upload_to_tiktok
-from threads_poster import post_once as threads_post_once
+from threads_poster import post_once as threads_post_once, generate_post as generate_social_post
+from instagram_poster import post_once as instagram_post_once
 from content_schedule import get_today_content_type, get_automation_topic, get_tool_review_topic, get_schedule_info
 from telegram_notify import alert_fail, alert_ok
 
@@ -35,6 +36,21 @@ def slugify(text, max_len=30):
     text = re.sub(r"[^\w\s-]", "", text.lower())
     text = re.sub(r"[\s_-]+", "_", text)
     return text[:max_len]
+
+
+def cleanup_raw_assets(slug):
+    """Вызывать ТОЛЬКО после подтверждённой публикации (vid_id получен от YouTube).
+    Удаляет исходники b-roll (_bc_), Ken Burns фото (_ph_) и лого (_logo_) — они уже
+    вшиты в финальное видео. Финальный *_shorts.mp4/*_long.mp4 и обложку не трогает —
+    их имена не содержат этих меток, так что под шаблоны они не попадают."""
+    patterns = [f"{slug}*_bc_*.mp4", f"{slug}*_ph_*.jpg", f"{slug}*_ph_*_vid.mp4",
+                f"{slug}*_logo_*.png"]
+    for pat in patterns:
+        for p in glob.glob(os.path.join(OUTPUT_DIR, pat)):
+            try:
+                os.remove(p)
+            except OSError:
+                pass
 
 
 def publish_shorts(content, slug):
@@ -62,6 +78,7 @@ def publish_shorts(content, slug):
     if vid_id:
         log.info(f"✅ Shorts: https://youtube.com/shorts/{vid_id}")
         alert_ok(f"Shorts опубликован: https://youtube.com/shorts/{vid_id}")
+        cleanup_raw_assets(slug)
     else:
         alert_fail("Shorts — заливка", content.get("title_shorts", "")[:60])
 
@@ -107,6 +124,7 @@ def publish_long(content, slug):
                           content["description"], content["tags"], is_shorts=False)
     if vid_id:
         log.info(f"✅ Длинное видео: https://youtube.com/watch?v={vid_id}")
+        cleanup_raw_assets(slug)
     return vid_id
 
 
@@ -122,13 +140,27 @@ def run_digest():
     article = pool[idx]
     mark_seen(article["link"])  # помечаем использованной только выбранную
     log.info(f"Новость: {article['title'][:70]}")
+
+    # RSS даёт только тизер в 1-2 предложения без единого факта — этого не хватает,
+    # чтобы написать содержательный сценарий. Дочитываем саму статью для выбранной новости
+    # (только для неё одной — не тратим время на весь пул из 12 кандидатов).
+    full_text = fetch_article_text(article["link"])
+    if full_text and len(full_text) > len(article.get("summary", "")):
+        log.info(f"Полный текст статьи получен ({len(full_text)} симв.) — используем вместо тизера")
+        article = {**article, "summary": full_text}
+    else:
+        log.warning("Полный текст статьи не получен — работаю с коротким RSS-тизером")
+
     content = process_digest(article)
     if not content:
-        return
+        return None
     slug = slugify(article["title"])
 
     # Shorts каждый день (новости → ElevenLabs). Длинные идут отдельно из очереди.
-    publish_shorts(content, slug)
+    vid_id = publish_shorts(content, slug)
+    if vid_id:
+        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
+    return content
 
 
 def run_automation():
@@ -137,11 +169,14 @@ def run_automation():
     log.info(f"Тема: {topic['title']}")
     content = process_automation(topic)
     if not content:
-        return
+        return None
     slug = slugify(topic["title"])
 
     # Shorts — ElevenLabs. Длинные уроки идут из заранее начитанной очереди (run_long_queue).
-    publish_shorts(content, slug)
+    vid_id = publish_shorts(content, slug)
+    if vid_id:
+        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
+    return content
 
 
 def run_tool_review():
@@ -150,10 +185,13 @@ def run_tool_review():
     log.info(f"Инструмент: {topic['tool_name']}")
     content = process_tool_review(topic)
     if not content:
-        return
+        return None
     slug = slugify(topic["title"])
 
-    publish_shorts(content, slug)
+    vid_id = publish_shorts(content, slug)
+    if vid_id:
+        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
+    return content
 
 
 from paths import dpath
@@ -244,6 +282,7 @@ def run_long_queue():
             changed = True
             log.info(f"✅ Длинное: https://youtube.com/watch?v={vid_id}")
             alert_ok(f"Длинное опубликовано: {item['topic'][:40]}\nhttps://youtube.com/watch?v={vid_id}")
+            cleanup_raw_assets(item["slug"])
         else:
             log.error("Длинное: заливка не удалась — повторю в следующий цикл.")
             alert_fail("Длинное — заливка", item["topic"][:60])
@@ -259,15 +298,16 @@ def run_agent():
     log.info("=" * 55)
     log.info(f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {info['day']} | {info['label']}")
 
+    todays_content = None
     try:
         # Shorts — каждый день, тип по расписанию (новости / обзор инструмента / автоматизация)
         content_type = get_today_content_type()
         if content_type == "digest":
-            run_digest()
+            todays_content = run_digest()
         elif content_type == "tool_review":
-            run_tool_review()
+            todays_content = run_tool_review()
         else:
-            run_automation()
+            todays_content = run_automation()
 
         # Длинные — из заранее начитанной очереди (по расписанию, 2/нед)
         run_long_queue()
@@ -275,11 +315,26 @@ def run_agent():
         log.exception("Критический сбой цикла")
         alert_fail("Цикл агента", str(e)[:200])
 
-    # Текстовый пост в Threads — раз в день (не роняет цикл при ошибке)
+    # Текстовый пост — раз в день, на реальном факте сегодняшнего видео, с настоящей обложкой
+    # видео как картинкой (если контента нет — сработает резервная тема внутри generate_social_post).
+    # Генерация — ОДНА на обе площадки (не тратим второй вызов ИИ и не расходимся в смысле),
+    # а публикация в Threads и Instagram друг от друга не зависит: выключен/не настроен один —
+    # второй всё равно получит готовый пост.
+    social_text = social_image = None
     try:
-        threads_post_once()
+        social_text, social_image = generate_social_post(todays_content)
     except Exception as e:
-        log.error(f"Threads пост: {e}")
+        log.error(f"Генерация соц-поста: {e}")
+
+    if social_text:
+        try:
+            threads_post_once(text=social_text, image_url=social_image)
+        except Exception as e:
+            log.error(f"Threads пост: {e}")
+        try:
+            instagram_post_once(text=social_text, image_url=social_image)
+        except Exception as e:
+            log.error(f"Instagram пост: {e}")
 
     log.info("Цикл завершён.")
 

@@ -1,6 +1,7 @@
 import feedparser
 import json
 import os
+import requests
 from datetime import datetime, timedelta
 
 RSS_FEEDS = [
@@ -31,6 +32,44 @@ def mark_seen(link):
     seen = load_seen()
     seen.add(link)
     save_seen(seen)
+
+
+def fetch_article_text(url, timeout=15, max_chars=6000):
+    """Скачивает страницу статьи и вытаскивает основной текст.
+    RSS-лента даёт только короткий тизер (1-2 предложения без единого факта) — этого
+    физически не хватает, чтобы написать содержательный сценарий или пост. Здесь мы читаем
+    саму статью, чтобы у ИИ-редактора были реальные детали, цифры и контекст.
+    Возвращает None при любой ошибке — вызывающий код должен упасть обратно на короткий тизер,
+    а не остановить публикацию."""
+    try:
+        r = requests.get(url, timeout=timeout, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                          "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+        })
+        r.raise_for_status()
+    except requests.RequestException as e:
+        print(f"[RSS] Не удалось скачать статью {url}: {e}")
+        return None
+
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        print("[RSS] beautifulsoup4 не установлен — полный текст статьи недоступен.")
+        return None
+
+    try:
+        soup = BeautifulSoup(r.text, "html.parser")
+        for tag in soup(["script", "style", "nav", "header", "footer", "aside", "form", "figure"]):
+            tag.decompose()
+        scope = soup.find("article") or soup
+        # Короткие фрагменты (подписи к картинкам, меню, кнопки "подписаться") отсеиваем по длине —
+        # у нормального абзаца статьи почти всегда больше 40 символов.
+        paragraphs = [p.get_text(" ", strip=True) for p in scope.find_all("p")]
+        text = "\n".join(p for p in paragraphs if len(p) > 40)
+        return text[:max_chars] if text else None
+    except Exception as e:
+        print(f"[RSS] Не удалось разобрать статью {url}: {e}")
+        return None
 
 
 def fetch_latest_news(max_articles=3, persist=True):

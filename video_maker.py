@@ -632,8 +632,11 @@ def make_video(audio_path, pexels_keywords, title_slug, is_shorts=False, script_
     queries = _build_queries(pexels_keywords)
 
     if is_shorts:
-        # Shorts: немного предметных клипов + лого упомянутых брендов (Amazon/Apple/Claude…)
-        clips = fetch_diverse_clips(queries, target=6, slug=f"{title_slug}_s")
+        # Shorts: предметные клипы (число растёт вместе с длиной сценария, иначе при более
+        # длинном ролике монтаж из 6 клипов просто зацикливается и выглядит однообразно)
+        # + лого упомянутых брендов (Amazon/Apple/Claude…)
+        target = min(10, max(6, int(duration / 10)))
+        clips = fetch_diverse_clips(queries, target=target, slug=f"{title_slug}_s")
         captions = None
         logos = fetch_brand_logos(script_text, f"{title_slug}_s", max_logos=2)
     else:
