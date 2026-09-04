@@ -1,6 +1,6 @@
-# lead_finder.py — ищет реальные заказы на разработку сайтов в халяль/исламской нише
-# и присылает новые находки в Telegram. Источник — открытый HTML-поиск DuckDuckGo
-# (без ключей и регистрации), поэтому раз в день, без спама запросами.
+# lead_finder.py — ищет реальные заказы на разработку сайтов (любая ниша, кроме харам)
+# и присылает новые находки в Telegram. Источник — Google Custom Search API,
+# с резервом на открытый HTML-поиск DuckDuckGo.
 import time
 
 import requests
@@ -19,9 +19,61 @@ HEADERS = {
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 }
 
+# Категории, заказы из которых НЕ показываем никогда (харам-ниши).
+# Проверяются и в самом запросе (минус-слова), и повторно в тексте результата.
+EXCLUDE_KEYWORDS = [
+    # азартные игры / ставки
+    "казино", "ставки на спорт", "ставок на", "букмекер", "беттинг", "азартн",
+    "покер", "слот-автомат", "игровой автомат", "рулетк", "лотере", "тотализатор",
+    "casino", "gambling", "betting", "bookmaker", "sportsbook", "poker", "slot machine", "lottery",
+    # финансовые/риба-ниши
+    "форекс", "бинарные опцион", "бинарный опцион", "микрозайм", "ломбард", "кредитная организация",
+    "forex", "binary options", "microloan", "pawnshop",
+    # алкоголь
+    "алкогол", "спиртн", "винодел", "пивовар", "ликёр", "ликер", "виски", "водка",
+    "alcohol", "liquor", "whiskey", "vodka", "brewery", "distillery",
+    # свинина
+    "свинин", "бекон", "ветчин",
+    "pork", "bacon", " ham ",
+    # банки
+    "банк", "bank",
+]
+
+EXCLUDE_QUERY_SUFFIX = (
+    " -казино -ставки -букмекер -покер -алкоголь -пиво -вино -свинина -бекон -банк -кредит -ломбард -forex -casino -gambling"
+)
+
+
+def is_forbidden(*parts):
+    text = " ".join(parts).lower()
+    return any(kw in text for kw in EXCLUDE_KEYWORDS)
+
+
 # Запросы нацелены на людей/организации, которые ПРЯМО СЕЙЧАС просят сделать сайт —
-# это реальные заказы, а не холодные лиды.
-QUERIES = [
+# это реальные заказы, а не холодные лиды. Общие — любая ниша (кроме харам, см. фильтр
+# выше), плюс отдельно халяль/исламская ниша, где у Халяль Интеллидженс есть репутация.
+GENERAL_QUERIES = [
+    '"нужен сайт" заказ' + EXCLUDE_QUERY_SUFFIX,
+    '"требуется сайт" бизнес' + EXCLUDE_QUERY_SUFFIX,
+    '"ищу разработчика" сайт' + EXCLUDE_QUERY_SUFFIX,
+    '"ищу веб-разработчика"' + EXCLUDE_QUERY_SUFFIX,
+    '"требуется веб-разработчик"' + EXCLUDE_QUERY_SUFFIX,
+    '"нужен лендинг"' + EXCLUDE_QUERY_SUFFIX,
+    '"нужен интернет-магазин"' + EXCLUDE_QUERY_SUFFIX,
+    '"создать сайт" под ключ заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:kwork.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:kwork.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:fl.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:fl.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:youdo.com сайт разработка заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:freelance.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
+    'site:weblancer.net сайт заказ' + EXCLUDE_QUERY_SUFFIX,
+    'upwork "website developer" needed' + EXCLUDE_QUERY_SUFFIX,
+    'upwork "landing page" needed' + EXCLUDE_QUERY_SUFFIX,
+    'freelancer.com "website" project needed' + EXCLUDE_QUERY_SUFFIX,
+]
+
+HALAL_QUERIES = [
     'site:kwork.ru сайт мечеть',
     'site:kwork.ru сайт ислам',
     'site:kwork.ru сайт халяль',
@@ -43,6 +95,8 @@ QUERIES = [
     'freelancer.com "halal" website',
     'freelancer.com "mosque" website',
 ]
+
+QUERIES = GENERAL_QUERIES + HALAL_QUERIES
 
 REQUEST_DELAY_SEC = 2
 
@@ -151,9 +205,12 @@ def run():
     for query in QUERIES:
         try:
             for title, url, snippet in search(query):
-                if url not in seen:
-                    new_leads.append((title, url, snippet))
-                    seen.add(url)
+                if url in seen:
+                    continue
+                seen.add(url)
+                if is_forbidden(title, url, snippet):
+                    continue
+                new_leads.append((title, url, snippet))
         except Exception as e:
             failures += 1
             print(f"[lead_finder] Запрос не удался: {query!r} — {e}")
