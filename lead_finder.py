@@ -37,6 +37,8 @@ EXCLUDE_KEYWORDS = [
     "pork", "bacon", " ham ",
     # банки
     "банк", "bank",
+    # арабский (Персидский залив)
+    "قمار", "كازينو", "مراهنات", "رهان", "خمر", "كحول", "خنزير", "بنك",
 ]
 
 EXCLUDE_QUERY_SUFFIX = (
@@ -50,53 +52,86 @@ def is_forbidden(*parts):
 
 
 # Запросы нацелены на людей/организации, которые ПРЯМО СЕЙЧАС просят сделать сайт —
-# это реальные заказы, а не холодные лиды. Общие — любая ниша (кроме харам, см. фильтр
-# выше), плюс отдельно халяль/исламская ниша, где у Халяль Интеллидженс есть репутация.
+# это реальные заказы, а не холодные лиды. Каждый запрос помечен языком (ru/en/ar) —
+# на нём же готовится черновик предложения для заказчика.
 GENERAL_QUERIES = [
-    '"нужен сайт" заказ' + EXCLUDE_QUERY_SUFFIX,
-    '"требуется сайт" бизнес' + EXCLUDE_QUERY_SUFFIX,
-    '"ищу разработчика" сайт' + EXCLUDE_QUERY_SUFFIX,
-    '"ищу веб-разработчика"' + EXCLUDE_QUERY_SUFFIX,
-    '"требуется веб-разработчик"' + EXCLUDE_QUERY_SUFFIX,
-    '"нужен лендинг"' + EXCLUDE_QUERY_SUFFIX,
-    '"нужен интернет-магазин"' + EXCLUDE_QUERY_SUFFIX,
-    '"создать сайт" под ключ заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:kwork.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:kwork.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:fl.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:fl.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:youdo.com сайт разработка заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:freelance.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX,
-    'site:weblancer.net сайт заказ' + EXCLUDE_QUERY_SUFFIX,
-    'upwork "website developer" needed' + EXCLUDE_QUERY_SUFFIX,
-    'upwork "landing page" needed' + EXCLUDE_QUERY_SUFFIX,
-    'freelancer.com "website" project needed' + EXCLUDE_QUERY_SUFFIX,
+    ('"нужен сайт" заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"требуется сайт" бизнес' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"ищу разработчика" сайт' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"ищу веб-разработчика"' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"требуется веб-разработчик"' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"нужен лендинг"' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"нужен интернет-магазин"' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('"создать сайт" под ключ заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:kwork.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:kwork.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:fl.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:fl.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:youdo.com сайт разработка заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:freelance.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+    ('site:weblancer.net сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
 ]
 
 HALAL_QUERIES = [
-    'site:kwork.ru сайт мечеть',
-    'site:kwork.ru сайт ислам',
-    'site:kwork.ru сайт халяль',
-    'site:fl.ru сайт мечеть',
-    'site:fl.ru сайт ислам',
-    'site:youdo.com сайт мечеть',
-    'site:youdo.com сайт халяль',
-    'site:freelance.ru сайт мечеть',
-    '"нужен сайт" мечеть',
-    '"нужен сайт" халяль',
-    '"нужен сайт" ислам магазин',
-    '"требуется сайт" мусульман',
-    '"ищу разработчика" мечеть сайт',
-    '"ищу разработчика" халяль сайт',
-    '"создать сайт" исламский центр',
-    '"создать сайт" халяль магазин',
-    'upwork "halal" website developer needed',
-    'upwork "islamic" website developer needed',
-    'freelancer.com "halal" website',
-    'freelancer.com "mosque" website',
+    ('site:kwork.ru сайт мечеть', "ru"),
+    ('site:kwork.ru сайт ислам', "ru"),
+    ('site:kwork.ru сайт халяль', "ru"),
+    ('site:fl.ru сайт мечеть', "ru"),
+    ('site:fl.ru сайт ислам', "ru"),
+    ('site:youdo.com сайт мечеть', "ru"),
+    ('site:youdo.com сайт халяль', "ru"),
+    ('site:freelance.ru сайт мечеть', "ru"),
+    ('"нужен сайт" мечеть', "ru"),
+    ('"нужен сайт" халяль', "ru"),
+    ('"нужен сайт" ислам магазин', "ru"),
+    ('"требуется сайт" мусульман', "ru"),
+    ('"ищу разработчика" мечеть сайт', "ru"),
+    ('"ищу разработчика" халяль сайт', "ru"),
+    ('"создать сайт" исламский центр', "ru"),
+    ('"создать сайт" халяль магазин', "ru"),
+    ('upwork "halal" website developer needed', "en"),
+    ('upwork "islamic" website developer needed', "en"),
+    ('freelancer.com "halal" website', "en"),
+    ('freelancer.com "mosque" website', "en"),
 ]
 
-QUERIES = GENERAL_QUERIES + HALAL_QUERIES
+# Англоязычные площадки в целом — любая ниша, кроме харам.
+INTL_QUERIES = [
+    ('"looking for a web developer"' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website built"' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website" freelance' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"hiring a web developer"' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"website developer needed"' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('upwork "website developer" needed' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('upwork "landing page" needed' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('freelancer.com "website" project needed' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('site:reddit.com/r/forhire "website"' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('site:reddit.com/r/forhire "landing page"' + EXCLUDE_QUERY_SUFFIX, "en"),
+]
+
+# Персидский залив — англо- и арабоязычные объявления (ОАЭ, Саудовская Аравия,
+# Катар, Кувейт, Бахрейн, Оман).
+GULF_QUERIES = [
+    ('"need a website" Dubai' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website" UAE' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"web developer needed" Saudi Arabia' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"website developer" Qatar hiring' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website" Kuwait' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website" Bahrain' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"need a website" Oman' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('مطلوب مصمم مواقع' + EXCLUDE_QUERY_SUFFIX, "ar"),
+    ('نحتاج موقع الكتروني' + EXCLUDE_QUERY_SUFFIX, "ar"),
+]
+
+# Европа и США — общий поиск заказов на сайты.
+EUROPE_US_QUERIES = [
+    ('"need a website" small business USA' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"looking for a website developer" UK' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('"web developer needed" Europe freelance' + EXCLUDE_QUERY_SUFFIX, "en"),
+    ('site:reddit.com/r/slavelabour "website"' + EXCLUDE_QUERY_SUFFIX, "en"),
+]
+
+QUERIES = GENERAL_QUERIES + HALAL_QUERIES + INTL_QUERIES + GULF_QUERIES + EUROPE_US_QUERIES
 
 REQUEST_DELAY_SEC = 2
 
@@ -176,10 +211,35 @@ def save_seen(seen):
         json.dump(trimmed, f, ensure_ascii=False, indent=2)
 
 
-def format_lead(title, url, snippet):
+CONTACT_HANDLE = os.getenv("AUTHOR_TELEGRAM", "https://t.me/Halalaifreya")
+
+PITCH_TEMPLATES = {
+    "ru": (
+        "Черновик ответа (просто скопируй и отправь, если подходит):\n"
+        "«Здравствуйте! Увидел(а) ваш запрос на разработку сайта. Делаю сайты и "
+        "лендинги под ключ, есть портфолио и опыт. Расскажите подробнее о задаче "
+        f"и сроках — подготовлю предложение. Написать можно сюда: {CONTACT_HANDLE}»"
+    ),
+    "en": (
+        "Draft reply (copy-paste if it fits, edit as needed):\n"
+        "\"Hi! I saw your post about needing a website. I build custom websites "
+        "and landing pages, happy to share my portfolio and a quick quote. Could "
+        f"you share more about the project and timeline? You can reach me here: {CONTACT_HANDLE}\""
+    ),
+    "ar": (
+        "مسودة رد (انسخ والصق إذا كانت مناسبة):\n"
+        "«مرحباً! رأيت طلبكم لتصميم موقع إلكتروني. أقوم بتصميم مواقع وصفحات هبوط "
+        "احترافية، ولدي أعمال سابقة يمكن عرضها. هل يمكنكم إخباري بتفاصيل أكثر عن "
+        f"المشروع والمدة الزمنية؟ يمكنكم التواصل معي هنا: {CONTACT_HANDLE}»"
+    ),
+}
+
+
+def format_lead(title, url, snippet, lang):
     text = f"• {title}\n{url}"
     if snippet:
         text += f"\n{snippet[:180]}"
+    text += "\n" + PITCH_TEMPLATES.get(lang, PITCH_TEMPLATES["en"])
     return text
 
 
@@ -202,7 +262,7 @@ def run():
     new_leads = []
     failures = 0
 
-    for query in QUERIES:
+    for query, lang in QUERIES:
         try:
             for title, url, snippet in search(query):
                 if url in seen:
@@ -210,7 +270,7 @@ def run():
                 seen.add(url)
                 if is_forbidden(title, url, snippet):
                     continue
-                new_leads.append((title, url, snippet))
+                new_leads.append((title, url, snippet, lang))
         except Exception as e:
             failures += 1
             print(f"[lead_finder] Запрос не удался: {query!r} — {e}")
