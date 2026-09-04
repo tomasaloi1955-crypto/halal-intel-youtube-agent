@@ -1,0 +1,45 @@
+name: lead_finder
+
+on:
+  schedule:
+    - cron: "30 5 * * *"   # 05:30 UTC = 10:30 Алматы, каждый день
+  workflow_dispatch: {}     # кнопка ручного запуска
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lead_finder
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install requests beautifulsoup4 python-dotenv
+
+      - name: Поиск заказов
+        env:
+          DATA_DIR: state
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          GOOGLE_CSE_API_KEY: ${{ secrets.GOOGLE_CSE_API_KEY }}
+          GOOGLE_CSE_CX: ${{ secrets.GOOGLE_CSE_CX }}
+        run: python lead_finder.py
+
+      - name: Сохранить память (найденные заказы)
+        if: always()
+        run: |
+          git config user.name "lead-finder"
+          git config user.email "lead-finder@users.noreply.github.com"
+          [ -f "state/seen_leads.json" ] && git add "state/seen_leads.json"
+          git diff --cached --quiet && echo "нет изменений состояния" || git commit -m "leads: $(date -u +%F_%H%M) [skip ci]"
+          git push || echo "push пропущен"
