@@ -1,6 +1,9 @@
 # lead_finder.py — ищет реальные заказы на разработку сайтов (любая ниша, кроме харам)
-# и присылает новые находки в Telegram. Источник — Google Custom Search API,
-# с резервом на открытый HTML-поиск DuckDuckGo.
+# и присылает новые находки в Telegram. Источник — открытый HTML-поиск DuckDuckGo
+# (Google CSE отключён: требует привязку карты и предоплату, которая не проходит).
+# Чтобы не словить блокировку DDG, запросы идут пачками по очереди (не все за раз)
+# со случайными паузами; при первом же признаке блокировки — пачка прерывается.
+import random
 import time
 
 import requests
@@ -13,6 +16,8 @@ import os
 
 SEEN_FILE = dpath("seen_leads.json")
 MAX_SEEN = 1000
+ROTATION_FILE = dpath("lead_rotation.json")
+BATCH_SIZE = 15
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -133,41 +138,18 @@ EUROPE_US_QUERIES = [
 
 QUERIES = GENERAL_QUERIES + HALAL_QUERIES + INTL_QUERIES + GULF_QUERIES + EUROPE_US_QUERIES
 
-REQUEST_DELAY_SEC = 2
-
-GOOGLE_CSE_API_KEY = os.getenv("GOOGLE_CSE_API_KEY", "")
-GOOGLE_CSE_CX = os.getenv("GOOGLE_CSE_CX", "")
+MIN_DELAY_SEC = 5
+MAX_DELAY_SEC = 10
 
 
-def search_google_cse(query, max_results=6):
-    """Поиск через Google Custom Search JSON API (бесплатно до 100 запросов/день).
-    Требует GOOGLE_CSE_API_KEY и GOOGLE_CSE_CX — см. README-инструкцию в repo."""
-    resp = requests.get(
-        "https://www.googleapis.com/customsearch/v1",
-        params={
-            "key": GOOGLE_CSE_API_KEY,
-            "cx": GOOGLE_CSE_CX,
-            "q": query,
-            "num": min(max_results, 10),
-        },
-        timeout=20,
-    )
-    resp.raise_for_status()
-    data = resp.json()
-    results = []
-    for item in data.get("items", [])[:max_results]:
-        title = item.get("title", "")
-        url = item.get("link", "")
-        snippet = item.get("snippet", "")
-        if url:
-            results.append((title, url, snippet))
-    return results
+class Blocked(Exception):
+    """DDG показал страницу-заглушку ("anomaly detected") — сработала защита от ботов."""
 
 
 def search_duckduckgo(query, max_results=6):
-    """Резервный поиск через html.duckduckgo.com — без ключей, но DDG часто
-    блокирует автоматические запросы ("anomaly detected"), особенно с CI-раннеров.
-    Используется только если не заданы ключи Google CSE."""
+    """Поиск через html.duckduckgo.com — без ключей и регистрации. DDG блокирует
+    автоматические запросы при частой отправке, поэтому вызывается пачками
+    с паузами (см. run()), а не все 58 запросов подряд."""
     resp = requests.post(
         "https://html.duckduckgo.com/html/",
         data={"q": query},
@@ -175,6 +157,8 @@ def search_duckduckgo(query, max_results=6):
         timeout=20,
     )
     resp.raise_for_status()
+    if "anomaly" in resp.text.lower():
+        raise Blocked("DuckDuckGo вернул страницу проверки на бота")
     soup = BeautifulSoup(resp.text, "html.parser")
     results = []
     for block in soup.select("div.result")[:max_results]:
@@ -190,9 +174,32 @@ def search_duckduckgo(query, max_results=6):
 
 
 def search(query, max_results=6):
-    if GOOGLE_CSE_API_KEY and GOOGLE_CSE_CX:
-        return search_google_cse(query, max_results)
     return search_duckduckgo(query, max_results)
+
+
+def load_rotation():
+    if os.path.exists(ROTATION_FILE):
+        try:
+            with open(ROTATION_FILE, "r", encoding="utf-8") as f:
+                return json.load(f).get("index", 0)
+        except Exception:
+            return 0
+    return 0
+
+
+def save_rotation(index):
+    with open(ROTATION_FILE, "w", encoding="utf-8") as f:
+        json.dump({"index": index % len(QUERIES)}, f)
+
+
+def next_batch():
+    """Берёт следующую пачку запросов по кругу — так за несколько запусков
+    перебираются все площадки, но за один раз DDG не бомбардируется целиком."""
+    start = load_rotation()
+    total = len(QUERIES)
+    batch = [QUERIES[(start + i) % total] for i in range(min(BATCH_SIZE, total))]
+    save_rotation(start + BATCH_SIZE)
+    return batch
 
 
 def load_seen():
@@ -260,9 +267,14 @@ def send_digest(leads):
 def run():
     seen = load_seen()
     new_leads = []
-    failures = 0
+    attempted = 0
+    blocked = False
 
-    for query, lang in QUERIES:
+    batch = next_batch()
+    for i, (query, lang) in enumerate(batch):
+        if i > 0:
+            time.sleep(random.uniform(MIN_DELAY_SEC, MAX_DELAY_SEC))
+        attempted += 1
         try:
             for title, url, snippet in search(query):
                 if url in seen:
@@ -271,10 +283,12 @@ def run():
                 if is_forbidden(title, url, snippet):
                     continue
                 new_leads.append((title, url, snippet, lang))
+        except Blocked:
+            print(f"[lead_finder] DuckDuckGo заблокировал запросы на {i + 1}-м из {len(batch)} — останавливаю пачку.")
+            blocked = True
+            break
         except Exception as e:
-            failures += 1
             print(f"[lead_finder] Запрос не удался: {query!r} — {e}")
-        time.sleep(REQUEST_DELAY_SEC)
 
     save_seen(seen)
 
@@ -284,13 +298,11 @@ def run():
     else:
         print("[lead_finder] Новых заказов не найдено.")
 
-    if failures == len(QUERIES):
-        reason = (
-            "Все запросы упали — проверь квоту Google CSE (100/день) или ключи GOOGLE_CSE_API_KEY/GOOGLE_CSE_CX."
-            if GOOGLE_CSE_API_KEY
-            else "Все запросы упали — DuckDuckGo заблокировал IP. Настрой GOOGLE_CSE_API_KEY/GOOGLE_CSE_CX для надёжного поиска."
+    if blocked and attempted <= 1:
+        alert_fail(
+            "lead_finder",
+            "DuckDuckGo заблокировал IP сразу на первом запросе — возможно, блок держится дольше обычного.",
         )
-        alert_fail("lead_finder", reason)
 
 
 if __name__ == "__main__":
