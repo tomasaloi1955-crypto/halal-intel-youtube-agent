@@ -98,17 +98,43 @@ def _author_block(strong=True):
 # ------------------------------------------------------------------
 #  Промпт: ИНТЕРЕСНО и ЦЕПЛЯЮЩЕ, без пессимизма и запугивания
 # ------------------------------------------------------------------
+# Типы первой фразы — чтобы посты не начинались одинаково ("Ты когда-нибудь задумывался…")
+_THREADS_HOOKS = [
+    "конкретная цифра или контраст ('минус 9 часов в неделю на одном шаге')",
+    "короткая сценка «было / стало' из жизни бизнеса",
+    "честный вопрос-вердикт про этику ('ИИ пишет отзывы за владельца. Это ещё честно?')",
+    "разрыв ожидания ('все ждут одного, а происходит другое')",
+    "прямая польза читателю с первой строки ('если у тебя свой магазин — сохрани это')",
+    "мини-история от первого лица про знакомого предпринимателя",
+]
+
+
+def _hook_line():
+    idx = date.today().timetuple().tm_yday % len(_THREADS_HOOKS)
+    return _THREADS_HOOKS[idx]
+
+
+_POV_LINE = (
+    "ANGLE (Halal Intelligence): besides being useful, add ONE honest 'по совести' beat — "
+    "who this genuinely helps, or where the ethical line is (honesty to the client, real benefit, "
+    "no hidden harm). Natural, one phrase, no preaching. "
+)
+
+
 def _base_prompt():
     return (
-        "You are a top social-media creator. Write a Threads post in RUSSIAN that is genuinely "
-        "INTERESTING, fresh and share-worthy. "
-        "Open with a strong curiosity hook in the first line: a surprising fact, an unexpected angle, "
-        "or an intriguing question that makes the reader think 'о, не знал(а)' or 'хочу попробовать'. "
-        "TONE: energetic, warm, inspiring and helpful. "
+        "You are a top social-media creator for the channel 'Халяль Интеллидженс' "
+        "('AI and money — done right / по совести'). Write a Threads post in RUSSIAN that is "
+        "genuinely INTERESTING, fresh and share-worthy. "
+        f"OPEN with this hook type (reinvent it, don't quote it): {_hook_line()}. "
+        "Do NOT start with 'Ты когда-нибудь задумывался' or any variation — vary the opening every time. "
+        "TONE: calm, confident, warm, helpful. "
         "STRICTLY AVOID: doom and fear ('ты уже без работы', 'ИИ заменит всех', 'ты опоздал'), "
-        "aggression, negativity, panic, clichés. Do NOT scare — spark curiosity and excitement instead. "
+        "aggression, panic, clickbait, clichés. Do NOT scare — spark curiosity and usefulness instead. "
         "Give ONE concrete, vivid, useful idea or a genuinely wow example about AI/automation that the "
         "reader can picture or use. Make it feel like an insider tip from a friend. "
+        f"{_POV_LINE}"
+        "End with ONE specific question to the reader about the topic (not 'а ты как думаешь?'). "
         "Refer to the reader as 'ты'. Max 498 characters. No emojis (rare, only if truly fitting). "
         "Do not use '*' and do not wrap the text in quotes. Output ONLY the finished post text.\n\nTopic:\n"
     )
@@ -123,13 +149,17 @@ def _grounded_prompt(content):
     desc = (content.get("description") or "")[:500]
     script = (content.get("shorts_script") or content.get("long_script") or "")[:800]
     return (
-        "You are a top social-media creator. Below is REAL content the channel already made today — "
-        "use it as your factual source, but write a Threads post in RUSSIAN that is a native, "
-        "standalone post, NOT a copy or summary of the script: build it around the same real hook or "
-        "fact, as if explaining the most interesting part fresh to a friend who hasn't seen the video. "
-        "Open with a strong curiosity hook in the first line. "
-        "TONE: energetic, warm, inspiring and helpful. "
-        "STRICTLY AVOID: doom and fear, aggression, negativity, panic, clichés. "
+        "You are a top social-media creator for 'Халяль Интеллидженс' ('AI and money — по совести'). "
+        "Below is REAL content the channel already made today — use it as your factual source, but "
+        "write a Threads post in RUSSIAN that is a native, standalone post, NOT a copy or summary of "
+        "the script: build it around the same real hook or fact, as if explaining the most interesting "
+        "part fresh to a friend who hasn't seen the video. "
+        f"OPEN with this hook type (reinvent it, don't quote it): {_hook_line()}. "
+        "Do NOT start with 'Ты когда-нибудь задумывался' or any variation — vary the opening. "
+        "TONE: calm, confident, warm, helpful. "
+        "STRICTLY AVOID: doom and fear, aggression, panic, clickbait, clichés. "
+        f"{_POV_LINE}"
+        "End with ONE specific question to the reader about the topic. "
         "Refer to the reader as 'ты'. Max 498 characters. No emojis (rare, only if truly fitting). "
         "Do not use '*' and do not wrap the text in quotes. Output ONLY the finished post text.\n\n"
         f"Заголовок: {title}\n\nОписание: {desc}\n\n"

@@ -342,6 +342,15 @@ def run_agent():
         except Exception as e:
             log.error(f"Instagram пост: {e}")
 
+    # Разбор в Telegram-канал — сердце воронки (каждый Shorts зовёт «полный разбор в
+    # Telegram»). Постится, только если задан секрет TELEGRAM_CHANNEL_ID.
+    try:
+        from telegram_channel_poster import post_once as tg_channel_post_once
+        tg_channel_post_once(content=todays_content,
+                             video_id=(todays_content or {}).get("_video_id"))
+    except Exception as e:
+        log.error(f"Telegram-канал пост: {e}")
+
     log.info("Цикл завершён.")
 
 
