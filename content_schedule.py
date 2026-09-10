@@ -21,7 +21,7 @@ LABELS = {
 }
 
 BRAND_HANDLE = "@Freya2013"
-CHANNEL_LINK = "https://t.me/halal_intelligence"
+CHANNEL_LINK = "https://t.me/Halalaifreya"
 
 
 def get_today_content_type():

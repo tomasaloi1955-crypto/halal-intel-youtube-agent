@@ -9,7 +9,7 @@
 #   - бот-администратор канала. По умолчанию берётся TELEGRAM_BOT_TOKEN; если постить
 #     должен другой бот (напр. общий алертер «halalai», который уже админ канала) —
 #     задай его токен в секрете TELEGRAM_CHANNEL_BOT_TOKEN.
-#   - канал: TELEGRAM_CHANNEL_ID (по умолчанию @halal_intelligence, можно переопределить
+#   - канал: TELEGRAM_CHANNEL_ID (по умолчанию @Halalaifreya, можно переопределить
 #     секретом — @юзернейм или числовой id).
 # Нет бота-админа в канале — публикация не пройдёт, придёт понятный алерт (не роняет цикл).
 import os
@@ -18,9 +18,9 @@ import requests
 
 from threads_poster import _chat, _env, _tg_alert
 
-CHANNEL_LINK = "https://t.me/halal_intelligence"
+CHANNEL_LINK = "https://t.me/Halalaifreya"
 BRAND_HANDLE = "@Freya2013"
-DEFAULT_CHANNEL = "@halal_intelligence"
+DEFAULT_CHANNEL = "@Halalaifreya"
 
 _SYS = (
     "Ты ведущий Telegram-канала «Халяль Интеллидженс» — «ИИ и деньги, по совести». "

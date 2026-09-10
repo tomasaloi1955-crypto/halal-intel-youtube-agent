@@ -16,7 +16,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 GROQ_FALLBACK_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 BRAND_HANDLE = "@Freya2013"
-CHANNEL_LINK = "https://t.me/halal_intelligence"
+CHANNEL_LINK = "https://t.me/Halalaifreya"
 BRAND_LINK = "https://t.me/Freya2013"  # кликабельная ссылка на личку
 
 SYSTEM_BASE = """Ты контент-редактор YouTube-канала "Халяль Интеллидженс".

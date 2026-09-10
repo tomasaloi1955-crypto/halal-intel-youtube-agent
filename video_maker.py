@@ -44,7 +44,7 @@ def load_font(size, bold=False):
 
 
 # Ссылка на ТГ-канал — плашка внизу каждого Shorts
-TG_CHANNEL = "t.me/halal_intelligence"
+TG_CHANNEL = "t.me/Halalaifreya"
 # Короткий баннер — влезает в кадр шортса (720px), современный синий шрифт
 AUTOMATION_BANNER = "БИЗНЕС НА АВТОПИЛОТЕ"
 BANNER_BLUE = "0x2E9BFF"  # модный электрик-синий (ffmpeg 0xRRGGBB)
