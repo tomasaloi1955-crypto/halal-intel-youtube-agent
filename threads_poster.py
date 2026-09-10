@@ -322,7 +322,17 @@ def _post_threads(text, image_url):
 #  Напоминание про срок токена Threads
 # ------------------------------------------------------------------
 def check_token_expiry(warn_days=12):
-    """Если до истечения токена Threads осталось <= warn_days — шлёт напоминание в Telegram."""
+    """Бэкап-напоминание про срок токена Threads.
+
+    Обычно токен продлевать вручную НЕ нужно: его каждый день автоматически
+    продлевает воркфлоу autopost.yml в репозитории social-autopost (тот же
+    аккаунт brend_boss) и раскладывает свежее значение в секрет
+    THREADS_ACCESS_TOKEN этого репозитория тоже. THREADS_TOKEN_EXPIRES здесь —
+    просто грубый ориентир на случай, если та автоматика молча сломается.
+
+    Напоминаем только в окне [0; warn_days] до даты — не спамим каждый день,
+    если дата уже в прошлом (реально протухший токен и так поймает алерт
+    «СБОЙ Threads» ниже, с точным текстом ошибки от Meta)."""
     exp = _env("THREADS_TOKEN_EXPIRES")
     if not exp:
         return
@@ -330,13 +340,14 @@ def check_token_expiry(warn_days=12):
         left = (date.fromisoformat(exp) - date.today()).days
     except ValueError:
         return
-    if left <= warn_days:
+    if 0 <= left <= warn_days:
         _tg_alert(
-            f"⚠️ Напоминание: токен Threads истекает через {left} дн. (до {exp}).\n"
-            "Нужно обновить THREADS_ACCESS_TOKEN, иначе автопост в Threads встанет.\n"
-            "Скажи мне «обнови токен threads» — или запусти get_threads_token.py в social-autopost."
+            f"⚠️ Ориентир: сроку токена Threads в секрете осталось ~{left} дн. (до {exp}).\n"
+            "Если посты в Threads идут — значит автопродление в social-autopost работает, "
+            "ничего делать не надо. Если начнёшь ловить «СБОЙ Threads» — проверь, что "
+            "воркфлоу autopost.yml там зелёный, либо скажи мне «продли токен threads»."
         )
-        print(f"[THREADS] Напоминание об истечении токена отправлено (осталось {left} дн.)")
+        print(f"[THREADS] Бэкап-напоминание о сроке токена отправлено (осталось {left} дн.)")
 
 
 # ------------------------------------------------------------------
@@ -385,7 +396,21 @@ def post_once(content=None, text=None, image_url=None):
         detail = getattr(getattr(e, "response", None), "text", "")
         msg = f"{e} | {detail[:200]}"
         print(f"[THREADS] Ошибка публикации: {msg}")
-        _tg_alert(f"СБОЙ Threads: {msg[:300]}")
+        low = (msg + detail).lower()
+        token_dead = any(s in low for s in (
+            "session has expired", "access token", "code\":190", "oauthexception",
+            "expired", "malformed", "invalid oauth",
+        ))
+        if token_dead:
+            _tg_alert(
+                "🔴 Токен Threads умер, и автопродление НЕ подхватило.\n"
+                "Автопост в Threads (и, скорее всего, в social-autopost) встал.\n"
+                "Проверь, что воркфлоу autopost.yml в репо social-autopost зелёный. "
+                "Быстрый фикс — скажи мне «продли токен threads».\n\n"
+                f"Ответ Meta: {detail[:200]}"
+            )
+        else:
+            _tg_alert(f"СБОЙ Threads: {msg[:300]}")
 
     return text, image_url
 

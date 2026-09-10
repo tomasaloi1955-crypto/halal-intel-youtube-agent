@@ -51,6 +51,11 @@ jobs:
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_ENABLED: "true"
+          # Токен продлевать вручную НЕ нужно: его каждый день автоматически
+          # продлевает воркфлоу autopost.yml в репо social-autopost (аккаунт
+          # brend_boss общий) и кладёт свежее значение в секрет
+          # THREADS_ACCESS_TOKEN этого репозитория. Дата ниже — грубый бэкап-
+          # ориентир на случай, если та автоматика молча сломается.
           THREADS_TOKEN_EXPIRES: "2026-11-08"
           IMAGE_PROBABILITY: "0.55"
           AUTHOR_ROLE: "эксперт по автоматизации бизнеса и рутины с помощью нейросетей"
