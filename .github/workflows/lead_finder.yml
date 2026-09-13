@@ -2,8 +2,7 @@ name: lead_finder
 
 on:
   schedule:
-    - cron: "30 5 * * *"    # 05:30 UTC = 10:30 Алматы
-    - cron: "30 13 * * *"   # 13:30 UTC = 18:30 Алматы
+    - cron: "30 5 * * *"    # 05:30 UTC = 10:30 Алматы (вечерний слот убран — DDG стабильно блокировал его)
   workflow_dispatch: {}      # кнопка ручного запуска
 
 permissions:
