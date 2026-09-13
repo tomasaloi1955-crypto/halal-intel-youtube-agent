@@ -345,9 +345,12 @@ def run_agent():
     # Разбор в Telegram-канал — сердце воронки (каждый Shorts зовёт «полный разбор в
     # Telegram»). Постится, только если задан секрет TELEGRAM_CHANNEL_ID.
     try:
-        from telegram_channel_poster import post_once as tg_channel_post_once
+        from telegram_channel_poster import post_once as tg_channel_post_once, post_poll as tg_channel_post_poll
         tg_channel_post_once(content=todays_content,
                              video_id=(todays_content or {}).get("_video_id"))
+        # Опрос недели — вовлечение без камеры и без озвучки, по пятницам.
+        if datetime.now().weekday() == 4:
+            tg_channel_post_poll(content=todays_content)
     except Exception as e:
         log.error(f"Telegram-канал пост: {e}")
 
