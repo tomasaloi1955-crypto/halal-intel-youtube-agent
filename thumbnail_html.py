@@ -54,7 +54,7 @@ def build_html(cover_text, cover_subtitle, presenter_path=PRESENTER_PATH):
 .chip{{background:#181818;color:#ffd23b;font-weight:900;font-size:52px;
   padding:16px 30px;border-radius:16px;text-transform:uppercase;letter-spacing:.5px;
   box-shadow:4px 6px 0 rgba(0,0,0,.35);white-space:nowrap}}
-.presenter{{position:absolute;right:0;bottom:0;height:730px;z-index:2;
+.presenter{{position:absolute;right:0;bottom:0;height:756px;z-index:2;
   filter:drop-shadow(-10px 0 24px rgba(0,0,0,.25))}}
 </style></head>
 <body><div class="tb">
