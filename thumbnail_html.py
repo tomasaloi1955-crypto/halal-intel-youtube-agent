@@ -28,11 +28,35 @@ def _split_subtitle(sub):
     return [sub]
 
 
+TITLE_W = 760          # ширина колонки заголовка, px
+CHAR_RATIO = 0.60      # средняя ширина заглавной буквы Montserrat 900 в долях кегля
+CHIP_CHAR_RATIO = 0.58
+
+
+def _fit_font(text, box_w, max_size, min_size, ratio):
+    """Подбирает кегль так, чтобы САМОЕ ДЛИННОЕ СЛОВО влезло в колонку.
+
+    Раньше кегль был жёстко 150px, и длинные слова («ИИ-ДОКАЗАТЕЛЬСТВО») уезжали
+    за правый край — на обложке был обрезанный заголовок, а это прямой минус к
+    кликам. Считаем по длинному слову, а не по всей строке: перенос по словам
+    браузер сделает сам, а вот слово он не разорвёт."""
+    longest = max((len(w) for w in (text or "").split()), default=1)
+    if longest < 1:
+        return max_size
+    return max(min_size, min(max_size, int(box_w / (ratio * longest))))
+
+
 def build_html(cover_text, cover_subtitle, presenter_path=PRESENTER_PATH):
     title = _html.escape((cover_text or "").upper())
+    title_size = _fit_font(title, TITLE_W, 150, 62, CHAR_RATIO)
+    chips = _split_subtitle(cover_subtitle)
+    # Плашки не переносятся (white-space:nowrap), поэтому меряем целиком по строке.
+    chip_size = 52
+    if chips:
+        longest_chip = max(len(c) for c in chips)
+        chip_size = max(26, min(52, int((TITLE_W - 60) / (CHIP_CHAR_RATIO * longest_chip))))
     boxes = "".join(
-        f'<div class="chip">{_html.escape(b.upper())}</div>'
-        for b in _split_subtitle(cover_subtitle)
+        f'<div class="chip">{_html.escape(b.upper())}</div>' for b in chips
     )
     presenter_uri = _data_uri(presenter_path)
     presenter_html = f'<img class="presenter" src="{presenter_uri}">' if presenter_uri else ""
@@ -44,17 +68,19 @@ def build_html(cover_text, cover_subtitle, presenter_path=PRESENTER_PATH):
 .tb{{position:relative;width:1280px;height:720px;overflow:hidden;
   font-family:'Montserrat','Arial Black',sans-serif;
   background:radial-gradient(120% 120% at 72% 38%, #f6b73c 0%, #e8901a 42%, #b5650d 100%);}}
-.left{{position:absolute;left:48px;top:40px;width:760px;z-index:3}}
-.title{{font-weight:900;font-size:150px;line-height:.92;color:#fff;text-transform:uppercase;
-  letter-spacing:-2px;
+.left{{position:absolute;left:48px;top:40px;width:{TITLE_W}px;z-index:3}}
+.title{{font-weight:900;font-size:{title_size}px;line-height:.92;color:#fff;text-transform:uppercase;
+  letter-spacing:-2px;overflow-wrap:anywhere;
   text-shadow:
     -3px -3px 0 #2b2b2b, 3px -3px 0 #2b2b2b, -3px 3px 0 #2b2b2b, 3px 3px 0 #2b2b2b,
     4px 5px 0 #c9c9c9, 6px 8px 0 #9a9a9a, 8px 11px 0 #6f6f6f, 10px 16px 18px rgba(0,0,0,.45);}}
 .chips{{margin-top:34px;display:flex;flex-direction:column;gap:20px;align-items:flex-start}}
-.chip{{background:#181818;color:#ffd23b;font-weight:900;font-size:52px;
+.chip{{background:#181818;color:#ffd23b;font-weight:900;font-size:{chip_size}px;
   padding:16px 30px;border-radius:16px;text-transform:uppercase;letter-spacing:.5px;
   box-shadow:4px 6px 0 rgba(0,0,0,.35);white-space:nowrap}}
-.presenter{{position:absolute;right:0;bottom:0;height:756px;z-index:2;
+/* height:700, а не 756: при 756 картинка вылезала за верх кадра и ведущей срезало
+   макушку. 700 — голова целиком, с запасом сверху. */
+.presenter{{position:absolute;right:0;bottom:0;height:700px;z-index:2;
   filter:drop-shadow(-10px 0 24px rgba(0,0,0,.25))}}
 </style></head>
 <body><div class="tb">
