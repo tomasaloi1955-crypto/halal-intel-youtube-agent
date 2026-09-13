@@ -41,5 +41,14 @@ jobs:
           for f in seen_leads.json lead_rotation.json; do
             [ -f "state/$f" ] && git add "state/$f"
           done
-          git diff --cached --quiet && echo "нет изменений состояния" || git commit -m "leads: $(date -u +%F_%H%M) [skip ci]"
-          git push || echo "push пропущен"
+          git diff --cached --quiet && echo "нет изменений состояния" && exit 0
+          git commit -m "leads: $(date -u +%F_%H%M) [skip ci]"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push отклонён (гонка с другим коммитом в master), пробую снова: попытка $i"
+            git fetch origin master
+            git rebase origin/master || { git rebase --abort; exit 1; }
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "::error::не удалось сохранить состояние lead_finder после 5 попыток — найденные лиды будут повторены на следующем запуске"
+          exit 1
