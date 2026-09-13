@@ -1,23 +1,28 @@
 # content_schedule.py
 from datetime import datetime
-from topic_researcher import get_next_topic, prefetch_topics, get_next_tool_topic, prefetch_tool_topics
+from topic_researcher import (get_next_topic, prefetch_topics, get_next_tool_topic,
+                              prefetch_tool_topics, get_next_verdict_topic,
+                              prefetch_verdict_topics)
 
 # Пн=0 Вт=1 Ср=2 Чт=3 Пт=4 Сб=5 Вс=6
-# 3x/нед — свежие новости ИИ, 2x/нед — обзоры ИИ-инструментов, 2x/нед — реклама автоматизации
+# 3x/нед — свежие новости ИИ, 2x/нед — обзоры ИИ-инструментов, 1x — автоматизация,
+# 1x — фирменная рубрика «Халяль или харам?» (единственный формат, который не
+# повторит ни один из тысячи одинаковых AI-каналов; тянет досмотр и комментарии).
 SCHEDULE = {
-    0: "digest",        # Понедельник — новости ИИ
-    1: "tool_review",   # Вторник — обзор ИИ-инструмента
+    0: "digest",         # Понедельник — новости ИИ
+    1: "tool_review",    # Вторник — обзор ИИ-инструмента
     2: "automation",     # Среда — автоматизация бизнеса + ТГ
-    3: "digest",        # Четверг — новости ИИ
-    4: "tool_review",   # Пятница — обзор ИИ-инструмента
-    5: "automation",     # Суббота — автоматизация бизнеса + ТГ
-    6: "digest",        # Воскресенье — новости ИИ
+    3: "digest",         # Четверг — новости ИИ
+    4: "tool_review",    # Пятница — обзор ИИ-инструмента
+    5: "halal_verdict",  # Суббота — «Халяль или харам?»
+    6: "digest",         # Воскресенье — новости ИИ
 }
 
 LABELS = {
     "digest": "Дайджест новостей ИИ",
     "tool_review": "Обзор ИИ-инструмента",
     "automation": "Урок по автоматизации",
+    "halal_verdict": "Халяль или харам?",
 }
 
 BRAND_HANDLE = "@Freya2013"
@@ -50,6 +55,19 @@ def get_tool_review_topic():
 
     try:
         prefetch_tool_topics(count=3)
+    except Exception as e:
+        print(f"[PREFETCH] Не критично: {e}")
+
+    return topic
+
+
+def get_verdict_topic():
+    """Тема рубрики «Халяль или харам?» на эту неделю (спорный приём применения ИИ)."""
+    week = datetime.now().isocalendar()[1]
+    topic = get_next_verdict_topic(week)
+
+    try:
+        prefetch_verdict_topics(count=3)
     except Exception as e:
         print(f"[PREFETCH] Не критично: {e}")
 

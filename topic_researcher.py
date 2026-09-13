@@ -358,6 +358,154 @@ def prefetch_tool_topics(count=5):
     print(f"[PREFETCH] Сохранено {len(combined)} инструментов в запасе.")
 
 
+# ===================== РУБРИКА «ХАЛЯЛЬ ИЛИ ХАРАМ?» =====================
+# Главный отличитель канала: вердикт по КОНКРЕТНОМУ ПРИЁМУ использования ИИ в
+# бизнесе (не по инструменту — инструменты разбирает tool_review). Такие темы
+# спорные по своей природе → люди приходят спорить в комментарии, а это ровно то,
+# чего каналу не хватает (см. docs/CONTENT_STRATEGY.md: 65 роликов, 0 комментов).
+USED_VERDICT_TOPICS_FILE = dpath("used_verdict_topics.json")
+
+BASE_VERDICT_TOPICS = [
+    {"practice": "ИИ пишет отзывы о твоём товаре от имени выдуманных покупателей", "keywords": ["online reviews", "fake review", "ecommerce trust"]},
+    {"practice": "нейросеть рисует фото товара, которого ещё нет на складе", "keywords": ["product photography", "ai generated product", "online store"]},
+    {"practice": "ИИ-бот отвечает клиенту в переписке, не признаваясь, что он бот", "keywords": ["chatbot conversation", "customer support", "messaging app"]},
+    {"practice": "ИИ-голос вместо живого диктора в рекламе твоего бизнеса", "keywords": ["voice over studio", "ai voice", "microphone recording"]},
+    {"practice": "нейросеть подбирает цену индивидуально каждому покупателю", "keywords": ["dynamic pricing", "price tag", "retail analytics"]},
+    {"practice": "ИИ анализирует переписку сотрудников и оценивает их работу", "keywords": ["office monitoring", "employee analytics", "workplace data"]},
+    {"practice": "нейросеть делает рекламный ролик с лицом человека, который его не снимал", "keywords": ["deepfake technology", "video production", "digital avatar"]},
+    {"practice": "ИИ пишет курсовые и дипломы на заказ как услуга бизнеса", "keywords": ["student writing", "university library", "academic papers"]},
+    {"practice": "бот автоматически накручивает просмотры и подписчиков", "keywords": ["social media metrics", "engagement analytics", "smartphone social"]},
+    {"practice": "ИИ решает, кому из кандидатов отказать, без участия человека", "keywords": ["job interview", "hiring process", "resume screening"]},
+    {"practice": "нейросеть копирует стиль чужого бренда для твоей рекламы", "keywords": ["brand design", "graphic identity", "advertising creative"]},
+    {"practice": "ИИ-ассистент ведёт переговоры с поставщиком вместо владельца", "keywords": ["business negotiation", "supply chain", "warehouse deal"]},
+    {"practice": "нейросеть предсказывает, кто из клиентов готов заплатить больше", "keywords": ["customer analytics", "data dashboard", "shopping behaviour"]},
+    {"practice": "ИИ генерирует «истории клиентов», которых не существовало", "keywords": ["testimonial marketing", "case study", "storytelling"]},
+    {"practice": "бот массово рассылает предложения людям, которые не подписывались", "keywords": ["email marketing", "spam messages", "inbox notification"]},
+    {"practice": "ИИ дорисовывает еду на фото в меню кафе аппетитнее, чем она есть", "keywords": ["food photography", "restaurant menu", "cafe interior"]},
+]
+
+
+def load_used_verdict_topics():
+    if os.path.exists(USED_VERDICT_TOPICS_FILE):
+        with open(USED_VERDICT_TOPICS_FILE) as f:
+            return json.load(f)
+    used = [t["practice"] for t in BASE_VERDICT_TOPICS]
+    save_used_verdict_topics(used)
+    return used
+
+
+def save_used_verdict_topics(used):
+    with open(USED_VERDICT_TOPICS_FILE, "w", encoding="utf-8") as f:
+        json.dump(used, f, ensure_ascii=False, indent=2)
+
+
+def search_verdict_ideas(used_practices):
+    """Ищет новые спорные приёмы использования ИИ в бизнесе для рубрики-вердикта."""
+    used_str = ", ".join(used_practices[-30:])
+    prompt = f"""Ты редактор рубрики «Халяль или харам?» на канале «Халяль Интеллидженс»
+(аудитория: предприниматели-мусульмане из СНГ и мира, 25-45 лет).
+
+Нужны НОВЫЕ спорные ПРИЁМЫ использования ИИ и автоматизации в бизнесе — такие, где
+честному предпринимателю реально неочевидно, допустимо это или нет: есть аргументы
+и «за», и «против» (обман клиента, скрытая манипуляция, чужой труд, приватность).
+
+НЕ инструменты (ChatGPT, Midjourney) — именно приёмы/практики применения.
+НЕ бери очевидно запретное (казино, алкоголь, риба) — это неинтересно, спора нет.
+Уже разобраны: {used_str}
+
+Найди 5 НОВЫХ приёмов из разных сфер бизнеса.
+
+Верни ТОЛЬКО валидный JSON (без markdown):
+{{
+  "topics": [
+    {{
+      "practice": "приём одной фразой на русском, с конкретикой",
+      "keywords": ["english keyword 1", "english keyword 2", "english keyword 3"]
+    }}
+  ]
+}}"""
+    try:
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+        if text.startswith("```"):
+            text = text.split("```")[1]
+            if text.startswith("json"):
+                text = text[4:]
+        topics = json.loads(text.strip()).get("topics", [])
+        clean = []
+        for t in topics:
+            if t.get("practice", "").lower() in [u.lower() for u in used_practices]:
+                print(f"[FILTER] Уже разобрано: {t.get('practice')}")
+                continue
+            clean.append(t)
+        return clean
+    except Exception as e:
+        print(f"[RESEARCH] Ошибка поиска тем-вердиктов: {e}")
+        return []
+
+
+def get_next_verdict_topic(week_number=None):
+    """Тема рубрики «Халяль или харам?» на текущую неделю."""
+    if week_number is None:
+        week_number = datetime.now().isocalendar()[1]
+
+    n_base = len(BASE_VERDICT_TOPICS)
+    if week_number <= n_base:
+        topic = BASE_VERDICT_TOPICS[(week_number - 1) % n_base]
+        print(f"[SCHEDULE] Неделя {week_number}: базовый вердикт — {topic['practice'][:50]}")
+        return topic
+
+    used = load_used_verdict_topics()
+    researched_file = dpath("researched_verdict_topics.json")
+    researched = []
+    if os.path.exists(researched_file):
+        with open(researched_file, encoding="utf-8") as f:
+            researched = json.load(f)
+
+    if researched:
+        topic = researched.pop(0)
+        with open(researched_file, "w", encoding="utf-8") as f:
+            json.dump(researched, f, ensure_ascii=False, indent=2)
+        used.append(topic["practice"])
+        save_used_verdict_topics(used)
+        print(f"[SCHEDULE] Неделя {week_number}: исследованный вердикт — {topic['practice'][:50]}")
+        return topic
+
+    print("[RESEARCH] Запас тем-вердиктов закончился, исследуем...")
+    new_topics = search_verdict_ideas(used)
+    if not new_topics:
+        print("[RESEARCH] Не нашли новых — берём базовую с другого угла")
+        return BASE_VERDICT_TOPICS[(week_number - 1) % n_base]
+
+    topic = new_topics[0]
+    if len(new_topics) > 1:
+        with open(researched_file, "w", encoding="utf-8") as f:
+            json.dump(new_topics[1:], f, ensure_ascii=False, indent=2)
+    used.append(topic["practice"])
+    save_used_verdict_topics(used)
+    print(f"[RESEARCH] Новая тема-вердикт: {topic['practice'][:50]}")
+    return topic
+
+
+def prefetch_verdict_topics(count=5):
+    """Заранее набирает темы-вердикты, чтобы публикация не ждала исследования."""
+    used = load_used_verdict_topics()
+    researched_file = dpath("researched_verdict_topics.json")
+    existing = []
+    if os.path.exists(researched_file):
+        with open(researched_file, encoding="utf-8") as f:
+            existing = json.load(f)
+    if len(existing) >= count:
+        print(f"[PREFETCH] Уже есть {len(existing)} тем-вердиктов в запасе, пропускаем.")
+        return
+    print(f"[PREFETCH] Исследуем темы-вердикты (нужно {count - len(existing)})...")
+    new = search_verdict_ideas(used + [t["practice"] for t in existing])
+    combined = existing + new
+    with open(researched_file, "w", encoding="utf-8") as f:
+        json.dump(combined, f, ensure_ascii=False, indent=2)
+    print(f"[PREFETCH] Сохранено {len(combined)} тем-вердиктов в запасе.")
+
+
 def prefetch_topics(count=5):
     """Pre-research topics in advance to avoid delays during publishing."""
     used = load_used_topics()

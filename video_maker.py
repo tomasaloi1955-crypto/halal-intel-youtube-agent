@@ -49,6 +49,14 @@ TG_CHANNEL = "t.me/Halalaifreya"
 AUTOMATION_BANNER = "БИЗНЕС НА АВТОПИЛОТЕ"
 BANNER_BLUE = "0x2E9BFF"  # модный электрик-синий (ffmpeg 0xRRGGBB)
 
+# Аватар ведущей — постоянный знак канала в кадре Shorts (см. make_presenter_avatar.py).
+# Слева, ниже верхнего баннера (y=120) и не пересекается с лого брендов (справа, y=230)
+# и с титрами (внизу, y=h-270).
+BRAND_AVATAR = os.path.join("brand", "presenter_avatar.png")
+AVATAR_H = 168
+AVATAR_X = 36
+AVATAR_Y = 250
+
 
 def _ffmpeg_fontfile():
     """
@@ -113,15 +121,28 @@ def _build_overlay_filter(add_automation):
 
 
 def _build_shorts_overlay(add_automation, logos, duration, w, h):
-    """Оверлеи Shorts: drawtext (ТГ снизу + баннер сверху) + лого брендов картинкой в правом углу."""
+    """Оверлеи Shorts: drawtext (ТГ снизу + баннер сверху), постоянный аватар ведущей
+    слева и лого брендов картинкой в правом углу.
+
+    Аватар ведущей висит весь ролик: канал безликий (сток + титры), и одинаковый
+    персонаж в углу — единственное, что даёт узнавание «это Халяль Интеллидженс»
+    без съёмки живого человека. Файл делается разово через make_presenter_avatar.py;
+    нет файла — просто пропускаем, рендер не ломается."""
     draw = _build_overlay_filter(add_automation)  # цепочка drawtext или None
     logos = (logos or [])[:2]  # на маленьком экране максимум 2 знака
+    avatar = BRAND_AVATAR if os.path.exists(BRAND_AVATAR) else None
     segs, inputs, cur = [], [], "0:v"
+    idx = 2  # входы pass2: 0=montage, 1=audio, 2..=картинки-оверлеи
     if draw:
         segs.append(f"[{cur}]{draw}[txt]")
         cur = "txt"
+    if avatar:
+        inputs += ["-i", avatar]
+        segs.append(f"[{idx}:v]scale=-1:{AVATAR_H}[av]")
+        segs.append(f"[{cur}][av]overlay={AVATAR_X}:{AVATAR_Y}[avo]")
+        cur = "avo"
+        idx += 1
     for k, logo in enumerate(logos):
-        idx = 2 + k  # входы pass2: 0=montage, 1=audio, 2..=лого
         inputs += ["-i", logo]
         a = max(1.0, (k + 1) * duration / (len(logos) + 1) - 2.0)
         b = a + 4.5
@@ -129,6 +150,7 @@ def _build_shorts_overlay(add_automation, logos, duration, w, h):
         segs.append(f"[{cur}][lg{k}]overlay=W-w-40:230:"
                     f"enable='between(t,{a:.1f},{b:.1f})'[ov{k}]")
         cur = f"ov{k}"
+        idx += 1
     if not segs:
         return None, []
     segs[-1] = re.sub(rf"\[{cur}\]$", "[outv]", segs[-1])

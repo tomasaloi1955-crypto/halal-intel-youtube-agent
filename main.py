@@ -11,14 +11,16 @@ for _stream in (sys.stdout, sys.stderr):
         pass
 
 from rss_parser import fetch_latest_news, mark_seen, fetch_article_text
-from ai_processor import process_digest, process_automation, process_tool_review, pick_most_interesting
+from ai_processor import (process_digest, process_automation, process_tool_review,
+                          process_halal_verdict, pick_most_interesting)
 from voice_gen import generate_voice
 from video_maker import make_video, create_thumbnail
 from youtube_uploader import upload_video
 from tiktok_uploader import upload_to_tiktok
 from threads_poster import post_once as threads_post_once, generate_post as generate_social_post
 from instagram_poster import post_once as instagram_post_once
-from content_schedule import get_today_content_type, get_automation_topic, get_tool_review_topic, get_schedule_info
+from content_schedule import (get_today_content_type, get_automation_topic,
+                              get_tool_review_topic, get_verdict_topic, get_schedule_info)
 from telegram_notify import alert_fail, alert_ok
 
 load_dotenv()
@@ -200,6 +202,24 @@ def run_tool_review():
     return content
 
 
+def run_halal_verdict():
+    """Фирменная рубрика «Халяль или харам?» — вердикт по спорному приёму применения ИИ."""
+    log.info("=== ХАЛЯЛЬ ИЛИ ХАРАМ? ===")
+    topic = get_verdict_topic()
+    log.info(f"Приём: {topic['practice'][:60]}")
+    content = process_halal_verdict(topic)
+    if not content:
+        log.error("Вердикт: генерация сценария не удалась (см. лог выше — часто это квота Gemini)")
+        alert_fail("Халяль или харам — генерация сценария", topic["practice"][:60])
+        return None
+    slug = slugify(topic["practice"])
+
+    vid_id = publish_shorts(content, slug)
+    if vid_id:
+        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
+    return content
+
+
 from paths import dpath
 import shutil
 QUEUE_FILE = dpath("long_queue.json")
@@ -312,6 +332,8 @@ def run_agent():
             todays_content = run_digest()
         elif content_type == "tool_review":
             todays_content = run_tool_review()
+        elif content_type == "halal_verdict":
+            todays_content = run_halal_verdict()
         else:
             todays_content = run_automation()
 
@@ -359,7 +381,7 @@ def run_agent():
 
 def start_scheduler():
     log.info("🕌 Халяль Интеллидженс агент запущен")
-    log.info("Пн Чт Вс — новости ИИ | Вт Пт — обзор ИИ-инструмента | Ср Сб — автоматизация")
+    log.info("Пн Чт Вс — новости ИИ | Вт Пт — обзор ИИ-инструмента | Ср — автоматизация | Сб — Халяль или харам?")
     log.info("Shorts → ElevenLabs | Длинные → твоя озвучка из my_voice/")
 
     _seed_data()  # развернуть очередь на свежем диске (Render) до старта приёма
@@ -397,6 +419,8 @@ if __name__ == "__main__":
             run_automation()
         elif sys.argv[1] == "--tool-review":
             run_tool_review()
+        elif sys.argv[1] == "--verdict":
+            run_halal_verdict()
         elif sys.argv[1] == "--check-voice":
             # Проверяет папку my_voice и монтирует если есть файлы
             import glob
