@@ -12,15 +12,19 @@ for _stream in (sys.stdout, sys.stderr):
 
 from rss_parser import fetch_latest_news, mark_seen, fetch_article_text
 from ai_processor import (process_digest, process_automation, process_tool_review,
-                          process_halal_verdict, pick_most_interesting)
-from voice_gen import generate_voice
-from video_maker import make_video, create_thumbnail
+                          pick_most_interesting)
+from ai_shorts import (process_prompt_card, process_ai_trick, process_wow_news,
+                       process_verdict_short)
+from voice_gen import generate_voice, generate_voice_timed
+from video_maker import (make_video, create_thumbnail, make_brand_shorts,
+                         next_episode_number)
 from youtube_uploader import upload_video
 from tiktok_uploader import upload_to_tiktok
 from threads_poster import post_once as threads_post_once, generate_post as generate_social_post
 from instagram_poster import post_once as instagram_post_once
 from content_schedule import (get_today_content_type, get_automation_topic,
-                              get_tool_review_topic, get_verdict_topic, get_schedule_info)
+                              get_tool_review_topic, get_verdict_topic, get_schedule_info,
+                              get_prompt_topic, get_trick_topic)
 from telegram_notify import alert_fail, alert_ok
 
 load_dotenv()
@@ -46,7 +50,7 @@ def cleanup_raw_assets(slug):
     вшиты в финальное видео. Финальный *_shorts.mp4/*_long.mp4 и обложку не трогает —
     их имена не содержат этих меток, так что под шаблоны они не попадают."""
     patterns = [f"{slug}*_bc_*.mp4", f"{slug}*_ph_*.jpg", f"{slug}*_ph_*_vid.mp4",
-                f"{slug}*_logo_*.png"]
+                f"{slug}*_logo_*.png", f"{slug}*_f[0-9][0-9].png"]
     for pat in patterns:
         for p in glob.glob(os.path.join(OUTPUT_DIR, pat)):
             try:
@@ -95,6 +99,125 @@ def publish_shorts(content, slug):
         log.error(f"TikTok публикация: {e}")
 
     return vid_id
+
+
+def publish_brand_shorts(content, slug):
+    """Shorts нового формата: содержание рисуется в кадре, кадры меняются в такт голосу.
+
+    Отличие от publish_shorts(): там озвучка ложилась на случайный сток с Pexels.
+    Здесь ролик собирается из фирменных кадров (shorts_frames.py), а тайминги берутся
+    из посимвольной разметки ElevenLabs — приём, на котором держится арабский канал."""
+    scenes = content.get("scenes") or []
+    if not scenes:
+        log.error("Shorts: сценарий без сцен — нечего показывать в кадре")
+        return None
+
+    episode = next_episode_number()
+    log.info(f"Выпуск #{episode} — {content.get('rubric', '')} ({len(scenes)} кадров)")
+
+    audio_path = os.path.join(OUTPUT_DIR, f"{slug}_shorts.mp3")
+    audio, alignment = generate_voice_timed(content["shorts_script"], audio_path)
+    if not audio:
+        log.error("Shorts: озвучка не удалась")
+        alert_fail("Shorts — озвучка (ElevenLabs)", content.get("title_shorts", "")[:60])
+        return None
+    if not alignment:
+        log.warning("Тайминги не пришли — кадры лягут пропорционально длине реплик")
+
+    video = os.path.join(OUTPUT_DIR, f"{slug}_s_shorts.mp4")
+    video = make_brand_shorts(scenes, content.get("rubric", ""), episode,
+                              audio, video, slug=f"{slug}_s", alignment=alignment)
+    if not video:
+        log.error("Shorts: монтаж не удался")
+        alert_fail("Shorts — монтаж видео", content.get("title_shorts", "")[:60])
+        return None
+
+    thumb = os.path.join(OUTPUT_DIR, f"{slug}_s_thumb.jpg")
+    create_thumbnail(content.get("cover_text", ""), content.get("cover_subtitle", ""), thumb)
+
+    vid_id = upload_video(video, thumb, content["title_shorts"],
+                          content["description"], content["tags"], is_shorts=True)
+    if vid_id:
+        log.info(f"✅ Shorts: https://youtube.com/shorts/{vid_id}")
+        alert_ok(f"Shorts #{episode} опубликован: https://youtube.com/shorts/{vid_id}")
+        cleanup_raw_assets(slug)
+    else:
+        alert_fail("Shorts — заливка", content.get("title_shorts", "")[:60])
+
+    try:
+        tags = content.get("tags") or []
+        caption = (content.get("title_shorts", "")[:150] + " " +
+                   " ".join(f"#{t.replace(' ', '')}" for t in tags[:5]))
+        pid = upload_to_tiktok(video, caption=caption.strip())
+        if pid:
+            log.info(f"✅ TikTok: черновик отправлен (publish_id={pid})")
+    except Exception as e:
+        log.error(f"TikTok публикация: {e}")
+
+    return vid_id
+
+
+def _run_short(label, topic_desc, content, slug):
+    """Общий хвост для всех новых рубрик: сгенерировали → опубликовали."""
+    if not content:
+        log.error(f"{label}: генерация сценария не удалась (часто это квота Gemini)")
+        alert_fail(f"{label} — генерация сценария", topic_desc[:60])
+        return None
+    vid_id = publish_brand_shorts(content, slug)
+    if vid_id:
+        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
+    return content
+
+
+def run_prompt_card():
+    """«Промпт дня» — готовый промпт в кадре, который зритель сохраняет себе."""
+    log.info("=== ПРОМПТ ДНЯ ===")
+    topic = get_prompt_topic()
+    log.info(f"Задача: {topic['task'][:70]}")
+    return _run_short("Промпт дня", topic["task"],
+                      process_prompt_card(topic), slugify(topic["task"]))
+
+
+def run_ai_trick():
+    """«ИИ за 20 секунд» — одна фишка инструмента, разложенная на три шага."""
+    log.info("=== ИИ ЗА 20 СЕКУНД ===")
+    topic = get_trick_topic()
+    log.info(f"{topic['tool_name']}: {topic['trick'][:60]}")
+    return _run_short("ИИ за 20 секунд", topic["trick"],
+                      process_ai_trick(topic),
+                      slugify(f"{topic['tool_name']} {topic['trick']}"))
+
+
+def run_wow_news():
+    """«Вау-новость» — одна новость в неделю, поданная через запоминающуюся цифру."""
+    log.info("=== ВАУ-НОВОСТЬ ===")
+    pool = fetch_latest_news(max_articles=12, persist=False)
+    if not pool:
+        log.info("Нет новых статей")
+        return None
+    log.info(f"Кандидатов: {len(pool)} — выбираю самую интересную...")
+    article = pool[pick_most_interesting(pool)]
+    mark_seen(article["link"])
+    log.info(f"Новость: {article['title'][:70]}")
+
+    # RSS даёт только тизер без единого факта — для вау-цифры этого мало, дочитываем статью.
+    full_text = fetch_article_text(article["link"])
+    if full_text and len(full_text) > len(article.get("summary", "")):
+        article = {**article, "summary": full_text}
+    else:
+        log.warning("Полный текст статьи не получен — работаю с коротким RSS-тизером")
+
+    return _run_short("Вау-новость", article["title"],
+                      process_wow_news(article), slugify(article["title"]))
+
+
+def run_verdict_short():
+    """«Халяль или харам?» — фирменная рубрика, финальный кадр даёт выбор А/Б."""
+    log.info("=== ХАЛЯЛЬ ИЛИ ХАРАМ? ===")
+    topic = get_verdict_topic()
+    log.info(f"Приём: {topic['practice'][:60]}")
+    return _run_short("Халяль или харам", topic["practice"],
+                      process_verdict_short(topic), slugify(topic["practice"]))
 
 
 def publish_long(content, slug):
@@ -195,24 +318,6 @@ def run_tool_review():
         alert_fail("Обзор инструмента — генерация сценария (Gemini)", topic["title"][:60])
         return None
     slug = slugify(topic["title"])
-
-    vid_id = publish_shorts(content, slug)
-    if vid_id:
-        content["_video_id"] = vid_id  # чтобы соцсети взяли настоящую обложку видео
-    return content
-
-
-def run_halal_verdict():
-    """Фирменная рубрика «Халяль или харам?» — вердикт по спорному приёму применения ИИ."""
-    log.info("=== ХАЛЯЛЬ ИЛИ ХАРАМ? ===")
-    topic = get_verdict_topic()
-    log.info(f"Приём: {topic['practice'][:60]}")
-    content = process_halal_verdict(topic)
-    if not content:
-        log.error("Вердикт: генерация сценария не удалась (см. лог выше — часто это квота Gemini)")
-        alert_fail("Халяль или харам — генерация сценария", topic["practice"][:60])
-        return None
-    slug = slugify(topic["practice"])
 
     vid_id = publish_shorts(content, slug)
     if vid_id:
@@ -326,16 +431,20 @@ def run_agent():
 
     todays_content = None
     try:
-        # Shorts — каждый день, тип по расписанию (новости / обзор инструмента / автоматизация)
+        # Shorts — каждый день, рубрика по расписанию. Старые типы (digest/tool_review/
+        # automation) оставлены в диспетчере: они больше не в расписании, но если
+        # понадобится вернуть формат, достаточно поправить SCHEDULE.
         content_type = get_today_content_type()
-        if content_type == "digest":
-            todays_content = run_digest()
-        elif content_type == "tool_review":
-            todays_content = run_tool_review()
-        elif content_type == "halal_verdict":
-            todays_content = run_halal_verdict()
-        else:
-            todays_content = run_automation()
+        runners = {
+            "prompt_card": run_prompt_card,
+            "ai_trick": run_ai_trick,
+            "wow_news": run_wow_news,
+            "halal_verdict": run_verdict_short,
+            "digest": run_digest,
+            "tool_review": run_tool_review,
+            "automation": run_automation,
+        }
+        todays_content = runners.get(content_type, run_prompt_card)()
 
         # Длинные — из заранее начитанной очереди (по расписанию, 2/нед)
         run_long_queue()
@@ -381,7 +490,7 @@ def run_agent():
 
 def start_scheduler():
     log.info("🕌 Халяль Интеллидженс агент запущен")
-    log.info("Пн Чт Вс — новости ИИ | Вт Пт — обзор ИИ-инструмента | Ср — автоматизация | Сб — Халяль или харам?")
+    log.info("Пн Ср Пт — Промпт дня | Вт Чт — ИИ за 20 секунд | Сб — Халяль или харам? | Вс — Вау-новость")
     log.info("Shorts → ElevenLabs | Длинные → твоя озвучка из my_voice/")
 
     _seed_data()  # развернуть очередь на свежем диске (Render) до старта приёма
@@ -420,7 +529,13 @@ if __name__ == "__main__":
         elif sys.argv[1] == "--tool-review":
             run_tool_review()
         elif sys.argv[1] == "--verdict":
-            run_halal_verdict()
+            run_verdict_short()
+        elif sys.argv[1] == "--prompt":
+            run_prompt_card()
+        elif sys.argv[1] == "--trick":
+            run_ai_trick()
+        elif sys.argv[1] == "--wow-news":
+            run_wow_news()
         elif sys.argv[1] == "--check-voice":
             # Проверяет папку my_voice и монтирует если есть файлы
             import glob

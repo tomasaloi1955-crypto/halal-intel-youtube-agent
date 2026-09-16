@@ -63,6 +63,44 @@ def generate_voice_elevenlabs(text, output_path):
         return None
 
 
+def generate_voice_timed(text, output_path):
+    """Озвучка + посимвольная разметка времени (endpoint /with-timestamps).
+
+    Разметка нужна, чтобы кадры Shorts менялись ровно в такт словам диктора —
+    приём, на котором держится картинка арабского канала (см. shorts_timing.py).
+    Если ElevenLabs не отдал разметку, откатываемся на обычную озвучку: ролик
+    всё равно соберётся, только кадры лягут пропорционально длине реплик.
+
+    Возвращает (путь_к_mp3, alignment|None) либо (None, None)."""
+    text = clean_for_tts(text)
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}/with-timestamps"
+    headers = {"xi-api-key": ELEVENLABS_API_KEY, "Content-Type": "application/json"}
+    payload = {
+        "text": text,
+        "model_id": "eleven_multilingual_v2",
+        "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.75,
+            "style": 0.3,
+            "use_speaker_boost": True,
+        },
+    }
+    try:
+        import base64
+        r = requests.post(url, json=payload, headers=headers, timeout=120)
+        r.raise_for_status()
+        data = r.json()
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+        with open(output_path, "wb") as f:
+            f.write(base64.b64decode(data["audio_base64"]))
+        alignment = data.get("normalized_alignment") or data.get("alignment")
+        print(f"[VOICE] ElevenLabs + тайминги → {output_path}")
+        return output_path, alignment
+    except Exception as e:
+        print(f"[VOICE] Тайминги не получены ({e}) — беру обычную озвучку")
+        return generate_voice_elevenlabs(text, output_path), None
+
+
 def get_human_voice(slug):
     """
     Для длинных видео — ищем файл озвучки от Freya.

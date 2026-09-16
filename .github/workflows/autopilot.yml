@@ -74,7 +74,12 @@ jobs:
           git config user.name "autopilot"
           git config user.email "autopilot@users.noreply.github.com"
           # добавляем только безопасные файлы состояния; youtube_token.json остаётся в .gitignore
-          for f in long_queue.json seen_articles.json used_topics.json researched_topics.json; do
+          # bank_*.json — очередь тем новых рубрик, shorts_episode.json — сквозной
+          # номер выпуска. Без них в облаке каждый запуск начинался бы с первой темы
+          # и с ролика «#1».
+          for f in long_queue.json seen_articles.json used_topics.json researched_topics.json \
+                   bank_prompts.json bank_tricks.json shorts_episode.json \
+                   used_verdict_topics.json researched_verdict_topics.json; do
             [ -f "state/$f" ] && git add "state/$f"
           done
           git diff --cached --quiet && echo "нет изменений состояния" || git commit -m "state: $(date -u +%F_%H%M) [skip ci]"

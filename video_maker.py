@@ -786,3 +786,93 @@ def create_thumbnail(cover_text, cover_subtitle, output_path, bg_query=None):
     except Exception as e:
         print(f"[THUMBNAIL] Error: {e}")
         return None
+
+
+# ── Фирменные Shorts: кадры несут содержание, а не сток ──────────────────────
+# Раньше видеоряд Shorts набирался случайными клипами с Pexels: к словам диктора
+# он отношения не имел, и зритель не получал из картинки ничего. Теперь ролик
+# собирается из кадров, нарисованных в shorts_frames.py (сам промпт, сам шаг, сама
+# цифра), и кадры сменяются ровно в такт голосу (shorts_timing.py).
+
+from paths import dpath as _dpath
+
+EPISODE_FILE = _dpath("shorts_episode.json")
+
+
+def next_episode_number():
+    """Сквозной номер выпуска — он и делает из роликов сериал.
+
+    Хранится в DATA_DIR (состояние коммитится обратно в репозиторий), а не в
+    output/: иначе в GitHub Actions счётчик обнулялся бы на каждом запуске и все
+    ролики выходили бы под номером 1."""
+    n = 0
+    try:
+        if os.path.exists(EPISODE_FILE):
+            import json as _json
+            with open(EPISODE_FILE, encoding="utf-8") as f:
+                n = int(_json.load(f).get("episode", 0))
+    except Exception:
+        n = 0
+    n += 1
+    try:
+        import json as _json
+        with open(EPISODE_FILE, "w", encoding="utf-8") as f:
+            _json.dump({"episode": n}, f)
+    except Exception as e:
+        print(f"[EPISODE] Номер не сохранён: {e}")
+    return n
+
+
+def make_brand_shorts(scenes, rubric, episode, audio_path, output_path,
+                      slug="shorts", alignment=None):
+    """Собирает вертикальный ролик из фирменных кадров под готовую озвучку.
+
+    scenes — список словарей вида {"kind": "prompt", "say": "...", ...}
+    (kind рисуется shorts_frames.render_scene, say — то, что произносит диктор)."""
+    from shorts_frames import render_scene
+    from shorts_timing import scene_spans
+
+    if not scenes:
+        print("[SHORTS] Пустой список сцен")
+        return None
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    duration = get_media_duration(audio_path, default=25.0)
+    spans = scene_spans(scenes, duration, alignment)
+
+    frames = []
+    for i, (scene, (start, dur)) in enumerate(zip(scenes, spans)):
+        path = os.path.join(OUTPUT_DIR, f"{slug}_f{i:02d}.png")
+        try:
+            render_scene(scene, rubric, episode, path)
+        except Exception as e:
+            print(f"[SHORTS] Кадр {i} ({scene.get('kind')}) не отрисовался: {e}")
+            continue
+        frames.append((path, dur))
+    if not frames:
+        print("[SHORTS] Ни один кадр не отрисовался")
+        return None
+
+    cmd = ["ffmpeg", "-y"]
+    for path, dur in frames:
+        cmd += ["-loop", "1", "-t", f"{dur:.3f}", "-i", path]
+    cmd += ["-i", audio_path]
+
+    n = len(frames)
+    parts = [f"[{i}:v]scale={720}:{1280},setsar=1,fps=30,format=yuv420p[v{i}]"
+             for i in range(n)]
+    parts.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0[outv]")
+    cmd += ["-filter_complex", ";".join(parts),
+            "-map", "[outv]", "-map", f"{n}:a:0",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "21",
+            "-c:a", "aac", "-b:a", "192k", "-pix_fmt", "yuv420p",
+            "-movflags", "+faststart", output_path]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+        if r.returncode != 0:
+            print(f"[SHORTS] FFmpeg: {r.stderr[-500:]}")
+            return None
+    except Exception as e:
+        print(f"[SHORTS] Сборка не удалась: {e}")
+        return None
+    print(f"[SHORTS] Готово: {output_path} ({sum(d for _, d in frames):.1f}с, {n} кадров)")
+    return output_path
