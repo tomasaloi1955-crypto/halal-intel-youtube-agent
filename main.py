@@ -50,7 +50,8 @@ def cleanup_raw_assets(slug):
     вшиты в финальное видео. Финальный *_shorts.mp4/*_long.mp4 и обложку не трогает —
     их имена не содержат этих меток, так что под шаблоны они не попадают."""
     patterns = [f"{slug}*_bc_*.mp4", f"{slug}*_ph_*.jpg", f"{slug}*_ph_*_vid.mp4",
-                f"{slug}*_logo_*.png", f"{slug}*_f[0-9][0-9].png"]
+                f"{slug}*_logo_*.png", f"{slug}*_f[0-9][0-9][0-9].png",
+                f"{slug}*_bg[0-9].jpg"]
     for pat in patterns:
         for p in glob.glob(os.path.join(OUTPUT_DIR, pat)):
             try:
@@ -126,7 +127,8 @@ def publish_brand_shorts(content, slug):
 
     video = os.path.join(OUTPUT_DIR, f"{slug}_s_shorts.mp4")
     video = make_brand_shorts(scenes, content.get("rubric", ""), episode,
-                              audio, video, slug=f"{slug}_s", alignment=alignment)
+                              audio, video, slug=f"{slug}_s", alignment=alignment,
+                              bg_queries=content.get("bg_queries"))
     if not video:
         log.error("Shorts: монтаж не удался")
         alert_fail("Shorts — монтаж видео", content.get("title_shorts", "")[:60])

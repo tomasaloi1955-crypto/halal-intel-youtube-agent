@@ -50,7 +50,42 @@ def font(size, bold=True):
 
 # ── фон (кэшируется: один и тот же для всех кадров ролика) ──────────────────
 
-_BG_CACHE = None
+_BG_CACHE = {}
+
+
+def _make_scrim():
+    """Полупрозрачная «вуаль» вместо сплошного фона — под ней лежит фотография.
+
+    Плотность неравномерная: к верху и низу гуще, потому что там бейджи, плашка
+    Telegram и аватар, и белый текст по светлому участку фото читался бы плохо.
+    Посередине вуаль тоньше — там фотография и должна быть видна.
+    Цвет вуали не чёрный, а фирменный тёмно-синий: фон меняется от ролика к ролику,
+    а общий тон канала должен оставаться узнаваемым."""
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    top_band, bottom_band = 300, 360
+    for y in range(H):
+        a = 158
+        if y < top_band:
+            a = int(158 + (222 - 158) * (1 - y / top_band))
+        elif y > H - bottom_band:
+            a = int(158 + (228 - 158) * ((y - (H - bottom_band)) / bottom_band))
+        d.line([(0, y), (W, y)], fill=(*BG_TOP, a))
+
+    # сетка точек и уголки — те же, что на сплошном фоне: узнаваемость кадра
+    step = 46
+    for x in range(step // 2, W, step):
+        for y in range(step // 2, H, step):
+            d.ellipse((x - 2, y - 2, x + 2, y + 2), fill=(*GOLD, 22))
+    m, sz = 44, 120
+    for (x0, y0, x1, y1, x2, y2) in [
+        (m, m + sz, m, m, m + sz, m),
+        (W - m - sz, m, W - m, m, W - m, m + sz),
+        (m, H - m - sz, m, H - m, m + sz, H - m),
+        (W - m - sz, H - m, W - m, H - m, W - m, H - m - sz),
+    ]:
+        d.line([(x0, y0), (x1, y1), (x2, y2)], fill=(*GOLD_DIM, 230), width=2)
+    return img
 
 
 def _make_bg():
@@ -90,11 +125,13 @@ def _make_bg():
     return img
 
 
-def _bg():
-    global _BG_CACHE
-    if _BG_CACHE is None:
-        _BG_CACHE = _make_bg()
-    return _BG_CACHE.copy()
+def _bg(transparent=False):
+    """Основа кадра. transparent=True — вуаль вместо сплошного фона: кадр ляжет
+    поверх фотографии, которую подставит video_maker."""
+    key = bool(transparent)
+    if key not in _BG_CACHE:
+        _BG_CACHE[key] = _make_scrim() if key else _make_bg()
+    return _BG_CACHE[key].copy()
 
 
 # ── примитивы ────────────────────────────────────────────────────────────────
@@ -226,21 +263,78 @@ def _scene_text(img, data):
                 sizes=(62, 54, 48, 42, 36, 30))
 
 
+def _reveal(lines, progress):
+    """Сколько текста уже «напечатано»: режем по символам, но по УЖЕ разбитым
+    строкам. Если переносить на лету, строки прыгали бы при каждом новом слове."""
+    if progress is None or progress >= 1:
+        return lines, (len(lines) - 1 if lines else 0)
+    total = sum(len(ln) for ln in lines)
+    left = int(total * max(0.0, progress))
+    out, cursor = [], 0
+    for i, ln in enumerate(lines):
+        if left >= len(ln):
+            out.append(ln)
+            left -= len(ln)
+            cursor = i
+        else:
+            out.append(ln[:left])
+            cursor = i
+            left = 0
+            break
+    while len(out) < len(lines):
+        out.append("")
+    return out, cursor
+
+
 def _scene_prompt(img, data):
-    """Главный кадр рубрики «Промпт дня»: готовый промпт крупно — его можно
-    сфотографировать или поставить на паузу и переписать."""
-    _label(img, data.get("label") or "СКОПИРУЙ СЕБЕ", 300)
-    x0, x1 = 48, W - 48
-    y0, y1 = 350, 900
-    _card(img, x0, y0, x1, y1)
+    """Главный кадр рубрики: промпт печатается в окне чата прямо на экране.
+
+    Просто текст на карточке зритель воспринимает как «очередная надпись». Окно с
+    заголовком, кнопками и мигающей кареткой читается как реальный экран, на котором
+    прямо сейчас набирают промпт, — на этом кадре и останавливают ролик.
+    Полностью набранный текст остаётся висеть до конца сцены: его переписывают."""
+    x0, x1 = 44, W - 44
+    area_top, area_bottom, bar, pad = 336, 946, 62, 34
+
+    # Высота окна считается по ПОЛНОМУ тексту, а не по уже набранному: иначе окно
+    # росло бы по ходу печати и прыгало в кадре. Пустоты под текстом при этом нет.
+    d0 = ImageDraw.Draw(img)
+    f, lines, lh = _fit_lines(d0, data.get("text", ""), x1 - x0 - pad * 2,
+                              area_bottom - area_top - bar - 70,
+                              (36, 32, 29, 26, 23, 20, 18), bold=False, line_ratio=1.36)
+    win_h = bar + 26 + len(lines) * lh + 26
+    y0 = area_top + max(0, (area_bottom - area_top - win_h) // 2)
+    y1 = y0 + win_h
+
+    win = Image.new("RGBA", (x1 - x0, y1 - y0), (0, 0, 0, 0))
+    wd = ImageDraw.Draw(win)
+    wd.rounded_rectangle((0, 0, x1 - x0 - 1, y1 - y0 - 1), radius=22,
+                         fill=(15, 20, 36, 249), outline=(*GOLD, 120), width=2)
+    # шапка окна с тремя кнопками — знак «это экран, а не подпись»
+    wd.rounded_rectangle((0, 0, x1 - x0 - 1, bar + 22), radius=22, fill=(27, 34, 56, 255))
+    wd.rectangle((0, bar, x1 - x0 - 1, bar + 2), fill=(52, 62, 92, 255))
+    for i, c in enumerate([(237, 106, 94), (240, 190, 90), (108, 200, 130)]):
+        cx = 30 + i * 30
+        wd.ellipse((cx - 8, bar // 2 - 8, cx + 8, bar // 2 + 8), fill=(*c, 235))
+    wd.text((128, bar // 2 - 15), data.get("app") or "ChatGPT",
+            font=font(26), fill=(168, 180, 208))
+    img.paste(win, (x0, y0), win)
+
     d = ImageDraw.Draw(img)
-    f, lines, lh = _fit_lines(d, data.get("text", ""), x1 - x0 - 84, y1 - y0 - 80,
-                              (40, 36, 32, 29, 26, 23, 20), bold=False, line_ratio=1.35)
-    y = y0 + ((y1 - y0) - len(lines) * lh) // 2
-    for ln in lines:
-        d.text((x0 + 42, y), ln, font=f, fill=OFF_WHITE)
-        y += lh
-    _label(img, "СОХРАНИ, ПОКА НЕ ПОТЕРЯЛ", 930, size=30)
+    shown, cur_line = _reveal(lines, data.get("progress"))
+    y = y0 + bar + 26
+    for i, ln in enumerate(shown):
+        d.text((x0 + pad, y + i * lh), ln, font=f, fill=OFF_WHITE)
+    # каретка — там, где сейчас печатает
+    if data.get("progress") is not None and data["progress"] < 1:
+        cw = d.textlength(shown[cur_line], font=f) if cur_line < len(shown) else 0
+        cy = y + cur_line * lh
+        d.rectangle((x0 + pad + cw + 3, cy + 4,
+                     x0 + pad + cw + 17, cy + lh - 10), fill=GOLD)
+
+    _label(img, data.get("label") or "Скопируй себе", y0 - 58)
+    if data.get("progress") is None or data["progress"] >= 1:
+        _label(img, "СОХРАНИ, ПОКА НЕ ПОТЕРЯЛ", y1 + 26, size=30)
 
 
 def _scene_steps(img, data):
@@ -345,9 +439,11 @@ _SCENES = {
 _NO_AVATAR = {"prompt", "steps", "choice"}
 
 
-def render_scene(scene, rubric, episode, out_path, with_avatar=True):
-    """Рисует один кадр Shorts в PNG. Неизвестный тип сцены → обычный текст."""
-    img = _bg()
+def render_scene(scene, rubric, episode, out_path, with_avatar=True, transparent=False):
+    """Рисует один кадр Shorts в PNG. Неизвестный тип сцены → обычный текст.
+
+    transparent=True — кадр рисуется как накладка на фотографию (см. _make_scrim)."""
+    img = _bg(transparent)
     kind = scene.get("kind", "text")
     _SCENES.get(kind, _scene_text)(img, scene)
     if with_avatar and kind not in _NO_AVATAR:

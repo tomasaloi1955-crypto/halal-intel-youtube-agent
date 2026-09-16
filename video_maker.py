@@ -823,12 +823,120 @@ def next_episode_number():
     return n
 
 
+# Фон для Shorts: своё фото на каждую сцену, чтобы визуал менялся по ходу ролика.
+# Это НЕ возврат к старому стоковому видеоряду: фотография уходит под вуаль, сильно
+# размывается и служит фактурой, а содержание по-прежнему лежит в кадре поверх неё.
+# Первый запрос всегда «рабочий стол с компьютером» — под кадром, где печатается
+# промпт, должен быть именно экран, а не абстракция.
+SHORTS_BG_FALLBACK = [
+    "laptop screen code dark desk",
+    "modern workspace desk computer night",
+    "abstract technology particles dark",
+    "server room blue light",
+    "microchip circuit macro dark",
+]
+
+
+BG_W, BG_H = 1120, 1992  # запас по краям: кадр 720x1280 ездит внутри этой картинки
+
+
+def _normalize_bg(path):
+    """Приводит фото к единому размеру BG_W x BG_H (обрезка по центру).
+
+    Обязательный шаг, а не оптимизация: Pexels отдаёт снимки разной высоты
+    (1880x1253 и 1880x1058 в одном наборе), а демультиплексор concat требует, чтобы
+    все кадры списка были одного размера — иначе сборка ведёт себя непредсказуемо."""
+    try:
+        im = Image.open(path).convert("RGB")
+        k = max(BG_W / im.width, BG_H / im.height)
+        im = im.resize((max(BG_W, int(im.width * k)), max(BG_H, int(im.height * k))),
+                       Image.LANCZOS)
+        left, top = (im.width - BG_W) // 2, (im.height - BG_H) // 2
+        im.crop((left, top, left + BG_W, top + BG_H)).save(path, "JPEG", quality=88)
+        return True
+    except Exception as e:
+        print(f"[SHORTS-BG] {os.path.basename(path)}: не привёл к размеру ({e})")
+        return False
+
+
+def fetch_scene_backgrounds(queries, count, slug):
+    """count путей к фото — по одному на сцену. Меньше нашли → пускаем по кругу."""
+    if not PEXELS_API_KEY:
+        return []
+    wanted = [q for q in (queries or []) if _sanitize_keyword(q)]
+    wanted = (wanted + SHORTS_BG_FALLBACK)[:5]
+
+    paths = []
+    for i, q in enumerate(wanted):
+        if len(paths) >= count:
+            break
+        try:
+            photos = fetch_pexels_photos(q, count=1)
+        except Exception as e:
+            print(f"[SHORTS-BG] «{q}»: {e}")
+            continue
+        for ph in photos:
+            p = os.path.join(OUTPUT_DIR, f"{slug}_bg{i}.jpg")
+            if download_media(ph["url"], p) and _normalize_bg(p):
+                paths.append(p)
+                break
+    if not paths:
+        return []
+    return [paths[i % len(paths)] for i in range(count)]
+
+
+def _typing_subframes(scene, dur):
+    """[(кадр, длительность)] для одной сцены.
+
+    Обычная сцена — один кадр. Кадр с промптом разворачивается в раскадровку: текст
+    набирается на экране. Это и есть «на фоне комп, и там пишется промпт» — статичная
+    надпись читается как подпись, а набор текста читается как живой экран.
+    Последний кадр держится до конца сцены с полным текстом: его переписывают."""
+    if scene.get("kind") != "prompt" or not scene.get("text"):
+        return [(scene, dur)]
+    typing = min(dur * 0.55, 3.6)
+    n = max(6, min(26, int(typing * 7)))
+    step = typing / n
+    out = []
+    for i in range(n):
+        # 0.995, а не 1.0 — пока текст набирается, должна быть видна каретка
+        out.append(({**scene, "progress": min(0.995, (i + 1) / n)}, step))
+    out.append(({**scene, "progress": 1.0}, max(0.5, dur - typing)))
+    return out
+
+
+def _concat_list(items, path):
+    """Файл-список для демультиплексора concat: кадр + сколько он висит.
+
+    Через него весь ролик отдаётся ffmpeg как ОДИН вход вместо десятков отдельных
+    (раскадровка печати промпта — это два-три десятка картинок, и на отдельных входах
+    сборка занимала минуты). Последний файл дублируется без длительности — иначе
+    concat обрезает последний кадр, это известная особенность демультиплексора."""
+    lines = ["ffconcat version 1.0"]
+    for src, dur in items:
+        lines.append(f"file '{os.path.abspath(src).replace(os.sep, '/')}'")
+        lines.append(f"duration {dur:.3f}")
+    if items:
+        lines.append(f"file '{os.path.abspath(items[-1][0]).replace(os.sep, '/')}'")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    return path
+
+
 def make_brand_shorts(scenes, rubric, episode, audio_path, output_path,
-                      slug="shorts", alignment=None):
+                      slug="shorts", alignment=None, bg_queries=None):
     """Собирает вертикальный ролик из фирменных кадров под готовую озвучку.
 
     scenes — список словарей вида {"kind": "prompt", "say": "...", ...}
-    (kind рисуется shorts_frames.render_scene, say — то, что произносит диктор)."""
+    (kind рисуется shorts_frames.render_scene, say — то, что произносит диктор).
+
+    Ролик идёт в два слоя. Снизу — тематическая фотография, размытая и медленно
+    плывущая: своя на каждую сцену, поэтому визуал меняется по ходу ролика. Сверху —
+    накладка с текстом, она остаётся пиксельно резкой, потому что не масштабируется.
+    Так фон оживляет кадр, но читаемость промпта не страдает.
+
+    Если фотографий нет (нет ключа Pexels или сеть не ответила) — кадры рисуются
+    на сплошном фирменном фоне, ролик всё равно собирается."""
     from shorts_frames import render_scene
     from shorts_timing import scene_spans
 
@@ -838,41 +946,72 @@ def make_brand_shorts(scenes, rubric, episode, audio_path, output_path,
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     duration = get_media_duration(audio_path, default=25.0)
     spans = scene_spans(scenes, duration, alignment)
+    total = sum(d for _, d in spans)
 
+    backgrounds = fetch_scene_backgrounds(bg_queries, len(scenes), slug)
+    layered = bool(backgrounds)
+    if not layered:
+        print("[SHORTS] Фото для фона нет — рисую на сплошном фирменном фоне")
+
+    # Кадр с промптом разворачивается в раскадровку печати, остальные идут как есть.
     frames = []
-    for i, (scene, (start, dur)) in enumerate(zip(scenes, spans)):
-        path = os.path.join(OUTPUT_DIR, f"{slug}_f{i:02d}.png")
+    for scene, (_, dur) in zip(scenes, spans):
+        for sub, sdur in _typing_subframes(scene, dur):
+            frames.append((sub, sdur))
+
+    rendered = []
+    for j, (scene, dur) in enumerate(frames):
+        path = os.path.join(OUTPUT_DIR, f"{slug}_f{j:03d}.png")
         try:
-            render_scene(scene, rubric, episode, path)
+            render_scene(scene, rubric, episode, path, transparent=layered)
         except Exception as e:
-            print(f"[SHORTS] Кадр {i} ({scene.get('kind')}) не отрисовался: {e}")
+            print(f"[SHORTS] Кадр {j} ({scene.get('kind')}) не отрисовался: {e}")
             continue
-        frames.append((path, dur))
-    if not frames:
+        rendered.append((path, dur))
+    if not rendered:
         print("[SHORTS] Ни один кадр не отрисовался")
         return None
 
+    ov_list = _concat_list(rendered, os.path.join(OUTPUT_DIR, f"{slug}_ov.txt"))
     cmd = ["ffmpeg", "-y"]
-    for path, dur in frames:
-        cmd += ["-loop", "1", "-t", f"{dur:.3f}", "-i", path]
-    cmd += ["-i", audio_path]
+    parts = []
 
-    n = len(frames)
-    parts = [f"[{i}:v]scale={720}:{1280},setsar=1,fps=30,format=yuv420p[v{i}]"
-             for i in range(n)]
-    parts.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0[outv]")
-    cmd += ["-filter_complex", ";".join(parts),
-            "-map", "[outv]", "-map", f"{n}:a:0",
+    if layered:
+        bg_list = _concat_list(list(zip(backgrounds, [d for _, d in spans])),
+                               os.path.join(OUTPUT_DIR, f"{slug}_bg.txt"))
+        cmd += ["-f", "concat", "-safe", "0", "-i", bg_list]
+        # Медленный дрейф по синусу: кадр дышит, но взгляд не уводит от текста.
+        # Порядок фильтров важен. Тяжёлые scale и boxblur стоят ДО fps — они отработают
+        # по разу на фотографию. Дешёвый crop стоит ПОСЛЕ fps: только так выражение с
+        # `t` пересчитывается на каждом кадре и фон реально едет. Если поставить crop
+        # раньше, он посчитается один раз на сцену и фон будет стоять намертво.
+        parts.append(
+            "[0:v]scale=1120:1992:force_original_aspect_ratio=increase,"
+            "boxblur=7:1,eq=saturation=0.85,setsar=1,fps=30,"
+            "crop=720:1280:x='(iw-ow)/2+70*sin(t*0.21)':y='(ih-oh)/2+50*sin(t*0.16)'[bg]")
+        cmd += ["-f", "concat", "-safe", "0", "-i", ov_list]
+        parts.append("[1:v]setsar=1,fps=30,format=rgba[ov]")
+        parts.append("[bg][ov]overlay=0:0:format=auto,format=yuv420p[outv]")
+        audio_idx = 2
+    else:
+        cmd += ["-f", "concat", "-safe", "0", "-i", ov_list]
+        parts.append("[0:v]setsar=1,fps=30,format=yuv420p[outv]")
+        audio_idx = 1
+
+    cmd += ["-i", audio_path,
+            "-filter_complex", ";".join(parts),
+            "-map", "[outv]", "-map", f"{audio_idx}:a:0",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "21",
-            "-c:a", "aac", "-b:a", "192k", "-pix_fmt", "yuv420p",
-            "-movflags", "+faststart", output_path]
+            "-c:a", "aac", "-b:a", "192k", "-t", f"{total:.2f}",
+            "-pix_fmt", "yuv420p", "-movflags", "+faststart", output_path]
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=1500)
         if r.returncode != 0:
-            print(f"[SHORTS] FFmpeg: {r.stderr[-500:]}")
+            print(f"[SHORTS] FFmpeg: {r.stderr[-700:]}")
             return None
     except Exception as e:
         print(f"[SHORTS] Сборка не удалась: {e}")
         return None
-    print(f"[SHORTS] Готово: {output_path} ({sum(d for _, d in frames):.1f}с, {n} кадров)")
+    print(f"[SHORTS] Готово: {output_path} ({total:.1f}с, {len(scenes)} сцен, "
+          f"{len(rendered)} кадров, фон: {'фото' if layered else 'сплошной'})")
     return output_path
