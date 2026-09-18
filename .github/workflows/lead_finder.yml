@@ -2,8 +2,7 @@ name: lead_finder
 
 on:
   schedule:
-    # Каждые 4 часа днём: 8:00, 12:00, 16:00, 20:00 Алматы. Лента FL.ru держит
-    # только ~10 часов заказов, реже — начнём их пропускать.
+    # 8:00, 12:00, 16:00, 20:00 Алматы.
     - cron: "0 3,7,11,15 * * *"
   workflow_dispatch: {}      # кнопка ручного запуска
 
@@ -31,6 +30,7 @@ jobs:
       - name: Поиск заказов
         env:
           DATA_DIR: state
+          LEAD_SOURCES: Freelancer   # Kwork и FL.ru блокируют GitHub — их проверяет домашний ПК
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
         run: python lead_finder.py

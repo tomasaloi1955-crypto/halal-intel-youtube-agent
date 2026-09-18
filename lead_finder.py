@@ -2,6 +2,7 @@
 # n8n/Make/Zapier, ИИ-агенты, чат-боты) и присылает находки в Telegram с черновиком отклика.
 # Источники читаются напрямую, без поисковика: DuckDuckGo с 18.09.2026 блокирует
 # GitHub Actions целиком, а ленты площадок отдают заказы без блокировок.
+# Kwork и FL.ru режут серверы GitHub (403) — их проверяет домашний ПК, см. LEAD_SOURCES.
 #   • Kwork — вся лента активных заказов (≈37 страниц по 12), фильтр по словам здесь.
 #   • FL.ru — RSS последних 60 заказов (≈10 часов), поэтому запуск каждые 4 часа.
 #   • Freelancer.com — открытый API поиска проектов (международные заказы, en).
@@ -183,6 +184,11 @@ def fetch_freelancer():
 
 
 SOURCES = [("Kwork", fetch_kwork), ("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer)]
+# Kwork и FL.ru отдают 403 серверам GitHub, поэтому их проверяет домашний ПК
+# (run_lead_finder_local.cmd), а Actions — только Freelancer. Пусто = все площадки.
+_only = {s.strip() for s in os.getenv("LEAD_SOURCES", "").split(",") if s.strip()}
+if _only:
+    SOURCES = [src for src in SOURCES if src[0] in _only]
 
 
 def load_seen():
