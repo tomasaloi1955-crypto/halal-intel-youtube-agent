@@ -140,6 +140,7 @@ QUERIES = GENERAL_QUERIES + HALAL_QUERIES + INTL_QUERIES + GULF_QUERIES + EUROPE
 
 MIN_DELAY_SEC = 5
 MAX_DELAY_SEC = 10
+FIRST_BLOCK_RETRY_SEC = 60
 
 
 class Blocked(Exception):
@@ -194,12 +195,12 @@ def save_rotation(index):
 
 def next_batch():
     """Берёт следующую пачку запросов по кругу — так за несколько запусков
-    перебираются все площадки, но за один раз DDG не бомбардируется целиком."""
+    перебираются все площадки, но за один раз DDG не бомбардируется целиком.
+    Ротацию двигает run() — только на реально выполненные запросы: раньше она
+    сдвигалась на всю пачку, и запросы после блока DDG пропускались до следующего круга."""
     start = load_rotation()
     total = len(QUERIES)
-    batch = [QUERIES[(start + i) % total] for i in range(min(BATCH_SIZE, total))]
-    save_rotation(start + BATCH_SIZE)
-    return batch
+    return start, [QUERIES[(start + i) % total] for i in range(min(BATCH_SIZE, total))]
 
 
 def load_seen():
@@ -267,16 +268,25 @@ def send_digest(leads):
 def run():
     seen = load_seen()
     new_leads = []
-    attempted = 0
+    done = 0
     blocked = False
 
-    batch = next_batch()
+    start, batch = next_batch()
     for i, (query, lang) in enumerate(batch):
         if i > 0:
             time.sleep(random.uniform(MIN_DELAY_SEC, MAX_DELAY_SEC))
-        attempted += 1
         try:
-            for title, url, snippet in search(query):
+            try:
+                results = search(query)
+            except Blocked:
+                if i > 0:
+                    raise
+                # Блок на первом же запросе — IP раннера уже в списке DDG. Иногда
+                # отпускает через минуту; второй отказ — уже повод для алерта.
+                print(f"[lead_finder] DuckDuckGo заблокировал первый запрос — жду {FIRST_BLOCK_RETRY_SEC} с и пробую снова.")
+                time.sleep(FIRST_BLOCK_RETRY_SEC)
+                results = search(query)
+            for title, url, snippet in results:
                 if url in seen:
                     continue
                 seen.add(url)
@@ -289,7 +299,9 @@ def run():
             break
         except Exception as e:
             print(f"[lead_finder] Запрос не удался: {query!r} — {e}")
+        done += 1
 
+    save_rotation(start + done)
     save_seen(seen)
 
     if new_leads:
@@ -298,10 +310,11 @@ def run():
     else:
         print("[lead_finder] Новых заказов не найдено.")
 
-    if blocked and attempted <= 1:
+    if blocked and done == 0:
         alert_fail(
             "lead_finder",
-            "DuckDuckGo заблокировал IP сразу на первом запросе — возможно, блок держится дольше обычного.",
+            "DuckDuckGo заблокировал IP на первом запросе и повторе через минуту. "
+            "Пропущенные площадки не потеряны — завтра поиск начнётся с них.",
         )
 
 

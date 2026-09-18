@@ -294,11 +294,18 @@ def _call_gemini(prompt):
             return None
 
     try:
-        if text.startswith("```"):
-            text = text.split("```")[1]
-            if text.startswith("json"):
-                text = text[4:]
-        return json.loads(text.strip())
+        return _parse_json(text)
     except Exception as e:
-        print(f"[AI] Ошибка разбора JSON: {e}")
+        print(f"[AI] Ошибка разбора JSON: {e}\n[AI] Начало ответа: {text[:300]!r}")
         return None
+
+
+def _parse_json(text):
+    """JSON берётся от первой «{» до последней «}», а не резкой по ``` — внутри полей
+    модель сама ставит блоки кода (в «Промпте дня» так оформляет промпт в описании),
+    и старая резка обрывала ответ посреди строки (сбой 18.09.2026).
+    strict=False пропускает живые переносы строк внутри значений."""
+    start, end = text.find("{"), text.rfind("}")
+    if start == -1 or end <= start:
+        raise ValueError("в ответе нет JSON-объекта")
+    return json.loads(text[start:end + 1], strict=False)
