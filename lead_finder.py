@@ -1,31 +1,60 @@
-# lead_finder.py — ищет реальные заказы на разработку сайтов (любая ниша, кроме харам)
-# и присылает новые находки в Telegram. Источник — открытый HTML-поиск DuckDuckGo
-# (Google CSE отключён: требует привязку карты и предоплату, которая не проходит).
-# Чтобы не словить блокировку DDG, запросы идут пачками по очереди (не все за раз)
-# со случайными паузами; при первом же признаке блокировки — пачка прерывается.
-import random
+# lead_finder.py — ищет свежие заказы на ИИ-автоматизацию (автопостинг, Telegram-боты,
+# n8n/Make/Zapier, ИИ-агенты, чат-боты) и присылает находки в Telegram с черновиком отклика.
+# Источники читаются напрямую, без поисковика: DuckDuckGo с 18.09.2026 блокирует
+# GitHub Actions целиком, а ленты площадок отдают заказы без блокировок.
+#   • Kwork — вся лента активных заказов (≈37 страниц по 12), фильтр по словам здесь.
+#   • FL.ru — RSS последних 60 заказов (≈10 часов), поэтому запуск каждые 4 часа.
+#   • Freelancer.com — открытый API поиска проектов (международные заказы, en).
+# Заказы из мусульманской/халяль-ниши помечаются 🕌 и идут первыми. Харам-ниши
+# (казино, форекс, алкоголь, свинина, банки) отсекаются жёстко.
+import html
+import json
+import os
+import re
 import time
+import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
 from paths import dpath
 from telegram_notify import notify, alert_fail
-import json
-import os
 
 SEEN_FILE = dpath("seen_leads.json")
-MAX_SEEN = 1000
-ROTATION_FILE = dpath("lead_rotation.json")
-BATCH_SIZE = 15
+MAX_SEEN = 3000
+MAX_LEADS_PER_RUN = 25
+MIN_BUDGET_RUB = 1500
+MIN_BUDGET_USD = 100
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 }
 
+# Точные признаки заказа на автоматизацию — засчитываются и в названии, и в описании.
+STRONG_KEYWORDS = [
+    "автопост", "автопубликац", "автоматическая публикац", "автоматический постинг",
+    "отложенный постинг", "контент-завод", "контент завод",
+    "телеграм-бот", "телеграм бот", "телеграмм бот", "телеграмм-бот", "telegram-бот",
+    "telegram бот", "тг бот", "тг-бот", "tg бот", "бот для телеграм", "бота для телеграм",
+    "бот в телеграм", "бота в телеграм", "чат-бот", "чатбот",
+    "n8n", "make.com", "zapier", "ии-агент", "ии агент", "ai-агент", "ai агент",
+    "telegram bot", "chatbot", "chat bot", "ai agent",
+    "autopost", "auto-post", "auto post", "scheduled posts", "social media automation",
+]
+# Общие слова — только в названии: в описаниях они мелькают где попало
+# («сделайте без нейросетей», «автоматизация продаж» у рекламодателя).
+TITLE_KEYWORDS = STRONG_KEYWORDS + [
+    "автоматизац", "автоматизир", "нейросет", " бот", "-бот", " ии ", "ии-", "gpt", "openai", "llm",
+    "automation", "automate", " ai ", "ai-", "workflow",
+]
+
+# Мусульманская ниша — такие заказы помечаем 🕌 и ставим первыми.
+HALAL_KEYWORDS = [
+    "ислам", "мусульман", "халяль", "халал", "мечет", "намаз", "коран", "хиджаб", "умра", "хадж",
+    "islam", "muslim", "halal", "mosque", "quran", "hijab", "umrah", "modest",
+]
+
 # Категории, заказы из которых НЕ показываем никогда (харам-ниши).
-# Проверяются и в самом запросе (минус-слова), и повторно в тексте результата.
 EXCLUDE_KEYWORDS = [
     # азартные игры / ставки
     "казино", "ставки на спорт", "ставок на", "букмекер", "беттинг", "азартн",
@@ -42,221 +71,181 @@ EXCLUDE_KEYWORDS = [
     "pork", "bacon", " ham ",
     # банки
     "банк", "bank",
-    # арабский (Персидский залив)
-    "قمار", "كازينو", "مراهنات", "رهان", "خمر", "كحول", "خنزير", "بنك",
 ]
 
-EXCLUDE_QUERY_SUFFIX = (
-    " -казино -ставки -букмекер -покер -алкоголь -пиво -вино -свинина -бекон -банк -кредит -ломбард -forex -casino -gambling"
-)
-
-
-def is_forbidden(*parts):
-    text = " ".join(parts).lower()
-    return any(kw in text for kw in EXCLUDE_KEYWORDS)
-
-
-# Запросы нацелены на людей/организации, которые ПРЯМО СЕЙЧАС просят сделать сайт —
-# это реальные заказы, а не холодные лиды. Каждый запрос помечен языком (ru/en/ar) —
-# на нём же готовится черновик предложения для заказчика.
-GENERAL_QUERIES = [
-    ('"нужен сайт" заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"требуется сайт" бизнес' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"ищу разработчика" сайт' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"ищу веб-разработчика"' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"требуется веб-разработчик"' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"нужен лендинг"' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"нужен интернет-магазин"' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('"создать сайт" под ключ заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:kwork.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:kwork.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:fl.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:fl.ru лендинг заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:youdo.com сайт разработка заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:freelance.ru сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
-    ('site:weblancer.net сайт заказ' + EXCLUDE_QUERY_SUFFIX, "ru"),
+FREELANCER_QUERIES = [
+    "n8n", "make.com", "zapier", "telegram bot", "ai agent",
+    "social media automation", "auto posting", "chatbot",
 ]
 
-HALAL_QUERIES = [
-    ('site:kwork.ru сайт мечеть', "ru"),
-    ('site:kwork.ru сайт ислам', "ru"),
-    ('site:kwork.ru сайт халяль', "ru"),
-    ('site:fl.ru сайт мечеть', "ru"),
-    ('site:fl.ru сайт ислам', "ru"),
-    ('site:youdo.com сайт мечеть', "ru"),
-    ('site:youdo.com сайт халяль', "ru"),
-    ('site:freelance.ru сайт мечеть', "ru"),
-    ('"нужен сайт" мечеть', "ru"),
-    ('"нужен сайт" халяль', "ru"),
-    ('"нужен сайт" ислам магазин', "ru"),
-    ('"требуется сайт" мусульман', "ru"),
-    ('"ищу разработчика" мечеть сайт', "ru"),
-    ('"ищу разработчика" халяль сайт', "ru"),
-    ('"создать сайт" исламский центр', "ru"),
-    ('"создать сайт" халяль магазин', "ru"),
-    ('upwork "halal" website developer needed', "en"),
-    ('upwork "islamic" website developer needed', "en"),
-    ('freelancer.com "halal" website', "en"),
-    ('freelancer.com "mosque" website', "en"),
-]
-
-# Англоязычные площадки в целом — любая ниша, кроме харам.
-INTL_QUERIES = [
-    ('"looking for a web developer"' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website built"' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website" freelance' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"hiring a web developer"' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"website developer needed"' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('upwork "website developer" needed' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('upwork "landing page" needed' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('freelancer.com "website" project needed' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('site:reddit.com/r/forhire "website"' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('site:reddit.com/r/forhire "landing page"' + EXCLUDE_QUERY_SUFFIX, "en"),
-]
-
-# Персидский залив — англо- и арабоязычные объявления (ОАЭ, Саудовская Аравия,
-# Катар, Кувейт, Бахрейн, Оман).
-GULF_QUERIES = [
-    ('"need a website" Dubai' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website" UAE' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"web developer needed" Saudi Arabia' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"website developer" Qatar hiring' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website" Kuwait' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website" Bahrain' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"need a website" Oman' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('مطلوب مصمم مواقع' + EXCLUDE_QUERY_SUFFIX, "ar"),
-    ('نحتاج موقع الكتروني' + EXCLUDE_QUERY_SUFFIX, "ar"),
-]
-
-# Европа и США — общий поиск заказов на сайты.
-EUROPE_US_QUERIES = [
-    ('"need a website" small business USA' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"looking for a website developer" UK' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('"web developer needed" Europe freelance' + EXCLUDE_QUERY_SUFFIX, "en"),
-    ('site:reddit.com/r/slavelabour "website"' + EXCLUDE_QUERY_SUFFIX, "en"),
-]
-
-QUERIES = GENERAL_QUERIES + HALAL_QUERIES + INTL_QUERIES + GULF_QUERIES + EUROPE_US_QUERIES
-
-MIN_DELAY_SEC = 5
-MAX_DELAY_SEC = 10
-FIRST_BLOCK_RETRY_SEC = 60
+REQUEST_DELAY_SEC = 1.5
 
 
-class Blocked(Exception):
-    """DDG показал страницу-заглушку ("anomaly detected") — сработала защита от ботов."""
+def has_any(text, keywords):
+    return any(kw in text for kw in keywords)
 
 
-def search_duckduckgo(query, max_results=6):
-    """Поиск через html.duckduckgo.com — без ключей и регистрации. DDG блокирует
-    автоматические запросы при частой отправке, поэтому вызывается пачками
-    с паузами (см. run()), а не все 58 запросов подряд."""
-    resp = requests.post(
-        "https://html.duckduckgo.com/html/",
-        data={"q": query},
-        headers=HEADERS,
-        timeout=20,
-    )
+def clean(text):
+    """Убирает HTML-теги и сущности из описания заказа."""
+    text = html.unescape(re.sub(r"<[^>]+>", " ", text or ""))
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def make_lead(source, key, title, url, snippet, budget, lang):
+    return {
+        "source": source, "key": key, "title": title, "url": url,
+        "snippet": snippet, "budget": budget, "lang": lang,
+    }
+
+
+def fetch_kwork():
+    """Вся лента активных заказов Kwork. Поиск по словам у Kwork не работает
+    (параметр query игнорируется), поэтому читаем страницы целиком."""
+    leads = []
+    page, last_page = 1, 1
+    while page <= last_page:
+        resp = requests.post(
+            "https://kwork.ru/projects",
+            data={"page": page},
+            headers={**HEADERS, "X-Requested-With": "XMLHttpRequest"},
+            timeout=20,
+        )
+        resp.raise_for_status()
+        pagination = resp.json()["data"]["pagination"]
+        last_page = min(int(pagination.get("last_page") or 1), 60)
+        for w in pagination["data"]:
+            price = float(w.get("priceLimit") or 0)
+            if price and price < MIN_BUDGET_RUB:
+                continue
+            leads.append(make_lead(
+                "Kwork", f"kwork:{w['id']}", clean(w["name"]),
+                f"https://kwork.ru/projects/{w['id']}", clean(w.get("description")),
+                f"до {price:,.0f} ₽".replace(",", " ") if price else "", "ru",
+            ))
+        page += 1
+        time.sleep(REQUEST_DELAY_SEC)
+    return leads
+
+
+FL_BUDGET_RE = re.compile(r"\s*\(Бюджет:\s*([\d\s]+)[^)]*\)")
+
+
+def fetch_fl():
+    """RSS последних заказов FL.ru. Бюджет FL пишет прямо в заголовке."""
+    resp = requests.get("https://www.fl.ru/rss/all.xml", headers=HEADERS, timeout=20)
     resp.raise_for_status()
-    if "anomaly" in resp.text.lower():
-        raise Blocked("DuckDuckGo вернул страницу проверки на бота")
-    soup = BeautifulSoup(resp.text, "html.parser")
-    results = []
-    for block in soup.select("div.result")[:max_results]:
-        link = block.select_one("a.result__a")
-        snippet_el = block.select_one("a.result__snippet") or block.select_one(".result__snippet")
-        if not link or not link.get("href"):
-            continue
-        title = link.get_text(strip=True)
-        url = link["href"]
-        snippet = snippet_el.get_text(strip=True) if snippet_el else ""
-        results.append((title, url, snippet))
-    return results
+    leads = []
+    for item in ET.fromstring(resp.content).iter("item"):
+        title = html.unescape(item.findtext("title") or "")
+        budget = ""
+        m = FL_BUDGET_RE.search(title)
+        if m:
+            amount = int(re.sub(r"\D", "", m.group(1)) or 0)
+            if amount and amount < MIN_BUDGET_RUB:
+                continue
+            budget = f"{amount:,} ₽".replace(",", " ")
+            title = FL_BUDGET_RE.sub("", title)
+        title = re.sub(r"\s*\(для всех\)", "", title).strip()
+        category = item.findtext("category") or ""
+        link = item.findtext("link") or ""
+        leads.append(make_lead(
+            "FL.ru", f"fl:{link}", title, link,
+            clean(f"[{category}] {item.findtext('description') or ''}"), budget, "ru",
+        ))
+    return leads
 
 
-def search(query, max_results=6):
-    return search_duckduckgo(query, max_results)
+def fetch_freelancer():
+    """Открытый API Freelancer.com — без ключа."""
+    leads = []
+    for query in FREELANCER_QUERIES:
+        resp = requests.get(
+            "https://www.freelancer.com/api/projects/0.1/projects/active/",
+            params={"query": query, "limit": 20, "full_description": "true"},
+            headers=HEADERS,
+            timeout=20,
+        )
+        resp.raise_for_status()
+        for p in resp.json()["result"]["projects"]:
+            b = p.get("budget") or {}
+            cur = p.get("currency") or {}
+            top = b.get("maximum") or b.get("minimum") or 0
+            if top * float(cur.get("exchange_rate") or 1) < MIN_BUDGET_USD:
+                continue
+            budget = f"{b.get('minimum') or 0:.0f}–{top:.0f} {cur.get('code', '')}"
+            leads.append(make_lead(
+                "Freelancer", f"fr:{p['id']}", p["title"],
+                f"https://www.freelancer.com/projects/{p['seo_url']}",
+                clean(p.get("description") or p.get("preview_description")), budget, "en",
+            ))
+        time.sleep(REQUEST_DELAY_SEC)
+    return leads
 
 
-def load_rotation():
-    if os.path.exists(ROTATION_FILE):
-        try:
-            with open(ROTATION_FILE, "r", encoding="utf-8") as f:
-                return json.load(f).get("index", 0)
-        except Exception:
-            return 0
-    return 0
-
-
-def save_rotation(index):
-    with open(ROTATION_FILE, "w", encoding="utf-8") as f:
-        json.dump({"index": index % len(QUERIES)}, f)
-
-
-def next_batch():
-    """Берёт следующую пачку запросов по кругу — так за несколько запусков
-    перебираются все площадки, но за один раз DDG не бомбардируется целиком.
-    Ротацию двигает run() — только на реально выполненные запросы: раньше она
-    сдвигалась на всю пачку, и запросы после блока DDG пропускались до следующего круга."""
-    start = load_rotation()
-    total = len(QUERIES)
-    return start, [QUERIES[(start + i) % total] for i in range(min(BATCH_SIZE, total))]
+SOURCES = [("Kwork", fetch_kwork), ("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer)]
 
 
 def load_seen():
     if os.path.exists(SEEN_FILE):
         try:
             with open(SEEN_FILE, "r", encoding="utf-8") as f:
-                return set(json.load(f))
+                return json.load(f)
         except Exception:
-            return set()
-    return set()
+            return []
+    return []
 
 
 def save_seen(seen):
-    trimmed = list(seen)[-MAX_SEEN:]
+    # Список, а не set: обрезаем самые старые, а не случайные ключи.
     with open(SEEN_FILE, "w", encoding="utf-8") as f:
-        json.dump(trimmed, f, ensure_ascii=False, indent=2)
+        json.dump(seen[-MAX_SEEN:], f, ensure_ascii=False, indent=2)
 
 
 CONTACT_HANDLE = os.getenv("AUTHOR_TELEGRAM", "https://t.me/Halalaifreya")
 
 PITCH_TEMPLATES = {
     "ru": (
-        "Черновик ответа (просто скопируй и отправь, если подходит):\n"
-        "«Здравствуйте! Увидел(а) ваш запрос на разработку сайта. Делаю сайты и "
-        "лендинги под ключ, есть портфолио и опыт. Расскажите подробнее о задаче "
-        f"и сроках — подготовлю предложение. Написать можно сюда: {CONTACT_HANDLE}»"
+        "✍️ Черновик отклика на русские заказы (подправь под задачу):\n"
+        "«Здравствуйте! Делаю ИИ-автоматизации под ключ: автопостинг в Telegram/Threads/YouTube, "
+        "Telegram-боты для заявок, связки с нейросетями. Мои каналы уже месяцами публикуются "
+        "полностью автоматически — могу показать. Расскажите подробнее о задаче, предложу решение "
+        f"и срок. Связь: {CONTACT_HANDLE}»"
     ),
     "en": (
-        "Draft reply (copy-paste if it fits, edit as needed):\n"
-        "\"Hi! I saw your post about needing a website. I build custom websites "
-        "and landing pages, happy to share my portfolio and a quick quote. Could "
-        f"you share more about the project and timeline? You can reach me here: {CONTACT_HANDLE}\""
-    ),
-    "ar": (
-        "مسودة رد (انسخ والصق إذا كانت مناسبة):\n"
-        "«مرحباً! رأيت طلبكم لتصميم موقع إلكتروني. أقوم بتصميم مواقع وصفحات هبوط "
-        "احترافية، ولدي أعمال سابقة يمكن عرضها. هل يمكنكم إخباري بتفاصيل أكثر عن "
-        f"المشروع والمدة الزمنية؟ يمكنكم التواصل معي هنا: {CONTACT_HANDLE}»"
+        "✍️ Черновик отклика на английские заказы (Freelancer):\n"
+        "\"Hi! I build AI automations end-to-end: auto-posting to Telegram/Threads/YouTube, "
+        "Telegram bots for leads, LLM-powered workflows. My own channels have been running fully "
+        "automated for months — happy to show them. Could you share more details? "
+        f"I'll propose a solution and timeline. Contact: {CONTACT_HANDLE}\""
     ),
 }
 
 
-def format_lead(title, url, snippet, lang):
-    text = f"• {title}\n{url}"
-    if snippet:
-        text += f"\n{snippet[:180]}"
-    text += "\n" + PITCH_TEMPLATES.get(lang, PITCH_TEMPLATES["en"])
+def format_lead(lead):
+    mark = "🕌 " if lead["halal"] else ""
+    text = f"{mark}• [{lead['source']}] {lead['title']}"
+    if lead["budget"]:
+        text += f" — {lead['budget']}"
+    text += f"\n{lead['url']}"
+    if lead["snippet"]:
+        text += f"\n{lead['snippet'][:220]}"
     return text
 
 
-def send_digest(leads):
+def send_digest(leads, skipped):
     """Шлёт находки пачками, чтобы не упереться в лимит длины сообщения Telegram."""
-    header = f"🕌 Найдено новых заказов: {len(leads)}\n"
-    chunk = header
+    header = f"🤖 Новые заказы на автоматизацию: {len(leads)}"
+    if skipped:
+        header += f" (ещё {skipped} не влезли — будут в следующий раз)"
+    chunk = header + "\n\n"
     for lead in leads:
-        piece = format_lead(*lead) + "\n\n"
+        piece = format_lead(lead) + "\n\n"
+        if len(chunk) + len(piece) > 3500:
+            notify(chunk)
+            chunk = ""
+        chunk += piece
+    for lang in sorted({l["lang"] for l in leads}, reverse=True):
+        piece = PITCH_TEMPLATES[lang] + "\n\n"
         if len(chunk) + len(piece) > 3500:
             notify(chunk)
             chunk = ""
@@ -267,55 +256,52 @@ def send_digest(leads):
 
 def run():
     seen = load_seen()
-    new_leads = []
-    done = 0
-    blocked = False
+    seen_set = set(seen)
+    found = []
+    failed = []
 
-    start, batch = next_batch()
-    for i, (query, lang) in enumerate(batch):
-        if i > 0:
-            time.sleep(random.uniform(MIN_DELAY_SEC, MAX_DELAY_SEC))
+    for name, fetch in SOURCES:
         try:
-            try:
-                results = search(query)
-            except Blocked:
-                if i > 0:
-                    raise
-                # Блок на первом же запросе — IP раннера уже в списке DDG. Иногда
-                # отпускает через минуту; второй отказ — уже повод для алерта.
-                print(f"[lead_finder] DuckDuckGo заблокировал первый запрос — жду {FIRST_BLOCK_RETRY_SEC} с и пробую снова.")
-                time.sleep(FIRST_BLOCK_RETRY_SEC)
-                results = search(query)
-            for title, url, snippet in results:
-                if url in seen:
-                    continue
-                seen.add(url)
-                if is_forbidden(title, url, snippet):
-                    continue
-                new_leads.append((title, url, snippet, lang))
-        except Blocked:
-            print(f"[lead_finder] DuckDuckGo заблокировал запросы на {i + 1}-м из {len(batch)} — останавливаю пачку.")
-            blocked = True
-            break
+            raw = fetch()
         except Exception as e:
-            print(f"[lead_finder] Запрос не удался: {query!r} — {e}")
-        done += 1
+            print(f"[lead_finder] {name}: не удалось получить заказы — {e}")
+            failed.append(name)
+            continue
+        matched = 0
+        for lead in raw:
+            if lead["key"] in seen_set:
+                continue
+            title = f" {lead['title']} ".lower()
+            text = f" {lead['title']} {lead['snippet']} ".lower()
+            # Freelancer ищет по описанию сам и приносит много смежного (реклама, SEO) —
+            # там верим только названию.
+            relevant = has_any(title, TITLE_KEYWORDS) or (
+                lead["source"] != "Freelancer" and has_any(text, STRONG_KEYWORDS)
+            )
+            if not relevant or has_any(text, EXCLUDE_KEYWORDS):
+                continue
+            lead["halal"] = has_any(text, HALAL_KEYWORDS)
+            seen_set.add(lead["key"])
+            found.append(lead)
+            matched += 1
+        print(f"[lead_finder] {name}: просмотрено {len(raw)}, подходящих новых {matched}")
 
-    save_rotation(start + done)
+    # Мусульманская ниша — первой, затем русскоязычные площадки.
+    found.sort(key=lambda l: (not l["halal"], l["lang"] != "ru"))
+    to_send, rest = found[:MAX_LEADS_PER_RUN], found[MAX_LEADS_PER_RUN:]
+    # Не влезшие в сообщение не помечаем просмотренными — придут следующим запуском.
+    rest_keys = {l["key"] for l in rest}
+    seen.extend(l["key"] for l in found if l["key"] not in rest_keys)
     save_seen(seen)
 
-    if new_leads:
-        send_digest(new_leads)
-        print(f"[lead_finder] Отправлено находок: {len(new_leads)}")
+    if to_send:
+        send_digest(to_send, len(rest))
+        print(f"[lead_finder] Отправлено находок: {len(to_send)}")
     else:
         print("[lead_finder] Новых заказов не найдено.")
 
-    if blocked and done == 0:
-        alert_fail(
-            "lead_finder",
-            "DuckDuckGo заблокировал IP на первом запросе и повторе через минуту. "
-            "Пропущенные площадки не потеряны — завтра поиск начнётся с них.",
-        )
+    if len(failed) == len(SOURCES):
+        alert_fail("lead_finder", "Ни одна площадка не ответила: " + ", ".join(failed))
 
 
 if __name__ == "__main__":
