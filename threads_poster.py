@@ -15,13 +15,12 @@
 #   THREADS_ACCESS_TOKEN    — долгоживущий токен (~60 дней)
 #   THREADS_TOKEN_EXPIRES   — дата истечения токена (YYYY-MM-DD) для напоминания
 #   TELEGRAM_BOT_TOKEN, TELEGRAM_ALERT_CHAT_ID — дубль поста и алерты в Telegram
-#   AUTHOR_ROLE, AUTHOR_TELEGRAM, IMAGE_PROBABILITY — оформление (необязательно)
+#   AUTHOR_ROLE, AUTHOR_TELEGRAM — оформление (необязательно)
 #   PROMO_PROBABILITY (default 0.25), AUTHOR_STORY_PROBABILITY (default 0.12) — как часто
 #   в посте есть самопродвижение / отдельная история про автора (раньше было каждый день)
 import os
 import time
 import random
-import urllib.parse
 from datetime import date
 import requests
 from dotenv import load_dotenv
@@ -189,12 +188,17 @@ AUTHOR_THEMES = [
     "I now set them up for people tired of doing everything by hand. Warm and motivating.",
 ]
 
-_IMAGE_PROMPT_SYS = (
-    "You create prompts for eye-catching visual content for Threads/Instagram: bright, positive, modern "
-    "images that grab attention and are easy to share. Based on the post text, capture its core idea. "
-    "Describe a bright, clean, minimalist image: vivid colors, simple composition, a clever positive "
-    "metaphor, a spark of curiosity. Output ONLY the image prompt in English, nothing else."
-)
+# AI-КАРТИНКИ ОТКЛЮЧЕНЫ 18.09.2026 — НЕ ВОЗВРАЩАТЬ.
+# Раньше здесь генерировалась картинка через Pollinations.ai. Для мусульманского канала это
+# оказалось неприемлемо: генератор регулярно рисовал женские фигуры (в ленту ушёл откровенный
+# аниме-персонаж). Перепробовано и проверено вживую на реальных запусках:
+#   — запрет людей в задании для нейросети, которая пишет промпт, — не спасает;
+#   — приписка «no people, no faces» в самом промпте делает ХУЖЕ: диффузионная модель не
+#     понимает отрицание и читает это как подсказку «people»;
+#   — вычистка человеческих слов из промпта + safe-фильтр снижают брак, но не до нуля:
+#     к слову «robot» модель дорисовывает гуманоида с женским телом.
+# Гарантии «без людей» генератор дать не может, поэтому картинка в пост берётся ТОЛЬКО
+# готовая — обложка своего же ролика (_youtube_thumb_url), либо поста нет вовсе.
 
 
 def _pick_prompt(content):
@@ -267,18 +271,6 @@ def _generate_text(content=None):
     return _chat("You are a viral, positive and helpful copywriter.", prompt)[:498]
 
 
-def _generate_image_url(post_text):
-    img_prompt = _chat(_IMAGE_PROMPT_SYS, post_text)
-    encoded = urllib.parse.quote(img_prompt)
-    seed = random.randint(1, 10_000_000)
-    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&nologo=true&seed={seed}"
-    try:
-        requests.get(url, timeout=120)  # прогрев, чтобы картинка успела сгенерироваться
-    except requests.RequestException:
-        pass
-    return url
-
-
 def _youtube_thumb_url(vid_id):
     """Реальная обложка видео, уже выгруженная на YouTube (та же, что делает create_thumbnail
     под сюжет ролика) — она привязана к теме дня куда точнее, чем случайная AI-картинка.
@@ -298,20 +290,16 @@ def _youtube_thumb_url(vid_id):
 
 
 def _pick_image(content, text):
-    vid_id = (content or {}).get("_video_id")
-    if vid_id:
-        url = _youtube_thumb_url(vid_id)
-        if url:
-            return url
-    if random.random() < _env_float("IMAGE_PROBABILITY", 0.55):
-        return _generate_image_url(text)
-    return None
+    """Единственный допустимый источник картинки — обложка своего же ролика. Резервной
+    AI-картинки больше нет (см. комментарий «AI-КАРТИНКИ ОТКЛЮЧЕНЫ» выше): нет ролика —
+    пост уходит текстом. IMAGE_PROBABILITY тоже больше не используется."""
+    return _youtube_thumb_url((content or {}).get("_video_id"))
 
 
 def generate_post(content=None):
     """Генерирует текст + картинку поста. Общая точка для Threads/Instagram/Telegram, чтобы не
-    дублировать запрос к ИИ и не расходиться в смысле между площадками. Картинка — реальная
-    обложка видео дня, если оно уже выгружено (content['_video_id']); иначе — резервная AI-картинка."""
+    дублировать запрос к ИИ и не расходиться в смысле между площадками. Картинка — только
+    реальная обложка видео дня (content['_video_id']); если видео нет, поста с картинкой не будет."""
     text = _generate_text(content)
     image_url = _pick_image(content, text)
     return text, image_url

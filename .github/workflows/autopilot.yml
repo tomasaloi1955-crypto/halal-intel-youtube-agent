@@ -63,7 +63,8 @@ jobs:
           # THREADS_ACCESS_TOKEN этого репозитория. Дата ниже — грубый бэкап-
           # ориентир на случай, если та автоматика молча сломается.
           THREADS_TOKEN_EXPIRES: "2026-11-08"
-          IMAGE_PROBABILITY: "0.55"
+          # IMAGE_PROBABILITY убрана 18.09.2026 вместе с AI-картинками: генератор
+          # не давал гарантии, что в кадре не окажется человек (см. threads_poster.py).
           AUTHOR_ROLE: "эксперт по автоматизации бизнеса и рутины с помощью нейросетей"
           AUTHOR_TELEGRAM: "https://t.me/Halalaifreya"
         run: python main.py --once
