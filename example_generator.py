@@ -116,7 +116,7 @@ PROMPT = """Ты помогаешь фрилансеру продать услу
 Аяты и хадисы — СТРОГО. Текст аятов и хадисов САМА НЕ ПИШИ никогда, даже пересказом в
 кавычках: вместо него ставь метку, программа вставит дословный текст из источника.
 - Аят: метка [[АЯТ сура:аят | слово]], например [[АЯТ 2:153 | терпени]]. «слово» — основа
-  слова, которое точно есть в этом аяте в переводе Эльмира Кулиева. Перед меткой можно
+  слова, которое точно есть в этом аяте в русском переводе (Абу Аделя или Кулиева). Перед меткой можно
   написать «Всевышний Аллах говорит:», после — ничего не добавляй (номер вставится сам).
 - Хадис: метка [[ХАДИС | слово1, слово2, слово3]], например [[ХАДИС | дела, оценива,
   намерени]]. 3–4 основы слов, стоящих РЯДОМ в одной фразе хадиса в русском переводе.
@@ -203,10 +203,12 @@ MAX_ATTEMPTS = 3
 # аль-Бухари» и «Сахих Муслим», недостоверное нельзя. ИИ дословность не гарантирует
 # (в тесте написал «к терпению и молитве» вместо «намазу» у Кулиева), поэтому текст
 # цитат ИИ не пишет вовсе: ставит метку, а программа вставляет текст из источника.
-#   • аяты — перевод Эльмира Кулиева с quran.com (translation id 45);
+#   • аяты — перевод Абу Аделя с quran.com (translation id 79) — выбор владелицы;
 #   • хадисы — русские «Сахих аль-Бухари» и «Сахих Муслим» (fawazahmed0/hadith-api),
 #     поиск по словам из метки. Не нашлось — пост отбрасывается.
-QURAN_API = "https://api.quran.com/api/v4/quran/translations/45"
+QURAN_API = "https://api.quran.com/api/v4/quran/translations/{}"
+AYAH_TRANSLATION = 79     # Абу Адель — этот текст вставляется в пост
+CHECK_TRANSLATION = 45    # Кулиев — только для сверки номера аята по слову из метки
 HADITH_EDITIONS = [("аль-Бухари", "rus-bukhari"), ("Муслим", "rus-muslim")]
 HADITH_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/{}.min.json"
 HADITH_CACHE_DIR = os.path.join("output", "cache")
@@ -241,10 +243,10 @@ _ayah_cache = {}
 _hadith_books = {}
 
 
-def fetch_ayah(sura, ayah):
-    key = f"{int(sura)}:{int(ayah)}"
+def fetch_ayah(sura, ayah, translation=AYAH_TRANSLATION):
+    key = (f"{int(sura)}:{int(ayah)}", translation)
     if key not in _ayah_cache:
-        resp = requests.get(QURAN_API, params={"verse_key": key}, timeout=20)
+        resp = requests.get(QURAN_API.format(translation), params={"verse_key": key[0]}, timeout=20)
         resp.raise_for_status()
         items = resp.json().get("translations") or []
         text = re.sub(r"<[^>]+>", "", items[0]["text"]).strip() if items else ""
@@ -324,9 +326,12 @@ def insert_quotes(post):
         text = fetch_ayah(sura, ayah)
         if not text:
             raise BadQuote(f"аята {sura}:{ayah} не существует")
-        if stem not in text.lower():
+        # Номер сверяем по слову из метки в обоих переводах (формулировки Кулиева ИИ
+        # знает лучше), а вставляем всегда перевод Абу Аделя.
+        if stem not in text.lower() and stem not in fetch_ayah(sura, ayah, CHECK_TRANSLATION).lower():
             raise BadQuote(f"в аяте {sura}:{ayah} нет слова «{stem}» — ИИ перепутал номер")
-        return f"«{text}» (Сура {int(sura)}, аят {int(ayah)})"
+        # Аят-продолжение (94:6 «поистине, с тягостью…») начинается со строчной.
+        return f"«{text[0].upper()}{text[1:]}» (Сура {int(sura)}, аят {int(ayah)})"
 
     def hadith_sub(m):
         found = find_hadith(m.group(1))
@@ -344,7 +349,7 @@ def insert_quotes(post):
 
 def quote_warning(result):
     if any(re.search(r"\(Сура \d+, аят \d+\)|\((аль-Бухари|Муслим), № ", p) for p in result["posts"]):
-        return ("ℹ️ Аяты и хадисы вставлены программой дословно: аяты — перевод Кулиева "
+        return ("ℹ️ Аяты и хадисы вставлены программой дословно: аяты — перевод Абу Аделя "
                 "(quran.com), хадисы — только «Сахих аль-Бухари» и «Сахих Муслим». "
                 "Проверь только, что цитата по смыслу подходит к посту.")
     return ""
