@@ -7,6 +7,7 @@
 # деньги только на российские карты — заказы оттуда владелице бесполезны.
 #   • FL.ru — RSS последних 60 заказов (≈10 часов), поэтому запуск каждые 4 часа.
 #   • Freelancer.com — открытый API поиска проектов (международные заказы, en).
+#   • Reddit — RSS разделов, где заказчики ищут исполнителей (r/forhire, r/n8n и др.).
 # Заказы из мусульманской/халяль-ниши помечаются 🕌 и идут первыми. Харам-ниши
 # (казино, форекс, алкоголь, свинина, банки) отсекаются жёстко.
 import html
@@ -155,7 +156,36 @@ def fetch_freelancer():
     return leads
 
 
-SOURCES = [("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer)]
+# Разделы, где заказчики ищут исполнителей. Одним запросом через «+»: по одному
+# Reddit уже на третьем запросе отвечает 429 (слишком часто).
+REDDIT_SUBS = "forhire+hiring+slavelabour+freelance_forhire+n8n+automation+zapier+Automate"
+REDDIT_REQUEST_RE = re.compile(r"\[(hiring|task)\]|\bhiring\b|looking for|need (a|an|someone)|\bpaid\b", re.I)
+REDDIT_OFFER_RE = re.compile(r"\[(for hire|offer)\]", re.I)
+ATOM = {"a": "http://www.w3.org/2005/Atom"}
+
+
+def fetch_reddit():
+    """RSS свежих постов из разделов-заказов Reddit. Оставляем только запросы
+    заказчиков — объявления «[For Hire]»/«[Offer]» пишут сами исполнители."""
+    resp = requests.get(f"https://www.reddit.com/r/{REDDIT_SUBS}/new/.rss?limit=100",
+                        headers=HEADERS, timeout=20)
+    resp.raise_for_status()
+    leads = []
+    for e in ET.fromstring(resp.content).findall("a:entry", ATOM):
+        title = html.unescape(e.findtext("a:title", "", ATOM)).strip()
+        if REDDIT_OFFER_RE.search(title) or not REDDIT_REQUEST_RE.search(title):
+            continue
+        link = e.find("a:link", ATOM)
+        url = link.get("href") if link is not None else ""
+        sub = (e.find("a:category", ATOM).get("term") if e.find("a:category", ATOM) is not None else "")
+        leads.append(make_lead(
+            f"Reddit r/{sub}", f"reddit:{e.findtext('a:id', '', ATOM)}", title, url,
+            clean(e.findtext("a:content", "", ATOM)).replace("submitted by", "").strip(), "", "en",
+        ))
+    return leads
+
+
+SOURCES = [("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer), ("Reddit", fetch_reddit)]
 # FL.ru отдаёт 403 серверам GitHub, поэтому его проверяет домашний ПК
 # (run_lead_finder_local.cmd), а Actions — только Freelancer. Пусто = все площадки.
 _only = {s.strip() for s in os.getenv("LEAD_SOURCES", "").split(",") if s.strip()}
@@ -190,7 +220,7 @@ PITCH_TEMPLATES = {
         f"и срок. Связь: {CONTACT_HANDLE}»"
     ),
     "en": (
-        "✍️ Черновик отклика на английские заказы (Freelancer):\n"
+        "✍️ Черновик отклика на английские заказы (Freelancer, Reddit):\n"
         "\"Hi! I build AI automations end-to-end: auto-posting to Telegram/Threads/YouTube, "
         "Telegram bots for leads, LLM-powered workflows. My own channels have been running fully "
         "automated for months — happy to show them. Could you share more details? "

@@ -30,7 +30,7 @@ jobs:
       - name: Поиск заказов
         env:
           DATA_DIR: state
-          LEAD_SOURCES: Freelancer   # FL.ru блокирует GitHub — его проверяет домашний ПК
+          LEAD_SOURCES: Freelancer,Reddit   # FL.ru блокирует GitHub — его проверяет домашний ПК
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
         run: python lead_finder.py
