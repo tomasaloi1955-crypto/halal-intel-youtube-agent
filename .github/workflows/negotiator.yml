@@ -1,0 +1,61 @@
+name: negotiator
+
+on:
+  schedule:
+    # Каждые 30 минут: заказчик на Freelancer ждёт ответа быстро.
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}      # кнопка ручного запуска
+
+permissions:
+  contents: write
+
+concurrency:
+  group: negotiator
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install requests python-dotenv anthropic google-generativeai
+
+      - name: Переговоры на Freelancer
+        env:
+          DATA_DIR: state
+          # 1 = режим проверки: на Freelancer ничего не уходит, черновики приходят в Telegram.
+          # Поставить "0", когда черновики понравятся.
+          NEGOTIATOR_DRY_RUN: "1"
+          FREELANCER_OAUTH_TOKEN: ${{ secrets.FREELANCER_OAUTH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Отдельный бесплатный ключ Gemini для отбора заказов; пока его нет — общий.
+          NEGOTIATOR_GEMINI_API_KEY: ${{ secrets.NEGOTIATOR_GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+        run: python negotiator.py
+
+      - name: Сохранить память (отклики и переписки)
+        if: always()
+        run: |
+          git config user.name "negotiator"
+          git config user.email "negotiator@users.noreply.github.com"
+          [ -f state/negotiator_state.json ] && git add state/negotiator_state.json
+          git diff --cached --quiet && echo "нет изменений состояния" && exit 0
+          git commit -m "negotiator: $(date -u +%F_%H%M) [skip ci]"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push отклонён (гонка с другим коммитом в master), пробую снова: попытка $i"
+            git fetch origin master
+            git rebase origin/master || { git rebase --abort; exit 1; }
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "::error::не удалось сохранить состояние negotiator после 5 попыток — возможны повторные ответы"
+          exit 1

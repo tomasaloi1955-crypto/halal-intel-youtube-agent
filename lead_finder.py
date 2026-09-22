@@ -147,11 +147,13 @@ def fetch_freelancer():
             if top * float(cur.get("exchange_rate") or 1) < MIN_BUDGET_USD:
                 continue
             budget = f"{b.get('minimum') or 0:.0f}–{top:.0f} {cur.get('code', '')}"
-            leads.append(make_lead(
+            lead = make_lead(
                 "Freelancer", f"fr:{p['id']}", p["title"],
                 f"https://www.freelancer.com/projects/{p['seo_url']}",
                 clean(p.get("description") or p.get("preview_description")), budget, "en",
-            ))
+            )
+            lead["raw"] = p  # negotiator.py делает отклик по id, валюте и вилке бюджета
+            leads.append(lead)
         time.sleep(REQUEST_DELAY_SEC)
     return leads
 
@@ -191,6 +193,21 @@ SOURCES = [("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer), ("Reddit", fet
 _only = {s.strip() for s in os.getenv("LEAD_SOURCES", "").split(",") if s.strip()}
 if _only:
     SOURCES = [src for src in SOURCES if src[0] in _only]
+
+
+def is_relevant(lead):
+    """Заказ на автоматизацию и не из харам-ниши. Заодно ставит lead["halal"]."""
+    title = f" {lead['title']} ".lower()
+    text = f" {lead['title']} {lead['snippet']} ".lower()
+    # Freelancer ищет по описанию сам и приносит много смежного (реклама, SEO) —
+    # там верим только названию.
+    relevant = has_any(title, TITLE_KEYWORDS) or (
+        lead["source"] != "Freelancer" and has_any(text, STRONG_KEYWORDS)
+    )
+    if not relevant or has_any(text, EXCLUDE_KEYWORDS):
+        return False
+    lead["halal"] = has_any(text, HALAL_KEYWORDS)
+    return True
 
 
 def load_seen():
@@ -277,18 +294,8 @@ def run():
             continue
         matched = 0
         for lead in raw:
-            if lead["key"] in seen_set:
+            if lead["key"] in seen_set or not is_relevant(lead):
                 continue
-            title = f" {lead['title']} ".lower()
-            text = f" {lead['title']} {lead['snippet']} ".lower()
-            # Freelancer ищет по описанию сам и приносит много смежного (реклама, SEO) —
-            # там верим только названию.
-            relevant = has_any(title, TITLE_KEYWORDS) or (
-                lead["source"] != "Freelancer" and has_any(text, STRONG_KEYWORDS)
-            )
-            if not relevant or has_any(text, EXCLUDE_KEYWORDS):
-                continue
-            lead["halal"] = has_any(text, HALAL_KEYWORDS)
             seen_set.add(lead["key"])
             found.append(lead)
             matched += 1
