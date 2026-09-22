@@ -49,6 +49,7 @@ STRONG_KEYWORDS = [
 TITLE_KEYWORDS = STRONG_KEYWORDS + [
     "автоматизац", "автоматизир", "нейросет", " бот", "-бот", " ии ", "ии-", "gpt", "openai", "llm",
     "automation", "automate", " ai ", "ai-", "workflow",
+    " crm", "hubspot", "amocrm", "bitrix", "pipedrive",
 ]
 
 # Мусульманская ниша — такие заказы помечаем 🕌 и ставим первыми.
@@ -79,6 +80,7 @@ EXCLUDE_KEYWORDS = [
 FREELANCER_QUERIES = [
     "n8n", "make.com", "zapier", "telegram bot", "ai agent",
     "social media automation", "auto posting", "chatbot",
+    "crm integration", "hubspot",
 ]
 
 REQUEST_DELAY_SEC = 1.5
