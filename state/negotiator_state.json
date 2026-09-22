@@ -16,7 +16,8 @@
       "amount": 610,
       "floor_usd": 280,
       "period": 21,
-      "proposal": "I can build a custom Python-based AI agent that connects HubSpot, Google Sheets, and Google Calendar via their APIs. While you mentioned low-code tools like Zapier or n8n, I specialize in custom Python scripts; this approach is highly transparent, saves you from paying monthly platform subscription fees, and is easy to maintain. The LLM layer (GPT, Claude, or Groq) will interpret your plain-language prompts and notes to dynamically trigger workflows, generate summaries, and flag anomalies. I will also provide clear hand-off documentation so you can easily swap LLM providers or adjust the prompt logic in the future. Could you share how many distinct workflow triggers you currently have mapped out? Also, do you already have developer accounts and API access set up for HubSpot and Google Workspace?"
+      "proposal": "I can build a custom Python-based AI agent that connects HubSpot, Google Sheets, and Google Calendar via their APIs. While you mentioned low-code tools like Zapier or n8n, I specialize in custom Python scripts; this approach is highly transparent, saves you from paying monthly platform subscription fees, and is easy to maintain. The LLM layer (GPT, Claude, or Groq) will interpret your plain-language prompts and notes to dynamically trigger workflows, generate summaries, and flag anomalies. I will also provide clear hand-off documentation so you can easily swap LLM providers or adjust the prompt logic in the future. Could you share how many distinct workflow triggers you currently have mapped out? Also, do you already have developer accounts and API access set up for HubSpot and Google Workspace?",
+      "bid_id": 495084377
     },
     "40717879": {
       "title": "AI Social Media Auto Content Creation & Posting",
@@ -99,7 +100,7 @@
   "threads": {},
   "day": {
     "date": "2026-09-22",
-    "bids": 1,
+    "bids": 2,
     "evals": 15
   }
 }
