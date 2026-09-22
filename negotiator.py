@@ -43,6 +43,8 @@ DRY_RUN = os.getenv("NEGOTIATOR_DRY_RUN", "").lower() in ("1", "true", "yes", "o
 MAX_BIDS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_BIDS_PER_DAY", "3"))
 # Бесплатный Gemini даёт 20 запросов/сутки на модель — оставляем запас.
 MAX_EVALS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_EVALS_PER_DAY", "15"))
+# ...и около 10 запросов в минуту: 22.09.2026 первый запуск упёрся в минутный лимит на 11-м заказе.
+GEMINI_PAUSE_SEC = 8
 MIN_AMOUNT_USD = 100  # абсолютный минимум из negotiator_profile.md
 
 STATE_FILE = dpath("negotiator_state.json")
@@ -107,7 +109,10 @@ def ask_claude(task, schema, effort):
 
 
 class GeminiQuotaExhausted(Exception):
-    pass
+    """429 от Gemini. daily=True — кончилась суточная квота, иначе минутная."""
+    def __init__(self, message, daily):
+        super().__init__(message)
+        self.daily = daily
 
 
 def ask_gemini(task, schema):
@@ -122,7 +127,8 @@ def ask_gemini(task, schema):
         ).text
     except Exception as e:
         if "429" in str(e) or "quota" in str(e).lower():
-            raise GeminiQuotaExhausted(str(e)[:200])
+            # Google называет квоту в тексте ошибки: ...PerDay... или ...PerMinute...
+            raise GeminiQuotaExhausted(str(e)[:200], daily="PerDay" in str(e))
         raise
     data = json.loads(text)
     missing = [k for k in schema["required"] if k not in data]
@@ -199,6 +205,35 @@ def from_usd(amount_usd, project):
     return amount_usd / float((project.get("currency") or {}).get("exchange_rate") or 1)
 
 
+def submit_bid(pid, entry, me):
+    """Отправляет отклик на Freelancer. False — площадка не приняла."""
+    try:
+        bid = fl("POST", "projects/0.1/bids/", json={
+            "project_id": int(pid), "bidder_id": me, "amount": entry["amount"],
+            "period": entry["period"], "milestone_percentage": 100,
+            "description": entry["proposal"],
+        })
+    except Exception as e:
+        # Частая причина — в профиле нет навыков, которых требует заказ,
+        # или заказ уже закрыт.
+        entry["bid_error"] = str(e)[:300]
+        print(f"[negotiator] Отклик на {pid} не прошёл — {e}")
+        return False
+    entry["bid_id"] = bid["id"]
+    print(f"[negotiator] Отклик на {pid}: {entry['amount']} {entry['currency']}")
+    return True
+
+
+def send_drafts(state, me):
+    """Отклики, показанные в режиме проверки, отправляем после его выключения."""
+    if DRY_RUN:
+        return
+    for pid, entry in state["projects"].items():
+        if "proposal" in entry and "bid_id" not in entry and "bid_error" not in entry:
+            if submit_bid(pid, entry, me):
+                state["day"]["bids"] += 1
+
+
 def place_bids(state, me):
     try:
         leads = fetch_freelancer()
@@ -243,12 +278,17 @@ def place_bids(state, me):
             decision = ask_gemini(task, BID_SCHEMA)
         except GeminiQuotaExhausted as e:
             # Заказы не помечаем просмотренными — оценим при следующем запуске.
-            print(f"[negotiator] Gemini: лимит на сегодня исчерпан — {e}")
-            day["evals"] = MAX_EVALS_PER_DAY
+            day["evals"] -= 1
+            if e.daily:
+                print(f"[negotiator] Gemini: суточный лимит исчерпан — {e}")
+                day["evals"] = MAX_EVALS_PER_DAY
+            else:
+                print(f"[negotiator] Gemini: минутный лимит, продолжу в следующий запуск — {e}")
             break
         except Exception as e:
             print(f"[negotiator] Gemini: ошибка при оценке {pid} — {e}")
             continue
+        time.sleep(GEMINI_PAUSE_SEC)
         entry = {
             "title": p["title"], "url": lead["url"], "description": lead["snippet"][:4000],
             "currency": code, "decision": decision["reason_ru"],
@@ -277,19 +317,8 @@ def place_bids(state, me):
             notify(f"🧪 [проверка] Откликнулся бы на: {p['title']}\n{lead['url']}\n"
                    f"Ставка: {amount} {code}, срок {decision['period_days']} дн.\n"
                    f"Почему: {decision['reason_ru']}\n\n{decision['proposal']}")
-        else:
-            try:
-                bid = fl("POST", "projects/0.1/bids/", json={
-                    "project_id": p["id"], "bidder_id": me, "amount": amount,
-                    "period": decision["period_days"], "milestone_percentage": 100,
-                    "description": decision["proposal"],
-                })
-                entry["bid_id"] = bid["id"]
-            except Exception as e:
-                # Частая причина — в профиле нет навыков, которых требует заказ.
-                entry["decision"] += f" | отклик не принят площадкой: {e}"
-                print(f"[negotiator] Отклик на {pid} не прошёл — {e}")
-                continue
+        elif not submit_bid(pid, entry, me):
+            continue
         day["bids"] += 1
         print(f"[negotiator] Отклик на {pid}: {amount} {code}")
         time.sleep(2)
@@ -417,7 +446,7 @@ def run():
         raise
     errors = []
     # Сначала сделки и переписка (тут ждёт живой заказчик), потом новые отклики.
-    for step in (check_deals, reply_to_messages, place_bids):
+    for step in (check_deals, reply_to_messages, send_drafts, place_bids):
         try:
             step(state, me)
         except Exception as e:
