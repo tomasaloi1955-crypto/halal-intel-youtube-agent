@@ -179,12 +179,33 @@
       "description": "I need Zoho CRM configured so I can finally see, at a glance, where every deal sits in our pipeline. The single most important outcome is reliable sales tracking built around strong lead management. I want new enquiries entered manually by my team to flow cleanly from Lead through to Contact, Account and Deal without duplicated effort or data loss. Here is what success looks like to me: • Lead Management Optimised – custom fields, stage pick-lists, assignment rules and conversion mapping that match our current process yet remain easy to tweak as we grow. • Streamlined Manual Entry – simplified page layouts and mandatory-field validation so a rep can add a lead in seconds while we maintain data integrity. • Sales Visibility – dashboards and standard reports that tell me lead volume, ageing and conversion rates in real time. Please set everything up directly inside our Zoho CRM instance, test it with sample records, and then walk me through the configuration in a short hand-over session (recorded is fine). If you can leave a brief SOP or cheat-sheet for the team, even better. The build should be future-proof; I may add web forms, imports or forecasting later, so keep that flexibility in mind as you structure modules and workflows.",
       "currency": "INR",
       "decision": "Проект требует внутренней настройки интерфейса Zoho CRM (кастомные поля, макеты страниц, дашборды) и обучения сотрудников. Я занимаюсь исключительно разработкой на Python и интеграцией CRM с внешними сервисами через API. Данная задача не входит в перечень моих услуг."
+    },
+    "40728606": {
+      "title": "WhatsApp Product-Info Chatbot Build",
+      "url": "https://www.freelancer.com/projects/chatbot-development/WhatsApp-Product-Info-Chatbot-Build",
+      "description": "I want to give my customers an easy way to ask about any product through WhatsApp and instantly receive accurate, up-to-date details. The task is to design, code, and hand over a chatbot that sits on my existing WhatsApp Business number and handles all “Information retrieval” requests about our catalog. Core flow • Customer sends a product name, SKU, or keyword. • Bot looks the item up in my data source (JSON, CSV, Google Sheet, or a small SQL table—whichever you recommend for stability and easy updates). • It replies with price, brief description, availability, and a link or image. • If the query doesn’t match anything, the bot offers alternative suggestions and, on repeated failure, escalates to a live agent. Technical notes Use any robust WhatsApp Business API approach (Meta Cloud API, Twilio, Gupshup, etc.) as long as it keeps running after hand-off and I can swap keys without code changes. I’m on a shared cPanel server but can spin up a small VPS or Heroku-style container if Node.js, Python (Flask/FastAPI), or PHP is better suited. Please build it so product data can be refreshed with a simple file upload or sheet edit—no code redeploys. Deliverables 1. Source code with a short README that covers local setup, environment variables, and deployment. 2. Simple admin guide showing how to update the product list and where logs live. 3. One live demo call to verify everything works end-to-end on my WhatsApp Business number. Timeline is flexible—there’s no hard deadline—so quality, clarity, and clean hand-off matter more than speed.",
+      "currency": "INR",
+      "decision": "Проект полностью соответствует услуге по разработке ИИ-агентов и чат-ботов на Python. Будет реализован на FastAPI с подключением к Google Sheets для удобного обновления данных без изменения кода. Срок и стоимость соответствуют прайс-листу. | бюджет заказчика ниже нашего минимума — не откликаемся"
+    },
+    "40728380": {
+      "title": "Advanced Retail Automation Bot Developer Required",
+      "url": "https://www.freelancer.com/projects/api/Advanced-Retail-Automation-Bot-Developer",
+      "description": "Looking for an experienced developer to build a high-speed, fully automated retail checkout bot for Australian retailers. The bot needs to support Kmart, Target, Big W, JB Hi-Fi, EB Games and Myer. Requirements include multiple checkout profiles, simultaneous product monitoring, instant add-to-cart, pre-carting where supported, one-click operation, automatic delivery selection, saved payment details and complete checkout automation. It must be capable of handling high-demand product releases, including Cloudflare verification, waiting rooms, queues, anti-bot challenges, session management and rate limiting within authorised testing arrangements. A major requirement is intelligent error recovery. If adding to cart, delivery selection or payment fails, the bot should identify the actual transaction state and continue without unnecessarily restarting the entire process. Looking for someone experienced with HTTP/GraphQL APIs, browser automation, concurrent tasks and low-latency checkout systems. Please provide your experience, estimated timeframe and quote. Budget negotiable",
+      "currency": "AUD",
+      "decision": "Проект требует создания бота для автоматического выкупа товаров (checkout bot) с обходом систем защиты от ботов, очередей и капч (Cloudflare, anti-bot challenges). Это прямо относится к запрещенной в профиле категории «обход блокировок платформ» (харам/обман). Кроме того, разработка подобных высоконагруженных систем выкупа отсутствует в списке разрешенных услуг."
+    },
+    "40728595": {
+      "title": "AI-Enhanced Lead Scoring Integration",
+      "url": "https://www.freelancer.com/projects/data-analysis/Enhanced-Lead-Scoring-Integration",
+      "description": "I need an AI integration for the sales analytics of my B2B CRM portal, specifically to enhance lead scoring. Requirements: - AI to improve lead scoring based on customer engagement. - Existing sales data and customer engagement metrics will be provided for training the AI model. Ideal Skills and Experience: - Experience with CRM systems and AI integration. - Strong background in data analysis and machine learning. - Familiarity with lead scoring methodologies and customer engagement metrics. Please provide examples of similar work done and your approach to this integration.",
+      "currency": "INR",
+      "decision": "Заказчик требует обучение собственной модели машинного обучения (Machine Learning) на основе исторических данных продаж и глубокий бэкграунд в Data Science. В нашем профиле заявлены только интеграция CRM по API и ИИ-агенты на базе готовых LLM (GPT, Claude и др.). Мы не занимаемся классическим анализом данных и обучением ML-моделей с нуля, поэтому отказываемся от проекта из соображений честности (правило шариата) и соответствия списку услуг."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-09-23",
     "bids": 0,
-    "evals": 12
+    "evals": 15
   }
 }
