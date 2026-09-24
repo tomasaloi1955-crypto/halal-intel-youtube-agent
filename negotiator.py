@@ -393,7 +393,7 @@ def retract_bids(state, me):
             if DRY_RUN:
                 print(f"[negotiator] [проверка] Отозвал бы отклик на {pid}")
                 continue
-            fl("PUT", f"projects/0.1/bids/{p['bid_id']}/", params={"action": "retract"})
+            fl("PUT", f"projects/0.1/bids/{p['bid_id']}", params={"action": "retract"})
             p["retracted"] = True
             print(f"[negotiator] Отклик на {pid} отозван")
             notify(f"↩️ Отклик отозван: {p['title']}\n{p['url']}")
@@ -413,7 +413,7 @@ def check_deals(state, me):
             continue
         # pending = заказчик предложил заказ и ждёт нашего согласия.
         if status == "pending" and not DRY_RUN:
-            fl("PUT", f"projects/0.1/bids/{bid['id']}/", params={"action": "accept"})
+            fl("PUT", f"projects/0.1/bids/{bid['id']}", params={"action": "accept"})
 
         msgs = []
         try:
