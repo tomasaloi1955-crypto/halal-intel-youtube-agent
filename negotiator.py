@@ -46,14 +46,13 @@ MAX_BIDS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_BIDS_PER_DAY", "3"))
 MAX_EVALS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_EVALS_PER_DAY", "15"))
 # ...и около 10 запросов в минуту: 22.09.2026 первый запуск упёрся в минутный лимит на 11-м заказе.
 GEMINI_PAUSE_SEC = 8
-MIN_AMOUNT_USD = 100  # абсолютный минимум из negotiator_profile.md
+MIN_AMOUNT_USD = 20  # абсолютный минимум из negotiator_profile.md (24.09.2026 снижен со $100 ради первых отзывов)
 # Стартовый режим: пока на Freelancer нет отзывов, заказчики почти не выбирают новичков
 # по полной цене — за 22–24.09.2026 из-за вилки бюджета пропущено 5 подходящих заказов
 # при одном отправленном отклике. Если вилка заказчика ниже нашего минимума, но не ниже
 # этой суммы — откликаемся по верхней границе вилки и дальше не уступаем.
 # После первых 3–5 отзывов выставить NEGOTIATOR_STARTER_MIN_USD=0 (выключить).
-STARTER_MIN_USD = float(os.getenv("NEGOTIATOR_STARTER_MIN_USD", "150"))
-LOW_BUDGET_MARK = " | бюджет заказчика ниже нашего минимума — не откликаемся"
+STARTER_MIN_USD = float(os.getenv("NEGOTIATOR_STARTER_MIN_USD", "20"))
 
 STATE_FILE = dpath("negotiator_state.json")
 PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
@@ -192,10 +191,10 @@ def load_state():
             state = {}
     state.setdefault("projects", {})   # project_id -> что мы о нём знаем и что сделали
     state.setdefault("threads", {})    # thread_id -> id последнего обработанного сообщения
-    # Заказы, пропущенные из-за бюджета до стартового режима, оцениваем заново.
+    # Заказы, пропущенные из-за бюджета при прежнем минимуме, оцениваем заново.
     if STARTER_MIN_USD:
         for pid in [pid for pid, e in state["projects"].items()
-                    if "bid_id" not in e and str(e.get("decision", "")).endswith(LOW_BUDGET_MARK)]:
+                    if "bid_id" not in e and "бюджет заказчика ниже" in str(e.get("decision", ""))]:
             del state["projects"][pid]
     today = date.today().isoformat()
     if state.get("day", {}).get("date") != today:

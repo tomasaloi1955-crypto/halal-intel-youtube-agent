@@ -26,7 +26,7 @@ SEEN_FILE = dpath("seen_leads.json")
 MAX_SEEN = 3000
 MAX_LEADS_PER_RUN = 25
 MIN_BUDGET_RUB = 1500
-MIN_BUDGET_USD = 100
+MIN_BUDGET_USD = 20
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -88,7 +88,7 @@ OFF_PROFILE_TITLE_KEYWORDS = [
 
 # Reddit пишет цену прямо в названии («- $25»). Если все суммы ниже порога —
 # заказ того не стоит: на такие за минуты приходят десятки откликов.
-MIN_REDDIT_USD = 50
+MIN_REDDIT_USD = 20
 DOLLAR_RE = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)\s*(k\b)?(\s*(?:/|per)\s*(?:h|hr|hour))?", re.I)
 
 
