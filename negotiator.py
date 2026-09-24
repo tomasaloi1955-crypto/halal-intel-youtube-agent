@@ -10,10 +10,7 @@
 # Переменные окружения:
 #   FREELANCER_OAUTH_TOKEN — личный токен Freelancer (developers.freelancer.com)
 #   ANTHROPIC_API_KEY      — ключ Claude (console.anthropic.com): переписка и сводка сделки
-#   NEGOTIATOR_GEMINI_API_KEY — бесплатный Gemini: отбор заказов и текст отклика.
-#                            Лучше ключ из отдельного проекта Google, чтобы не делить
-#                            квоту (20 запросов/сутки на модель) с YouTube-автопилотом;
-#                            если не задан — берётся GEMINI_API_KEY.
+#                            и отбор заказов с текстом отклика (Claude Haiku)
 #   TELEGRAM_BOT_TOKEN, TELEGRAM_ALERT_CHAT_ID — куда слать новость о сделке
 #   NEGOTIATOR_DRY_RUN=1   — ничего не отправлять на Freelancer, только показать
 #                            в Telegram, что агент написал бы (режим проверки)
@@ -25,7 +22,6 @@ import time
 from datetime import date
 
 import anthropic
-import google.generativeai as genai
 import requests
 
 from lead_finder import fetch_freelancer, is_relevant, HEADERS
@@ -34,18 +30,14 @@ from telegram_notify import notify, alert_fail
 
 API = "https://www.freelancer.com/api"
 MODEL = os.getenv("NEGOTIATOR_MODEL", "claude-opus-5")
-# Экономия: заказы публичные, их отбирает бесплатный Gemini. Claude тратим только на
-# переписку с заказчиком — её мало, и туда не отдаём чужие сообщения в бесплатный
-# Gemini (Google учится на запросах бесплатного тарифа).
-# Своя модель: квота считается на модель, 2.5-flash занята автопилотом, 3.6-flash — генератором примеров.
-GEMINI_MODEL = os.getenv("NEGOTIATOR_GEMINI_MODEL", "gemini-3.5-flash")
+# Отбор заказов — дешёвый Haiku (~$0.005 за заказ). До 24.09.2026 отбирал бесплатный
+# Gemini, но его 20 запросов/сутки кончались к утру, а предоплата Google — от $30.
+EVAL_MODEL = os.getenv("NEGOTIATOR_EVAL_MODEL", "claude-haiku-4-5")
 DRY_RUN = os.getenv("NEGOTIATOR_DRY_RUN", "").lower() in ("1", "true", "yes", "on")
 # Бесплатный аккаунт Freelancer даёт мало откликов в месяц — тратим их на лучшие заказы.
 MAX_BIDS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_BIDS_PER_DAY", "3"))
-# Бесплатный Gemini даёт 20 запросов/сутки на модель — оставляем запас.
-MAX_EVALS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_EVALS_PER_DAY", "15"))
-# ...и около 10 запросов в минуту: 22.09.2026 первый запуск упёрся в минутный лимит на 11-м заказе.
-GEMINI_PAUSE_SEC = 8
+# Потолок расходов на отбор: 60 оценок ≈ $0.3 в сутки.
+MAX_EVALS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_EVALS_PER_DAY", "60"))
 MIN_AMOUNT_USD = 20  # абсолютный минимум из negotiator_profile.md (24.09.2026 снижен со $100 ради первых отзывов)
 # Стартовый режим: пока на Freelancer нет отзывов, заказчики почти не выбирают новичков
 # по полной цене — за 22–24.09.2026 из-за вилки бюджета пропущено 5 подходящих заказов
@@ -115,33 +107,23 @@ def ask_claude(task, schema, effort):
     return json.loads(text)
 
 
-class GeminiQuotaExhausted(Exception):
-    """429 от Gemini. daily=True — кончилась суточная квота, иначе минутная."""
-    def __init__(self, message, daily):
-        super().__init__(message)
-        self.daily = daily
-
-
-def ask_gemini(task, schema):
-    """Отбор заказа бесплатным Gemini. JSON проверяем сами по полям схемы."""
-    genai.configure(api_key=os.getenv("NEGOTIATOR_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY"))
-    fields = ", ".join(f"{k} ({v['type']})" for k, v in schema["properties"].items())
-    prompt = (SYSTEM_BASE + load_profile() + "\n=== TASK ===\n" + task +
-              f"\n\nAnswer with one JSON object with exactly these keys: {fields}.")
-    try:
-        text = genai.GenerativeModel(GEMINI_MODEL).generate_content(
-            prompt, generation_config={"response_mime_type": "application/json"},
-        ).text
-    except Exception as e:
-        if "429" in str(e) or "quota" in str(e).lower():
-            # Google называет квоту в тексте ошибки: ...PerDay... или ...PerMinute...
-            raise GeminiQuotaExhausted(str(e)[:200], daily="PerDay" in str(e))
-        raise
-    data = json.loads(text)
-    missing = [k for k in schema["required"] if k not in data]
-    if missing:
-        raise ValueError(f"Gemini не вернул поля {missing}")
-    return data
+def ask_haiku(task, schema):
+    """Отбор заказа дешёвой моделью. Профиль кэшируется между запросами."""
+    response = client.messages.create(
+        model=EVAL_MODEL,
+        max_tokens=4000,
+        system=[{
+            "type": "text",
+            "text": SYSTEM_BASE + load_profile(),
+            "cache_control": {"type": "ephemeral"},
+        }],
+        messages=[{"role": "user", "content": task}],
+        output_config={"format": {"type": "json_schema", "schema": schema}},
+    )
+    if response.stop_reason == "refusal":
+        raise RuntimeError("Claude отказался отвечать")
+    text = next(b.text for b in response.content if b.type == "text")
+    return json.loads(text)
 
 
 BID_SCHEMA = {
@@ -287,20 +269,11 @@ def place_bids(state, me):
         )
         day["evals"] += 1
         try:
-            decision = ask_gemini(task, BID_SCHEMA)
-        except GeminiQuotaExhausted as e:
-            # Заказы не помечаем просмотренными — оценим при следующем запуске.
-            day["evals"] -= 1
-            if e.daily:
-                print(f"[negotiator] Gemini: суточный лимит исчерпан — {e}")
-                day["evals"] = MAX_EVALS_PER_DAY
-            else:
-                print(f"[negotiator] Gemini: минутный лимит, продолжу в следующий запуск — {e}")
-            break
+            decision = ask_haiku(task, BID_SCHEMA)
         except Exception as e:
-            print(f"[negotiator] Gemini: ошибка при оценке {pid} — {e}")
+            # Заказ не помечаем просмотренным — оценим при следующем запуске.
+            print(f"[negotiator] Haiku: ошибка при оценке {pid} — {e}")
             continue
-        time.sleep(GEMINI_PAUSE_SEC)
         entry = {
             "title": p["title"], "url": lead["url"], "description": lead["snippet"][:4000],
             "currency": code, "decision": decision["reason_ru"],
