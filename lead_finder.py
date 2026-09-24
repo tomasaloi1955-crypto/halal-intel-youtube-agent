@@ -2,10 +2,9 @@
 # n8n/Make/Zapier, ИИ-агенты, чат-боты) и присылает находки в Telegram с черновиком отклика.
 # Источники читаются напрямую, без поисковика: DuckDuckGo с 18.09.2026 блокирует
 # GitHub Actions целиком, а ленты площадок отдают заказы без блокировок.
-# FL.ru режет серверы GitHub (403) — его проверяет домашний ПК, см. LEAD_SOURCES.
 # Kwork убран 19.09.2026: Kwork.ru закрывает продажи для не-граждан РФ и выводит
 # деньги только на российские карты — заказы оттуда владелице бесполезны.
-#   • FL.ru — RSS последних 60 заказов (≈10 часов), поэтому запуск каждые 4 часа.
+# FL.ru убран 24.09.2026 по той же причине: платные отклики — только с российской карты.
 #   • Freelancer.com — открытый API поиска проектов (международные заказы, en).
 #   • Reddit — RSS разделов, где заказчики ищут исполнителей (r/forhire, r/n8n и др.).
 # Заказы из мусульманской/халяль-ниши помечаются 🕌 и идут первыми. Харам-ниши
@@ -25,7 +24,6 @@ from telegram_notify import notify, alert_fail
 SEEN_FILE = dpath("seen_leads.json")
 MAX_SEEN = 3000
 MAX_LEADS_PER_RUN = 25
-MIN_BUDGET_RUB = 1500
 MIN_BUDGET_USD = 100
 
 HEADERS = {
@@ -128,34 +126,6 @@ def make_lead(source, key, title, url, snippet, budget, lang):
     }
 
 
-FL_BUDGET_RE = re.compile(r"\s*\(Бюджет:\s*([\d\s]+)[^)]*\)")
-
-
-def fetch_fl():
-    """RSS последних заказов FL.ru. Бюджет FL пишет прямо в заголовке."""
-    resp = requests.get("https://www.fl.ru/rss/all.xml", headers=HEADERS, timeout=20)
-    resp.raise_for_status()
-    leads = []
-    for item in ET.fromstring(resp.content).iter("item"):
-        title = html.unescape(item.findtext("title") or "")
-        budget = ""
-        m = FL_BUDGET_RE.search(title)
-        if m:
-            amount = int(re.sub(r"\D", "", m.group(1)) or 0)
-            if amount and amount < MIN_BUDGET_RUB:
-                continue
-            budget = f"{amount:,} ₽".replace(",", " ")
-            title = FL_BUDGET_RE.sub("", title)
-        title = re.sub(r"\s*\(для всех\)", "", title).strip()
-        category = item.findtext("category") or ""
-        link = item.findtext("link") or ""
-        leads.append(make_lead(
-            "FL.ru", f"fl:{link}", title, link,
-            clean(f"[{category}] {item.findtext('description') or ''}"), budget, "ru",
-        ))
-    return leads
-
-
 def fetch_freelancer():
     """Открытый API Freelancer.com — без ключа."""
     leads = []
@@ -218,9 +188,8 @@ def fetch_reddit():
     return leads
 
 
-SOURCES = [("FL.ru", fetch_fl), ("Freelancer", fetch_freelancer), ("Reddit", fetch_reddit)]
-# FL.ru отдаёт 403 серверам GitHub, поэтому его проверяет домашний ПК
-# (run_lead_finder_local.cmd), а Actions — только Freelancer. Пусто = все площадки.
+SOURCES = [("Freelancer", fetch_freelancer), ("Reddit", fetch_reddit)]
+# Actions проверяет только Reddit: Freelancer сам ведёт negotiator.py. Пусто = все площадки.
 _only = {s.strip() for s in os.getenv("LEAD_SOURCES", "").split(",") if s.strip()}
 if _only:
     SOURCES = [src for src in SOURCES if src[0] in _only]
@@ -319,12 +288,12 @@ def write_pitches(leads):
     system = (
         "You write short replies to freelance job posts on behalf of a freelance developer "
         "of AI automations. Her profile (in Russian) is below: services, prices and rules, "
-        "including Islamic rules that are never negotiable. The post is from Reddit or FL.ru, "
+        "including Islamic rules that are never negotiable. The post is from Reddit, "
         "NOT Freelancer.com, so the Freelancer rule about not sharing contacts does not apply "
         "here: end the reply with the contact line given in the task.\n"
         "fit = true only if the job is covered by her services and allowed by all her rules; "
         "otherwise fit = false, pitch = \"\" and explain why in reason_ru (one sentence).\n"
-        "If fit: write the pitch in the language of the post (FL.ru → Russian). 4–6 sentences: "
+        "If fit: write the pitch in the language of the post. 4–6 sentences: "
         "show you understood the task (mention 1–2 concrete details from the post), say how "
         "you would build it, mention one of her relevant own projects, ask 1 clarifying "
         "question, then the contact line. No 'Dear Sir', no placeholders, never invent "
@@ -428,7 +397,7 @@ def run():
     else:
         print("[lead_finder] Новых заказов не найдено.")
 
-    if len(failed) == len(SOURCES):
+    if SOURCES and len(failed) == len(SOURCES):
         alert_fail("lead_finder", "Ни одна площадка не ответила: " + ", ".join(failed))
 
 
