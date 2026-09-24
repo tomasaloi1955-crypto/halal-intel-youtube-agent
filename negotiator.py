@@ -261,7 +261,16 @@ def place_bids(state, me):
             "covered by the services in the profile and allowed by all its rules. If you bid: "
             "amount_usd = the profile's first price for this job (sum the rows if it combines "
             "services); floor_usd = the matching minimum (−20%); period_days = the profile's "
-            "delivery time for this job, never shorter; then write the proposal text.\n\n"
+            "delivery time for this job, never shorter; then write the proposal text.\n"
+            # 24.09.2026 Haiku отсеял почти всё: считал поводом для отказа просьбу о примерах,
+            # WhatsApp/Twilio вместо Telegram и низкий бюджет.
+            "These are NOT reasons to skip: the client asks for examples or a portfolio "
+            "(describe her own projects in words, no links); the job uses another API or "
+            "messenger (WhatsApp, Twilio, Slack, Google, webhooks) — any API integration "
+            "built in Python counts as covered; the budget is low (the price is handled "
+            "separately, bid your price anyway). Skip only if the main deliverable is outside "
+            "her services (website, mobile/desktop app, design, SEO, coaching), must be built "
+            "in n8n/Make/Zapier or a non-Python language, or breaks a rule.\n\n"
             f"Title: {p['title']}\n"
             f"Client budget: {budget.get('minimum')}–{budget.get('maximum')} {code} "
             f"(≈ {lead['budget']})\n"
