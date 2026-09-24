@@ -258,8 +258,11 @@ def save_seen(seen):
 
 
 CONTACT_HANDLE = os.getenv("AUTHOR_TELEGRAM", "https://t.me/Halalaifreya")
-# Ссылка на готовую работу (канал с автопостингом и т.п.) — вставляется в отклики.
-PORTFOLIO_URL = os.getenv("PORTFOLIO_URL", "").strip() or "https://youtube.com/@arabicllanguage"
+# Ссылка на готовую работу (канал с автопостингом) — вставляется в отклики на языке заказа.
+PORTFOLIO_URLS = {
+    "en": os.getenv("PORTFOLIO_URL_EN", "").strip() or "https://youtube.com/@easy_arabic-o3m",
+    "ru": os.getenv("PORTFOLIO_URL_RU", "").strip() or "https://youtube.com/@arabicllanguage",
+}
 
 PITCH_TEMPLATES = {
     "ru": (
@@ -267,7 +270,7 @@ PITCH_TEMPLATES = {
         "«Здравствуйте! Делаю ИИ-автоматизации под ключ: автопостинг в Telegram/Threads/YouTube, "
         "Telegram-боты для заявок, связки с нейросетями. Мои каналы уже месяцами публикуются "
         "полностью автоматически — могу показать"
-        + (f": {PORTFOLIO_URL}" if PORTFOLIO_URL else "")
+        + (f": {PORTFOLIO_URLS['ru']}" if PORTFOLIO_URLS["ru"] else "")
         + f". Расскажите подробнее о задаче, предложу решение и срок. Связь: {CONTACT_HANDLE}»"
     ),
     "en": (
@@ -275,7 +278,7 @@ PITCH_TEMPLATES = {
         "\"Hi! I build AI automations end-to-end: auto-posting to Telegram/Threads/YouTube, "
         "Telegram bots for leads, LLM-powered workflows. My own channels have been running fully "
         "automated for months"
-        + (f" — see {PORTFOLIO_URL}" if PORTFOLIO_URL else " — happy to show them")
+        + (f" — see {PORTFOLIO_URLS['en']}" if PORTFOLIO_URLS["en"] else " — happy to show them")
         + ". Could you share more details? "
         f"I'll propose a solution and timeline. Contact: {CONTACT_HANDLE}\""
     ),
@@ -313,7 +316,6 @@ def write_pitches(leads):
     except Exception as e:
         print(f"[lead_finder] Личные отклики недоступны — {e}")
         return
-    links = f"Contact: {CONTACT_HANDLE}" + (f"\nPortfolio (live example): {PORTFOLIO_URL}" if PORTFOLIO_URL else "")
     system = (
         "You write short replies to freelance job posts on behalf of a freelance developer "
         "of AI automations. Her profile (in Russian) is below: services, prices and rules, "
@@ -330,7 +332,10 @@ def write_pitches(leads):
     )
     for lead in leads[:MAX_PITCHES_PER_RUN]:
         task = (f"Source: {lead['source']}\nTitle: {lead['title']}\nBudget: {lead['budget'] or 'not stated'}\n"
-                f"Post:\n{lead['snippet'][:3000]}\n\n{links}")
+                f"Post:\n{lead['snippet'][:3000]}\n\nContact: {CONTACT_HANDLE}")
+        portfolio = PORTFOLIO_URLS.get(lead["lang"])
+        if portfolio:
+            task += f"\nPortfolio (live example): {portfolio}"
         try:
             resp = client.messages.create(
                 model=PITCH_MODEL, max_tokens=1500,
