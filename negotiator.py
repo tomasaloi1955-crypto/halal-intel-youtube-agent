@@ -60,7 +60,8 @@ def fl(method, path, headers=None, **kwargs):
     resp = requests.request(method, f"{API}/{path}", headers=headers, timeout=30, **kwargs)
     if not resp.ok:
         raise RuntimeError(f"Freelancer {method} {path}: {resp.status_code} {resp.text[:300]}")
-    return resp.json()["result"]
+    # На действия с откликом Freelancer отвечает без "result".
+    return resp.json().get("result")
 
 
 def my_user_id():
