@@ -259,7 +259,7 @@ def save_seen(seen):
 
 CONTACT_HANDLE = os.getenv("AUTHOR_TELEGRAM", "https://t.me/Halalaifreya")
 # Ссылка на готовую работу (канал с автопостингом и т.п.) — вставляется в отклики.
-PORTFOLIO_URL = os.getenv("PORTFOLIO_URL", "").strip()
+PORTFOLIO_URL = os.getenv("PORTFOLIO_URL", "").strip() or "https://youtube.com/@arabicllanguage"
 
 PITCH_TEMPLATES = {
     "ru": (

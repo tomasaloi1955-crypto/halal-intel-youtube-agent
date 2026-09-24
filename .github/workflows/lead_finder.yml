@@ -36,7 +36,7 @@ jobs:
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
           # Личный отклик под каждый заказ (Claude Haiku). Без ключа — общий шаблон.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Ссылка на пример твоей работы — задай переменную в Settings → Variables.
+          # Ссылка на пример работы; пусто — берётся канал из lead_finder.py.
           PORTFOLIO_URL: ${{ vars.PORTFOLIO_URL }}
         run: python lead_finder.py
 
