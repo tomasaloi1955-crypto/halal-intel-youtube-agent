@@ -55,8 +55,8 @@ client = anthropic.Anthropic()
 
 # ---------- Freelancer API ----------
 
-def fl(method, path, **kwargs):
-    headers = {**HEADERS, "Freelancer-OAuth-V1": TOKEN}
+def fl(method, path, headers=None, **kwargs):
+    headers = {**HEADERS, "Freelancer-OAuth-V1": TOKEN, **(headers or {})}
     resp = requests.request(method, f"{API}/{path}", headers=headers, timeout=30, **kwargs)
     if not resp.ok:
         raise RuntimeError(f"Freelancer {method} {path}: {resp.status_code} {resp.text[:300]}")
@@ -386,6 +386,11 @@ def reply_to_messages(state, me):
 
 # ---------- 3. Сделки ----------
 
+# Действие с откликом (retract/accept) — как в официальном freelancer-sdk-python:
+# без этого заголовка Freelancer отвечает 405.
+FORM = {"Content-Type": "application/x-www-form-urlencoded"}
+
+
 def retract_bids(state, me):
     """Отзывает отклики, помеченные владелицей в state: "retract": true."""
     for pid, p in state["projects"].items():
@@ -393,7 +398,7 @@ def retract_bids(state, me):
             if DRY_RUN:
                 print(f"[negotiator] [проверка] Отозвал бы отклик на {pid}")
                 continue
-            fl("PUT", f"projects/0.1/bids/{p['bid_id']}", params={"action": "retract"})
+            fl("PUT", f"projects/0.1/bids/{p['bid_id']}/", headers=FORM, params={"action": "retract"})
             p["retracted"] = True
             print(f"[negotiator] Отклик на {pid} отозван")
             notify(f"↩️ Отклик отозван: {p['title']}\n{p['url']}")
@@ -413,7 +418,7 @@ def check_deals(state, me):
             continue
         # pending = заказчик предложил заказ и ждёт нашего согласия.
         if status == "pending" and not DRY_RUN:
-            fl("PUT", f"projects/0.1/bids/{bid['id']}", params={"action": "accept"})
+            fl("PUT", f"projects/0.1/bids/{bid['id']}/", headers=FORM, params={"action": "accept"})
 
         msgs = []
         try:
