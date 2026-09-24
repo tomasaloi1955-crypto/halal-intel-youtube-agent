@@ -286,7 +286,8 @@
       "floor_usd": 336,
       "period": 45,
       "proposal": "I build exactly what you need: an autonomous AI agent that generates marketing content and posts it across channels. Here's how I'll structure it:\n\n**Phase 1 (days 1–14): Content Gen & Strategy** – I'll set up Claude/GPT API with your brand guidelines (stored in a vector DB), so the agent creates optimized social posts, blog snippets, and ad copy. Includes tone-of-voice alignment and SEO keyword insertion.\n\n**Phase 2 (days 15–30): Multi-Channel Automation** – Python code integrates with LinkedIn, Instagram, Twitter/X, email (via Mailchimp API), and WordPress. Agent drafts content and either schedules posts or sends them to your approval dashboard.\n\n**Phase 3 (days 31–45): Human-in-the-Loop Dashboard & Analytics** – Simple Telegram/Slack notification system (or web interface) where you review and approve before publishing. Agent ingests campaign metrics (clicks, engagement, conversions) and refines future content based on what performs.\n\nI work entirely in Python with LangChain/LangGraph for the LLM workflow. No n8n—the code is your permanent asset.\n\nA few quick questions to refine the scope:\n1. Which channels are priority for Phase 1 (LinkedIn, Instagram, Twitter, email, or all equally)?\n2. Do you have brand guidelines, past content samples, or target audience profiles to feed the agent?\n3. Approval—Slack, Telegram, or simple web form?",
-      "bid_id": 495289001
+      "bid_id": 495289001,
+      "retract": true
     },
     "40727562": {
       "title": "AI Sales Chatbot for Business Website",

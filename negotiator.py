@@ -336,7 +336,8 @@ def reply_to_messages(state, me):
         # Отвечаем только в переписках по заказам, на которые откликнулся сам агент.
         # Остальные чаты (старые клиенты, поддержка) не трогаем.
         project = state["projects"].get(pid)
-        if context.get("type") != "project" or not project or "bid_id" not in project:
+        if (context.get("type") != "project" or not project or "bid_id" not in project
+                or project.get("retracted")):
             continue
         tid = str(t["id"])
         msgs = fl("GET", "messages/0.1/messages/",
@@ -385,10 +386,23 @@ def reply_to_messages(state, me):
 
 # ---------- 3. Сделки ----------
 
+def retract_bids(state, me):
+    """Отзывает отклики, помеченные владелицей в state: "retract": true."""
+    for pid, p in state["projects"].items():
+        if p.get("retract") and "bid_id" in p and not p.get("retracted"):
+            if DRY_RUN:
+                print(f"[negotiator] [проверка] Отозвал бы отклик на {pid}")
+                continue
+            fl("PUT", f"projects/0.1/bids/{p['bid_id']}/", params={"action": "retract"})
+            p["retracted"] = True
+            print(f"[negotiator] Отклик на {pid} отозван")
+            notify(f"↩️ Отклик отозван: {p['title']}\n{p['url']}")
+
+
 def check_deals(state, me):
     """Заказчик выбрал нас → принимаем заказ → сообщаем владелице."""
     pending = {str(p["bid_id"]): (pid, p) for pid, p in state["projects"].items()
-               if "bid_id" in p and not p.get("deal_notified")}
+               if "bid_id" in p and not p.get("deal_notified") and not p.get("retracted")}
     if not pending:
         return
     bids = fl("GET", "projects/0.1/bids/", params={"bids[]": list(pending)}).get("bids", [])
@@ -447,7 +461,7 @@ def run():
         raise
     errors = []
     # Сначала сделки и переписка (тут ждёт живой заказчик), потом новые отклики.
-    for step in (check_deals, reply_to_messages, send_drafts, place_bids):
+    for step in (retract_bids, check_deals, reply_to_messages, send_drafts, place_bids):
         try:
             step(state, me)
         except Exception as e:
