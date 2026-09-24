@@ -77,6 +77,31 @@ EXCLUDE_KEYWORDS = [
     "банк", "bank",
 ]
 
+# Не наш профиль, хотя в названии мелькает «AI»: разметка данных, обучение ИИ
+# носителями языка, переводы. Проверяем только название — в описании эти слова
+# встречаются и в подходящих заказах («no translation needed»).
+OFF_PROFILE_TITLE_KEYWORDS = [
+    "bilingual", "native speaker", "speakers", "translator", "translation", "transcri",
+    "annotat", "labeling", "labelling", "ai training", "ai trainer", "rlhf",
+    "переводчик", "перевод текст", "транскриб", "разметк",
+]
+
+# Reddit пишет цену прямо в названии («- $25»). Если все суммы ниже порога —
+# заказ того не стоит: на такие за минуты приходят десятки откликов.
+MIN_REDDIT_USD = 50
+DOLLAR_RE = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)\s*(k\b)?(\s*(?:/|per)\s*(?:h|hr|hour))?", re.I)
+
+
+def title_budget_usd(title):
+    """Сумма за проект из названия Reddit; None — суммы нет или она почасовая."""
+    amounts = []
+    for m in DOLLAR_RE.finditer(title):
+        if m.group(3):
+            return None
+        amounts.append(float(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1))
+    return max(amounts) if amounts else None
+
+
 FREELANCER_QUERIES = [
     "n8n", "make.com", "zapier", "telegram bot", "ai agent",
     "social media automation", "auto posting", "chatbot",
@@ -179,12 +204,16 @@ def fetch_reddit():
         title = html.unescape(e.findtext("a:title", "", ATOM)).strip()
         if REDDIT_OFFER_RE.search(title) or not REDDIT_REQUEST_RE.search(title):
             continue
+        top = title_budget_usd(title)
+        if top is not None and top < MIN_REDDIT_USD:
+            continue
         link = e.find("a:link", ATOM)
         url = link.get("href") if link is not None else ""
         sub = (e.find("a:category", ATOM).get("term") if e.find("a:category", ATOM) is not None else "")
         leads.append(make_lead(
             f"Reddit r/{sub}", f"reddit:{e.findtext('a:id', '', ATOM)}", title, url,
-            clean(e.findtext("a:content", "", ATOM)).replace("submitted by", "").strip(), "", "en",
+            clean(e.findtext("a:content", "", ATOM)).replace("submitted by", "").strip(),
+            f"${top:,.0f}" if top else "", "en",
         ))
     return leads
 
@@ -206,7 +235,7 @@ def is_relevant(lead):
     relevant = has_any(title, TITLE_KEYWORDS) or (
         lead["source"] != "Freelancer" and has_any(text, STRONG_KEYWORDS)
     )
-    if not relevant or has_any(text, EXCLUDE_KEYWORDS):
+    if not relevant or has_any(text, EXCLUDE_KEYWORDS) or has_any(title, OFF_PROFILE_TITLE_KEYWORDS):
         return False
     lead["halal"] = has_any(text, HALAL_KEYWORDS)
     return True
@@ -229,23 +258,94 @@ def save_seen(seen):
 
 
 CONTACT_HANDLE = os.getenv("AUTHOR_TELEGRAM", "https://t.me/Halalaifreya")
+# Ссылка на готовую работу (канал с автопостингом и т.п.) — вставляется в отклики.
+PORTFOLIO_URL = os.getenv("PORTFOLIO_URL", "").strip()
 
 PITCH_TEMPLATES = {
     "ru": (
         "✍️ Черновик отклика на русские заказы (подправь под задачу):\n"
         "«Здравствуйте! Делаю ИИ-автоматизации под ключ: автопостинг в Telegram/Threads/YouTube, "
         "Telegram-боты для заявок, связки с нейросетями. Мои каналы уже месяцами публикуются "
-        "полностью автоматически — могу показать. Расскажите подробнее о задаче, предложу решение "
-        f"и срок. Связь: {CONTACT_HANDLE}»"
+        "полностью автоматически — могу показать"
+        + (f": {PORTFOLIO_URL}" if PORTFOLIO_URL else "")
+        + f". Расскажите подробнее о задаче, предложу решение и срок. Связь: {CONTACT_HANDLE}»"
     ),
     "en": (
         "✍️ Черновик отклика на английские заказы (Freelancer, Reddit):\n"
         "\"Hi! I build AI automations end-to-end: auto-posting to Telegram/Threads/YouTube, "
         "Telegram bots for leads, LLM-powered workflows. My own channels have been running fully "
-        "automated for months — happy to show them. Could you share more details? "
+        "automated for months"
+        + (f" — see {PORTFOLIO_URL}" if PORTFOLIO_URL else " — happy to show them")
+        + ". Could you share more details? "
         f"I'll propose a solution and timeline. Contact: {CONTACT_HANDLE}\""
     ),
 }
+
+
+# Личный отклик под каждый заказ пишет Claude Haiku: шаблон одинаковый для всех,
+# и заказчики его пролистывают. Платно, но копейки (~$0.002 за отклик); лимит на
+# запуск — чтобы не тратиться на хвост списка. Нет ключа или ошибка — шаблон.
+PITCH_MODEL = os.getenv("LEAD_PITCH_MODEL", "claude-haiku-4-5")
+MAX_PITCHES_PER_RUN = int(os.getenv("LEAD_MAX_PITCHES_PER_RUN", "6"))
+PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
+
+PITCH_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "fit": {"type": "boolean"},
+        "reason_ru": {"type": "string"},
+        "pitch": {"type": "string"},
+    },
+    "required": ["fit", "reason_ru", "pitch"],
+    "additionalProperties": False,
+}
+
+
+def write_pitches(leads):
+    """Добавляет lead["pitch"] (или lead["unfit"]) первым MAX_PITCHES_PER_RUN заказам."""
+    if not os.getenv("ANTHROPIC_API_KEY") or MAX_PITCHES_PER_RUN <= 0:
+        return
+    try:
+        import anthropic
+        client = anthropic.Anthropic()
+        with open(PROFILE_FILE, "r", encoding="utf-8") as f:
+            profile = f.read()
+    except Exception as e:
+        print(f"[lead_finder] Личные отклики недоступны — {e}")
+        return
+    links = f"Contact: {CONTACT_HANDLE}" + (f"\nPortfolio (live example): {PORTFOLIO_URL}" if PORTFOLIO_URL else "")
+    system = (
+        "You write short replies to freelance job posts on behalf of a freelance developer "
+        "of AI automations. Her profile (in Russian) is below: services, prices and rules, "
+        "including Islamic rules that are never negotiable. The post is from Reddit or FL.ru, "
+        "NOT Freelancer.com, so the Freelancer rule about not sharing contacts does not apply "
+        "here: end the reply with the contact line given in the task.\n"
+        "fit = true only if the job is covered by her services and allowed by all her rules; "
+        "otherwise fit = false, pitch = \"\" and explain why in reason_ru (one sentence).\n"
+        "If fit: write the pitch in the language of the post (FL.ru → Russian). 4–6 sentences: "
+        "show you understood the task (mention 1–2 concrete details from the post), say how "
+        "you would build it, mention one of her relevant own projects, ask 1 clarifying "
+        "question, then the contact line. No 'Dear Sir', no placeholders, never invent "
+        "experience, reviews or links that are not given.\n\n=== PROFILE ===\n" + profile
+    )
+    for lead in leads[:MAX_PITCHES_PER_RUN]:
+        task = (f"Source: {lead['source']}\nTitle: {lead['title']}\nBudget: {lead['budget'] or 'not stated'}\n"
+                f"Post:\n{lead['snippet'][:3000]}\n\n{links}")
+        try:
+            resp = client.messages.create(
+                model=PITCH_MODEL, max_tokens=1500,
+                system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": task}],
+                output_config={"format": {"type": "json_schema", "schema": PITCH_SCHEMA}},
+            )
+            data = json.loads(next(b.text for b in resp.content if b.type == "text"))
+        except Exception as e:
+            print(f"[lead_finder] Отклик для «{lead['title'][:50]}» не написан — {e}")
+            continue
+        if data["fit"] and data["pitch"].strip():
+            lead["pitch"] = data["pitch"].strip()
+        else:
+            lead["unfit"] = data["reason_ru"].strip()
 
 
 def format_lead(lead):
@@ -256,6 +356,10 @@ def format_lead(lead):
     text += f"\n{lead['url']}"
     if lead["snippet"]:
         text += f"\n{lead['snippet'][:220]}"
+    if lead.get("pitch"):
+        text += f"\n✍️ Отклик (скопируй и отправь):\n{lead['pitch']}"
+    elif lead.get("unfit"):
+        text += f"\n⚠️ Похоже, не твой профиль: {lead['unfit']}"
     return text
 
 
@@ -271,7 +375,8 @@ def send_digest(leads, skipped):
             notify(chunk)
             chunk = ""
         chunk += piece
-    for lang in sorted({l["lang"] for l in leads}, reverse=True):
+    # Общий шаблон — только для заказов, которым личный отклик не достался.
+    for lang in sorted({l["lang"] for l in leads if "pitch" not in l and "unfit" not in l}, reverse=True):
         piece = PITCH_TEMPLATES[lang] + "\n\n"
         if len(chunk) + len(piece) > 3500:
             notify(chunk)
@@ -312,6 +417,7 @@ def run():
     save_seen(seen)
 
     if to_send:
+        write_pitches(to_send)
         send_digest(to_send, len(rest))
         print(f"[lead_finder] Отправлено находок: {len(to_send)}")
     else:

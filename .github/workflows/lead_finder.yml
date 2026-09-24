@@ -25,7 +25,7 @@ jobs:
           python-version: "3.11"
 
       - name: Установить зависимости
-        run: pip install requests python-dotenv
+        run: pip install requests python-dotenv anthropic
 
       - name: Поиск заказов
         env:
@@ -34,6 +34,10 @@ jobs:
           LEAD_SOURCES: Reddit
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          # Личный отклик под каждый заказ (Claude Haiku). Без ключа — общий шаблон.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Ссылка на пример твоей работы — задай переменную в Settings → Variables.
+          PORTFOLIO_URL: ${{ vars.PORTFOLIO_URL }}
         run: python lead_finder.py
 
       - name: Сохранить память (уже присланные заказы)

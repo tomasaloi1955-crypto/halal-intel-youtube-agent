@@ -18,6 +18,7 @@
 #   NEGOTIATOR_DRY_RUN=1   — ничего не отправлять на Freelancer, только показать
 #                            в Telegram, что агент написал бы (режим проверки)
 #   NEGOTIATOR_MAX_BIDS_PER_DAY, NEGOTIATOR_MAX_EVALS_PER_DAY — дневные лимиты
+#   NEGOTIATOR_STARTER_MIN_USD — нижняя граница ставки, пока нет отзывов (0 = выключить)
 import json
 import os
 import time
@@ -46,6 +47,13 @@ MAX_EVALS_PER_DAY = int(os.getenv("NEGOTIATOR_MAX_EVALS_PER_DAY", "15"))
 # ...и около 10 запросов в минуту: 22.09.2026 первый запуск упёрся в минутный лимит на 11-м заказе.
 GEMINI_PAUSE_SEC = 8
 MIN_AMOUNT_USD = 100  # абсолютный минимум из negotiator_profile.md
+# Стартовый режим: пока на Freelancer нет отзывов, заказчики почти не выбирают новичков
+# по полной цене — за 22–24.09.2026 из-за вилки бюджета пропущено 5 подходящих заказов
+# при одном отправленном отклике. Если вилка заказчика ниже нашего минимума, но не ниже
+# этой суммы — откликаемся по верхней границе вилки и дальше не уступаем.
+# После первых 3–5 отзывов выставить NEGOTIATOR_STARTER_MIN_USD=0 (выключить).
+STARTER_MIN_USD = float(os.getenv("NEGOTIATOR_STARTER_MIN_USD", "150"))
+LOW_BUDGET_MARK = " | бюджет заказчика ниже нашего минимума — не откликаемся"
 
 STATE_FILE = dpath("negotiator_state.json")
 PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
@@ -184,6 +192,11 @@ def load_state():
             state = {}
     state.setdefault("projects", {})   # project_id -> что мы о нём знаем и что сделали
     state.setdefault("threads", {})    # thread_id -> id последнего обработанного сообщения
+    # Заказы, пропущенные из-за бюджета до стартового режима, оцениваем заново.
+    if STARTER_MIN_USD:
+        for pid in [pid for pid, e in state["projects"].items()
+                    if "bid_id" not in e and str(e.get("decision", "")).endswith(LOW_BUDGET_MARK)]:
+            del state["projects"][pid]
     today = date.today().isoformat()
     if state.get("day", {}).get("date") != today:
         state["day"] = {"date": today, "bids": 0, "evals": 0}
@@ -305,12 +318,19 @@ def place_bids(state, me):
             amount = max(amount, budget["minimum"])
         if budget.get("maximum"):
             amount = min(amount, budget["maximum"])
-        # Вилка заказчика может быть ниже нашей цены: уступаем не больше 20% (до floor_usd).
-        if to_usd(amount, p) < max(decision["floor_usd"], MIN_AMOUNT_USD) - 0.5:
-            entry["decision"] += " | бюджет заказчика ниже нашего минимума — не откликаемся"
+        # Вилка заказчика может быть ниже нашей цены: уступаем не больше 20% (до floor_usd),
+        # а в стартовом режиме — до STARTER_MIN_USD.
+        floor_usd = max(decision["floor_usd"], MIN_AMOUNT_USD)
+        if STARTER_MIN_USD:
+            floor_usd = min(floor_usd, max(STARTER_MIN_USD, MIN_AMOUNT_USD))
+        if to_usd(amount, p) < floor_usd - 0.5:
+            entry["decision"] += (f" | бюджет заказчика ниже минимума (${floor_usd:.0f})"
+                                  " — не откликаемся")
             continue
         amount = round(amount)
-        entry.update(amount=amount, floor_usd=decision["floor_usd"],
+        # Ставка уже ниже обычного минимума — в торге дальше не уступаем.
+        floor_usd = min(decision["floor_usd"], to_usd(amount, p))
+        entry.update(amount=amount, floor_usd=round(floor_usd),
                      period=decision["period_days"], proposal=decision["proposal"])
 
         if DRY_RUN:
