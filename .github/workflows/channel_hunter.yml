@@ -1,0 +1,55 @@
+name: channel_hunter
+
+on:
+  schedule:
+    - cron: "30 5 * * *"   # 10:30 по Алматы — карточки приходят к началу рабочего дня
+  workflow_dispatch: {}     # кнопка ручного запуска
+
+permissions:
+  contents: write
+
+concurrency:
+  group: channel_hunter
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install requests python-dotenv google-generativeai
+
+      - name: Поиск каналов для холодных сообщений
+        env:
+          DATA_DIR: state
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HUNTER_CARDS: "5"
+          HUNTER_CHECKS: "60"
+        run: python channel_hunter.py
+
+      - name: Сохранить память (проверенные каналы и очередь)
+        if: always()
+        run: |
+          git config user.name "channel-hunter"
+          git config user.email "channel-hunter@users.noreply.github.com"
+          [ -f state/seen_channels.json ] && git add state/seen_channels.json
+          git diff --cached --quiet && echo "нет изменений состояния" && exit 0
+          git commit -m "channels: $(date -u +%F_%H%M) [skip ci]"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push отклонён (гонка с другим коммитом), пробую снова: попытка $i"
+            git fetch origin master
+            git rebase origin/master || { git rebase --abort; exit 1; }
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "::error::состояние channel_hunter сохранить не удалось — каналы могут повториться"
+          exit 1

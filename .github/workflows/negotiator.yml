@@ -25,7 +25,7 @@ jobs:
           python-version: "3.11"
 
       - name: Установить зависимости
-        run: pip install requests python-dotenv anthropic google-generativeai
+        run: pip install requests python-dotenv anthropic
 
       - name: Переговоры на Freelancer
         env:
@@ -35,9 +35,6 @@ jobs:
           NEGOTIATOR_DRY_RUN: "0"
           FREELANCER_OAUTH_TOKEN: ${{ secrets.FREELANCER_OAUTH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Отдельный бесплатный ключ Gemini для отбора заказов; пока его нет — общий.
-          NEGOTIATOR_GEMINI_API_KEY: ${{ secrets.NEGOTIATOR_GEMINI_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
         run: python negotiator.py
