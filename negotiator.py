@@ -46,6 +46,13 @@ MIN_AMOUNT_USD = 20  # абсолютный минимум из negotiator_profi
 # После первых 3–5 отзывов выставить NEGOTIATOR_STARTER_MIN_USD=0 (выключить).
 STARTER_MIN_USD = float(os.getenv("NEGOTIATOR_STARTER_MIN_USD", "20"))
 
+# 25.09.2026: все 5 откликов ушли через 3–48 ч после публикации, когда у заказа было
+# уже 54–200 откликов, и были дороже 80–90% конкурентов — никто не ответил.
+# Поэтому берём только свежие заказы, пока толпа не набежала, и ставим ниже средней ставки.
+MAX_PROJECT_AGE_H = float(os.getenv("NEGOTIATOR_MAX_PROJECT_AGE_H", "24"))
+MAX_COMPETING_BIDS = int(os.getenv("NEGOTIATOR_MAX_COMPETING_BIDS", "80"))
+BELOW_AVG = 0.9  # ставка — не выше 90% средней ставки конкурентов
+
 STATE_FILE = dpath("negotiator_state.json")
 PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
 
@@ -242,10 +249,14 @@ def place_bids(state, me):
         # Почасовые заказы не берём: у владелицы фиксированный прайс за проект.
         if pid in state["projects"] or pid in fresh or p.get("type") == "hourly":
             continue
+        # Не в state: заказ просто выпадает, оценку Haiku на него не тратим.
+        age_h = (time.time() - p.get("time_submitted", time.time())) / 3600
+        if age_h > MAX_PROJECT_AGE_H or (p.get("bid_stats") or {}).get("bid_count", 0) > MAX_COMPETING_BIDS:
+            continue
         if is_relevant(lead):
             fresh[pid] = lead
-    # Мусульманская ниша — первой.
-    queue = sorted(fresh.values(), key=lambda l: not l["halal"])
+    # Мусульманская ниша — первой, дальше самые свежие: у них меньше конкурентов.
+    queue = sorted(fresh.values(), key=lambda l: (not l["halal"], -l["raw"].get("time_submitted", 0)))
     print(f"[negotiator] Новых подходящих заказов: {len(queue)}")
 
     for lead in queue:
@@ -295,6 +306,9 @@ def place_bids(state, me):
 
         amount_usd = max(decision["amount_usd"], MIN_AMOUNT_USD)
         amount = from_usd(amount_usd, p)
+        bid_avg = (p.get("bid_stats") or {}).get("bid_avg")
+        if bid_avg:
+            amount = min(amount, bid_avg * BELOW_AVG)
         # Freelancer не принимает ставку вне вилки бюджета заказчика.
         if budget.get("minimum"):
             amount = max(amount, budget["minimum"])
