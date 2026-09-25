@@ -51,7 +51,7 @@ STARTER_MIN_USD = float(os.getenv("NEGOTIATOR_STARTER_MIN_USD", "20"))
 # Поэтому берём только свежие заказы, пока толпа не набежала, и ставим ниже средней ставки.
 MAX_PROJECT_AGE_H = float(os.getenv("NEGOTIATOR_MAX_PROJECT_AGE_H", "24"))
 MAX_COMPETING_BIDS = int(os.getenv("NEGOTIATOR_MAX_COMPETING_BIDS", "80"))
-BELOW_AVG = 0.9  # ставка — не выше 90% средней ставки конкурентов
+BELOW_AVG = 0.75  # ставка — не выше 75% средней ставки конкурентов (25.09.2026: нужны первые отзывы)
 
 STATE_FILE = dpath("negotiator_state.json")
 PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
