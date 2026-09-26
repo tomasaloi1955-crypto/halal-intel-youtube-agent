@@ -741,12 +741,19 @@
       "description": "I’m inviting a U.S.-based Cosmetic & elective dental clinic staff member to join our AI health-management platform as a no-cost pilot user, then send me candid, constructive insight drawn from real-world use. After you create your clinic account and explore the system, focus your written review on three areas that matter most to us: • how intuitive the overall interface feels for staff and patients, • whether the AI-driven recommendations actually fit your obesity-management workflows, and • how accurately the platform interprets and displays the clinical data you upload. Because my primary objective is to enhance patient engagement, your commentary on elements that delight—or frustrate—patients will be especially valuable. Please be as specific as possible, referencing actual screens, alerts, or decision-support prompts so our product team can act on your suggestions right away. You’ll have direct access to the latest build, help docs, and a dedicated Slack channel for any quick questions while you test. Once you’ve spent enough time with the system (typically a week of normal clinic activity is plenty), send me a concise but thorough written report covering the points above, plus any extra observations you think will help us refine the product.",
       "currency": "INR",
       "decision": "Это не заказ на разработку, а приглашение участвовать в бета-тестировании чужой платформы и написать отзыв. Тестирование и обратная связь — не входят в услуги профиля (разработка ИИ-автоматизаций на Python). Заказчик не ищет разработчика, а ищет пользователя для пилота."
+    },
+    "40735423": {
+      "title": "AI-Driven Demo Video Creation of My Agentic AI Platform - 26/09/2026 17:43 EDT",
+      "url": "https://www.freelancer.com/projects/after-effects/Driven-Demo-Video-Creation-Agentic",
+      "description": "Create short demo videos of features I've built/am building on my agentic AI platform with subtitles and open source background music and AI voiceover. It requires you to be proactive, get familiar with the features of my platform yourself (aka tech savviness and AI saviiness are pre-requisites) and propose to me the scope of each video. You can absolutely use AI to generate the videos incl. the idea of which feature to demo/record and AI voiceover, AI subtitles, AI ideas of which features to demo and what to cover, and how to click through, all is fine, that is even my preferred way of working. You can maintain a list with ideas and descriptions and I will approve/feedback, and finally you can continue working (long-term project). I will use the videos on my professional LinkedIn, company page and YouTube, as well as X.com or elsewhere. For the LinkedIn part I also welcome you to write a short professional post (even that you can do with AI) reflecting the feature, why it's advanced and distinct in architecture, whats under the hood and how I built it modularly, and what that is important, while keeping it brief and humble.",
+      "currency": "USD",
+      "decision": "Заказ требует самостоятельного изучения и анализа платформы клиента, создания идей, проактивного предложения объёма работ и долгосрочного сотрудничества с обратной связью. Это выходит за рамки чёткого выполнения определённой задачи. Кроме того, хотя генерация видео с озвучкой и субтитрами входит в услугу «ИИ-генерация контента», бюджет 10–30 USD несоразмерен даже минимальной цене 20 USD для одного видео, а клиент явно ожидает долгосрочного проекта с несколькими видео и постоянной доработкой. При такой смете мы не сможем дать приличный результат и уложиться в рамки честности перед заказчиком."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-09-26",
     "bids": 1,
-    "evals": 18
+    "evals": 19
   }
 }
