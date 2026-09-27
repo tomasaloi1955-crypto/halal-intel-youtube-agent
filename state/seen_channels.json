@@ -488,43 +488,280 @@
   "score": 80,
   "silent": 6
  },
+ "quran_perevod": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "jetton_care_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "jetton_gamesen": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "jettongames_forum": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "jetton_official_publicpage8": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "community_jetton": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "gvartanova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "diyora008": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "bliznyashki_2009": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "ezozaa_u": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "modern_22": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "protiv_stressa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "abdumalikova_e": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "ezozzaumarxodjaeva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "budryadom77": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "bydryadoom_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "qamarunkids": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-09-27"
+ },
+ "zainabnorm": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "sofirumof": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "baharidllan": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "baharidllan3": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "baharidllan2": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "baharidllan4": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "prikol_vidyolar_dunyosi_nomer1": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "la_rahata_fid_dunya_aa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "juda_achchiq": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "umma_school": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-27"
+ },
+ "badratkhaier": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "koran_isunna": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-09-27"
+ },
+ "sestra5_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "quran_ponimaibot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "quranznanie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "video_islam5": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "ponimai_quran_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "bookhadith": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-27"
+ },
+ "islam_095_7": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "t_food": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "arabia_kg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "learn_arabiyya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "arabiclanguage17": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "arabskiy_ya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "arabskaya_grammatika": {
+  "skip": "молчит 1175 дн.",
+  "date": "2026-09-27"
+ },
+ "arabskii_yazik": {
+  "skip": "молчит 1044 дн.",
+  "date": "2026-09-27"
+ },
+ "arabsky_min_adam": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "tadjvid_abu_jasin": {
+  "skip": "молчит 1974 дн.",
+  "date": "2026-09-27"
+ },
+ "jettonofficialchaten": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "jetownersru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-27"
+ },
+ "malakoot27": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "prikollar_0lamiii": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "linebet_1xbet_mostbet_apk_uz": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "lider_cazino": {
+  "skip": "не наша ниша",
+  "date": "2026-09-27"
+ },
+ "maryam_bint_amir": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "moder_ummaschool": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "bmagrifa_video": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "salafiya5_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-27"
+ },
+ "v_niqabe97": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-27"
+ },
+ "visualarabic": {
+  "sent": "2026-09-27",
+  "title": "ВИЗУАЛЬНЫЙ АРАБСКИЙ",
+  "contact": null,
+  "score": 90,
+  "silent": 45
+ },
+ "arabiclanguagekoran": {
+  "sent": "2026-09-27",
+  "title": "Арабский язык",
+  "contact": null,
+  "score": 80,
+  "silent": 5
+ },
+ "darulhikam": {
+  "sent": "2026-09-27",
+  "title": "Darul Hikam",
+  "contact": null,
+  "score": 50,
+  "silent": 7
+ },
+ "as_sajdahh": {
+  "sent": "2026-09-27",
+  "title": "𝐀𝐬 𝐒𝐚𝐣𝐝𝐚𝐡 / Исламские напоминания / Хадисы",
+  "contact": null,
+  "score": 50,
+  "silent": 3
+ },
  "_queue": [
-  "quran_perevod",
-  "jetton_care_bot",
-  "jetton_gamesen",
-  "jettongames_forum",
-  "jetton_official_publicpage8",
-  "community_jetton",
-  "gvartanova",
-  "diyora008",
-  "bliznyashki_2009",
-  "ezozaa_u",
-  "modern_22",
-  "protiv_stressa",
-  "abdumalikova_e",
-  "ezozzaumarxodjaeva",
-  "darulhikam",
-  "budryadom77",
-  "bydryadoom_bot",
-  "qamarunkids",
-  "zainabnorm",
-  "sofirumof",
-  "baharidllan",
-  "baharidllan3",
-  "baharidllan2",
-  "baharidllan4",
-  "prikol_vidyolar_dunyosi_nomer1",
-  "la_rahata_fid_dunya_aa",
-  "juda_achchiq",
-  "umma_school",
-  "badratkhaier",
-  "koran_isunna",
-  "sestra5_bot",
-  "quran_ponimaibot",
-  "quranznanie",
-  "video_islam5",
-  "ponimai_quran_bot",
-  "bookhadith",
-  "as_sajdahh"
+  "wabil_book",
+  "iscelenieserdets",
+  "assajdahbot",
+  "xnfksa",
+  "huna_arabic",
+  "iqraskhool",
+  "iqra_kutub",
+  "iqraskhoolonline",
+  "huna_islam",
+  "iqrauroki",
+  "arabiclanguagetafsir",
+  "ayubbalaev",
+  "muslimkasietdinov",
+  "pznaniya",
+  "good_time_jt",
+  "umra2030",
+  "quranshifaislam",
+  "as_sajdahh",
+  "manasiktrevel",
+  "umra365",
+  "znanie1_svet",
+  "hadisnabiislam"
  ]
 }
