@@ -26,3 +26,6 @@ state/my_voice/
 agent.log
 __pycache__/
 *.pyc
+
+# lead_bot: заявки клиентов (персональные данные) — не коммитим
+lead_bot/*.sqlite3
