@@ -194,24 +194,31 @@ def make_video(title, clip_path, out_path, caption=""):
     return None
 
 
-def make_post_media(title, query, out_base, caption=""):
-    """Обложка и видео к одному посту. out_base — путь без расширения."""
+def make_post_media(title, query, out_base, caption="", want=("photo", "video")):
+    """Обложка и/или видео к одному посту. out_base — путь без расширения.
+    want — что нужно: ("photo",), ("video",) или оба. Если просили только видео, а
+    подходящего клипа нет, делается обложка — пост всё равно выйдет с картинкой."""
     os.makedirs(os.path.dirname(out_base) or ".", exist_ok=True)
     media = {"photo": None, "video": None}
+    temp = []
 
-    photo_url = find_photo(query)
-    raw_photo = download_media(photo_url, out_base + "_src.jpg") if photo_url else None
-    try:
-        media["photo"] = make_cover(title, raw_photo, out_base + ".jpg", caption)
-    except Exception as e:
-        print(f"[media] Обложка не собрана: {e}")
+    if "video" in want:
+        video_url = find_video(query)
+        raw_clip = download_media(video_url, out_base + "_src.mp4") if video_url else None
+        temp.append(raw_clip)
+        if raw_clip:
+            media["video"] = make_video(title, raw_clip, out_base + ".mp4", caption)
 
-    video_url = find_video(query)
-    raw_clip = download_media(video_url, out_base + "_src.mp4") if video_url else None
-    if raw_clip:
-        media["video"] = make_video(title, raw_clip, out_base + ".mp4", caption)
+    if "photo" in want or not media["video"]:
+        photo_url = find_photo(query)
+        raw_photo = download_media(photo_url, out_base + "_src.jpg") if photo_url else None
+        temp.append(raw_photo)
+        try:
+            media["photo"] = make_cover(title, raw_photo, out_base + ".jpg", caption)
+        except Exception as e:
+            print(f"[media] Обложка не собрана: {e}")
 
-    for tmp in (raw_photo, raw_clip):
+    for tmp in temp:
         if tmp and os.path.exists(tmp):
             os.remove(tmp)
     return media
