@@ -1,17 +1,20 @@
 # thumbnail_html.py — обложки в стиле «инфлюенсер»: HTML/CSS → PNG через headless-браузер.
-# Градиент + объёмный 3D-заголовок + жёлтые плашки-подзаголовки + ведущая (PNG без фона).
+# Градиент + объёмный 3D-заголовок + жёлтые плашки-подзаголовки + робот-талисман (SVG).
 import os
 import base64
 import html as _html
 
-PRESENTER_PATH = os.path.join("brand", "presenter.png")
+# Персонаж справа на обложке. Раньше была ведущая (brand/presenter.png) —
+# заменили на робота: канал про ИИ, робот читается сразу и без лица человека.
+PRESENTER_PATH = os.path.join("brand", "robot.svg")
 
 
 def _data_uri(path):
     try:
         with open(path, "rb") as f:
             b64 = base64.b64encode(f.read()).decode()
-        return f"data:image/png;base64,{b64}"
+        mime = "image/svg+xml" if path.lower().endswith(".svg") else "image/png"
+        return f"data:{mime};base64,{b64}"
     except Exception:
         return ""
 
@@ -29,7 +32,7 @@ def _split_subtitle(sub):
 
 
 TITLE_W = 760          # ширина колонки заголовка, px
-CHAR_RATIO = 0.60      # средняя ширина заглавной буквы Montserrat 900 в долях кегля
+CHAR_RATIO = 0.72      # средняя ширина заглавной буквы Montserrat 900 в долях кегля
 CHIP_CHAR_RATIO = 0.58
 
 
@@ -78,10 +81,9 @@ def build_html(cover_text, cover_subtitle, presenter_path=PRESENTER_PATH):
 .chip{{background:#181818;color:#ffd23b;font-weight:900;font-size:{chip_size}px;
   padding:16px 30px;border-radius:16px;text-transform:uppercase;letter-spacing:.5px;
   box-shadow:4px 6px 0 rgba(0,0,0,.35);white-space:nowrap}}
-/* height:700, а не 756: при 756 картинка вылезала за верх кадра и ведущей срезало
-   макушку. 700 — голова целиком, с запасом сверху. */
-.presenter{{position:absolute;right:0;bottom:0;height:700px;z-index:2;
-  filter:drop-shadow(-10px 0 24px rgba(0,0,0,.25))}}
+/* height:680 — робот целиком, антенна не упирается в верх кадра. */
+.presenter{{position:absolute;right:10px;bottom:0;height:680px;z-index:2;
+  filter:drop-shadow(-10px 0 24px rgba(0,0,0,.30))}}
 </style></head>
 <body><div class="tb">
   <div class="left">

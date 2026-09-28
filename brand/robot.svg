@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 700" width="520" height="700">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".55" stop-color="#dfe6ee"/>
+      <stop offset="1" stop-color="#9aa8b8"/>
+    </linearGradient>
+    <linearGradient id="metalDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c4cdd8"/>
+      <stop offset="1" stop-color="#7d8a9a"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2a3a"/>
+      <stop offset="1" stop-color="#0b111a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#7ff6ff"/>
+      <stop offset=".6" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- антенна -->
+  <rect x="252" y="40" width="16" height="70" rx="8" fill="url(#metalDark)"/>
+  <circle cx="260" cy="36" r="26" fill="url(#glow)"/>
+  <circle cx="260" cy="36" r="13" fill="#b9fbff"/>
+
+  <!-- уши -->
+  <rect x="68" y="190" width="44" height="110" rx="20" fill="url(#metalDark)"/>
+  <rect x="408" y="190" width="44" height="110" rx="20" fill="url(#metalDark)"/>
+
+  <!-- голова -->
+  <rect x="96" y="100" width="328" height="280" rx="90" fill="url(#metal)" stroke="#6b7888" stroke-width="4"/>
+  <!-- экран-лицо -->
+  <rect x="136" y="150" width="248" height="180" rx="62" fill="url(#screen)"/>
+  <!-- глаза -->
+  <ellipse cx="206" cy="228" rx="46" ry="46" fill="url(#glow)"/>
+  <ellipse cx="314" cy="228" rx="46" ry="46" fill="url(#glow)"/>
+  <ellipse cx="206" cy="228" rx="22" ry="26" fill="#c9fdff"/>
+  <ellipse cx="314" cy="228" rx="22" ry="26" fill="#c9fdff"/>
+  <!-- улыбка -->
+  <path d="M214 286 Q260 316 306 286" fill="none" stroke="#22d3ee" stroke-width="10" stroke-linecap="round"/>
+  <!-- блик -->
+  <path d="M140 150 Q150 118 200 110" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- шея -->
+  <rect x="220" y="376" width="80" height="34" rx="10" fill="url(#metalDark)"/>
+
+  <!-- корпус -->
+  <path d="M110 470 Q110 408 180 404 L340 404 Q410 408 410 470 L424 700 L96 700 Z"
+        fill="url(#metal)" stroke="#6b7888" stroke-width="4"/>
+  <!-- панель на груди -->
+  <rect x="190" y="460" width="140" height="92" rx="22" fill="url(#screen)"/>
+  <circle cx="226" cy="506" r="14" fill="#22d3ee"/>
+  <circle cx="260" cy="506" r="14" fill="#facc15"/>
+  <circle cx="294" cy="506" r="14" fill="#34d399"/>
+
+  <!-- левая рука — поднята и указывает на заголовок -->
+  <path d="M130 450 L52 330" stroke="url(#metalDark)" stroke-width="66" stroke-linecap="round" fill="none"/>
+  <circle cx="48" cy="318" r="42" fill="url(#metal)" stroke="#6b7888" stroke-width="4"/>
+
+  <!-- правая рука — опущена -->
+  <path d="M392 450 L440 640" stroke="url(#metalDark)" stroke-width="66" stroke-linecap="round" fill="none"/>
+</svg>
