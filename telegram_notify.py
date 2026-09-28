@@ -33,3 +33,37 @@ def alert_fail(stage, reason):
 def alert_ok(text):
     """Короткое уведомление об успешной публикации."""
     notify(f"✅ {text}")
+
+
+CAPTION_LIMIT = 1024  # больше Telegram в подпись к фото/видео не берёт
+
+
+def _send_file(method, field, path, caption=None):
+    try:
+        with open(path, "rb") as f:
+            data = {"chat_id": TG_CHAT}
+            if caption:
+                data["caption"] = caption
+            r = requests.post(f"https://api.telegram.org/bot{TG_TOKEN}/{method}",
+                              data=data, files={field: f}, timeout=120)
+        if not r.ok:
+            print(f"[TG] {method} не прошёл: {r.text[:200]}")
+        return r.ok
+    except Exception as e:
+        print(f"[TG] {method} не отправлен: {e}")
+        return False
+
+
+def send_post(text, photo=None, video=None):
+    """Пост как он выглядел бы в канале: фото с текстом в подписи, следом видео.
+    Длинный текст в подпись не влезает — тогда фото, а текст отдельным сообщением."""
+    if not TG_TOKEN or not TG_CHAT:
+        return False
+    fits = len(text) <= CAPTION_LIMIT
+    if photo and _send_file("sendPhoto", "photo", photo, text if fits else None) and fits:
+        text = None
+    if text:
+        notify(text)
+    if video:
+        _send_file("sendVideo", "video", video)
+    return True

@@ -1,7 +1,8 @@
 # example_generator.py — «крючок» для продажи автопостинга. По ссылке на открытый
 # Telegram-канал читает последние посты, пишет 3 новых поста в стиле этого канала и
-# готовое первое сообщение владельцу. Результат сохраняется в output/examples/ и
-# приходит в Telegram — остаётся переслать владельцу канала.
+# готовое первое сообщение владельцу. К каждому посту — фото-обложка и короткое видео
+# с заголовком (post_media.py, настоящие стоковые кадры без людей). Результат
+# сохраняется в output/examples/ и приходит в Telegram — остаётся переслать владельцу.
 #
 #   python example_generator.py t.me/имя_канала
 #   или двойной клик по make_example.cmd — он сам спросит ссылку.
@@ -17,7 +18,8 @@ import requests
 import google.generativeai as genai
 
 from ai_processor import CHANNEL_LINK, _call_groq_fallback, _parse_json
-from telegram_notify import notify
+from post_media import make_post_media
+from telegram_notify import notify, send_post
 
 OUT_DIR = os.path.join("output", "examples")
 # Своя модель, а не gemini-2.5-flash из ai_processor: квота бесплатного Gemini считается
@@ -126,12 +128,18 @@ PROMPT = """Ты помогаешь фрилансеру продать услу
 - Высказывания учёных и «мудрые цитаты» не приписывай никому.
 Не уверена в аяте или хадисе — обходись без цитаты: пост без цитат лучше недостоверного.
 
+К каждому посту нужна картинка и короткое видео, как в постах этого канала. Для них дай:
+- "title" — заголовок на обложку, 2–6 слов, на языке канала, без эмодзи;
+- "photo_query" — запрос для поиска стокового фото на АНГЛИЙСКОМ, 2–4 слова: только
+  предметы, еда, природа, интерьер (например "oatmeal cookies plate", "english books coffee").
+  Никаких людей, рук, лиц и слов про них.
+
 Жёсткие правила: никакого харама (алкоголь, азарт, риба, свинина, откровенный контент),
 никаких изображений людей не предлагать. Пиши на языке канала.
 
 Ответ — строго JSON без пояснений:
 {{"style": "2–3 предложения о стиле",
-  "posts": ["пост 1", "пост 2", "пост 3"],
+  "posts": [{{"text": "пост 1", "title": "заголовок", "photo_query": "english query"}}, ... ещё 2],
   "pitch": "сообщение владельцу"}}"""
 
 
@@ -175,8 +183,12 @@ def generate(channel):
             continue
         result = result or answer
         for post in answer["posts"]:
+            if isinstance(post, str):  # модель иногда отвечает по старой схеме
+                post = {"text": post}
+            if not post.get("text"):
+                continue
             try:
-                post = insert_quotes(post)
+                post["text"] = insert_quotes(post["text"])
             except BadQuote as e:
                 print(f"[examples] Попытка {attempt}: пост отброшен — {e}")
                 continue
@@ -348,7 +360,7 @@ def insert_quotes(post):
 
 
 def quote_warning(result):
-    if any(re.search(r"\(Сура \d+, аят \d+\)|\((аль-Бухари|Муслим), № ", p) for p in result["posts"]):
+    if any(re.search(r"\(Сура \d+, аят \d+\)|\((аль-Бухари|Муслим), № ", p["text"]) for p in result["posts"]):
         return ("ℹ️ Аяты и хадисы вставлены программой дословно: аяты — перевод Абу Аделя "
                 "(quran.com), хадисы — только «Сахих аль-Бухари» и «Сахих Муслим». "
                 "Проверь только, что цитата по смыслу подходит к посту.")
@@ -368,13 +380,30 @@ def render(channel, result):
         "",
     ]
     for i, post in enumerate(result["posts"], 1):
-        lines += [f"## Пример {i}", post, ""]
+        lines += [f"## Пример {i}"]
+        for kind, label in (("photo", "Фото"), ("video", "Видео")):
+            if post.get(kind):
+                lines.append(f"{label}: {post[kind]}")
+        lines += [post["text"], ""]
     lines += [
         "---",
         f"Когда владелец ответит «присылайте» — отправь примеры и ссылку на свой канал "
         f"как доказательство, что автопостинг работает: {CHANNEL_LINK}",
     ]
     return "\n".join(lines)
+
+
+def add_media(channel, result):
+    """Фото-обложка и видео к каждому посту. Сбой медиа не валит примеры: текст важнее."""
+    for i, post in enumerate(result["posts"], 1):
+        title = post.get("title") or post["text"].split("\n", 1)[0][:60]
+        try:
+            post.update(make_post_media(
+                title, post.get("photo_query") or title,
+                os.path.join(OUT_DIR, f"{channel['name']}_{i}"), caption=channel["title"],
+            ))
+        except Exception as e:
+            print(f"[examples] Медиа к примеру {i} не сделаны: {e}")
 
 
 def send_to_telegram(channel, result):
@@ -384,7 +413,7 @@ def send_to_telegram(channel, result):
            + quote_warning(result))
     notify(result["pitch"])
     for post in result["posts"]:
-        notify(post)
+        send_post(post["text"], photo=post.get("photo"), video=post.get("video"))
 
 
 def main(link):
@@ -393,6 +422,7 @@ def main(link):
         raise ValueError(f"В канале @{channel['name']} меньше 3 текстовых постов — стиль не понять")
     result = generate(channel)
     os.makedirs(OUT_DIR, exist_ok=True)
+    add_media(channel, result)
     path = os.path.join(OUT_DIR, f"{channel['name']}.md")
     text = render(channel, result)
     with open(path, "w", encoding="utf-8") as f:
