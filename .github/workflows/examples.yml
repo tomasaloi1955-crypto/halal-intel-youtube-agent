@@ -1,0 +1,46 @@
+name: examples
+
+# Примеры постов с фото и видео для чужого канала (example_generator.py).
+# Результат приходит в Telegram-бота и лежит в артефакте запуска.
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Ссылка на Telegram-канал"
+        required: true
+  push:
+    branches: [claude/agent-channel-distribution-fjt6in]
+    paths: [.github/examples_channel.txt]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить ffmpeg и шрифты
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Примеры постов
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          CHANNEL: ${{ github.event.inputs.channel }}
+        run: python example_generator.py "${CHANNEL:-$(cat .github/examples_channel.txt)}"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: examples
+          path: output/examples/
