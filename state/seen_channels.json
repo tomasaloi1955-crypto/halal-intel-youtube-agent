@@ -740,28 +740,205 @@
   "score": 50,
   "silent": 3
  },
+ "wabil_book": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "iscelenieserdets": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-09-28"
+ },
+ "assajdahbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "xnfksa": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-09-28"
+ },
+ "iqraskhool": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "iqraskhoolonline": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "huna_islam": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "iqrauroki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "arabiclanguagetafsir": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "ayubbalaev": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "muslimkasietdinov": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "pznaniya": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-09-28"
+ },
+ "good_time_jt": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "umra2030": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "umra365": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "mary_psychologie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "psy_dety": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "klyukva_v_sahare": {
+  "skip": "подписчиков 69",
+  "date": "2026-09-28"
+ },
+ "psych_help": {
+  "skip": "подписчиков 47",
+  "date": "2026-09-28"
+ },
+ "rodnaya_dysha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "glebpsiholog": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "psiholog_askarova": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "tvoypsihologgg": {
+  "skip": "молчит 441 дн.",
+  "date": "2026-09-28"
+ },
+ "huna_n": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "islam_huna": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "marita": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "sirajabutalha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "abuumarassyiam": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "addstickers": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "moder_umm_imran": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "diroya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "muslim_school_online": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "muslim_school_online_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "juliasheina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "psychologyseminar_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "antisaraton1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "askarova_nilufar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "naruto_kuunn": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "psychollogiya": {
+  "skip": "молчит 519 дн.",
+  "date": "2026-09-28"
+ },
+ "hanifiyaa1bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "institute_diroya_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-28"
+ },
+ "salihalusaimi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "diroya_for_sisters": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-09-28"
+ },
+ "ashabualquran": {
+  "sent": "2026-09-28",
+  "title": "ВИДЕО КОРАН",
+  "contact": "quran_ponimai",
+  "score": 100,
+  "silent": 38
+ },
+ "iqra_kutub": {
+  "sent": "2026-09-28",
+  "title": "Книги 📚",
+  "contact": "marita",
+  "score": 80,
+  "silent": 6
+ },
  "_queue": [
-  "wabil_book",
-  "iscelenieserdets",
-  "assajdahbot",
-  "xnfksa",
-  "huna_arabic",
-  "iqraskhool",
-  "iqra_kutub",
-  "iqraskhoolonline",
-  "huna_islam",
-  "iqrauroki",
-  "arabiclanguagetafsir",
-  "ayubbalaev",
-  "muslimkasietdinov",
-  "pznaniya",
-  "good_time_jt",
-  "umra2030",
-  "quranshifaislam",
-  "as_sajdahh",
+  "marketing_diroya_bot",
+  "zayavka_diroya",
+  "abu_hamza_hamzaev_bot",
+  "arabikonlain",
+  "otveti_uchenih",
+  "ashabualquran",
   "manasiktrevel",
-  "umra365",
   "znanie1_svet",
-  "hadisnabiislam"
+  "grromov",
+  "diroyaapp_bot",
+  "diroya_medina",
+  "medina_diroya",
+  "diroya_for_sistersbot"
  ]
 }
