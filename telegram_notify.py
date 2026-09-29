@@ -55,12 +55,19 @@ def _send_file(method, field, path, caption=None):
 
 
 def send_post(text, photo=None, video=None):
-    """Пост как он выглядел бы в канале: фото с текстом в подписи, следом видео.
-    Длинный текст в подпись не влезает — тогда фото, а текст отдельным сообщением."""
+    """Пост как он выглядел бы в канале: фото (или видео, если фото нет) с текстом
+    в подписи, следом видео. Длинный текст в подпись не влезает — тогда медиа,
+    а текст отдельным сообщением."""
     if not TG_TOKEN or not TG_CHAT:
         return False
     fits = len(text) <= CAPTION_LIMIT
-    if photo and _send_file("sendPhoto", "photo", photo, text if fits else None) and fits:
+    if photo:
+        first = ("sendPhoto", "photo", photo)
+    elif video:
+        first, video = ("sendVideo", "video", video), None
+    else:
+        first = None
+    if first and _send_file(*first, text if fits else None) and fits:
         text = None
     if text:
         notify(text)
