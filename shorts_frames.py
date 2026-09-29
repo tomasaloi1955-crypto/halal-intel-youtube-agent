@@ -27,7 +27,7 @@ OFF_WHITE = (226, 230, 244)
 MUTED     = (138, 148, 175)
 CARD_BG   = (22, 29, 52)
 
-BRAND_AVATAR = os.path.join("brand", "presenter_avatar.png")
+BRAND_AVATAR = os.path.join("brand", "robot_avatar.png")
 TG_CHANNEL = "t.me/Halalaifreya"
 
 _FONTS = {
@@ -220,7 +220,7 @@ def _chrome(img, rubric, episode):
 
 
 def _avatar(img, height=250):
-    """Ведущая в углу — единственный узнаваемый знак канала без живой съёмки.
+    """Робот-талисман в углу — единственный узнаваемый знак канала без живой съёмки.
     Нет файла — просто пропускаем, кадр не ломается."""
     if not os.path.exists(BRAND_AVATAR):
         return
