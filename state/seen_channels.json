@@ -926,19 +926,97 @@
   "score": 80,
   "silent": 6
  },
- "_queue": [
-  "marketing_diroya_bot",
-  "zayavka_diroya",
-  "abu_hamza_hamzaev_bot",
-  "arabikonlain",
-  "otveti_uchenih",
-  "ashabualquran",
-  "manasiktrevel",
-  "znanie1_svet",
-  "grromov",
-  "diroyaapp_bot",
-  "diroya_medina",
-  "medina_diroya",
-  "diroya_for_sistersbot"
- ]
+ "marketing_diroya_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "zayavka_diroya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "abu_hamza_hamzaev_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "grromov": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "diroyaapp_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "medina_diroya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "diroya_for_sistersbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "aru_hm": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "handmade_l": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "hm_minsk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "annaskileva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "svoimi_rykami_ot_marlin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "handemade_kz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "handmade_idei": {
+  "skip": "молчит 433 дн.",
+  "date": "2026-09-29"
+ },
+ "grad_masterov": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "elenkavikulya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "polinkamalinkahandmade": {
+  "skip": "подписчиков 32",
+  "date": "2026-09-29"
+ },
+ "hobby_chat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "daria_ama": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "polinabuh21": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "handmadeukraine25": {
+  "skip": "не наша ниша",
+  "date": "2026-09-29"
+ },
+ "handmade": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "embro_chat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-09-29"
+ },
+ "_queue": []
 }
