@@ -1304,12 +1304,19 @@
       "description": "I need a short promotional video that directly drives sales for our latest offer. The twist is that it must feature our company spokesperson, generated or enhanced with AI so their face looks perfectly natural on screen even though they will not be available to record new footage. Here is what I have in mind: • You handle the full AI-driven face creation—face-swap, lip-sync and expression matching—so the spokesperson appears to be delivering the script I will supply. • The finished piece should feel like a polished commercial: attention-grabbing opening, concise product benefits, a clear call-to-action, branded lower thirds and end-frame. • Length: around 45–60 seconds is ideal for paid ads and landing pages. • Final deliverables: 1080p (and, if possible, 4K) MP4, plus the working project files from whichever platform you prefer—Runway, Synthesia, D-ID, After Effects, etc.—so we can produce variants later. Seamless facial realism and lip-sync accuracy are non-negotiable; viewers must believe the spokesperson actually recorded this. If you have previous AI face projects, please share a link so I can see the quality. I’m ready to get started as soon as I find the right match.",
       "currency": "INR",
       "decision": "Проект требует создание видео с ИИ-лицом человека (face-swap, lip-sync). В профиле я делаю: генерацию контента (текст, картинки БЕЗ людей, озвучка, шортсы). Видео с искусственно созданным/улучшенным лицом реального человека — это запрещено (пункт «Чего я не делаю»: «Картинки и видео с людьми, сгенерированные ИИ»). Отказываемся."
+    },
+    "40743738": {
+      "title": "Spark Email Rule Automation",
+      "url": "https://www.freelancer.com/projects/spark/Spark-Email-Rule-Automation",
+      "description": "I have 15 separate mailboxes already connected to Spark. Around 6,500 messages are sitting in them and everything is mixed together. What I need is a clean, rule-driven structure so I can see only what matters the moment it arrives. Here is the workflow I’d like you to complete: • Create a new “Important” folder in every one of the 15 accounts. • Build Spark rules that move or label messages according to two main criteria: the sender’s address and keywords that appear in the subject line. • Apply those same rules retroactively to the entire backlog so all 6,500 existing emails are sorted right away. • Flag anything that meets those sender- or keyword-based rules as Important. Once the rules are tested in Spark and the mailboxes look clean, send me the rule set (export file or clearly written steps). With that I’ll replicate the setup inside cPanel myself. Your deliverable is therefore: 1. Live, working rules in Spark across 15 accounts. 2. An export or documented list of those rules so I can re-create them elsewhere. 3. A brief note confirming the total messages caught by each rule so I can double-check accuracy. Please make sure you are confident working directly in Spark, comfortable handling large batches of messages, and detail-oriented when it comes to rule logic. If something in the criteria looks ambiguous, let me know before running the full batch; I prefer one clear round of clarification instead of a messy inbox later.",
+      "currency": "USD",
+      "decision": "Проект требует прямой работы с интерфейсом Spark (облачный почтовый клиент), а не создание автоматизации на Python. Я делаю ИИ-автоматизации на Python — парсеры, боты, интеграции API. Работа с UI-сценариями в приложении Spark (создание папок, ручное тестирование правил, проверка на 6500 сообщений) — это не код и не API-интеграция, это административная работа в облачном сервисе. Spark не предоставляет открытый API для программного создания правил фильтрации в масштабе. Проект находится вне моего профиля услуг."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-01",
     "bids": 0,
-    "evals": 4
+    "evals": 5
   }
 }
