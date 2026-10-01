@@ -1018,5 +1018,28 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-29"
  },
+ "militaripsi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-01"
+ },
+ "psy_konsult": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-01"
+ },
+ "psychologist_elena": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-01"
+ },
+ "makhfuza_shomurodova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-01"
+ },
+ "detskaya_psixologiya_uzb": {
+  "sent": "2026-10-01",
+  "title": "Maxfuza Shomurodova | Bolalar psixologi",
+  "contact": null,
+  "score": 55,
+  "silent": 247
+ },
  "_queue": []
 }
