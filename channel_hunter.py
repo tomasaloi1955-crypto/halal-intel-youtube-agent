@@ -26,6 +26,7 @@ from telegram_notify import notify, alert_fail
 
 SEEN_FILE = dpath("seen_channels.json")
 QUEUE_KEY = "_queue"          # очередь непроверенных каналов хранится там же
+QUERY_POS_KEY = "_query_pos"  # с какого поискового запроса начать следующий запуск
 CARDS_PER_RUN = int(os.getenv("HUNTER_CARDS", "5"))
 MAX_CHECKS_PER_RUN = int(os.getenv("HUNTER_CHECKS", "60"))
 MAX_QUEUE = 500
@@ -47,7 +48,21 @@ SEARCH_QUERIES = [
     "скромная одежда", "абая", "никаб", "мусульманская мода", "исламская школа",
     "арабский язык", "коран онлайн", "мусульманский психолог", "халяль еда",
     "мусульманская семья", "женский клуб", "рукоделие", "домашняя выпечка",
+    "платки хиджабы", "мусульманская одежда", "химар", "джильбаб", "закрытые платья",
+    "исламские книги", "таджвид", "хифз", "уроки корана", "намаз для начинающих",
+    "мусульманские имена", "исламские подарки", "сурьма", "мисвак", "благовония масла",
+    "халяль косметика", "халяль кафе", "халяль мясо", "умра туры", "хадж туры",
+    "мусульманская свадьба", "никах", "сестры в исламе", "мусульманский блог",
+    "исламское воспитание детей", "мусульманский детский сад", "хиджама",
+    "травы сунна", "мед сунна", "черный тмин", "исламская психология",
+    "арабский для детей", "мусульманка москва", "мусульманка казань",
+    "мусульманка дагестан", "мусульманка чечня", "мусульманка алматы",
+    "мусульманка ташкент", "халяль москва", "халяль казань", "хиджаб махачкала",
 ]
+QUERIES_PER_RUN = 8
+SEARCH_PAGES = 2              # поиск по постам: каналы с 1-й и 2-й страницы выдачи
+RECHECK_DAYS = 30             # «молчит», «нет контакта» — через месяц смотрим снова
+RECHECK_REASONS = ("молчит", "нет контакта", "подписчиков", "нет постов")
 
 NICHE_KEYWORDS = [
     "ислам", "мусульман", "халяль", "халал", "хиджаб", "никаб", "абая", "мечет",
@@ -105,16 +120,49 @@ CONTACT_HINT_RE = re.compile(
 )
 
 
+HANDLE_RE = re.compile(r"(?:@|t\.me/|telegram\.me/)([A-Za-z0-9_]{5,32})")
+_person_cache = {}
+
+
+def is_person(handle):
+    """Живой человек, которому можно написать в личку, — а не канал, группа или бот.
+    Страница t.me/<ник> у человека: кнопка «Send Message» и «@ник» вместо счётчика
+    подписчиков; у каналов и групп — «N subscribers/members», у ботов — «Start Bot»."""
+    key = handle.lower()
+    if key not in _person_cache:
+        try:
+            page = polite_get(f"https://t.me/{handle}").text
+        except Exception:
+            return False   # не смогли проверить — не рискуем, ссылку не даём
+        extra = re.search(r'tgme_page_extra">\s*([^<]*)', page)
+        button = re.search(r'tgme_action_button_new[^>]*>([^<]*)', page)
+        _person_cache[key] = bool(
+            extra and extra.group(1).strip().startswith("@")
+            and button and button.group(1).strip() == "Send Message"
+        )
+    return _person_cache[key]
+
+
 def find_contact(name, description, posts):
-    """Личка владельца: @ник рядом со словами «админ», «по вопросам», «реклама»."""
+    """Личка владельца: @ник или t.me/ник в описании канала либо рядом со словами
+    «админ», «по вопросам», «реклама» в постах. Каждый ник проверяется на t.me —
+    в карточку попадает только настоящий человек."""
+    tried = set()
     for text in [description] + list(reversed(posts)):
-        for m in CONTACT_RE.finditer(text or ""):
+        for m in HANDLE_RE.finditer(text or ""):
             handle = m.group(1)
-            if handle.lower() in (name.lower(), "telegram") or handle.lower().endswith("bot"):
+            low = handle.lower()
+            if low in tried or low in (name.lower(), "telegram", "joinchat", "share") \
+                    or low.endswith("bot"):
                 continue
             around = (text[max(0, m.start() - 80):m.end() + 40]).lower()
-            if CONTACT_HINT_RE.search(around) or text is description:
+            if not (CONTACT_HINT_RE.search(around) or text is description):
+                continue
+            tried.add(low)
+            if is_person(handle):
                 return handle
+            if len(tried) >= 4:
+                return None
     return None
 
 
@@ -159,12 +207,35 @@ def activity(dates):
 
 
 def search_lyzem(query):
-    """Каналы из поиска lyzem.com — без ключей и регистрации."""
-    resp = polite_get(f"https://lyzem.com/search?q={requests.utils.quote(query)}&type=channel")
-    resp.raise_for_status()
-    names = re.findall(r'href="https://t\.me/([A-Za-z0-9_]{4,})"', resp.text)
+    """Каналы из поиска lyzem.com — без ключей и регистрации. Поиск по каналам
+    отдаёт всегда одни и те же ~5 штук, поэтому добавляем поиск по постам: там
+    каналы-авторы найденных постов, и выдача листается."""
+    q = requests.utils.quote(query)
+    urls = [f"https://lyzem.com/search?q={q}&type=channel"]
+    urls += [f"https://lyzem.com/search?q={q}&f=all&p={p}&per-page=10"
+             for p in range(1, SEARCH_PAGES + 1)]
+    names = []
+    for url in urls:
+        resp = polite_get(url)
+        resp.raise_for_status()
+        names += re.findall(r'href="https://t\.me/([A-Za-z0-9_]{4,})', resp.text)
     return [n for n in dict.fromkeys(names)
             if not n.lower().endswith("bot") and "lyzem" not in n.lower()]
+
+
+def recheck_due(entry):
+    """Пропущенный канал пора проверить снова: молчал, не было контакта и т. п."""
+    skip = entry.get("skip", "")
+    if not skip.startswith(RECHECK_REASONS):
+        return False
+    days = re.match(r"молчит (\d+)", skip)
+    if days and int(days.group(1)) > MAX_SILENT_DAYS:
+        return False   # заброшен больше года — уже не оживёт
+    try:
+        age = (datetime.now().date() - datetime.fromisoformat(entry["date"]).date()).days
+    except Exception:
+        return True
+    return age >= RECHECK_DAYS
 
 
 def score(info, silent, per_week, niche):
@@ -260,10 +331,7 @@ def card(info, silent, per_week, niche, contact, pitch):
         f"https://t.me/{info['name']}",
         f"Подписчиков: {subs} · последний пост {silent} дн. назад · {per_week} постов/нед.",
     ]
-    if contact:
-        lines.append(f"✍️ Написать владельцу: https://t.me/{contact}")
-    else:
-        lines.append("⚠️ Контакт владельца не найден — попробуй написать в комментариях к посту")
+    lines.append(f"✍️ Написать владельцу: https://t.me/{contact}")
     lines += ["", "Готовое сообщение (проверь и отправь):", pitch]
     return "\n".join(lines)
 
@@ -273,8 +341,15 @@ def run():
     # Очередь непроверенных каналов переживает запуск: «снежный ком» приносит их
     # быстрее, чем мы успеваем проверять (каждая проверка — пауза в пару секунд).
     queue = list(state.pop(QUEUE_KEY, []))
+    # Запросы идут по кругу, а не случайно — за неделю перебираются все.
+    start = int(state.pop(QUERY_POS_KEY, 0)) % len(SEARCH_QUERIES)
     seen = state
-    for query in random.sample(SEARCH_QUERIES, k=min(6, len(SEARCH_QUERIES))):
+    # Каналы, отложенные месяц назад («молчит», «нет контакта»), — снова в работу.
+    recheck = [name for name, entry in seen.items() if recheck_due(entry)]
+    for name in recheck:
+        del seen[name]
+    todays = [SEARCH_QUERIES[(start + i) % len(SEARCH_QUERIES)] for i in range(QUERIES_PER_RUN)]
+    for query in todays:
         try:
             found = search_lyzem(query)
         except Exception as e:
@@ -282,6 +357,7 @@ def run():
             continue
         print(f"[hunter] «{query}»: найдено {len(found)}")
         queue.extend(found)
+    queue += recheck   # свежие находки — первыми, перепроверка — после них
 
     candidates = []
     checked = 0
@@ -304,12 +380,14 @@ def run():
         if not info:
             seen[low] = {"skip": "не канал или закрыт", "date": datetime.now().date().isoformat()}
             continue
-        # Снежный ком: упомянутые каналы проверим в следующие запуски.
-        for mention in info["mentions"]:
-            if mention not in seen and mention not in OWN_CHANNELS:
-                pending.append(mention)
         silent, per_week = activity(info["dates"])
         niche = classify(info)
+        # Снежный ком — только от каналов по теме: соседи случайного канала про
+        # машины или новости тоже не наши (так 2/3 проверок уходили впустую).
+        if niche:
+            for mention in info["mentions"]:
+                if mention not in seen and mention not in OWN_CHANNELS:
+                    pending.append(mention)
         subs = info["subscribers"] or 0
         reason = None
         if not niche:
@@ -326,11 +404,17 @@ def run():
         candidates.append((score(info, silent, per_week, niche), info, silent, per_week, niche))
 
     candidates.sort(key=lambda c: -c[0])
-    sent = 0
+    sent = no_contact = 0
     for points, info, silent, per_week, niche in candidates:
         if sent >= CARDS_PER_RUN:
             break
         contact = find_contact(info["name"], info["description"], info["posts"])
+        if not contact:
+            # Без лички владельца карточка бесполезна — не присылаем, вернёмся через месяц.
+            seen[info["name"].lower()] = {"skip": "нет контакта владельца",
+                                          "date": datetime.now().date().isoformat()}
+            no_contact += 1
+            continue
         try:
             pitch = make_pitch(info, silent, per_week, niche)
         except Exception as e:
@@ -347,9 +431,10 @@ def run():
 
     # Непроверенные кандидаты — в очередь на следующий запуск (самые свежие сверху).
     seen[QUEUE_KEY] = list(dict.fromkeys(queue))[:MAX_QUEUE]
+    seen[QUERY_POS_KEY] = (start + QUERIES_PER_RUN) % len(SEARCH_QUERIES)
     save_seen(seen)
     print(f"[hunter] Проверено каналов: {checked}, кандидатов: {len(candidates)}, "
-          f"карточек: {sent}, в очереди: {len(seen[QUEUE_KEY])}")
+          f"без контакта: {no_contact}, карточек: {sent}, в очереди: {len(seen[QUEUE_KEY])}")
     if checked and not candidates:
         print("[hunter] Подходящих каналов в этот раз нет")
     if not checked:
