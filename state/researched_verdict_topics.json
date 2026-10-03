@@ -1,13 +1,5 @@
 [
   {
-    "practice": "Использование ИИ для незаметного психологического «подталкивания» клиентов к покупке определённых товаров или принятию выгодных для бизнеса решений.",
-    "keywords": [
-      "AI nudging",
-      "behavioral economics",
-      "ethical influence"
-    ]
-  },
-  {
     "practice": "Мониторинг сотрудников с помощью ИИ, анализирующего их биометрические данные (выражение лица, тон голоса) для оценки вовлечённости и продуктивности.",
     "keywords": [
       "employee surveillance",
@@ -21,6 +13,56 @@
       "virtual influencers",
       "AI avatars",
       "digital authenticity"
+    ]
+  },
+  {
+    "practice": "Использование ИИ для проведения внутреннего обучения и симуляций для сотрудников, где ИИ полностью разрабатывает контент, оценивает прогресс и дает обратную связь, но это представляется как «авторские методики» или «программы, разработанные экспертами компании».",
+    "keywords": [
+      "AI-driven internal training",
+      "hidden AI authorship",
+      "corporate education",
+      "expertise misrepresentation",
+      "employee skill development"
+    ]
+  },
+  {
+    "practice": "Применение ИИ для имитации голоса и манеры общения конкретного, известного сотрудника (например, генерального директора или ведущего эксперта компании) в автоматизированных звонках или видеосообщениях для клиентов, создавая впечатление личного обращения от этого человека.",
+    "keywords": [
+      "AI voice impersonation",
+      "specific identity mimicry",
+      "deceptive customer communication",
+      "brand authenticity",
+      "synthetic media marketing"
+    ]
+  },
+  {
+    "practice": "Использование генеративного ИИ для создания совершенно новых дизайнов товаров, рецептур или произведений искусства (музыка, графика), которые затем патентуются/защищаются и продаются как «оригинальные творения» человека-предпринимателя или его команды без упоминания роли ИИ.",
+    "keywords": [
+      "AI generative design",
+      "product innovation",
+      "intellectual property attribution",
+      "human authorship claim",
+      "creative economy"
+    ]
+  },
+  {
+    "practice": "Внедрение ИИ-систем в мобильные приложения или носимые устройства для постоянного, но незаметного анализа поведения, эмоционального состояния и даже биометрических данных пользователей, чтобы предлагать им индивидуальные продукты или услуги в моменты их наибольшей восприимчивости или уязвимости.",
+    "keywords": [
+      "AI emotional profiling",
+      "user vulnerability exploitation",
+      "hidden biometric analysis",
+      "opportunistic marketing",
+      "privacy invasion"
+    ]
+  },
+  {
+    "practice": "Применение ИИ для автономного формирования и модерации онлайн-сообществ, форумов или групп поддержки вокруг продукта/услуги, где большинство «участников», «модераторов» или «экспертов» являются ИИ-ботами, создающими иллюзию активного человеческого взаимодействия и поддержки.",
+    "keywords": [
+      "AI-driven fake communities",
+      "synthetic social proof",
+      "deceptive online engagement",
+      "bot-moderated forums",
+      "artificial community building"
     ]
   }
 ]
