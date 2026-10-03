@@ -1465,12 +1465,26 @@
       "description": "We are building a new AI powered sourcing and RFP platform, with development planned for Q1 2027. Before development begins, we want to connect with experienced AI developers for paid consulting to help us make smart decisions around AI architecture, workflows, integrations, scalability, and product development. This is not a job posting. We are looking for experienced developers who can provide practical advice as we prepare the product for development. If we work well together, there may also be an opportunity to hire you or your team for the actual development in 2027. Interested? Send us a short introduction with your experience and areas of expertise.",
       "currency": "USD",
       "decision": "Проект — это консультирование по архитектуре AI-платформы, а не разработка конкретной автоматизации. В профиле нет услуги 'консультирование' или 'архитектурный аудит'. Работаю только на готовый результат (бот, парсер, интеграцию, генератор контента и т.п.), а не на совет. Кроме того, бюджет 10–30 USD за консультацию слишком низкий для такого уровня работы. Вежливо отказываемся."
+    },
+    "40747457": {
+      "title": "Sleek AI Logo Design",
+      "url": "https://www.freelancer.com/projects/ai-graphic-design/Sleek-Logo-Design",
+      "description": "I need a fresh logo for my AI-focused company that immediately conveys trust and reliability while feeling modern and sleek. The mark should look just as strong on a dark app header as it does printed on stationery, so clean geometry, balanced spacing, and a crisp type choice are important. Please base the concept on these core ideas: • Trust & reliability come first—think confident shapes, stable symmetry, and a professional but not cold palette. • A contemporary aesthetic—smooth lines, minimalist detail, and a tech-forward feel that can scale from favicon to billboard. Deliverables I’ll need: 1. Primary logo in vector (AI, SVG) and high-res PNG. 2. Reversed/light version for dark backgrounds. 3. Monochrome version. 4. Quick brand sheet showing colors and typography. If you have experience crafting marks for tech or SaaS brands and can show comparable work, let’s talk timelines and your creative process.",
+      "currency": "INR",
+      "decision": "Это дизайн логотипа — не входит в мой профиль услуг. Я разработчица Python-автоматизаций, не графический дизайнер. Логотипы, брендинг, дизайн — это не моё."
+    },
+    "40747349": {
+      "title": "AI-Powered Chat and Media Generation App",
+      "url": "https://www.freelancer.com/projects/ai-chatbot-development/Powered-Chat-Media-Generation-App",
+      "description": "Project Title: AI Chat, Image and Video Generation Web App I am looking for an experienced full-stack developer to build and improve a professional AI-powered web application. Required features: - AI chat functionality. - AI image generation. - AI video generation. - Modern, mobile-friendly and responsive UI. - User registration, login and dashboard. - Option to use basic features without signing up, where technically feasible. - Generation history and saved content. - Indian pricing in ₹ and a credit-based payment system. - Razorpay payment gateway integration. - Admin panel to manage users, credits, pricing and usage. - Secure backend, database and API integration. - Deployment, testing and bug fixing. Preferred technology: Next.js, TypeScript, Tailwind CSS, PostgreSQL and Prisma. Deliverables: Complete working source code, deployment, documentation and support for fixing launch issues. Please provide your portfolio, estimated project cost, timeline and details of any third-party AI API costs before starting work.",
+      "currency": "INR",
+      "decision": "Это полнофункциональное веб-приложение с фронтенд, БД, админ-панелью и платежной системой. Я делаю Python-автоматизации (боты, парсеры, ИИ-агенты, интеграции), а не сайты и веб-приложения. Проект требует full-stack разработку на Next.js — это вне моего профиля."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-03",
     "bids": 0,
-    "evals": 0
+    "evals": 2
   }
 }
