@@ -1282,71 +1282,258 @@
   "score": 15,
   "silent": 2
  },
+ "leavesofnothing": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "delaikulturu": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "booksyandex": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "admarginem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "kinoartru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "moscowbookweek": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "bookelab": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "pennlab": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "vsealism": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "eugeniasuslova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "simulati02": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "cdefgabh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "moiseeva_alina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "hum_hse": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "sfiru": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "badzhva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "rosebud_publishing": {
+  "skip": "подписчиков 163",
+  "date": "2026-10-04"
+ },
+ "voznesenskycenter": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "gmail": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "smena_kazan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "oriental_centre": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "dahlbooks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "materialandscience": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "provzglyad": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "tribute": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "addlist": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "ershovfilm": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "mrtextortexel": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "boost": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "veretenofilms": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "iva_poetry": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "o0_0o_00o0": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "spvzh": {
+  "skip": "подписчиков 169",
+  "date": "2026-10-04"
+ },
+ "forestjournal_org": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "vs_ave_liev": {
+  "skip": "подписчиков 134",
+  "date": "2026-10-04"
+ },
+ "krishe4ki": {
+  "skip": "подписчиков 96",
+  "date": "2026-10-04"
+ },
+ "druckarnya_salasz": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "araepic": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "wrmtrc2022": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "antihauntologyhauntologyclub": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "halomedia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "nlobooks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "experimental_writing": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "holistic_p": {
+  "skip": "подписчиков 97",
+  "date": "2026-10-04"
+ },
+ "so_slowly": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "ethnocinema": {
+  "skip": "не наша ниша",
+  "date": "2026-10-04"
+ },
+ "hsekoreanstudies": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-04"
+ },
+ "armmuseum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-04"
+ },
+ "ivran": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-04"
+ },
+ "mihyar_damascene": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-04"
+ },
+ "hauntology_dm": {
+  "sent": "2026-10-04",
+  "title": "Hauntology",
+  "contact": "hauntology",
+  "score": 70,
+  "silent": 4
+ },
+ "archaeology_hse": {
+  "sent": "2026-10-04",
+  "title": "Центр античной и восточной археологии НИУ ВШЭ",
+  "contact": "galaxy_n",
+  "score": 65,
+  "silent": 17
+ },
+ "lavender_and_the_like": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-04"
+ },
+ "antroeast": {
+  "sent": "2026-10-04",
+  "title": "Отдел антропологии Востока ИВ РАН",
+  "contact": "ivran",
+  "score": 45,
+  "silent": 2
+ },
+ "nerabotahere": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-04"
+ },
+ "yazykizhizn": {
+  "sent": "2026-10-04",
+  "title": "Язык и жизнь",
+  "contact": "eugeniasuslova",
+  "score": 40,
+  "silent": 6
+ },
+ "subduplicata": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-04"
+ },
+ "zemlzeml": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-04"
+ },
+ "dariayashinav": {
+  "sent": "2026-10-04",
+  "title": "dariayashina",
+  "contact": "dariayashinax",
+  "score": 15,
+  "silent": 2
+ },
  "_queue": [
-  "leavesofnothing",
-  "delaikulturu",
-  "booksyandex",
-  "admarginem",
-  "kinoartru",
-  "moscowbookweek",
-  "zemlzeml",
-  "yazykizhizn",
-  "marisaxon",
-  "bookelab",
-  "muslimworlds_hse",
-  "pennlab",
-  "iocs_hse",
-  "vsealism",
-  "eugeniasuslova",
-  "paxiranica",
-  "simulati02",
-  "cdefgabh",
-  "moiseeva_alina",
-  "hauntology_dm",
-  "hum_hse",
-  "sfiru",
-  "mihyar_damascene",
-  "badzhva",
-  "rosebud_publishing",
-  "voznesenskycenter",
-  "antroeast",
-  "gmail",
-  "smena_kazan",
-  "studionewmusic",
-  "lavender_and_the_like",
-  "oriental_centre",
-  "dahlbooks",
-  "materialandscience",
-  "provzglyad",
-  "tribute",
-  "addlist",
-  "ershovfilm",
-  "mrtextortexel",
-  "boost",
-  "veretenofilms",
-  "iva_poetry",
-  "o0_0o_00o0",
-  "spvzh",
-  "forestjournal_org",
-  "subduplicata",
-  "vs_ave_liev",
-  "krishe4ki",
-  "druckarnya_salasz",
-  "dariayashinav",
-  "araepic",
-  "wrmtrc2022",
-  "antihauntologyhauntologyclub",
-  "halomedia",
-  "nlobooks",
-  "experimental_writing",
-  "holistic_p",
-  "so_slowly",
-  "nerabotahere",
-  "ethnocinema",
-  "hsekoreanstudies",
-  "armmuseum",
-  "archaeology_hse",
-  "ivran",
   "seminarov7",
   "persianmatchbox",
   "ethiopia_and_arab_world",
@@ -1369,7 +1556,252 @@
   "ssolloma",
   "soloma1008",
   "nosorogmagazine",
-  "netbylo"
+  "netbylo",
+  "moda_looking",
+  "fashion_designer_chat",
+  "moda_zhenskaya",
+  "krasovki_moda",
+  "chuzhaya_moda",
+  "nina_bortnikova",
+  "moda_kh",
+  "moda_gold",
+  "modama",
+  "shopbrb_wowsk_vapku27",
+  "zhenskaya_moda",
+  "metro_kh",
+  "qalbim_4221",
+  "islamskaya_777",
+  "vkchan",
+  "discounts_3",
+  "school_xy",
+  "school_r",
+  "arabskiy_yazik",
+  "arabicdeti",
+  "arabic_l",
+  "arabic_abu_zakaria",
+  "arabskiyyazik17",
+  "uchim_arabskiy",
+  "to_arabic",
+  "arabic_tadjvid",
+  "sibawyh",
+  "arabic_tadjwid",
+  "quran_subtitles",
+  "tadjvidd",
+  "koran_translate",
+  "vayquran95",
+  "salyafiya_1",
+  "quran_znaniedeti",
+  "koran_s_nulya",
+  "nashid_95",
+  "angelika_tochka_rosta",
+  "kurva_moyva",
+  "nenastoyashchijpsiholog",
+  "psy_go",
+  "psy_you1",
+  "pomogu_4em_mogu",
+  "knowledge_of_life_999",
+  "tvoy_luchuy_psilolog",
+  "psiholog_anastasia_homutova",
+  "ruslan_eder",
+  "sber_eda",
+  "food_new",
+  "vityasdrops",
+  "edacheloveka",
+  "beattasty",
+  "okoloeda1",
+  "dobroieda",
+  "good_food_minsk",
+  "rip_malyshka",
+  "satsanga",
+  "stefania_vip",
+  "a_funny",
+  "familight",
+  "ideal_zhena",
+  "yo_family",
+  "haknem_family",
+  "m_u_x_a_u_jl",
+  "start_7",
+  "bt_razvitie",
+  "zk_like",
+  "rimma_18",
+  "womenpoima",
+  "zhenskoe_vse",
+  "make_up_v",
+  "tantra_4_life",
+  "d_za40",
+  "lady_go",
+  "pro_je_ktor",
+  "klubsinergia",
+  "cogroups",
+  "compost_coop",
+  "polina_grrr",
+  "polja_est",
+  "ptichking",
+  "editorial_egalite",
+  "kp_pyl",
+  "herehavetheseflowers",
+  "delaikulturu_connect",
+  "wallswillfall",
+  "privetpoidem",
+  "engineerhistory",
+  "anpisman",
+  "randomcoffeeru",
+  "slovonadonu",
+  "v1gvam",
+  "docfilmcom",
+  "mavestreambot",
+  "aonefilms",
+  "besedyfest",
+  "tutamail",
+  "moneyfiction",
+  "russos_subscription_bot",
+  "sociologist",
+  "wlagru",
+  "norma_smallpress",
+  "mf24_42",
+  "yakov_podolny",
+  "jenyayahina",
+  "mari_saxon",
+  "ffotografika",
+  "khantao",
+  "neomenia_books",
+  "metajournal",
+  "skhronpoetry",
+  "thelongkissgoodnight",
+  "sketchbug",
+  "alexeylyzlov",
+  "chitnes",
+  "tnkmr",
+  "na_kolenke_zin",
+  "utkometasy",
+  "nsvrmnk",
+  "moscowcalling",
+  "hauntology",
+  "ignatkrasikovmusic",
+  "insonicspace",
+  "uraloperaballet",
+  "sergeidesev",
+  "samocvetbar",
+  "ile_theleme",
+  "flammemann",
+  "chekhovandcompany",
+  "timepadru",
+  "vsesvobodny",
+  "ooosmenaknigi",
+  "magisteria_ru",
+  "dvorbooks",
+  "izdaniya",
+  "mastersbookstore",
+  "s_shvyrev",
+  "moscowbooks_ru",
+  "avamilova",
+  "falanster_books",
+  "mdk_books",
+  "falanster_delivery",
+  "schusevshop",
+  "gorky_media",
+  "piotrovskybook",
+  "podpisnie_v_myzee",
+  "skbprometheus",
+  "almet_biblio",
+  "mig_mendeleevsk",
+  "smena_deti",
+  "pollimona_illustration",
+  "kafarabphil",
+  "news_oasis",
+  "bezoblatchnomgla",
+  "qifa_nabki",
+  "ymozrenie",
+  "dahlbookstore",
+  "lectoriumport",
+  "borisovhistory",
+  "ellatukhareli",
+  "fundregion",
+  "yankovskiyivan",
+  "rkvt_2020",
+  "mershov91",
+  "krisorubka",
+  "channelfmi",
+  "pshpshto",
+  "genicht",
+  "lizaxiuxiu",
+  "gorbushkabelikov",
+  "licenza_poetica",
+  "subduplicata",
+  "strawberryshortcakebrainfire",
+  "rost_rus",
+  "appeaul",
+  "terminal_nn",
+  "ilia_dolgov",
+  "babka_bar",
+  "polifempublishing",
+  "charlie_krd",
+  "knijniy_v_klube",
+  "poetrymag",
+  "svetovoiden",
+  "poetry",
+  "ozerobooks",
+  "dariayashinav",
+  "room_617",
+  "noise_pines",
+  "newhausmann",
+  "nolliquo_poems",
+  "nanastitchhh",
+  "norm_stihi_hi_hi",
+  "ch4shkav4ashke",
+  "huligun4ikkk",
+  "grigorysannikov",
+  "vladimir_koshelev_poet",
+  "sunyzny",
+  "tfhia",
+  "outlook",
+  "tubuscvarciuvch",
+  "howdy_pardner",
+  "poetsemenbaev",
+  "yl_mor",
+  "soyapress",
+  "poetlib",
+  "kultinfo",
+  "mospoetryslam",
+  "cci_fabrika",
+  "zzernoo",
+  "vacges2",
+  "dariayashinax",
+  "wazzupbeijing",
+  "personatoobject",
+  "sobolevmusic000",
+  "dongxidongxi",
+  "dniculture",
+  "francispink",
+  "egrooves",
+  "rrealli",
+  "talwegpress",
+  "cherni_rynok",
+  "env_eco_readings",
+  "nekrasovkalibrary",
+  "centrezotov",
+  "triumphgallery",
+  "syg_ma",
+  "experimental_writing_bot",
+  "lifeinspace_rymbu",
+  "tashkent_tbilisi",
+  "experimentalwriting",
+  "derevoiptiza",
+  "mariapoznanskaya",
+  "itakabookstbilisi",
+  "negodni",
+  "engine_press",
+  "wordorder",
+  "therealtesli",
+  "nielitnimass",
+  "vyslushat",
+  "pushkinskaya10",
+  "postscriptumbooks",
+  "fbchu",
+  "artasia_gallery",
+  "armsouvenir",
+  "narekatsiofficial",
+  "galaxy_n"
  ],
- "_query_pos": 8
+ "_query_pos": 16
 }
