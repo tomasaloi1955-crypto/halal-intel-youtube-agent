@@ -1,0 +1,37 @@
+name: Rename Telegram channel
+
+# Разовое переименование TG-канала в «Кодю без кода».
+# Запускается при пуше этого файла и вручную кнопкой.
+on:
+  push:
+    paths: [".github/workflows/rename_tg_channel.yml"]
+  workflow_dispatch: {}
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set title and description
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_CHANNEL_BOT_TOKEN || secrets.TELEGRAM_BOT_TOKEN }}
+          CHANNEL: ${{ secrets.TELEGRAM_CHANNEL_ID || '@Halalaifreya' }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys, urllib.parse, urllib.request
+          token, channel = os.environ["TOKEN"], os.environ["CHANNEL"]
+          def call(method, **params):
+              data = urllib.parse.urlencode(params).encode()
+              try:
+                  with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/{method}", data) as r:
+                      res = json.load(r)
+              except urllib.error.HTTPError as e:
+                  res = json.load(e)
+              print(method, "->", res.get("ok"), res.get("description", ""))
+              return res
+          title = call("setChatTitle", chat_id=channel, title="Кодю без кода")
+          call("setChatDescription", chat_id=channel, description=(
+              "Я не программист — я учитель английского. С помощью ИИ создаю ботов, "
+              "сайты и агентов и показываю всё как есть: от идеи до работающей программы. "
+              "Промпты для вайбкодинга и новости курса — здесь."))
+          sys.exit(0 if title.get("ok") else 1)
+          PY
