@@ -1654,12 +1654,19 @@
       "description": "Hi! I'm developing an original vertical AI mini-drama series and I'm looking for an AI video creator who can produce a recurring series with strong character and visual consistency. The pilot needs: • 9:16 vertical format for TikTok and Instagram Reels • Cinematic, realistic teen-drama style • Consistent character faces, skin tones, hairstyles and body features across scenes • Consistent clothing/accessories when scenes occur on the same day • Natural character movement and facial expressions • Multiple characters interacting in the same scenes • Natural-sounding individual voices for each recurring character • Accurate dialogue/lip-sync • School hallway and cafeteria environments matching the school's reference • Background students/activity so the school feels alive • Music, sound effects and clean dialogue audio • Professional editing and pacing • Optional burned-in captions/social-media subtitles • Final 1080 × 1920 video without watermarks",
       "currency": "USD",
       "decision": "Проект требует генерации видео с людьми (teen-drama с consistent character faces, multiple characters interacting). Профиль запрещает: «Картинки и видео с людьми, сгенерированные ИИ». Это одно из жёстких правил шариата. Также бюджет $10–30 явно недостаточен для такого объёма работы (9 сцен, multiple characters, lip-sync, professional editing) — даже минимальная цена за ИИ-контент $80. Отказываемся."
+    },
+    "40749993": {
+      "title": "Create Claude AI Website for Real Estate Project ",
+      "url": "https://www.freelancer.com/projects/web-hosting/Create-Claude-Website-for-Real",
+      "description": "I need a small-footprint website that lets visitors interact with an Anthropic Claude–powered assistant acting as a public advocate for our upcoming real-estate development. The AI’s core role is to liaise with local authorities and the surrounding community, so every conversational flow must reflect accurate zoning language, planning timelines, and community-impact facts. Beyond answering questions, the assistant should actively promote and schedule three kinds of engagement opportunities: town-hall meetings, community workshops, and stakeholder briefings. When a user shows interest, the AI must capture contact details, add the person to the correct event list, and trigger an email/SMS confirmation through our existing Mailchimp and Twilio accounts. Please build the site in a modern stack (React or Vue on the front end, Node or Python on the back end—whichever you are fastest with) and wire it to Claude via the official API. A lightweight CMS for updating project factsheets, meeting dates, and municipality documents would save us time, so include that if possible. Deliverables • Responsive single-page site, styled to match our branding guide (will be supplied). • Claude integration with tested intents for authority liaison, FAQ handling, and event scheduling. • Admin dashboard to edit content and export attendee lists (CSV). • Deployment to our AWS account with clear hand-over notes and a short Loom walkthrough.",
+      "currency": "USD",
+      "decision": "Основной заказ — разработка веб-сайта с фронтенд-фреймворком (React/Vue), админ-панелью и развёртыванием на AWS. Это выходит за пределы моего профиля: я делаю Python-автоматизации (боты, парсеры, генераторы контента), а не веб-разработку. Интеграция с Claude и Twilio — это часть, которую я могла бы сделать, но она вложена в сайт, который мне не по силам. Отказываюсь вежливо, чтобы не взяться за несёжное."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-04",
     "bids": 0,
-    "evals": 17
+    "evals": 18
   }
 }
