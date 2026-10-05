@@ -1661,12 +1661,19 @@
       "description": "I need a small-footprint website that lets visitors interact with an Anthropic Claude–powered assistant acting as a public advocate for our upcoming real-estate development. The AI’s core role is to liaise with local authorities and the surrounding community, so every conversational flow must reflect accurate zoning language, planning timelines, and community-impact facts. Beyond answering questions, the assistant should actively promote and schedule three kinds of engagement opportunities: town-hall meetings, community workshops, and stakeholder briefings. When a user shows interest, the AI must capture contact details, add the person to the correct event list, and trigger an email/SMS confirmation through our existing Mailchimp and Twilio accounts. Please build the site in a modern stack (React or Vue on the front end, Node or Python on the back end—whichever you are fastest with) and wire it to Claude via the official API. A lightweight CMS for updating project factsheets, meeting dates, and municipality documents would save us time, so include that if possible. Deliverables • Responsive single-page site, styled to match our branding guide (will be supplied). • Claude integration with tested intents for authority liaison, FAQ handling, and event scheduling. • Admin dashboard to edit content and export attendee lists (CSV). • Deployment to our AWS account with clear hand-over notes and a short Loom walkthrough.",
       "currency": "USD",
       "decision": "Основной заказ — разработка веб-сайта с фронтенд-фреймворком (React/Vue), админ-панелью и развёртыванием на AWS. Это выходит за пределы моего профиля: я делаю Python-автоматизации (боты, парсеры, генераторы контента), а не веб-разработку. Интеграция с Claude и Twilio — это часть, которую я могла бы сделать, но она вложена в сайт, который мне не по силам. Отказываюсь вежливо, чтобы не взяться за несёжное."
+    },
+    "40750153": {
+      "title": "Refine AI Art Portraits - 04/10/2026 21:25 EDT",
+      "url": "https://www.freelancer.com/projects/ai-art-creation/Refine-Art-Portraits-EDT",
+      "description": "I need a skilled artist to refine AI-generated images and create them as 12\"x18\" portraits at 300 dpi. Requirements: - Detail enhancement for realism - Realistic texturing - Focus on improving object details Ideal Skills & Experience: - Proficiency in digital painting/editing - Strong eye for detail - Experience with AI-generated images",
+      "currency": "CAD",
+      "decision": "Это заказ на дизайн и ручное редактирование изображений (digital painting), что не входит в мой профиль. Я делаю автоматизации на Python, генерацию контента через ИИ (без ручного художественного редактирования), но не работаю с дизайном, ретушью и профессиональной подготовкой готовых изображений к печати. Это требует навыков дизайнера/художника, а не разработчика автоматизаций."
     }
   },
   "threads": {},
   "day": {
-    "date": "2026-10-04",
+    "date": "2026-10-05",
     "bids": 0,
-    "evals": 18
+    "evals": 1
   }
 }
