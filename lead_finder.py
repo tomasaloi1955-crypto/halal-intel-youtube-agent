@@ -8,7 +8,7 @@
 #   • Freelancer.com — открытый API поиска проектов (международные заказы, en).
 #   • Reddit — RSS разделов, где заказчики ищут исполнителей (r/forhire, r/n8n и др.).
 # Заказы из мусульманской/халяль-ниши помечаются 🕌 и идут первыми. Харам-ниши
-# (казино, форекс, алкоголь, свинина, банки) отсекаются жёстко.
+# (список — в haram.py) отсекаются жёстко.
 import html
 import json
 import os
@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
+from haram import haram_reason
 from paths import dpath
 from telegram_notify import notify, alert_fail
 
@@ -54,31 +55,6 @@ TITLE_KEYWORDS = STRONG_KEYWORDS + [
 HALAL_KEYWORDS = [
     "ислам", "мусульман", "халяль", "халал", "мечет", "намаз", "коран", "хиджаб", "умра", "хадж",
     "islam", "muslim", "halal", "mosque", "quran", "hijab", "umrah", "modest",
-]
-
-# Категории, заказы из которых НЕ показываем никогда (харам-ниши).
-EXCLUDE_KEYWORDS = [
-    # азартные игры / ставки
-    "казино", "ставки на спорт", "ставок на", "букмекер", "беттинг", "азартн",
-    "покер", "слот-автомат", "игровой автомат", "рулетк", "лотере", "тотализатор",
-    "casino", "gambling", "betting", "bookmaker", "sportsbook", "poker", "slot machine", "lottery",
-    # финансовые/риба-ниши
-    "форекс", "бинарные опцион", "бинарный опцион", "микрозайм", "ломбард", "кредитная организация",
-    "forex", "binary options", "microloan", "pawnshop",
-    # алкоголь
-    "алкогол", "спиртн", "винодел", "пивовар", "ликёр", "ликер", "виски", "водка",
-    "alcohol", "liquor", "whiskey", "vodka", "brewery", "distillery",
-    # свинина
-    "свинин", "бекон", "ветчин",
-    "pork", "bacon", " ham ",
-    # банки
-    "банк", "bank",
-    # астрология, гадания, магия — ширк
-    "астролог", "гороскоп", "натальн", "зодиак", "таролог", "карты таро", "расклад таро",
-    "гадан", "нумеролог", "матрица судьбы", "дизайн человека", "эзотери", "магия", "магии",
-    "приворот", "экстрасенс", "ясновид", "хиромант", "рунолог",
-    "astrolog", "horoscope", "zodiac", "tarot", "numerolog", "esoteric", "psychic", "fortune tell",
-    "witchcraft", "occult", "human design",
 ]
 
 # Не наш профиль, хотя в названии мелькает «AI»: разметка данных, обучение ИИ
@@ -210,10 +186,12 @@ def is_relevant(lead):
     relevant = has_any(title, TITLE_KEYWORDS) or (
         lead["source"] != "Freelancer" and has_any(text, STRONG_KEYWORDS)
     )
-    if not relevant or has_any(text, EXCLUDE_KEYWORDS) or has_any(title, OFF_PROFILE_TITLE_KEYWORDS):
+    if not relevant or has_any(title, OFF_PROFILE_TITLE_KEYWORDS):
         return False
     lead["halal"] = has_any(text, HALAL_KEYWORDS)
-    return True
+    # Харам-ниши (haram.py) не показываем никогда; исламским заказам можно
+    # исламские финансы и знакомства для никаха.
+    return not haram_reason(text, muslim=lead["halal"])
 
 
 def load_seen():

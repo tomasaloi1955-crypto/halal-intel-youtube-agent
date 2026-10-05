@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 import requests
 
 from paths import dpath
+from haram import haram_reason
 from telegram_notify import notify, alert_fail
 
 SEEN_FILE = dpath("seen_channels.json")
@@ -75,33 +76,12 @@ GENERAL_KEYWORDS = [
     "психолог", "тренер", "рукодел", "выпечк", "handmade", "запись", "услуг",
 ]
 
-# Каналы, которые нам не нужны: чужие рекламные помойки и явный харам.
-# Проверяется по НАЗВАНИЮ и ОПИСАНИЮ канала — то есть по теме канала. В постах такие
-# слова мелькают безобидно («халяльна ли криптовалюта»), и по ним отбрасывать нельзя.
+# Каналы, которые нам не нужны: чужие рекламные помойки и накрутка. Харам-ниши
+# (алкоголь, риба, астрология и т. д.) — в haram.py. Проверяется по НАЗВАНИЮ и
+# ОПИСАНИЮ канала — то есть по теме канала.
 SKIP_KEYWORDS = [
-    "казино", "ставки", "букмекер", "беттинг", "форекс", "трейдинг", "криптовалют",
-    "заработок в интернете", "инвестиц", "займ", "кредит", "алкогол", "18+", "эротик",
-    "порно", "знакомств", "накрутк", "биржа рекламы", "куплю канал", "продажа каналов",
+    "заработок в интернете", "накрутк", "биржа рекламы", "куплю канал", "продажа каналов",
 ]
-# А это — и в постах тоже: такой канал нам не клиент, чем бы он себя ни называл.
-HARD_SKIP_KEYWORDS = [
-    "казино", "букмекер", "ставки на спорт", "форекс", "порно", "эротик", "интим-",
-]
-
-# Астрология, гадания, магия — ширк: такие каналы не берём ни под каким видом,
-# даже если там «курсы» и «обучение». Начало слова — через \b, иначе «таро»
-# ловится в «старое», а «маги» — в «магистратура».
-OCCULT_RE = re.compile(r"\b(" + "|".join([
-    r"астролог", r"астропсихолог", r"гороскоп", r"натальн", r"зодиак", r"знаки? зодиака",
-    r"ретроград", r"транзит планет", r"синастри", r"джйотиш", r"ведическ\w* астро",
-    r"таро\b", r"таролог", r"оракул", r"ленорман", r"расклад", r"гадан", r"гадалк",
-    r"нумеролог", r"матриц\w* судьбы", r"дизайн человека", r"human design", r"хиромант",
-    r"рун(ы|олог|ическ)", r"эзотери", r"магия", r"магии", r"магическ", r"маг(ом|у)?\b",
-    r"колдов", r"ведьм", r"чародей", r"приворот", r"отворот", r"снятие порчи", r"порчу",
-    r"экстрасенс", r"ясновид", r"ченнелинг", r"чакр", r"космоэнергет",
-    r"амулет", r"талисман", r"обереги?", r"регрессолог", r"прошлые жизни", r"карм\w* диагност",
-    r"astrolog", r"horoscope", r"tarot", r"numerolog", r"esoteric",
-]) + r")", re.I)
 
 OWN_CHANNELS = {"halalaifreya", "ilikeislamandsport", "i_speak_en", "myarabicl", "halal_intelligence"}
 
@@ -277,15 +257,20 @@ def score(info, silent, per_week, niche):
 
 
 def classify(info):
-    """'muslim' | 'general' | None — подходит ли канал под услугу."""
+    """'muslim' | 'general' | None — подходит ли канал под услугу. Если канал
+    отброшен как харам-ниша, причина — в info["haram"]."""
     about = f"{info['title']} {info['description']}".lower()
-    text = f"{about} {' '.join(info['posts'][:8])}".lower()
-    if any(k in about for k in SKIP_KEYWORDS) or any(k in text for k in HARD_SKIP_KEYWORDS):
+    posts = " ".join(info["posts"][:8]).lower()
+    text = f"{about} {posts}"
+    if any(k in about for k in SKIP_KEYWORDS):
         return None
     muslim = any(k in text for k in NICHE_KEYWORDS)
-    # Эзотерика в названии/описании — мимо всегда. В постах — тоже мимо, кроме
-    # исламских каналов: там «астрология — это ширк» пишут как раз в предостережение.
-    if OCCULT_RE.search(about) or (not muslim and OCCULT_RE.search(text)):
+    # Тема канала (название и описание) — проверяем всегда. Посты — только у
+    # обычных каналов: в исламских «астрология — это ширк» и «алкоголь — харам»
+    # пишут как раз в предостережение.
+    info["haram"] = haram_reason(about, muslim=muslim) or (
+        None if muslim else haram_reason(posts, posts=True))
+    if info["haram"]:
         return None
     if muslim:
         return "muslim"
@@ -410,7 +395,9 @@ def run():
                     pending.append(mention)
         subs = info["subscribers"] or 0
         reason = None
-        if not niche:
+        if info.get("haram"):
+            reason = f"харам: {info['haram']}"
+        elif not niche:
             reason = "не наша ниша"
         elif silent is None:
             reason = "нет постов"
