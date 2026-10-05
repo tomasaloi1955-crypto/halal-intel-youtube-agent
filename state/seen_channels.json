@@ -1533,67 +1533,253 @@
   "score": 15,
   "silent": 2
  },
+ "seminarov7": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-05"
+ },
+ "persianmatchbox": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "ethiopia_and_arab_world": {
+  "skip": "подписчиков 172",
+  "date": "2026-10-05"
+ },
+ "7seminarov": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "japkenkyu_sinbun": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "ossi_bar_spb": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "varia_arabica": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-05"
+ },
+ "polylog_expertise": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "factory_culture": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-05"
+ },
+ "philosophero": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-05"
+ },
+ "lines_is": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "marzialspb": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "ivanovdirect": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "rothkoskimono": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "gosfilmofond": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "soloma_1008": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "ssolloma": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "soloma1008": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "nosorogmagazine": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "netbylo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "moda_looking": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "fashion_designer_chat": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "moda_zhenskaya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "krasovki_moda": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "chuzhaya_moda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "moda_kh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "moda_gold": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "modama": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "shopbrb_wowsk_vapku27": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "zhenskaya_moda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "metro_kh": {
+  "skip": "не наша ниша",
+  "date": "2026-10-05"
+ },
+ "qalbim_4221": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "islamskaya_777": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "vkchan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "discounts_3": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "school_xy": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "school_r": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "arabskiy_yazik": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "arabicdeti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-05"
+ },
+ "arabic_l": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "arabskiyyazik17": {
+  "skip": "молчит 1232 дн.",
+  "date": "2026-10-05"
+ },
+ "arabic_tadjvid": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "sibawyh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "arabic_tadjwid": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "quran_subtitles": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "tadjvidd": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "koran_translate": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "vayquran95": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "salyafiya_1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "koran_s_nulya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "nashid_95": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "angelika_tochka_rosta": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-05"
+ },
+ "arabic_abu_zakaria": {
+  "sent": "2026-10-05",
+  "title": "📚 АРАБСКИЙ ЯЗЫК | Дом знаний",
+  "contact": "Furkan21",
+  "score": 100,
+  "silent": 61
+ },
+ "uchim_arabskiy": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
+ "quran_znaniedeti": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
+ "to_arabic": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
+ "mongoliaclubhse": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
+ "nina_bortnikova": {
+  "sent": "2026-10-05",
+  "title": "Астрологично ✨",
+  "contact": "NinaBortnikovaa",
+  "score": 45,
+  "silent": 266
+ },
+ "garagemca_academy": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
+ "mediacenter_brics": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-05"
+ },
  "_queue": [
-  "seminarov7",
-  "persianmatchbox",
-  "ethiopia_and_arab_world",
-  "7seminarov",
-  "japkenkyu_sinbun",
-  "mongoliaclubhse",
-  "mediacenter_brics",
-  "ossi_bar_spb",
-  "varia_arabica",
-  "polylog_expertise",
-  "factory_culture",
-  "garagemca_academy",
-  "philosophero",
-  "lines_is",
-  "marzialspb",
-  "ivanovdirect",
-  "rothkoskimono",
-  "gosfilmofond",
-  "soloma_1008",
-  "ssolloma",
-  "soloma1008",
-  "nosorogmagazine",
-  "netbylo",
-  "moda_looking",
-  "fashion_designer_chat",
-  "moda_zhenskaya",
-  "krasovki_moda",
-  "chuzhaya_moda",
-  "nina_bortnikova",
-  "moda_kh",
-  "moda_gold",
-  "modama",
-  "shopbrb_wowsk_vapku27",
-  "zhenskaya_moda",
-  "metro_kh",
-  "qalbim_4221",
-  "islamskaya_777",
-  "vkchan",
-  "discounts_3",
-  "school_xy",
-  "school_r",
-  "arabskiy_yazik",
-  "arabicdeti",
-  "arabic_l",
-  "arabic_abu_zakaria",
-  "arabskiyyazik17",
-  "uchim_arabskiy",
-  "to_arabic",
-  "arabic_tadjvid",
-  "sibawyh",
-  "arabic_tadjwid",
-  "quran_subtitles",
-  "tadjvidd",
-  "koran_translate",
-  "vayquran95",
-  "salyafiya_1",
-  "quran_znaniedeti",
-  "koran_s_nulya",
-  "nashid_95",
-  "angelika_tochka_rosta",
   "kurva_moyva",
   "nenastoyashchijpsiholog",
   "psy_go",
@@ -1727,7 +1913,6 @@
   "lizaxiuxiu",
   "gorbushkabelikov",
   "licenza_poetica",
-  "subduplicata",
   "strawberryshortcakebrainfire",
   "rost_rus",
   "appeaul",
@@ -1741,7 +1926,6 @@
   "svetovoiden",
   "poetry",
   "ozerobooks",
-  "dariayashinav",
   "room_617",
   "noise_pines",
   "newhausmann",
@@ -1801,7 +1985,192 @@
   "artasia_gallery",
   "armsouvenir",
   "narekatsiofficial",
-  "galaxy_n"
+  "galaxy_n",
+  "shemka",
+  "i_love_rukodelie",
+  "handmadetravel_anna",
+  "katalogru_34",
+  "sueeling",
+  "rukodelnicacom",
+  "yanazyf03",
+  "narodnoe_tvorchestvo",
+  "homemadewithlove",
+  "uma_mk",
+  "rukodeliemade",
+  "domashnyaya_zagotovka",
+  "qovurdoq_tort",
+  "dilnoza_cooking",
+  "abbasova_1979",
+  "vkusnotaotolgi2019",
+  "mahira_uz",
+  "julia_ppvypechka",
+  "desert_tg",
+  "x_kulinar",
+  "hidzhabyuliya",
+  "xidjab_uzb",
+  "awd32343",
+  "platkilyks",
+  "platkiturkey",
+  "worldofbrand_ochki_platki",
+  "modnieplatki",
+  "hidjabsi",
+  "y_tabibamys",
+  "brendplatok",
+  "zontik_khv",
+  "n_jazira_k_opt",
+  "takbirmuslim",
+  "elinanamazniki",
+  "muslim_line",
+  "aljamalshawls",
+  "platya_1",
+  "v_platia",
+  "our_dress",
+  "platyazhenskie",
+  "kuplya_platyev",
+  "dress_es",
+  "codm_ra",
+  "roya1_club",
+  "platya_kkul",
+  "yona_clothes",
+  "uzun_kiyimlar",
+  "bestislambooks",
+  "islam_kniga",
+  "zapahknig",
+  "kniga_pdf",
+  "islam_audio_books",
+  "muslimkids_05",
+  "biblioteka_poleznogo",
+  "islamsitati",
+  "islamic_finance_plus",
+  "islam_story_365",
+  "islam_v",
+  "qadim_books",
+  "islamskaya_viktorina_quiz",
+  "islamic_film",
+  "isiamskie01",
+  "islamskie_multiki",
+  "sheyha",
+  "islamskiyevideoroliki",
+  "islam_koran_nashidy",
+  "almamater_books",
+  "fluffy_moss",
+  "sokenbichanorap",
+  "solensteg",
+  "abyssinicus",
+  "mediacenter_brics",
+  "fanatelevision",
+  "meskob",
+  "lastembrace",
+  "zilart_museum",
+  "japanstudiesru",
+  "bratukhinns",
+  "japan_arch",
+  "ltwinsk",
+  "stradarium1",
+  "japanese_vibes",
+  "zakladka_podcast",
+  "arzamaslive",
+  "nihonshidaily",
+  "japanfest",
+  "anthropad",
+  "mongolclubnsomgimo",
+  "icahse",
+  "rubruk",
+  "detiinostranki",
+  "libfl",
+  "centro_cultural_iberoamericano",
+  "nikolaspolonsky",
+  "acclibfl",
+  "chesnakov",
+  "mironovonline",
+  "polylog_feedback_bot",
+  "kritiknewsfeed",
+  "vyborka",
+  "yourule_polit",
+  "wciomofficial",
+  "bankuyte",
+  "russiancouncil",
+  "kimmarina",
+  "dirtytatarstan",
+  "moscow_laundry",
+  "themoscowdailynews",
+  "rossiyaneevropa",
+  "kremlin_bulldogs",
+  "bashankaev",
+  "martynov2021",
+  "rosmolodez",
+  "nedebri2",
+  "bricsexpertcouncil",
+  "youthpolicy",
+  "rasputicaa",
+  "andrevinokurov",
+  "slutsky_l",
+  "ninaostanina",
+  "listnewsru",
+  "ctotoznayu",
+  "nsetov",
+  "vatfor",
+  "valdaiclub",
+  "kurennyy",
+  "davankov",
+  "up_periscope",
+  "vv_panova",
+  "realsardana",
+  "prokhorov11",
+  "suverensouth",
+  "borischernyshov",
+  "ogon_media",
+  "zonaosoboho",
+  "premia_rapc",
+  "mezhevichnikolay",
+  "ainemkin",
+  "eisragenda",
+  "plavkotell",
+  "tgpodbor_bot",
+  "expedition_digoriya",
+  "hello_factory_culture",
+  "kinoklubkonya",
+  "sciencebourgeoise",
+  "mkalamuseum",
+  "luminary_center",
+  "pageclub",
+  "pathwaysofaletheia",
+  "miodissea",
+  "culturelabs",
+  "fourteenth_line_bot",
+  "outoften",
+  "alexander_id",
+  "antidigital",
+  "everyoneexists",
+  "tellercompany",
+  "obratno_io",
+  "ep1dersia",
+  "rozacetkin",
+  "vera_losk",
+  "ninabortnikovaa",
+  "quranshifaislam",
+  "manasiktrevel",
+  "abu_zakaria_armeni",
+  "arabic_abu_zakariya",
+  "avarnucal",
+  "dom_znaniy_kursy",
+  "furkan21",
+  "marcazachauat",
+  "lloveyou_canim",
+  "markaz_daruzzikr",
+  "islam_booksss",
+  "tadzhvid",
+  "ahlulhadis_admin1_bot",
+  "deti_ahlulhadis1",
+  "ahlulhadis_admin_bot",
+  "my_quiz_contest_bot",
+  "ahlulhadis_deti",
+  "vopros0tvet",
+  "deti_ahlulhadis_1",
+  "myarabic2025",
+  "abdullah777",
+  "znanie1_svet",
+  "hadisnabiislam"
  ],
- "_query_pos": 16
+ "_query_pos": 24
 }
