@@ -10,6 +10,8 @@ from PIL import Image, ImageDraw, ImageFont
 from dotenv import load_dotenv
 import google.generativeai as genai
 
+from people_filter import keep_if_clean  # жёсткий запрет людей в стоковых кадрах
+
 load_dotenv()
 
 PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
@@ -158,14 +160,14 @@ def _build_shorts_overlay(add_automation, logos, duration, w, h):
 
 # ---- ТЕХНО b-roll (канал про технологии): роботы, компьютеры, ИИ, чипы, техно-города, машины ----
 BROLL_QUERIES = [
-    "humanoid robot", "robot automation factory", "robotic arm assembly",
+    "robot automation factory", "robotic arm assembly",
     "artificial intelligence visualization", "ai neural network abstract",
     "computer code programming screen", "software interface ui animation",
     "data center server room", "semiconductor microchip macro", "circuit board macro",
     "futuristic technology hologram", "digital particles glowing network",
     "self driving electric car", "tesla electric car", "drone flying technology",
     "dubai futuristic skyline night", "shanghai china city night lights",
-    "smart city technology aerial", "humanoid robot close up", "automated warehouse robots",
+    "smart city technology aerial", "automated warehouse robots",
     "glowing cpu processor macro", "abstract data flow visualization",
     "smartphone app interface close up", "laptop keyboard code close up",
 ]
@@ -446,7 +448,7 @@ def fetch_diverse_clips(queries, target, slug):
                 continue
             seen.add(u)
             p = os.path.join(OUTPUT_DIR, f"{slug}_bc_{len(paths)}.mp4")
-            if download_media(u, p):
+            if keep_if_clean(download_media(u, p)):
                 paths.append(p)
             if len(paths) >= target:
                 break
@@ -674,10 +676,17 @@ def make_video(audio_path, pexels_keywords, title_slug, is_shorts=False, script_
         photos = fetch_pexels_photos(f"technology {(' '.join(pexels_keywords))[:30]}", count=3)
         for i, photo in enumerate(photos):
             pp = os.path.join(OUTPUT_DIR, f"{title_slug}_ph_{i}.jpg")
-            if download_media(photo["url"], pp):
+            if keep_if_clean(download_media(photo["url"], pp)):
                 vid = photo_to_video(pp, duration=5)
                 if vid:
                     clips.append(vid)
+
+    if not clips:
+        # Все стоковые кадры отклонены (люди / проверка не прошла) — фирменная карточка.
+        card = create_title_card("Халяль Интеллидженс", os.path.join(OUTPUT_DIR, f"{title_slug}_card.jpg"))
+        vid = photo_to_video(card, duration=5) if card else None
+        if vid:
+            clips.append(vid)
 
     if not clips:
         print("[VIDEO] Нет медиафайлов")
@@ -709,10 +718,9 @@ def _thumbnail_background(bg_query, W, H):
     """Фон обложки: затемнённое фото с Pexels (для кликабельности) или резервный градиент."""
     if bg_query:
         try:
-            photos = fetch_pexels_photos(bg_query, count=1)
-            if photos:
+            for photo in fetch_pexels_photos(bg_query, count=4):
                 tmp = os.path.join(OUTPUT_DIR, "_thumb_bg.jpg")
-                if download_media(photos[0]["url"], tmp):
+                if keep_if_clean(download_media(photo["url"], tmp)):
                     bg = Image.open(tmp).convert("RGB")
                     scale = max(W / bg.width, H / bg.height)
                     bg = bg.resize((max(W, int(bg.width * scale)), max(H, int(bg.height * scale))))
@@ -871,13 +879,13 @@ def fetch_scene_backgrounds(queries, count, slug):
         if len(paths) >= count:
             break
         try:
-            photos = fetch_pexels_photos(q, count=1)
+            photos = fetch_pexels_photos(q, count=3)
         except Exception as e:
             print(f"[SHORTS-BG] «{q}»: {e}")
             continue
         for ph in photos:
             p = os.path.join(OUTPUT_DIR, f"{slug}_bg{i}.jpg")
-            if download_media(ph["url"], p) and _normalize_bg(p):
+            if keep_if_clean(download_media(ph["url"], p)) and _normalize_bg(p):
                 paths.append(p)
                 break
     if not paths:
