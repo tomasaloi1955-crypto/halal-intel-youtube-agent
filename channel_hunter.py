@@ -88,6 +88,21 @@ HARD_SKIP_KEYWORDS = [
     "казино", "букмекер", "ставки на спорт", "форекс", "порно", "эротик", "интим-",
 ]
 
+# Астрология, гадания, магия — ширк: такие каналы не берём ни под каким видом,
+# даже если там «курсы» и «обучение». Начало слова — через \b, иначе «таро»
+# ловится в «старое», а «маги» — в «магистратура».
+OCCULT_RE = re.compile(r"\b(" + "|".join([
+    r"астролог", r"астропсихолог", r"гороскоп", r"натальн", r"зодиак", r"знаки? зодиака",
+    r"ретроград", r"транзит планет", r"синастри", r"джйотиш", r"ведическ\w* астро",
+    r"таро\b", r"таролог", r"оракул", r"ленорман", r"расклад", r"гадан", r"гадалк",
+    r"нумеролог", r"матриц\w* судьбы", r"дизайн человека", r"human design", r"хиромант",
+    r"рун(ы|олог|ическ)", r"эзотери", r"магия", r"магии", r"магическ", r"маг(ом|у)?\b",
+    r"колдов", r"ведьм", r"чародей", r"приворот", r"отворот", r"снятие порчи", r"порчу",
+    r"экстрасенс", r"ясновид", r"ченнелинг", r"чакр", r"космоэнергет",
+    r"амулет", r"талисман", r"обереги?", r"регрессолог", r"прошлые жизни", r"карм\w* диагност",
+    r"astrolog", r"horoscope", r"tarot", r"numerolog", r"esoteric",
+]) + r")", re.I)
+
 OWN_CHANNELS = {"halalaifreya", "ilikeislamandsport", "i_speak_en", "myarabicl", "halal_intelligence"}
 
 
@@ -267,7 +282,12 @@ def classify(info):
     text = f"{about} {' '.join(info['posts'][:8])}".lower()
     if any(k in about for k in SKIP_KEYWORDS) or any(k in text for k in HARD_SKIP_KEYWORDS):
         return None
-    if any(k in text for k in NICHE_KEYWORDS):
+    muslim = any(k in text for k in NICHE_KEYWORDS)
+    # Эзотерика в названии/описании — мимо всегда. В постах — тоже мимо, кроме
+    # исламских каналов: там «астрология — это ширк» пишут как раз в предостережение.
+    if OCCULT_RE.search(about) or (not muslim and OCCULT_RE.search(text)):
+        return None
+    if muslim:
         return "muslim"
     if any(k in text for k in GENERAL_KEYWORDS):
         return "general"
