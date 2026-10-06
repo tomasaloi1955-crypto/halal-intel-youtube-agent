@@ -1779,67 +1779,250 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-05"
  },
+ "kurva_moyva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "nenastoyashchijpsiholog": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "psy_go": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "psy_you1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "pomogu_4em_mogu": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "knowledge_of_life_999": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "tvoy_luchuy_psilolog": {
+  "skip": "молчит 2930 дн.",
+  "date": "2026-10-06"
+ },
+ "psiholog_anastasia_homutova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "ruslan_eder": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "sber_eda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "food_new": {
+  "skip": "молчит 1826 дн.",
+  "date": "2026-10-06"
+ },
+ "vityasdrops": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "beattasty": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "okoloeda1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "dobroieda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "good_food_minsk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "rip_malyshka": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "satsanga": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "stefania_vip": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "a_funny": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "familight": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "ideal_zhena": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "yo_family": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "haknem_family": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "m_u_x_a_u_jl": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "start_7": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "bt_razvitie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "zk_like": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "rimma_18": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "womenpoima": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "zhenskoe_vse": {
+  "skip": "молчит 1215 дн.",
+  "date": "2026-10-06"
+ },
+ "make_up_v": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "tantra_4_life": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "d_za40": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "lady_go": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "pro_je_ktor": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "klubsinergia": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "cogroups": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "polina_grrr": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "polja_est": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "ptichking": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "herehavetheseflowers": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "delaikulturu_connect": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "wallswillfall": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-06"
+ },
+ "privetpoidem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "engineerhistory": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "anpisman": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "slovonadonu": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "v1gvam": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "docfilmcom": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "mavestreambot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "aonefilms": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-06"
+ },
+ "besedyfest": {
+  "skip": "не наша ниша",
+  "date": "2026-10-06"
+ },
+ "tutamail": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-06"
+ },
+ "moneyfiction": {
+  "skip": "подписчиков 196",
+  "date": "2026-10-06"
+ },
+ "kp_pyl": {
+  "sent": "2026-10-06",
+  "title": "кп пыль",
+  "contact": "dasha_maliniina",
+  "score": 55,
+  "silent": 8
+ },
+ "compost_coop": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-06"
+ },
+ "edacheloveka": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-06"
+ },
+ "editorial_egalite": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-06"
+ },
+ "randomcoffeeru": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-06"
+ },
  "_queue": [
-  "kurva_moyva",
-  "nenastoyashchijpsiholog",
-  "psy_go",
-  "psy_you1",
-  "pomogu_4em_mogu",
-  "knowledge_of_life_999",
-  "tvoy_luchuy_psilolog",
-  "psiholog_anastasia_homutova",
-  "ruslan_eder",
-  "sber_eda",
-  "food_new",
-  "vityasdrops",
-  "edacheloveka",
-  "beattasty",
-  "okoloeda1",
-  "dobroieda",
-  "good_food_minsk",
-  "rip_malyshka",
-  "satsanga",
-  "stefania_vip",
-  "a_funny",
-  "familight",
-  "ideal_zhena",
-  "yo_family",
-  "haknem_family",
-  "m_u_x_a_u_jl",
-  "start_7",
-  "bt_razvitie",
-  "zk_like",
-  "rimma_18",
-  "womenpoima",
-  "zhenskoe_vse",
-  "make_up_v",
-  "tantra_4_life",
-  "d_za40",
-  "lady_go",
-  "pro_je_ktor",
-  "klubsinergia",
-  "cogroups",
-  "compost_coop",
-  "polina_grrr",
-  "polja_est",
-  "ptichking",
-  "editorial_egalite",
-  "kp_pyl",
-  "herehavetheseflowers",
-  "delaikulturu_connect",
-  "wallswillfall",
-  "privetpoidem",
-  "engineerhistory",
-  "anpisman",
-  "randomcoffeeru",
-  "slovonadonu",
-  "v1gvam",
-  "docfilmcom",
-  "mavestreambot",
-  "aonefilms",
-  "besedyfest",
-  "tutamail",
-  "moneyfiction",
   "russos_subscription_bot",
   "sociologist",
   "wlagru",
@@ -2057,7 +2240,6 @@
   "sokenbichanorap",
   "solensteg",
   "abyssinicus",
-  "mediacenter_brics",
   "fanatelevision",
   "meskob",
   "lastembrace",
@@ -2170,7 +2352,137 @@
   "myarabic2025",
   "abdullah777",
   "znanie1_svet",
-  "hadisnabiislam"
+  "hadisnabiislam",
+  "onlinetajvid",
+  "tajweed_app",
+  "tajvid_gulia",
+  "itkan",
+  "tadjvid_love",
+  "moytadjvid",
+  "savab_ru",
+  "suweid_tajweed",
+  "kalamburvt",
+  "kalamb_urvt",
+  "isnadtajvid",
+  "fatimosh",
+  "tajwid_rezerv",
+  "tadjwid_1k",
+  "tadjwid_2020",
+  "tgwad",
+  "tadjweed66",
+  "tajwid_baksan",
+  "hifz_al_kahf",
+  "quran_hifz_fr",
+  "hifz30dua",
+  "al_mulk_hifz",
+  "ravdahteacher",
+  "koranvdom",
+  "prepodavateli_din",
+  "quransuratv",
+  "arabicmadaris",
+  "quran_authenticity",
+  "quran_muaiqly",
+  "koran1111111111",
+  "quran_cc",
+  "arabskii_uroki",
+  "quranschoolkazan",
+  "ilm_fisabilillah",
+  "kuran_rus",
+  "obucheni_korana",
+  "julia_tajweed",
+  "quran_tools",
+  "slovo_istiny0",
+  "job_for_beginners",
+  "svoe_deloo",
+  "vcosmos",
+  "freelance_newbie",
+  "knitting_teacher",
+  "finland_otherworld",
+  "babenkofl",
+  "vegan_odintsovo",
+  "bearlogapython",
+  "overlays_s",
+  "obayaniee",
+  "drupal_beginner",
+  "prokhorova_yuliya",
+  "profit_88",
+  "privacy_rus",
+  "zhenskie_imena",
+  "imya_uz",
+  "allah_names_rinat",
+  "istorii_2605",
+  "konspekt_imena",
+  "asmaullahi",
+  "ubernames",
+  "optom_3dstiker",
+  "islamic_links_1",
+  "topeda",
+  "cybersetka",
+  "telegamusicbot",
+  "glav_rek",
+  "muzyka_tik_tok_bot",
+  "skidki",
+  "proekt_telega",
+  "ts_adminn",
+  "tiflis_books",
+  "kenekethem",
+  "green_ladybooks",
+  "editorial_egalite",
+  "niktonespit_tmn",
+  "breakingthegreatdivide",
+  "bookies9_4",
+  "msk_fnb",
+  "rupor_store",
+  "detiperemen",
+  "compost",
+  "vporyadkebooks",
+  "comicsufa",
+  "pobegiles",
+  "whatistobedonetver",
+  "klf11teaser3",
+  "proton",
+  "turbogigakrivilla",
+  "antijobnet",
+  "textytela",
+  "tumenskoedelo",
+  "commonground_yerevan",
+  "liremourir",
+  "compost_coop",
+  "egalite_book_bot",
+  "pryamukhino",
+  "dilettante_voiceover",
+  "asebeia_fm",
+  "channeldrawnews",
+  "archconservation",
+  "dasha_maliniina",
+  "borderlinewriting",
+  "walls_will_fall",
+  "wallswillfallbot",
+  "lib_soc",
+  "lightandpens",
+  "yuna_center",
+  "privetpoideminfo",
+  "bookflow_party",
+  "domteleshova",
+  "kultnasled",
+  "do450km",
+  "shkola_gida",
+  "alpinadeti",
+  "engineer_media",
+  "guidessa",
+  "reshape_family",
+  "moscowweek26_bot",
+  "true_random_rc_bot",
+  "brotour_travel",
+  "centrinvest",
+  "aakoren",
+  "bodega_porfavor",
+  "cinema1909",
+  "blarproject",
+  "smirnova_kristina",
+  "oembox",
+  "marinagolomazdina",
+  "clubnerd"
  ],
- "_query_pos": 24
+ "_query_pos": 32
 }
