@@ -2022,67 +2022,259 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-06"
  },
+ "russos_subscription_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "sociologist": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "wlagru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "mf24_42": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "yakov_podolny": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "jenyayahina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "mari_saxon": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "ffotografika": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "khantao": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "neomenia_books": {
+  "skip": "подписчиков 126",
+  "date": "2026-10-07"
+ },
+ "metajournal": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "skhronpoetry": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "thelongkissgoodnight": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "sketchbug": {
+  "skip": "подписчиков 178",
+  "date": "2026-10-07"
+ },
+ "alexeylyzlov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "chitnes": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "tnkmr": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "na_kolenke_zin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "utkometasy": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "nsvrmnk": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "moscowcalling": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "hauntology": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "ignatkrasikovmusic": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "insonicspace": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "uraloperaballet": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "sergeidesev": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "samocvetbar": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "chekhovandcompany": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "timepadru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "vsesvobodny": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "ooosmenaknigi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "magisteria_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "dvorbooks": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "izdaniya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "mastersbookstore": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "s_shvyrev": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "moscowbooks_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "avamilova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "falanster_books": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "mdk_books": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "falanster_delivery": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "schusevshop": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-07"
+ },
+ "gorky_media": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "piotrovskybook": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "almet_biblio": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "mig_mendeleevsk": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "smena_deti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "pollimona_illustration": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "kafarabphil": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "news_oasis": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-07"
+ },
+ "dahlbookstore": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-07"
+ },
+ "lectoriumport": {
+  "skip": "не наша ниша",
+  "date": "2026-10-07"
+ },
+ "flammemann": {
+  "sent": "2026-10-07",
+  "title": "Фламмеманн",
+  "contact": "epidersia",
+  "score": 75,
+  "silent": 96
+ },
+ "ile_theleme": {
+  "sent": "2026-10-07",
+  "title": "Île Thélème",
+  "contact": "eashelest",
+  "score": 70,
+  "silent": 4
+ },
+ "bezoblatchnomgla": {
+  "sent": "2026-10-07",
+  "title": "Безоблачно, мгла",
+  "contact": "tbolshakova005",
+  "score": 70,
+  "silent": 8
+ },
+ "ymozrenie": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-07"
+ },
+ "qifa_nabki": {
+  "sent": "2026-10-07",
+  "title": "постойте поплачем قِفا نَبْكِ",
+  "contact": "tnalitch",
+  "score": 60,
+  "silent": 6
+ },
+ "norma_smallpress": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-07"
+ },
+ "podpisnie_v_myzee": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-07"
+ },
+ "skbprometheus": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-07"
+ },
  "_queue": [
-  "russos_subscription_bot",
-  "sociologist",
-  "wlagru",
-  "norma_smallpress",
-  "mf24_42",
-  "yakov_podolny",
-  "jenyayahina",
-  "mari_saxon",
-  "ffotografika",
-  "khantao",
-  "neomenia_books",
-  "metajournal",
-  "skhronpoetry",
-  "thelongkissgoodnight",
-  "sketchbug",
-  "alexeylyzlov",
-  "chitnes",
-  "tnkmr",
-  "na_kolenke_zin",
-  "utkometasy",
-  "nsvrmnk",
-  "moscowcalling",
-  "hauntology",
-  "ignatkrasikovmusic",
-  "insonicspace",
-  "uraloperaballet",
-  "sergeidesev",
-  "samocvetbar",
-  "ile_theleme",
-  "flammemann",
-  "chekhovandcompany",
-  "timepadru",
-  "vsesvobodny",
-  "ooosmenaknigi",
-  "magisteria_ru",
-  "dvorbooks",
-  "izdaniya",
-  "mastersbookstore",
-  "s_shvyrev",
-  "moscowbooks_ru",
-  "avamilova",
-  "falanster_books",
-  "mdk_books",
-  "falanster_delivery",
-  "schusevshop",
-  "gorky_media",
-  "piotrovskybook",
-  "podpisnie_v_myzee",
-  "skbprometheus",
-  "almet_biblio",
-  "mig_mendeleevsk",
-  "smena_deti",
-  "pollimona_illustration",
-  "kafarabphil",
-  "news_oasis",
-  "bezoblatchnomgla",
-  "qifa_nabki",
-  "ymozrenie",
-  "dahlbookstore",
-  "lectoriumport",
   "borisovhistory",
   "ellatukhareli",
   "fundregion",
@@ -2427,7 +2619,6 @@
   "tiflis_books",
   "kenekethem",
   "green_ladybooks",
-  "editorial_egalite",
   "niktonespit_tmn",
   "breakingthegreatdivide",
   "bookies9_4",
@@ -2447,7 +2638,6 @@
   "tumenskoedelo",
   "commonground_yerevan",
   "liremourir",
-  "compost_coop",
   "egalite_book_bot",
   "pryamukhino",
   "dilettante_voiceover",
@@ -2482,7 +2672,109 @@
   "smirnova_kristina",
   "oembox",
   "marinagolomazdina",
-  "clubnerd"
+  "clubnerd",
+  "natasharadko",
+  "zamena_maslo991",
+  "dohya_masla",
+  "zhukova_natalya",
+  "dukhikiev",
+  "motomaslo",
+  "oil_essential",
+  "mannol_islom",
+  "vag_luchok",
+  "lukoil_oil_uz",
+  "uhod_krasnodar",
+  "cosmetic_naumencko",
+  "victoriya_kismetika",
+  "beauty_0720_discount",
+  "cosmetics_k",
+  "wealth_cat",
+  "kafe_v",
+  "kafesoul",
+  "kafe_vstrecha",
+  "cafeklukva_vn",
+  "kafecaravan",
+  "yaltirok_bonus",
+  "cafefagioli",
+  "superhero_cafe",
+  "cafe_yulya_mango",
+  "meatby",
+  "vyalenoe_myaso",
+  "meat_krd",
+  "notgames",
+  "myaso_rash",
+  "zloe_myaso",
+  "myaso_chanel",
+  "divannye_voiska",
+  "mayhem6996",
+  "huret20",
+  "umra_arabia",
+  "umra_hadj_besplatno",
+  "varda_tour",
+  "tury_iz_moskvy",
+  "escort_travel",
+  "dochkatrampa",
+  "escort_turi",
+  "escort_boltalka",
+  "escort_tur",
+  "deshevye_tury",
+  "meridiantur",
+  "b_tours",
+  "hotur",
+  "halaltour_uz",
+  "workforgirls_escort",
+  "so_skidkoy_putevki",
+  "weddingbelarus",
+  "wedding_d",
+  "danilovalt",
+  "queen_films",
+  "queen_aarya",
+  "exgirlfriendwedding",
+  "exwedding",
+  "weddingincuba",
+  "pauline_svadba",
+  "svadba_kharkiv",
+  "weddingblog",
+  "wedding_yk",
+  "dima_tanya",
+  "ilya_lyudmila",
+  "weddingve",
+  "znakomstvo_ipatovo",
+  "mens_ankety",
+  "womens_ankety",
+  "nikah_online",
+  "nikahnk",
+  "nikah_sunna_7ya",
+  "muslim_wedding_stile",
+  "ingress_nick",
+  "footbalexpress",
+  "svazisty",
+  "watamota",
+  "norma_smallpress",
+  "zhmchzhnprmsl",
+  "graphesis",
+  "brkn_mirror",
+  "vkorkunov84",
+  "tinkyyy_winkyyy",
+  "oostroov",
+  "paperpaper_ru",
+  "podosokorsky",
+  "slova_vne_sebja",
+  "pony_viv",
+  "a_match_by_the_fire",
+  "novaya_pishet",
+  "oberiu_museum",
+  "mejelai",
+  "stas_mokin",
+  "falanster",
+  "lesnieavtory",
+  "mempoetry",
+  "an_grinih",
+  "smotrip",
+  "mlkvch_mlkvch",
+  "yastrbvzh",
+  "koreshki_fest",
+  "shmotdvarim"
  ],
- "_query_pos": 32
+ "_query_pos": 40
 }
