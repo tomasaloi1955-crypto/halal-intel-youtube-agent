@@ -324,7 +324,7 @@ def save_seen(seen):
         json.dump(seen, f, ensure_ascii=False, indent=1)
 
 
-def card(info, silent, per_week, niche, contact, pitch):
+def card(info, silent, per_week, niche, contact):
     subs = f"{info['subscribers']:,}".replace(",", " ") if info["subscribers"] else "?"
     lines = [
         f"{'🕌' if niche == 'muslim' else '📣'} {info['title']} — @{info['name']}",
@@ -332,7 +332,7 @@ def card(info, silent, per_week, niche, contact, pitch):
         f"Подписчиков: {subs} · последний пост {silent} дн. назад · {per_week} постов/нед.",
     ]
     lines.append(f"✍️ Написать владельцу: https://t.me/{contact}")
-    lines += ["", "Готовое сообщение (проверь и отправь):", pitch]
+    lines.append("👇 Готовое сообщение — следующим сообщением, проверь и отправь")
     return "\n".join(lines)
 
 
@@ -422,7 +422,10 @@ def run():
             continue
         if not pitch:
             continue
-        notify(card(info, silent, per_week, niche, contact, pitch))
+        # Два отдельных сообщения: карточка канала и чистый текст письма —
+        # второе можно скопировать целиком и сразу переслать владельцу.
+        notify(card(info, silent, per_week, niche, contact))
+        notify(pitch)
         seen[info["name"].lower()] = {
             "sent": datetime.now().date().isoformat(), "title": info["title"],
             "contact": contact, "score": points, "silent": silent,
