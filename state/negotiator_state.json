@@ -2082,12 +2082,19 @@
       "description": "140 reels for 50 usd ai creator needed fast must have alot of reviews and be able to start asap must be male and have allthe ai tools. looking for manga art and relistic video creations. as well as music editing.",
       "currency": "USD",
       "decision": "Заказ требует создание видео с людьми (realistic video creations) и мангу, что входит в запрет профиля: 'Картинки и видео с людьми, сгенерированные ИИ'. Также требует музыкальное редактирование (music editing), чем я не занимаюсь. Бюджет $50 за 140 видеороликов физически невыполним даже в рамках допустимых услуг."
+    },
+    "40757989": {
+      "title": "AI Video Cuts For Social Media",
+      "url": "https://www.freelancer.com/projects/adobe-premiere-pro/Video-Cuts-For-Social-Media",
+      "description": "I have raw footage ready to go and need it shaped into an engaging social-media piece. The job is strictly video editing—no audio or image work—focused on clean, basic cuts and smooth transitions. I’m happy for you to lean on any AI-assisted tools you prefer (Runway, Descript, Premiere Pro with Sensei, or similar) as long as the result looks polished, loops seamlessly if required, and stays under platform time limits. Aspect ratios will vary by channel, so delivering both 1:1 and 9:16 versions is important. Please: • Trim dead space, tighten pacing, and sequence shots logically. • Add simple transition effects where they improve flow. • Embed any captions or lower-thirds automatically detected by the AI, but keep the style minimal and on-brand. Deliverables: 1. Final exported MP4s for Instagram Reels and TikTok. 2. The editable project file (so I can tweak later). Let me know the AI tools you intend to use and your typical turnaround time. Looking forward to seeing how you can streamline my content creation.",
+      "currency": "INR",
+      "decision": "Проект требует видеомонтажа и работы с видеоматериалами. Я работаю на Python и создаю автоматизации: боты, парсеры, генерацию контента через ИИ-API (текст, картинки, озвучка, шортсы). Но профессиональный видеомонтаж в Premiere Pro, Runway или Descript — это не моя услуга. Даже если использовать ИИ-инструменты, клиент просит именно видеоредактора с опытом в этих программах и отдачу готовых MP4 высокого качества с проектными файлами. Это выходит за рамки моего профиля (сайты, дизайн, видеомонтаж я не делаю). Отказываемся вежливо."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-08",
     "bids": 0,
-    "evals": 10
+    "evals": 11
   }
 }
