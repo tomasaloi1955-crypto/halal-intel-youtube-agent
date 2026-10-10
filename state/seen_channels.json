@@ -2512,67 +2512,245 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-09"
  },
+ "centrezotov": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "experimental_writing_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "lifeinspace_rymbu": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-10"
+ },
+ "experimentalwriting": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "derevoiptiza": {
+  "skip": "подписчиков 68",
+  "date": "2026-10-10"
+ },
+ "mariapoznanskaya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "itakabookstbilisi": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "negodni": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-10"
+ },
+ "engine_press": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "wordorder": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "therealtesli": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-10"
+ },
+ "nielitnimass": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-10"
+ },
+ "vyslushat": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "pushkinskaya10": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-10"
+ },
+ "postscriptumbooks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-10"
+ },
+ "fbchu": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "artasia_gallery": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "armsouvenir": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-10"
+ },
+ "narekatsiofficial": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "galaxy_n": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "handmadetravel_anna": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "katalogru_34": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "sueeling": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "rukodelnicacom": {
+  "skip": "подписчиков 67",
+  "date": "2026-10-10"
+ },
+ "narodnoe_tvorchestvo": {
+  "skip": "подписчиков 6",
+  "date": "2026-10-10"
+ },
+ "homemadewithlove": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "uma_mk": {
+  "skip": "подписчиков 4",
+  "date": "2026-10-10"
+ },
+ "rukodeliemade": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "domashnyaya_zagotovka": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "qovurdoq_tort": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "dilnoza_cooking": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "abbasova_1979": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "vkusnotaotolgi2019": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "mahira_uz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "julia_ppvypechka": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "desert_tg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "x_kulinar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "hidzhabyuliya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "xidjab_uzb": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "awd32343": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "platkilyks": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "platkiturkey": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "worldofbrand_ochki_platki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "hidjabsi": {
+  "skip": "не наша ниша",
+  "date": "2026-10-10"
+ },
+ "y_tabibamys": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "brendplatok": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "zontik_khv": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "n_jazira_k_opt": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "takbirmuslim": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "elinanamazniki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-10"
+ },
+ "modnieplatki": {
+  "sent": "2026-10-10",
+  "title": "МОДНЫЕ ПЛАТКИ ОРИГИНАЛ ИЗ ИТАЛИИ",
+  "contact": "Modnie_Zainab",
+  "score": 75,
+  "silent": 44
+ },
+ "env_eco_readings": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
+ "tashkent_tbilisi": {
+  "sent": "2026-10-10",
+  "title": "Ташкент-Тбилиси",
+  "contact": "fur_qat",
+  "score": 65,
+  "silent": 22
+ },
+ "yanazyf03": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
+ "syg_ma": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
+ "cherni_rynok": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
+ "nekrasovkalibrary": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
+ "triumphgallery": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-10"
+ },
  "_queue": [
-  "cherni_rynok",
-  "env_eco_readings",
-  "nekrasovkalibrary",
-  "centrezotov",
-  "triumphgallery",
-  "syg_ma",
-  "experimental_writing_bot",
-  "lifeinspace_rymbu",
-  "tashkent_tbilisi",
-  "experimentalwriting",
-  "derevoiptiza",
-  "mariapoznanskaya",
-  "itakabookstbilisi",
-  "negodni",
-  "engine_press",
-  "wordorder",
-  "therealtesli",
-  "nielitnimass",
-  "vyslushat",
-  "pushkinskaya10",
-  "postscriptumbooks",
-  "fbchu",
-  "artasia_gallery",
-  "armsouvenir",
-  "narekatsiofficial",
-  "galaxy_n",
-  "shemka",
-  "i_love_rukodelie",
-  "handmadetravel_anna",
-  "katalogru_34",
-  "sueeling",
-  "rukodelnicacom",
-  "yanazyf03",
-  "narodnoe_tvorchestvo",
-  "homemadewithlove",
-  "uma_mk",
-  "rukodeliemade",
-  "domashnyaya_zagotovka",
-  "qovurdoq_tort",
-  "dilnoza_cooking",
-  "abbasova_1979",
-  "vkusnotaotolgi2019",
-  "mahira_uz",
-  "julia_ppvypechka",
-  "desert_tg",
-  "x_kulinar",
-  "hidzhabyuliya",
-  "xidjab_uzb",
-  "awd32343",
-  "platkilyks",
-  "platkiturkey",
-  "worldofbrand_ochki_platki",
-  "modnieplatki",
-  "hidjabsi",
-  "y_tabibamys",
-  "brendplatok",
-  "zontik_khv",
-  "n_jazira_k_opt",
-  "takbirmuslim",
-  "elinanamazniki",
   "muslim_line",
   "aljamalshawls",
   "platya_1",
@@ -3012,7 +3190,67 @@
   "hijama_al_sihat",
   "angrenhijomayumeiho",
   "elhadjam",
-  "akkurgan_xidjama"
+  "akkurgan_xidjama",
+  "taya_anisova",
+  "nastenka_hairstyles_psi",
+  "x_cheloveka",
+  "psih_os",
+  "psipuls",
+  "olya_30_psy",
+  "hp_live",
+  "toute",
+  "faida_com",
+  "arabski_dlya_vseh",
+  "xabiarab",
+  "arabic_urok",
+  "moy_rebenok",
+  "arabskiy_95",
+  "arabskiy_95_school_online",
+  "ali_deti",
+  "k_deti",
+  "abs_uz",
+  "children_gr",
+  "uzgensity",
+  "kolaskikrovatki",
+  "knitsbaby",
+  "xkmecvhzxdavxsuycvz",
+  "moskva_da",
+  "moskva_1",
+  "kokains_gashishs_kristalys",
+  "msk_ya",
+  "tverskaya13_mos",
+  "mos_co",
+  "moskau_new",
+  "moskva_xtc",
+  "moskva_chatik",
+  "g_moskva",
+  "i_moskva",
+  "moskva_i",
+  "moscowe",
+  "moscow",
+  "kazan_tg",
+  "zakladky_deluxe_kazan",
+  "kazan_wrk",
+  "kazan_7",
+  "gosuslugi_kazan",
+  "kazan_q",
+  "kazan_xtc",
+  "kazann_news",
+  "my_kazan",
+  "kazan_1",
+  "kzn_x",
+  "devushki_chat_kazanij",
+  "gpi35x",
+  "kazan_massage_relax",
+  "faridam_mani_devonalar_etma",
+  "p_dagestan",
+  "dagestan_01",
+  "dagestan_1",
+  "dagestan_26",
+  "tut_kizlar",
+  "edg_05",
+  "all_dagestan",
+  "makhachkala8"
  ],
- "_query_pos": 48
+ "_query_pos": 56
 }
