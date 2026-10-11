@@ -324,15 +324,35 @@ def save_seen(seen):
         json.dump(seen, f, ensure_ascii=False, indent=1)
 
 
-def card(info, silent, per_week, niche, contact, pitch):
+def card(info, silent, per_week, niche, contact):
+    """Первое сообщение: всё о канале и подсказки, кому и как писать."""
     subs = f"{info['subscribers']:,}".replace(",", " ") if info["subscribers"] else "?"
+    why = []
+    if silent >= 30:
+        why.append(f"канал молчит уже {silent} дн. — владельцу явно не хватает времени")
+    elif silent >= 4:
+        why.append(f"последний пост {silent} дн. назад — ведётся с перерывами")
+    if per_week < 1.5:
+        why.append("постов меньше двух в неделю — регулярность хромает")
+    if 1_000 <= (info["subscribers"] or 0) <= 50_000:
+        why.append("живая аудитория — есть что терять без постов")
+    if niche == "muslim":
+        why.append("мусульманская ниша — «своим» отвечают охотнее")
     lines = [
         f"{'🕌' if niche == 'muslim' else '📣'} {info['title']} — @{info['name']}",
         f"https://t.me/{info['name']}",
         f"Подписчиков: {subs} · последний пост {silent} дн. назад · {per_week} постов/нед.",
     ]
-    lines.append(f"✍️ Написать владельцу: https://t.me/{contact}")
-    lines += ["", "Готовое сообщение (проверь и отправь):", pitch]
+    if why:
+        lines += ["", "💡 Почему стоит написать:"] + [f"• {w}" for w in why]
+    lines += [
+        "",
+        f"✍️ Кому писать: https://t.me/{contact}",
+        "Перед отправкой загляни в канал и проверь, что в тексте всё правда. "
+        "Если не ответят за 2–3 дня — можно одно короткое напоминание.",
+        "",
+        "👇 Готовый текст — следующим сообщением, его можно просто скопировать.",
+    ]
     return "\n".join(lines)
 
 
@@ -422,7 +442,8 @@ def run():
             continue
         if not pitch:
             continue
-        notify(card(info, silent, per_week, niche, contact, pitch))
+        notify(card(info, silent, per_week, niche, contact))
+        notify(pitch)   # отдельным сообщением — чистый текст, чтобы скопировать целиком
         seen[info["name"].lower()] = {
             "sent": datetime.now().date().isoformat(), "title": info["title"],
             "contact": contact, "score": points, "silent": silent,
