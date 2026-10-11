@@ -2360,12 +2360,54 @@
       "description": "I am building a conversational AI that can serve customers through voice, not just text. The assistant must act as a full-service front line, able to: • Answer our most common FAQs with friendly, accurate responses • Handle complaints empathetically and log them with proper categorisation and escalation tags • Guide callers through order placement, status checks, and basic modifications, then push the data into our existing order-management API Fluency in both English and key Indian languages is essential so every caller receives the same high-quality experience. Natural, human-sounding speech synthesis and rapid intent recognition are priorities; dead air or obvious “bot pauses” are deal-breakers. I will supply current FAQ content, complaint workflows, and API documentation for orders. You will turn these into a production-ready voice skill: training the NLU, configuring TTS/STT engines, setting up call flows, and deploying to the cloud platform we agree on (AWS Connect, Dialogflow CX, or a comparable stack—happy to take your recommendation). Acceptance is complete when: 1. A test phone number routes to the assistant. 2. All three task types above pass scripted and unscripted test calls with ≥95 % accuracy. 3. Logs show correct language selection and error handling. 4. Handover to a live agent works smoothly when the user says “representative.” Once live, I’d also like simple dashboards for usage and accuracy so we can iteratively improve the model. Let’s create a voice experience our customers actually enjoy. example sites: https://telleo.com.au/ telleo.ai https://voizematic.ai/ demo is required",
       "currency": "INR",
       "decision": "Проект требует полнофункциональной системы голосового ИИ-ассистента с интеграцией STT/TTS, многоязычной поддержкой, облачным развёртыванием на AWS Connect или Dialogflow CX, а также production-grade мониторингом и дашбордами. Это выходит за рамки моих услуг: я работаю на Python для автоматизации конкретных задач (боты, парсеры, генерация контента), а не строю сложные голосовые платформы на облачных сервисах. Клиент ищет специализированного поставщика voice AI с опытом в Dialogflow CX / AWS Connect и готовыми демо — это не мой профиль."
+    },
+    "40762656": {
+      "title": "WinOLS Automation POC",
+      "url": "https://www.freelancer.com/projects/automation/WinOLS-Automation-POC",
+      "description": "I want to see whether a small piece of my current WinOLS workflow can be automated before we commit to a larger roll-out. You will log in to my Windows PC where WinOLS 5.93 with OLS530 is already installed, pick one agreed-upon operation, and script or macro it end-to-end using a single original ECU file and its matched donor/reference project. When the routine runs I should receive the same output I would obtain if I performed the task manually in WinOLS, including correct offset handling and checksum availability. Deliverables • A working proof-of-concept that performs the chosen operation automatically on the supplied files • A short report summarising the test result, any caveats you discovered, and where future limitations might appear No web integration or full multi-file automation is required at this stage; we are strictly validating feasibility on one test case. If this phase proves solid, we can discuss expanding the scope.",
+      "currency": "USD",
+      "decision": "Проект требует удаленного доступа к Windows PC и работу с специализированным ПО WinOLS 5.93 (инженерный софт для калибровки ECU). Это не входит в мой набор услуг — я разрабатываю ИИ-автоматизации на Python: ботов, парсеры, генераторы контента, интеграции с API. Макросирование/скриптинг WinOLS требует знания его внутреннего API, COM-интерфейса и инженерной подготовки, которая выходит за рамки моего профиля. Кроме того, удаленный доступ к чужой машине с проприетарным ПО — выходит за стандартные рамки фриланс-сделок."
+    },
+    "40762540": {
+      "title": "Hybrid AI Chatbot Integration in Unity",
+      "url": "https://www.freelancer.com/projects/ai-chatbot/Hybrid-Chatbot-Integration-Unity",
+      "description": "# AI Chatbot in Unity — Hybrid Local and Cloud AI Integration Developed an interactive AI chatbot in Unity using **Ollama with the Qwen LLM and Google Gemini API**. The project explores both locally hosted AI inference and cloud-based generative AI through a custom Unity chat interface. The chatbot uses Unity C# scripting to handle user prompts, communicate with AI services, and display generated responses in the UI. Integrating Gemini API alongside the local Ollama/Qwen setup provides a foundation for comparing and using different AI backends within a Unity application. **Key Features** - Interactive text-based chatbot interface in Unity. - Local LLM integration using Ollama and Qwen. - Google Gemini API integration for cloud-based AI responses. - C# scripting and API communication. - AI-generated responses displayed within the Unity UI. - Exploration of local and cloud AI integration workflows. **Technologies:** Unity 6, C#, Ollama, Qwen LLM, Google Gemini API, REST API, Unity UI. **Project Objective:** Integrate generative AI into Unity applications using both local language models and cloud-based AI services.",
+      "currency": "INR",
+      "decision": "Проект требует разработки мобильного приложения на Unity (C#), что не входит в мой спектр услуг. Я работаю только на Python для автоматизаций: боты, парсеры, генерация контента, интеграции с API. Unity-разработка — это отдельная специальность, которая мне не по силам."
+    },
+    "40762515": {
+      "title": "Multifaceted AI Developer & Media Artist -- 5",
+      "url": "https://www.freelancer.com/projects/graphic-design/Multifaceted-Developer-Media-Artist-40762515",
+      "description": "140 reels for 50usd ai creator needed fast must have alot of reviews and be able to start asap must be male and have all the ai tools. looking for manga art and realistic video creations. as well as music editing.",
+      "currency": "USD",
+      "decision": "Заказ требует: (1) создание 140 видео-реелей — это огромный объём, который складывается в сроки более 21 дня (профиль: максимум 21 день); (2) реалистичные видео с людьми, сгенерированные ИИ — это запрещено правилами (манга-арт допустим, но реалистичные видео с людьми нет); (3) музыкальное редактирование — не входит в услуги; (4) требование быть мужчиной — не принимаем дискриминацию. Работу невозможно выполнить в рамках профиля и правил."
+    },
+    "40762512": {
+      "title": "Multifaceted AI Developer & Media Artist -- 4",
+      "url": "https://www.freelancer.com/projects/graphic-design/Multifaceted-Developer-Media-Artist-40762512",
+      "description": "140 reels for 50usd ai creator needed fast must have alot of reviews and be able to start asap must be male and have all the ai tools. looking for manga art and realistic video creations. as well as music editing.",
+      "currency": "USD",
+      "decision": "Заказ требует: (1) создание 140 видео-шортсов за $50 — это объём на $1400+ по моим ценам; (2) генерацию видео с людьми (manga art realistic video creations) — мой профиль запрещает видео/картинки с людьми, сгенерированные ИИ; (3) музыкальное редактирование — это не входит в мои услуги. Заказ не подходит ни по объёму, ни по содержанию, ни по требованиям (заказчик требует мужчину с кучей отзывов, а я одна разработчица). Отклик не приведёт к сделке."
+    },
+    "40762407": {
+      "title": "Christian Song Guitar Vocal Demo ( No AI Please )  I don't need stems , either,",
+      "url": "https://www.freelancer.com/projects/music-production/Christian-Song-Guitar-Vocal-Demo",
+      "description": "I’ve written a set of contemporary Christian lyrics and now I’d like to hear them come alive. What I’m after first is a clean vocal demo accompanied only by guitar—nothing overly produced, just an intimate rendition that lets the melody and message shine. NO AI please,,,,,,,,,,,,,,,,,,,,,,,, If you also feel inspired to build a fuller backing track, I’m open to hearing what you create, but that part is optional for now; the core need is the vocal-plus-guitar version. NO AI Please , I can do that myself, if that is what I wanted, thanks Please deliver: • One mixed master (WAV ) of the vocal with guitar • A separate instrumental stem if you add the optional backing track • Lyric-timed reference or chord sheet so I can follow along A warm, expressive vocal tone and tasteful guitar work will make all the difference. Let me know your timeframe and a brief outline of your recording setup—looking forward to collaborating!",
+      "currency": "USD",
+      "decision": "Проект требует музыкальную продакшн (вокал, гитара, аранжировку) — это не входит в мои услуги. Я делаю ИИ-автоматизации на Python (боты, парсеры, постинг, генерацию контента), а не музыкальное производство. Заказчик явно просит БЕЗ ИИ, но даже если бы допустил ИИ-озвучку, это было бы частью более крупного проекта — здесь нужен музыкант с гитарой."
+    },
+    "40762505": {
+      "title": "Completely polished AI movie ",
+      "url": "https://www.freelancer.com/projects/ai-video-editing/Completely-polished-movie",
+      "description": "I am looking for a skilled AI video creator or filmmaker who can produce one complete cinematic scene based on my screenplay and instructions.I will provide the screenplay and scene instructions. Please quote your total price for the complete scene, estimated duration, delivery time, and the AI tools you will use. Please do not begin work until the price, deliverables, usage rights, and revision terms are agreed. This is a scene-based project, with potential for further work if the collaboration goes well.",
+      "currency": "INR",
+      "decision": "Проект требует создания видео с людьми, сгенерированного ИИ. Профиль явно запрещает: 'Картинки и видео с людьми, сгенерированные ИИ'. Кроме того, 'cinematic scene' предполагает актёров или персонажей, что выходит за рамки разрешённых услуг (контент без людей, шортсы с озвучкой, но не полноценные фильмы с персонажами)."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-11",
     "bids": 1,
-    "evals": 16
+    "evals": 22
   }
 }
