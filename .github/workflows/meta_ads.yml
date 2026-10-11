@@ -1,0 +1,73 @@
+name: meta_ads
+
+on:
+  schedule:
+    # 10:00 Алматы: вчерашняя статистика Meta уже досчитана.
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "setup | activate | optimize | report"
+        default: report
+        required: true
+      campaigns:
+        description: "ключи через пробел (пусто — все): fitness20 tajweed tamra automation"
+        default: ""
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: meta_ads
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install requests python-dotenv anthropic
+
+      - name: Агент Meta Ads
+        env:
+          DATA_DIR: state
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+          META_PIXEL_ID: ${{ secrets.META_PIXEL_ID }}
+          # Реальные изменения в рекламе — только когда переменная репозитория META_ADS_LIVE = true.
+          META_ADS_LIVE: ${{ vars.META_ADS_LIVE }}
+          META_ADS_TOTAL_DAILY_BUDGET: ${{ vars.META_ADS_TOTAL_DAILY_BUDGET }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          COMMAND: ${{ github.event.inputs.command || 'optimize' }}
+          CAMPAIGNS: ${{ github.event.inputs.campaigns }}
+        run: python meta_ads_agent.py "$COMMAND" $CAMPAIGNS
+
+      - name: Сохранить состояние (id кампаний, история бюджетов)
+        if: always()
+        run: |
+          git config user.name "meta-ads"
+          git config user.email "meta-ads@users.noreply.github.com"
+          [ -f state/meta_ads_state.json ] && git add state/meta_ads_state.json
+          git diff --cached --quiet && echo "нет изменений состояния" && exit 0
+          git commit -m "meta_ads: $(date -u +%F_%H%M) [skip ci]"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push отклонён, пробую снова: попытка $i"
+            git fetch origin master
+            git rebase origin/master || { git rebase --abort; exit 1; }
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "::error::не удалось сохранить состояние meta_ads — id созданных кампаний есть только в логе этого запуска"
+          exit 1

@@ -1,0 +1,109 @@
+{
+  "_comment": "Четыре кампании агента meta_ads. Суммы — в валюте рекламного аккаунта (основные единицы: 12.5 = $12.50). Перед `setup` заполни link и image у каждой кампании.",
+
+  "total_daily_budget": 40,
+  "min_daily_budget": 4,
+  "max_daily_budget": 20,
+  "max_daily_change": 0.2,
+  "lookback_days": 7,
+  "recency_decay": 0.8,
+  "learning_days": 3,
+
+  "countries": ["KZ", "UZ", "KG", "TJ", "AZ", "AM", "BY", "MD"],
+  "locales": ["Russian"],
+
+  "ad_rules": {
+    "min_impressions": 2000,
+    "min_ctr": 0.004,
+    "kill_cpa_multiplier": 2.5,
+    "fatigue_frequency": 3.5,
+    "max_active_ads": 5
+  },
+
+  "campaigns": {
+    "fitness20": {
+      "name": "20-минутные тренировки — пилатес и аэробика",
+      "brief": "Онлайн-тренировки по 20 минут: пилатес и аэробика дома, без инвентаря. Для занятых людей, которым нужен короткий понятный план и регулярность.",
+      "policy_notes": "Фитнес: никаких обещаний похудеть на N кг за срок, никаких «до/после», не стыдить за тело, не обращаться к недостаткам внешности читателя.",
+      "link": "",
+      "image": "",
+      "cta": "SIGN_UP",
+      "objective": "OUTCOME_TRAFFIC",
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "result_action": "landing_page_view",
+      "target_cpa": 0.15,
+      "age_min": 22,
+      "age_max": 55,
+      "genders": [],
+      "interests": ["Pilates", "Aerobics", "Physical fitness", "Home workout"],
+      "seed_copy": [
+        {"primary_text": "20 минут в день — пилатес и аэробика дома. Без зала и инвентаря, понятный план на каждый день.", "headline": "Тренировки по 20 минут", "description": "Начни сегодня"},
+        {"primary_text": "Нет времени на зал? Короткие тренировки пилатеса и аэробики, которые помещаются в любой день.", "headline": "Пилатес и аэробика дома", "description": "Первое занятие сегодня"}
+      ]
+    },
+
+    "tajweed": {
+      "name": "Курс арабского таджвида",
+      "brief": "Онлайн-курс таджвида: правила чтения Корана на арабском с преподавателем, с нуля, в удобное время, с проверкой произношения.",
+      "policy_notes": "Политика Meta о личных характеристиках: нельзя утверждать или намекать на религию читателя («Вы мусульманин?», «Как мусульманин, ты…»). Говори о курсе и навыке, а не о вере человека.",
+      "link": "",
+      "image": "",
+      "cta": "LEARN_MORE",
+      "objective": "OUTCOME_TRAFFIC",
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "result_action": "landing_page_view",
+      "target_cpa": 0.12,
+      "age_min": 18,
+      "age_max": 60,
+      "genders": [],
+      "interests": ["Arabic language", "Quran", "Language learning"],
+      "seed_copy": [
+        {"primary_text": "Научитесь читать Коран по правилам таджвида: с нуля, онлайн, с преподавателем и разбором произношения.", "headline": "Курс таджвида онлайн", "description": "Пробный урок"},
+        {"primary_text": "Правильное произношение арабских букв и правила таджвида — шаг за шагом, в удобное для вас время.", "headline": "Таджвид с преподавателем", "description": "Запишитесь на урок"}
+      ]
+    },
+
+    "tamra": {
+      "name": "Онлайн-школа «Тамра»",
+      "brief": "Онлайн-школа «Тамра»: занятия онлайн с живыми преподавателями. (Уточни программу, возраст учеников и формат — от этого текста зависит, что напишет копирайтер.)",
+      "policy_notes": "Не обещать гарантированных результатов, не утверждать личные характеристики читателя (религия, национальность, здоровье).",
+      "link": "",
+      "image": "",
+      "cta": "LEARN_MORE",
+      "objective": "OUTCOME_TRAFFIC",
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "result_action": "landing_page_view",
+      "target_cpa": 0.15,
+      "age_min": 23,
+      "age_max": 55,
+      "genders": [],
+      "interests": ["Online learning", "Distance education", "Parenting"],
+      "seed_copy": [
+        {"primary_text": "Онлайн-школа «Тамра»: живые занятия с преподавателями, удобное расписание, учёба из любой точки.", "headline": "Онлайн-школа «Тамра»", "description": "Узнать о программе"},
+        {"primary_text": "Учитесь онлайн с живыми преподавателями «Тамры» — небольшие группы и внимание к каждому ученику.", "headline": "Учёба в «Тамре»", "description": "Пробное занятие"}
+      ]
+    },
+
+    "automation": {
+      "name": "Автоматизация бизнеса и AI-агенты",
+      "brief": "Делаем автоматизацию бизнес-процессов и AI-агентов под задачи компании: заявки, ответы клиентам, отчёты, CRM, Telegram-боты. Для владельцев малого и среднего бизнеса.",
+      "policy_notes": "Без гарантий дохода («заработаешь X»), без преувеличений «ИИ заменит всех сотрудников». Конкретные задачи и сэкономленное время.",
+      "link": "",
+      "image": "brand/robot_avatar.png",
+      "cta": "CONTACT_US",
+      "objective": "OUTCOME_TRAFFIC",
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "result_action": "landing_page_view",
+      "target_cpa": 0.25,
+      "age_min": 25,
+      "age_max": 60,
+      "genders": [],
+      "countries": ["KZ", "UZ", "KG", "AZ", "AM", "BY"],
+      "interests": ["Small business", "Entrepreneurship", "Business automation", "Artificial intelligence"],
+      "seed_copy": [
+        {"primary_text": "AI-агент отвечает клиентам, принимает заявки и заносит их в CRM — пока вы занимаетесь бизнесом.", "headline": "AI-агенты для бизнеса", "description": "Бесплатный разбор"},
+        {"primary_text": "Рутина съедает часы каждый день? Автоматизируем заявки, отчёты и ответы клиентам под ваши процессы.", "headline": "Автоматизация процессов", "description": "Обсудить задачу"}
+      ]
+    }
+  }
+}
