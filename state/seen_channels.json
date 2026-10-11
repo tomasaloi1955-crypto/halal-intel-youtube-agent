@@ -2996,67 +2996,253 @@
   "score": 25,
   "silent": 2
  },
+ "chesnakov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "mironovonline": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "polylog_feedback_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "kritiknewsfeed": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "vyborka": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "wciomofficial": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "bankuyte": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "russiancouncil": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "kimmarina": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "dirtytatarstan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "moscow_laundry": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "themoscowdailynews": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "rossiyaneevropa": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "kremlin_bulldogs": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "bashankaev": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "martynov2021": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "rosmolodez": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "nedebri2": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "rasputicaa": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "andrevinokurov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "slutsky_l": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "ninaostanina": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "listnewsru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "ctotoznayu": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "nsetov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "vatfor": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "valdaiclub": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "kurennyy": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "davankov": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "up_periscope": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "vv_panova": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "realsardana": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "prokhorov11": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "suverensouth": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "borischernyshov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "ogon_media": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "zonaosoboho": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "mezhevichnikolay": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "ainemkin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "eisragenda": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "plavkotell": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "tgpodbor_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "expedition_digoriya": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "hello_factory_culture": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "kinoklubkonya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "mkalamuseum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "pathwaysofaletheia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "miodissea": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "culturelabs": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-11"
+ },
+ "fourteenth_line_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "alexander_id": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "antidigital": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "outoften": {
+  "sent": "2026-10-11",
+  "title": "9/10",
+  "contact": "ninetimeoutoften",
+  "score": 80,
+  "silent": 8
+ },
+ "luminary_center": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "sciencebourgeoise": {
+  "sent": "2026-10-11",
+  "title": "буржуазная наука",
+  "contact": "IvDanila",
+  "score": 55,
+  "silent": 12
+ },
+ "pageclub": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "bricsexpertcouncil": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "youthpolicy": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "premia_rapc": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "yourule_polit": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
  "_queue": [
-  "chesnakov",
-  "mironovonline",
-  "polylog_feedback_bot",
-  "kritiknewsfeed",
-  "vyborka",
-  "yourule_polit",
-  "wciomofficial",
-  "bankuyte",
-  "russiancouncil",
-  "kimmarina",
-  "dirtytatarstan",
-  "moscow_laundry",
-  "themoscowdailynews",
-  "rossiyaneevropa",
-  "kremlin_bulldogs",
-  "bashankaev",
-  "martynov2021",
-  "rosmolodez",
-  "nedebri2",
-  "bricsexpertcouncil",
-  "youthpolicy",
-  "rasputicaa",
-  "andrevinokurov",
-  "slutsky_l",
-  "ninaostanina",
-  "listnewsru",
-  "ctotoznayu",
-  "nsetov",
-  "vatfor",
-  "valdaiclub",
-  "kurennyy",
-  "davankov",
-  "up_periscope",
-  "vv_panova",
-  "realsardana",
-  "prokhorov11",
-  "suverensouth",
-  "borischernyshov",
-  "ogon_media",
-  "zonaosoboho",
-  "premia_rapc",
-  "mezhevichnikolay",
-  "ainemkin",
-  "eisragenda",
-  "plavkotell",
-  "tgpodbor_bot",
-  "expedition_digoriya",
-  "hello_factory_culture",
-  "kinoklubkonya",
-  "sciencebourgeoise",
-  "mkalamuseum",
-  "luminary_center",
-  "pageclub",
-  "pathwaysofaletheia",
-  "miodissea",
-  "culturelabs",
-  "fourteenth_line_bot",
-  "outoften",
-  "alexander_id",
-  "antidigital",
   "everyoneexists",
   "tellercompany",
   "obratno_io",
@@ -3496,7 +3682,67 @@
   "formandhabitat",
   "anthropology_eu",
   "nasledie_nasledilo",
-  "icahse"
+  "skoda_moda",
+  "nohcho09",
+  "arabskiy_safiya",
+  "ramadan_2020",
+  "kuran01",
+  "iqrag",
+  "quran_smotri",
+  "koran_mishari",
+  "koran_misharirashid",
+  "readingonequran",
+  "marushevskaya_valeriya",
+  "world_n",
+  "psi_xolog",
+  "psixolog_nukus",
+  "z_psy",
+  "chesnakovbooks",
+  "ancentr",
+  "politdump",
+  "empireofmusic_tabriz",
+  "rtvimain",
+  "gazetaru",
+  "tass_vlast",
+  "vv_volodin",
+  "vorobevaleksandr",
+  "skabyshev",
+  "irinaivanovaest",
+  "chestno_i_tochka",
+  "rostov_compro",
+  "beregofic",
+  "xah345345",
+  "bashnitorchat",
+  "omnitempore",
+  "mcrepostworld",
+  "kolokolvrn",
+  "neudascha",
+  "obrazbuduschego2",
+  "likbezzru",
+  "rucriminalinfo_2",
+  "borisenkod",
+  "kritikinfo1",
+  "agregatpolit",
+  "tassovkaru",
+  "agregatortruth",
+  "politpochta",
+  "drunkenpolitolog",
+  "kaliyuogatoday",
+  "kaluginprofit",
+  "eratrends",
+  "satirkka",
+  "politwera",
+  "e_bash_news",
+  "pyatiletka111",
+  "zhivoff",
+  "ve4niyvoy",
+  "nebrexnya",
+  "greyshemes",
+  "belnewsby1",
+  "medvedev_telegram",
+  "neoreshkins",
+  "mig41",
+  "russicaru"
  ],
- "_query_pos": 5
+ "_query_pos": 13
 }
