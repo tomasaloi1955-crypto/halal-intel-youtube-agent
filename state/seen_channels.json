@@ -2750,67 +2750,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-10"
  },
+ "muslim_line": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "aljamalshawls": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "platya_1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "v_platia": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "our_dress": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "platyazhenskie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "kuplya_platyev": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "dress_es": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "codm_ra": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "roya1_club": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "platya_kkul": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "yona_clothes": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "uzun_kiyimlar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "bestislambooks": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islam_kniga": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "zapahknig": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "kniga_pdf": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islam_audio_books": {
+  "skip": "молчит 1654 дн.",
+  "date": "2026-10-11"
+ },
+ "muslimkids_05": {
+  "skip": "подписчиков 128",
+  "date": "2026-10-11"
+ },
+ "biblioteka_poleznogo": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islamsitati": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "islamic_finance_plus": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "islam_story_365": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "islam_v": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "qadim_books": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islamskaya_viktorina_quiz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islamic_film": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "isiamskie01": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "sheyha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islamskiyevideoroliki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "islam_koran_nashidy": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "fluffy_moss": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "sokenbichanorap": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "solensteg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "abyssinicus": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "fanatelevision": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "meskob": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "lastembrace": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "zilart_museum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "japanstudiesru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "bratukhinns": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "ltwinsk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-11"
+ },
+ "stradarium1": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "japanese_vibes": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "arzamaslive": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "nihonshidaily": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "japanfest": {
+  "skip": "подписчиков 150",
+  "date": "2026-10-11"
+ },
+ "anthropad": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "mongolclubnsomgimo": {
+  "skip": "подписчиков 164",
+  "date": "2026-10-11"
+ },
+ "rubruk": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "detiinostranki": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "libfl": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "centro_cultural_iberoamericano": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "nikolaspolonsky": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-11"
+ },
+ "acclibfl": {
+  "skip": "не наша ниша",
+  "date": "2026-10-11"
+ },
+ "japan_arch": {
+  "sent": "2026-10-11",
+  "title": "Japan Arch",
+  "contact": "zarinazc",
+  "score": 80,
+  "silent": 4
+ },
+ "islamskie_multiki": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "icahse": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "almamater_books": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-11"
+ },
+ "zakladka_podcast": {
+  "sent": "2026-10-11",
+  "title": "Подкаст/Книжный клуб «Твоя Закладка»",
+  "contact": "volodezniy",
+  "score": 25,
+  "silent": 2
+ },
  "_queue": [
-  "muslim_line",
-  "aljamalshawls",
-  "platya_1",
-  "v_platia",
-  "our_dress",
-  "platyazhenskie",
-  "kuplya_platyev",
-  "dress_es",
-  "codm_ra",
-  "roya1_club",
-  "platya_kkul",
-  "yona_clothes",
-  "uzun_kiyimlar",
-  "bestislambooks",
-  "islam_kniga",
-  "zapahknig",
-  "kniga_pdf",
-  "islam_audio_books",
-  "muslimkids_05",
-  "biblioteka_poleznogo",
-  "islamsitati",
-  "islamic_finance_plus",
-  "islam_story_365",
-  "islam_v",
-  "qadim_books",
-  "islamskaya_viktorina_quiz",
-  "islamic_film",
-  "isiamskie01",
-  "islamskie_multiki",
-  "sheyha",
-  "islamskiyevideoroliki",
-  "islam_koran_nashidy",
-  "almamater_books",
-  "fluffy_moss",
-  "sokenbichanorap",
-  "solensteg",
-  "abyssinicus",
-  "fanatelevision",
-  "meskob",
-  "lastembrace",
-  "zilart_museum",
-  "japanstudiesru",
-  "bratukhinns",
-  "japan_arch",
-  "ltwinsk",
-  "stradarium1",
-  "japanese_vibes",
-  "zakladka_podcast",
-  "arzamaslive",
-  "nihonshidaily",
-  "japanfest",
-  "anthropad",
-  "mongolclubnsomgimo",
-  "icahse",
-  "rubruk",
-  "detiinostranki",
-  "libfl",
-  "centro_cultural_iberoamericano",
-  "nikolaspolonsky",
-  "acclibfl",
   "chesnakov",
   "mironovonline",
   "polylog_feedback_bot",
@@ -3250,7 +3436,67 @@
   "tut_kizlar",
   "edg_05",
   "all_dagestan",
-  "makhachkala8"
+  "makhachkala8",
+  "official_moscow_chat",
+  "mockba_channel",
+  "pectopah_mockba",
+  "prostitutka_moscow",
+  "moscow_i",
+  "moscownews_24",
+  "halal_lavka_kazan",
+  "tut_mahachkala",
+  "citynews_makhachkala",
+  "mkala",
+  "makh_view",
+  "dg9900",
+  "makhachkala",
+  "sonikx_05",
+  "dagestan_m",
+  "official_makhachkala",
+  "makhachkala_life",
+  "mahachkalatrud",
+  "prorab05",
+  "makhachkala_laba",
+  "ainagamzatova",
+  "bjij14p",
+  "kazan_vladimir",
+  "ucmakhachkala",
+  "islam_audio_books_proroki",
+  "islam_audio_books_angeli",
+  "islam_audio_books_sira",
+  "islam_audio_books_vera",
+  "islam_audio_books_ray_i_ad",
+  "muslimeco",
+  "mckinsey",
+  "kunuzru",
+  "hn_jed",
+  "chiroylimoliya",
+  "islommoliyasi",
+  "matana_bot",
+  "al_matana",
+  "myj_i_jena777",
+  "zilartmuseum_kids",
+  "chudesnie_momenti",
+  "moskvichka_mag",
+  "randomized",
+  "brutalism_architecture",
+  "zarinazc",
+  "random",
+  "belles_lettres",
+  "stradarium",
+  "stradarium_support",
+  "volodezniy",
+  "fondpotanin",
+  "tofnations",
+  "saygoosegoose",
+  "icahse5559",
+  "postneklyudov",
+  "confhum",
+  "antropole",
+  "formandhabitat",
+  "anthropology_eu",
+  "nasledie_nasledilo",
+  "icahse"
  ],
- "_query_pos": 56
+ "_query_pos": 5
 }
