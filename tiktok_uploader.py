@@ -17,43 +17,61 @@ load_dotenv()
 
 CLIENT_KEY = os.getenv("TIKTOK_CLIENT_KEY", "")
 CLIENT_SECRET = os.getenv("TIKTOK_CLIENT_SECRET", "")
-TOKEN_FILE = dpath("tiktok_token.json")
 
 API = "https://open.tiktokapis.com"
 
+# account — префикс второго аккаунта (например "TAMRA_"): токены берутся из
+# TAMRA_TIKTOK_ACCESS_TOKEN / TAMRA_TIKTOK_REFRESH_TOKEN и лежат в своём файле.
+# Приложение TikTok (client key/secret) у аккаунтов общее, но его можно и переопределить.
+# Пустой префикс — основной канал, поведение как раньше.
 
-def _seed_tokens_from_env():
+
+def _token_file(account=""):
+    return dpath(f"{account.lower()}tiktok_token.json")
+
+
+def _client(account=""):
+    key = os.getenv(f"{account}TIKTOK_CLIENT_KEY") or CLIENT_KEY
+    secret = os.getenv(f"{account}TIKTOK_CLIENT_SECRET") or CLIENT_SECRET
+    return key, secret
+
+
+def _seed_tokens_from_env(account=""):
     """На чистом раннере разворачиваем токены из секретов в файл (как для YouTube)."""
-    if os.path.exists(TOKEN_FILE):
+    if os.path.exists(_token_file(account)):
         return
-    at, rt = os.getenv("TIKTOK_ACCESS_TOKEN"), os.getenv("TIKTOK_REFRESH_TOKEN")
+    at = os.getenv(f"{account}TIKTOK_ACCESS_TOKEN")
+    rt = os.getenv(f"{account}TIKTOK_REFRESH_TOKEN")
     if at and rt:
-        _save_tokens({"access_token": at, "refresh_token": rt, "expires_at": 0})
+        _save_tokens({"access_token": at, "refresh_token": rt, "expires_at": 0}, account)
 
 
-def _load_tokens():
-    if os.path.exists(TOKEN_FILE):
+def _load_tokens(account=""):
+    path = _token_file(account)
+    if os.path.exists(path):
         try:
-            return json.load(open(TOKEN_FILE, encoding="utf-8"))
+            return json.load(open(path, encoding="utf-8"))
         except Exception:
             pass
     return None
 
 
-def _save_tokens(tok):
-    os.makedirs(os.path.dirname(TOKEN_FILE) or ".", exist_ok=True)
-    with open(TOKEN_FILE, "w", encoding="utf-8") as f:
+def _save_tokens(tok, account=""):
+    path = _token_file(account)
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(tok, f, ensure_ascii=False, indent=2)
 
 
-def _refresh(tok):
+def _refresh(tok, account=""):
     """Обновляет access_token по refresh_token. TikTok access живёт ~24ч."""
+    client_key, client_secret = _client(account)
     r = requests.post(
         f"{API}/v2/oauth/token/",
         headers={"Content-Type": "application/x-www-form-urlencoded"},
         data={
-            "client_key": CLIENT_KEY,
-            "client_secret": CLIENT_SECRET,
+            "client_key": client_key,
+            "client_secret": client_secret,
             "grant_type": "refresh_token",
             "refresh_token": tok["refresh_token"],
         },
@@ -68,20 +86,21 @@ def _refresh(tok):
         "refresh_token": d.get("refresh_token", tok["refresh_token"]),
         "expires_at": int(time.time()) + int(d.get("expires_in", 86400)) - 120,
     }
-    _save_tokens(tok)
+    _save_tokens(tok, account)
     return tok
 
 
-def _valid_access_token():
+def _valid_access_token(account=""):
     """Возвращает свежий access_token (обновляет при необходимости) или None, если TikTok не настроен."""
-    if not CLIENT_KEY or not CLIENT_SECRET:
+    client_key, client_secret = _client(account)
+    if not client_key or not client_secret:
         return None
-    _seed_tokens_from_env()
-    tok = _load_tokens()
+    _seed_tokens_from_env(account)
+    tok = _load_tokens(account)
     if not tok or not tok.get("refresh_token"):
         return None
     if int(time.time()) >= int(tok.get("expires_at", 0)):
-        tok = _refresh(tok)
+        tok = _refresh(tok, account)
     return tok["access_token"]
 
 
@@ -97,15 +116,16 @@ def _upload_bytes(upload_url, video_path, size):
     return r.status_code in (200, 201, 206)
 
 
-def upload_to_tiktok(video_path, caption="", direct_post=False):
+def upload_to_tiktok(video_path, caption="", direct_post=False, account=""):
     """
     Публикует вертикальный mp4 в TikTok.
     direct_post=False → видео уходит в черновики/inbox (работает до аудита приложения).
     direct_post=True  → прямой публичный пост (нужен пройденный аудит + scope video.publish).
+    account="TAMRA_" → публикует во второй аккаунт (см. _token_file/_client).
     Возвращает publish_id или None. Никогда не роняет автопилот (все ошибки логируются).
     """
     try:
-        token = _valid_access_token()
+        token = _valid_access_token(account)
         if not token:
             print("[TIKTOK] Пропуск — не настроены ключи/токены TikTok.")
             return None

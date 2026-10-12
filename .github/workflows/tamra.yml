@@ -1,0 +1,68 @@
+name: tamra
+
+# Бот роликов Tamra School: каждые 15 минут забирает из Telegram присланные клипы и озвучку,
+# собирает ролик «День N», присылает превью и публикует по кнопке «Опубликовать».
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write          # сохраняем state/tamra_state.json (номер дня, черновик, offset)
+
+concurrency:
+  group: tamra
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Установить зависимости
+        run: |
+          pip install requests python-dotenv Pillow==10.4.0 google-generativeai==0.7.2 \
+                      google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1
+
+      - name: Бот Tamra School (один проход)
+        env:
+          DATA_DIR: state
+          TAMRA_TG_TOKEN: ${{ secrets.TAMRA_TG_TOKEN }}
+          TAMRA_TG_CHAT_ID: ${{ secrets.TAMRA_TG_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          TAMRA_IG_USER_ID: ${{ secrets.TAMRA_IG_USER_ID }}
+          TAMRA_IG_ACCESS_TOKEN: ${{ secrets.TAMRA_IG_ACCESS_TOKEN }}
+          TAMRA_YOUTUBE_TOKEN_JSON: ${{ secrets.TAMRA_YOUTUBE_TOKEN_JSON }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TAMRA_TIKTOK_ACCESS_TOKEN: ${{ secrets.TAMRA_TIKTOK_ACCESS_TOKEN }}
+          TAMRA_TIKTOK_REFRESH_TOKEN: ${{ secrets.TAMRA_TIKTOK_REFRESH_TOKEN }}
+        run: |
+          if [ -z "$TAMRA_TG_TOKEN" ]; then echo "TAMRA_TG_TOKEN не задан — пропуск"; exit 0; fi
+          python -m tamra.bot --once
+
+      - name: Сохранить состояние бота
+        if: always()
+        run: |
+          [ -f state/tamra_state.json ] || exit 0
+          git config user.name "tamra-bot"
+          git config user.email "tamra-bot@users.noreply.github.com"
+          git add state/tamra_state.json
+          git diff --cached --quiet && { echo "нет изменений"; exit 0; }
+          git commit -m "tamra: $(date -u +%F_%H%M) [skip ci]"
+          # параллельно коммитят другие воркфлоу — подтягиваем и пробуем ещё раз
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep $((i * 3))
+          done
+          echo "push не удался"
