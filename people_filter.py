@@ -45,6 +45,12 @@ def _jpeg_b64(path, max_side=768):
 def no_people(image_paths):
     """True, только если ИИ уверенно подтвердил: на всех кадрах нет людей.
     Любая ошибка или непонятный ответ — False (кадр не берём)."""
+    return vision_check(image_paths, VISION_PROMPT, "NO_PEOPLE")
+
+
+def vision_check(image_paths, prompt, ok_word):
+    """Показывает кадры ИИ с вопросом prompt ({n} — число кадров). True, только если ответ
+    начинается с ok_word. Нет ключа, ошибка API, непонятный ответ — False (кадр не берём)."""
     key = os.getenv("ANTHROPIC_API_KEY", "")
     if not key:
         print("[PEOPLE] ANTHROPIC_API_KEY не задан — кадр нельзя проверить, не берём")
@@ -54,7 +60,7 @@ def no_people(image_paths):
     try:
         content = [{"type": "image", "source": {"type": "base64", "media_type": "image/jpeg",
                                                 "data": _jpeg_b64(p)}} for p in image_paths]
-        content.append({"type": "text", "text": VISION_PROMPT.format(n=len(image_paths))})
+        content.append({"type": "text", "text": prompt.format(n=len(image_paths))})
         resp = requests.post(
             "https://api.anthropic.com/v1/messages",
             headers={"x-api-key": key, "anthropic-version": "2023-06-01",
@@ -65,7 +71,7 @@ def no_people(image_paths):
         )
         resp.raise_for_status()
         answer = "".join(b.get("text", "") for b in resp.json().get("content", [])).strip().upper()
-        ok = answer.startswith("NO_PEOPLE")
+        ok = answer.startswith(ok_word)
         print(f"[PEOPLE] Проверка кадра ИИ: {answer!r} → {'берём' if ok else 'отклонён'}")
         return ok
     except Exception as e:

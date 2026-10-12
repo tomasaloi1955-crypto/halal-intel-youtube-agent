@@ -11,7 +11,10 @@
 #      «🔁 Другой хук» — нейросеть перепишет тексты. «❌ Удалить» — черновик в корзину.
 #      Свой хук/подпись: напиши «хук: …» или «подпись: …».
 #
-# Сборка стартует сама, когда есть клипы и озвучка и минуту ничего не приходило.
+# Только озвучка, без клипов — кадры подбираются со стока (tamra/stock.py: руки, ноутбук,
+# стол; каждый клип проверяет ИИ — лиц быть не должно).
+#
+# Сборка стартует сама, когда есть озвучка и минуту ничего не приходило.
 # Без озвучки — напиши «готово», ролик соберётся немым, с хуком и призывом.
 #
 # Окружение:
@@ -34,7 +37,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer  # noqa: E402
+from tamra import montage, writer, stock  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
@@ -47,6 +50,8 @@ HELP = (
     "1️⃣ Пришли клипы и/или фото (скриншоты тоже) — в нужном порядке.\n"
     "2️⃣ Пришли озвучку — голосовым или аудиофайлом.\n"
     "3️⃣ По желанию — заметку текстом: о чём сегодняшний день.\n\n"
+    "Нет своих клипов — пришли только озвучку: подберу кадры сама "
+    "(руки, ноутбук, рабочий стол — без лиц).\n\n"
     "Я склею ролик под озвучку, добавлю «ДЕНЬ N», хук, субтитры, обложку и подпись "
     "и пришлю превью. Дальше — кнопка «Опубликовать».\n\n"
     "Команды:\n"
@@ -76,6 +81,7 @@ def load_state():
     st.setdefault("batch", _empty_batch())
     st.setdefault("draft", None)
     st.setdefault("history", [])
+    st.setdefault("stock_used", [])
     return st
 
 
@@ -155,15 +161,34 @@ def classify(msg):
 # ── сборка и публикация ────────────────────────────────────────────────────
 
 def _fetch_sources(spec, workdir):
+    voice = None
+    if spec.get("voice"):
+        v = spec["voice"]
+        voice = os.path.join(workdir, "src", f"voice.{v['ext']}")
+        if not os.path.exists(voice):
+            download(v["file_id"], voice)
     media = []
     for i, m in enumerate(spec["media"]):
         p = download(m["file_id"], os.path.join(workdir, "src", f"{i:02d}.{m['ext']}"))
         media.append({"path": p, "kind": m["kind"]})
-    voice = None
-    if spec.get("voice"):
-        v = spec["voice"]
-        voice = download(v["file_id"], os.path.join(workdir, "src", f"voice.{v['ext']}"))
+    if not media:
+        media = _stock_media(spec, voice, os.path.join(workdir, "src"))
     return media, voice
+
+
+def _stock_media(spec, voice, srcdir):
+    """Клипов нет — берём сток. Подобранные клипы запоминаются в черновике, чтобы
+    пересборка (другой хук, публикация) дала тот же видеоряд без повторной проверки."""
+    if spec.get("stock_clips"):
+        return [{"path": stock.download(c["url"], os.path.join(srcdir, f"stock_{c['id']}.mp4")),
+                 "kind": "video"} for c in spec["stock_clips"]]
+    seconds = montage.duration(voice) if voice else 15
+    count = max(3, min(8, int(seconds / 4) + 1))  # новый кадр примерно каждые 4 секунды
+    picked = stock.pick(count, spec.get("stock_exclude", []), srcdir)
+    if not picked:
+        raise RuntimeError("не нашла подходящих стоковых кадров без лиц — пришли свои клипы")
+    spec["stock_clips"] = [{"id": c["id"], "url": c["url"]} for c in picked]
+    return [{"path": c["path"], "kind": "video"} for c in picked]
 
 
 def render(draft):
@@ -222,18 +247,21 @@ def send_preview(chat, draft):
 
 def build_draft(st, chat):
     b = st["batch"]
-    if not b["media"]:
-        send(chat, "Пришли хотя бы один клип или фото — потом соберу ролик.")
+    if not b["media"] and not b["voice"]:
+        send(chat, "Пришли озвучку (и, если есть, свои клипы или фото) — потом соберу ролик.")
         return
     if st.get("draft"):
         send(chat, "Прошлый неопубликованный черновик заменяю новым.")
         _drop_draft(st)
     draft = {"id": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_") + uuid.uuid4().hex[:4],
              "day": st["day"], "media": b["media"], "voice": b["voice"], "notes": b["notes"],
-             "hook_override": b.get("hook"), "caption_override": b.get("caption")}
+             "hook_override": b.get("hook"), "caption_override": b.get("caption"),
+             "stock_exclude": st["stock_used"][-300:]}
     st["batch"] = _empty_batch()
     st["draft"] = draft
-    send(chat, f"⏳ Собираю «День {draft['day']}»: {len(draft['media'])} клип(ов)"
+    what = (f"{len(draft['media'])} клип(ов)" if draft["media"]
+            else "подбираю кадры с руками и ноутбуком")
+    send(chat, f"⏳ Собираю «День {draft['day']}»: {what}"
                f"{', с озвучкой' if draft['voice'] else ', без озвучки'}. Это 1–3 минуты…")
     try:
         _write_texts(draft)
@@ -244,7 +272,8 @@ def build_draft(st, chat):
                    "Черновик сохранён — напиши «готово», чтобы попробовать ещё раз.")
         st["batch"] = {**_empty_batch(), "media": draft["media"], "voice": draft["voice"],
                        "notes": draft["notes"], "hook": draft.get("hook_override"),
-                       "caption": draft.get("caption_override")}
+                       "caption": draft.get("caption_override"),
+                       "updated": time.time(), "auto_failed": True}  # сама не повторяю
         st["draft"] = None
 
 
@@ -280,6 +309,7 @@ def publish_draft(st, chat):
             "day": d["day"], "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "hook": d["texts"]["hook"], "results": results}])[-90:]
         st["day"] = max(st["day"], d["day"] + 1)
+        st["stock_used"] = (st["stock_used"] + [c["id"] for c in d.get("stock_clips", [])])[-300:]
         shutil.rmtree(os.path.join(WORK, d["id"]), ignore_errors=True)
     else:
         st["draft"] = d
@@ -306,6 +336,7 @@ def handle_message(st, msg):
         return
     b = st["batch"]
 
+    b.pop("auto_failed", None)  # что-то новое пришло — можно снова собирать автоматически
     att = classify(msg)
     if att:
         kind, fid, ext, size = att
@@ -327,7 +358,9 @@ def handle_message(st, msg):
             return  # альбом приходит пачкой сообщений — отвечаем один раз, на первое
         b["last_group"] = group
         got = f"клипов/фото: {len(b['media'])}, озвучка: {'есть' if b['voice'] else 'нет'}"
-        send(chat, f"👌 Приняла ({got}).")
+        tail = ("\nСвоих клипов нет — подберу кадры с руками и ноутбуком сама. "
+                "Хочешь свои — пришли их в ближайшую минуту." if kind == "voice" and not b["media"] else "")
+        send(chat, f"👌 Приняла ({got}).{tail}")
         return
 
     if not text:
@@ -403,10 +436,11 @@ def handle_callback(st, cq):
 
 
 def maybe_autobuild(st):
-    """Клипы и озвучка на месте, минуту ничего не приходило — собираем без команды."""
+    """Озвучка на месте (клипы — свои или со стока), минуту ничего не приходило — собираем."""
     b = st["batch"]
     chat = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
-    if chat and b["media"] and b["voice"] and time.time() - b["updated"] >= IDLE_BEFORE_BUILD:
+    if (chat and b["voice"] and not b.get("auto_failed")
+            and time.time() - b["updated"] >= IDLE_BEFORE_BUILD):
         build_draft(st, chat)
 
 
