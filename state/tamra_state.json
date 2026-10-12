@@ -4,6 +4,16 @@
   "day": 1,
   "batch": {
     "media": [],
+    "voice": null,
+    "notes": [],
+    "hook": null,
+    "caption": null,
+    "updated": 0
+  },
+  "draft": {
+    "id": "20261012_172631_dcfc",
+    "day": 1,
+    "media": [],
     "voice": {
       "file_id": "CQACAgIAAxkBAAMJas0VY-Iiu6W6FhI-2JnDVaz3ZfUAApO0AAIa0WlKcK3cQB-0uHA9BA",
       "ext": "m4a"
@@ -11,12 +21,39 @@
     "notes": [
       "/старт"
     ],
-    "hook": null,
-    "caption": null,
-    "updated": 1791825929.020375,
-    "last_group": null
+    "hook_override": null,
+    "caption_override": null,
+    "stock_exclude": [],
+    "texts": {
+      "hook": "/старт",
+      "title": "День 1: строю исламскую ИИ-школу",
+      "caption": "/старт\n\nБесплатный тест уровня для ребёнка — ссылка в профиле.",
+      "hashtags": [
+        "#tamraschool",
+        "#исламскаяшкола",
+        "#семейноеобучение",
+        "#мусульманскаясемья",
+        "#онлайншкола",
+        "#воспитаниедетей"
+      ],
+      "subtitles": []
+    },
+    "stock_clips": [
+      {
+        "id": 7204518,
+        "url": "https://videos.pexels.com/video-files/7204518/7204518-hd_1080_1920_25fps.mp4"
+      },
+      {
+        "id": 6633343,
+        "url": "https://videos.pexels.com/video-files/6633343/6633343-hd_1080_1920_25fps.mp4"
+      },
+      {
+        "id": 7652166,
+        "url": "https://videos.pexels.com/video-files/7652166/7652166-hd_1080_1920_30fps.mp4"
+      }
+    ],
+    "rendered_hook": "/старт"
   },
-  "draft": null,
   "history": [],
   "stock_used": []
 }
