@@ -40,6 +40,8 @@ jobs:
           TAMRA_TG_CHAT_ID: ${{ secrets.TAMRA_TG_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # резерв: Whisper (субтитры) и модель для текстов на Groq, если Gemini/ElevenLabs не отвечают
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           # Нет своих клипов — стоковые кадры (руки, ноутбук) с Pexels;
           # каждый клип проверяет Claude vision: лиц и открытого тела быть не должно
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
