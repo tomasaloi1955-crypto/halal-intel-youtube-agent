@@ -1,15 +1,22 @@
 {
-  "offset": 30003212,
+  "offset": 30003216,
   "owner": "970882173",
   "day": 1,
   "batch": {
     "media": [],
-    "voice": null,
-    "notes": [],
+    "voice": {
+      "file_id": "CQACAgIAAxkBAAMJas0VY-Iiu6W6FhI-2JnDVaz3ZfUAApO0AAIa0WlKcK3cQB-0uHA9BA",
+      "ext": "m4a"
+    },
+    "notes": [
+      "/старт"
+    ],
     "hook": null,
     "caption": null,
-    "updated": 0
+    "updated": 1791825929.020375,
+    "last_group": null
   },
   "draft": null,
-  "history": []
+  "history": [],
+  "stock_used": []
 }
