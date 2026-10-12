@@ -1,4 +1,4 @@
-# bot.py — Telegram-бот Tamri School: сырые клипы + озвучка → готовый ролик «День N».
+# bot.py — Telegram-бот Tamra School: сырые клипы + озвучка → готовый ролик «День N».
 #
 # Как пользоваться (всё в чате с ботом):
 #   1. Присылаешь клипы и/или фото (скриншоты экрана тоже) — в том порядке, в каком они
@@ -15,12 +15,12 @@
 # Без озвучки — напиши «готово», ролик соберётся немым, с хуком и призывом.
 #
 # Окружение:
-#   TAMRI_TG_TOKEN    — токен ОТДЕЛЬНОГО бота от @BotFather (не тот, что у Халяль Интеллидженс)
-#   TAMRI_TG_CHAT_ID  — твой chat id; если не задан, хозяином станет первый, кто напишет /start
-#   GEMINI_API_KEY, ELEVENLABS_API_KEY (необязательно) + ключи площадок (см. tamri/publish.py)
+#   TAMRA_TG_TOKEN    — токен ОТДЕЛЬНОГО бота от @BotFather (не тот, что у Халяль Интеллидженс)
+#   TAMRA_TG_CHAT_ID  — твой chat id; если не задан, хозяином станет первый, кто напишет /start
+#   GEMINI_API_KEY, ELEVENLABS_API_KEY (необязательно) + ключи площадок (см. tamra/publish.py)
 #
-# Запуск: python -m tamri.bot          — постоянно (сервер, Render)
-#         python -m tamri.bot --once   — один проход (GitHub Actions по расписанию)
+# Запуск: python -m tamra.bot          — постоянно (сервер, Render)
+#         python -m tamra.bot --once   — один проход (GitHub Actions по расписанию)
 import os
 import sys
 import json
@@ -34,16 +34,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamri import montage, writer  # noqa: E402
+from tamra import montage, writer  # noqa: E402
 
-TOKEN = os.getenv("TAMRI_TG_TOKEN", "")
-STATE_FILE = dpath("tamri_state.json")
-WORK = dpath(os.path.join("output", "tamri"))
+TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
+STATE_FILE = dpath("tamra_state.json")
+WORK = dpath(os.path.join("output", "tamra"))
 IDLE_BEFORE_BUILD = 60       # сек тишины после последнего файла — и можно собирать
 TG_DOWNLOAD_LIMIT = 20 * 1024 * 1024  # Bot API не отдаёт файлы тяжелее 20 МБ
 
 HELP = (
-    "Ассаляму алейкум! Я собираю ролики «День N» для Tamri School.\n\n"
+    "Ассаляму алейкум! Я собираю ролики «День N» для Tamra School.\n\n"
     "1️⃣ Пришли клипы и/или фото (скриншоты тоже) — в нужном порядке.\n"
     "2️⃣ Пришли озвучку — голосовым или аудиофайлом.\n"
     "3️⃣ По желанию — заметку текстом: о чём сегодняшний день.\n\n"
@@ -169,7 +169,7 @@ def _fetch_sources(spec, workdir):
 def render(draft):
     """Собирает видео черновика (или берёт уже собранное). Возвращает (mp4, обложка)."""
     workdir = os.path.join(WORK, draft["id"])
-    out = os.path.join(workdir, f"tamri_day{draft['day']}.mp4")
+    out = os.path.join(workdir, f"tamra_day{draft['day']}.mp4")
     cover = os.path.splitext(out)[0] + "_cover.jpg"
     if os.path.exists(out) and os.path.exists(cover) and draft.get("rendered_hook") == draft["texts"]["hook"]:
         return out, cover
@@ -239,7 +239,7 @@ def build_draft(st, chat):
         _write_texts(draft)
         send_preview(chat, draft)
     except Exception as e:
-        print(f"[TAMRI] Сборка не удалась: {e}")
+        print(f"[TAMRA] Сборка не удалась: {e}")
         send(chat, f"🔴 Не получилось собрать ролик: {str(e)[:300]}\n"
                    "Черновик сохранён — напиши «готово», чтобы попробовать ещё раз.")
         st["batch"] = {**_empty_batch(), "media": draft["media"], "voice": draft["voice"],
@@ -256,7 +256,7 @@ def _drop_draft(st):
 
 
 def publish_draft(st, chat):
-    from tamri.publish import publish_all
+    from tamra.publish import publish_all
     d = st.get("draft")
     if not d:
         send(chat, "Нет черновика для публикации. Пришли клипы и озвучку.")
@@ -289,7 +289,7 @@ def publish_draft(st, chat):
 # ── обработка сообщений ────────────────────────────────────────────────────
 
 def _is_owner(st, chat, text):
-    allowed = os.getenv("TAMRI_TG_CHAT_ID", "").strip() or st.get("owner")
+    allowed = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
     if allowed:
         return str(chat) == str(allowed)
     if text.startswith("/start"):
@@ -405,7 +405,7 @@ def handle_callback(st, cq):
 def maybe_autobuild(st):
     """Клипы и озвучка на месте, минуту ничего не приходило — собираем без команды."""
     b = st["batch"]
-    chat = os.getenv("TAMRI_TG_CHAT_ID", "").strip() or st.get("owner")
+    chat = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
     if chat and b["media"] and b["voice"] and time.time() - b["updated"] >= IDLE_BEFORE_BUILD:
         build_draft(st, chat)
 
@@ -419,7 +419,7 @@ def process(st, updates):
             elif upd.get("callback_query"):
                 handle_callback(st, upd["callback_query"])
         except Exception as e:
-            print(f"[TAMRI] Ошибка обработки сообщения: {e}")
+            print(f"[TAMRA] Ошибка обработки сообщения: {e}")
         save_state(st)
 
 
@@ -437,7 +437,7 @@ def poll_once():
 
 
 def poll_loop():
-    print("[TAMRI] Бот Tamri School слушает Telegram…")
+    print("[TAMRA] Бот Tamra School слушает Telegram…")
     st = load_state()
     while True:
         try:
@@ -447,13 +447,13 @@ def poll_loop():
             maybe_autobuild(st)
             save_state(st)
         except Exception as e:
-            print(f"[TAMRI] Ошибка опроса (не критично): {e}")
+            print(f"[TAMRA] Ошибка опроса (не критично): {e}")
             time.sleep(5)
 
 
 if __name__ == "__main__":
     if not TOKEN:
-        sys.exit("Нет TAMRI_TG_TOKEN — создай бота в @BotFather и положи токен в окружение.")
+        sys.exit("Нет TAMRA_TG_TOKEN — создай бота в @BotFather и положи токен в окружение.")
     if "--once" in sys.argv:
         poll_once()
     else:

@@ -10,8 +10,8 @@ import json
 import time
 import requests
 
-from tamri import brand
-from tamri.montage import phrase_chunks
+from tamra import brand
+from tamra.montage import phrase_chunks
 
 GEMINI_MODEL = "gemini-2.5-flash"
 _MIME = {"ogg": "audio/ogg", "oga": "audio/ogg", "mp3": "audio/mpeg", "m4a": "audio/mp4",
@@ -79,7 +79,7 @@ def _gemini(prompt, audio_path=None):
 def elevenlabs_words(audio_path):
     """Точные тайминги слов от ElevenLabs Speech-to-Text. None — если ключа нет или сбой."""
     key = os.getenv("ELEVENLABS_API_KEY")
-    if not key or os.getenv("TAMRI_ELEVENLABS_STT", "true").lower() in ("0", "false", "no", "off"):
+    if not key or os.getenv("TAMRA_ELEVENLABS_STT", "true").lower() in ("0", "false", "no", "off"):
         return None
     try:
         with open(audio_path, "rb") as f:
@@ -93,7 +93,7 @@ def elevenlabs_words(audio_path):
                  if w.get("type", "word") == "word" and w.get("text", "").strip()]
         return words or None
     except Exception as e:
-        print(f"[TAMRI] ElevenLabs STT недоступен: {e}")
+        print(f"[TAMRA] ElevenLabs STT недоступен: {e}")
         return None
 
 
@@ -117,7 +117,7 @@ def write(day, notes, audio_path=None):
         data = _gemini(_prompt(day, notes, bool(audio_path), need_subs=bool(audio_path) and not words),
                        audio_path) or _fallback(day, notes)
     except Exception as e:
-        print(f"[TAMRI] Gemini недоступен, тексты из заметки: {e}")
+        print(f"[TAMRA] Gemini недоступен, тексты из заметки: {e}")
         data = _fallback(day, notes)
 
     if words:
@@ -128,7 +128,7 @@ def write(day, notes, audio_path=None):
             tags.append(t)
     return {
         "hook": (data.get("hook") or "").strip(),
-        "title": (data.get("title") or f"День {day}: Tamri School").strip()[:90],
+        "title": (data.get("title") or f"День {day}: Tamra School").strip()[:90],
         "caption": (data.get("caption") or "").strip(),
         "hashtags": tags[:12],
         "subtitles": data.get("subtitles") or [],

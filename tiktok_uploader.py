@@ -20,8 +20,8 @@ CLIENT_SECRET = os.getenv("TIKTOK_CLIENT_SECRET", "")
 
 API = "https://open.tiktokapis.com"
 
-# account — префикс второго аккаунта (например "TAMRI_"): токены берутся из
-# TAMRI_TIKTOK_ACCESS_TOKEN / TAMRI_TIKTOK_REFRESH_TOKEN и лежат в своём файле.
+# account — префикс второго аккаунта (например "TAMRA_"): токены берутся из
+# TAMRA_TIKTOK_ACCESS_TOKEN / TAMRA_TIKTOK_REFRESH_TOKEN и лежат в своём файле.
 # Приложение TikTok (client key/secret) у аккаунтов общее, но его можно и переопределить.
 # Пустой префикс — основной канал, поведение как раньше.
 
@@ -121,7 +121,7 @@ def upload_to_tiktok(video_path, caption="", direct_post=False, account=""):
     Публикует вертикальный mp4 в TikTok.
     direct_post=False → видео уходит в черновики/inbox (работает до аудита приложения).
     direct_post=True  → прямой публичный пост (нужен пройденный аудит + scope video.publish).
-    account="TAMRI_" → публикует во второй аккаунт (см. _token_file/_client).
+    account="TAMRA_" → публикует во второй аккаунт (см. _token_file/_client).
     Возвращает publish_id или None. Никогда не роняет автопилот (все ошибки логируются).
     """
     try:

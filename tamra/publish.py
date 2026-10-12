@@ -1,13 +1,13 @@
-# publish.py — публикация готового ролика Tamri School в Instagram Reels, YouTube Shorts и TikTok.
+# publish.py — публикация готового ролика Tamra School в Instagram Reels, YouTube Shorts и TikTok.
 #
-# У Tamri School свои аккаунты, поэтому и ключи свои (префикс TAMRI_), отдельно от канала
+# У Tamra School свои аккаунты, поэтому и ключи свои (префикс TAMRA_), отдельно от канала
 # «Халяль Интеллидженс». Площадка без ключей просто пропускается — остальные публикуются.
 #
-#   Instagram: TAMRI_IG_USER_ID, TAMRI_IG_ACCESS_TOKEN
-#     (как получить — шапка instagram_poster.py, только для аккаунта Tamri School)
-#   YouTube:   TAMRI_YOUTUBE_TOKEN_JSON — содержимое youtube_token.json, полученного
-#     авторизацией под каналом Tamri School (scope youtube.upload)
-#   TikTok:    TAMRI_TIKTOK_ACCESS_TOKEN, TAMRI_TIKTOK_REFRESH_TOKEN (приложение TikTok то же,
+#   Instagram: TAMRA_IG_USER_ID, TAMRA_IG_ACCESS_TOKEN
+#     (как получить — шапка instagram_poster.py, только для аккаунта Tamra School)
+#   YouTube:   TAMRA_YOUTUBE_TOKEN_JSON — содержимое youtube_token.json, полученного
+#     авторизацией под каналом Tamra School (scope youtube.upload)
+#   TikTok:    TAMRA_TIKTOK_ACCESS_TOKEN, TAMRA_TIKTOK_REFRESH_TOKEN (приложение TikTok то же,
 #     что у основного канала: TIKTOK_CLIENT_KEY / TIKTOK_CLIENT_SECRET)
 import os
 import json
@@ -24,7 +24,7 @@ def _env(k):
 def instagram_reel(video_path, caption, thumb_offset_ms=1000):
     """Reels через Instagram Graph API с прямой загрузкой файла (resumable upload) —
     публичная ссылка на видео не нужна. Возвращает id публикации или бросает исключение."""
-    uid, token = _env("TAMRI_IG_USER_ID"), _env("TAMRI_IG_ACCESS_TOKEN")
+    uid, token = _env("TAMRA_IG_USER_ID"), _env("TAMRA_IG_ACCESS_TOKEN")
     if not uid or not token:
         return None
     r = requests.post(f"{GRAPH}/{uid}/media", params={
@@ -59,7 +59,7 @@ def instagram_reel(video_path, caption, thumb_offset_ms=1000):
 
 
 def youtube_short(video_path, title, description, tags):
-    raw = _env("TAMRI_YOUTUBE_TOKEN_JSON")
+    raw = _env("TAMRA_YOUTUBE_TOKEN_JSON")
     if not raw:
         return None
     from google.oauth2.credentials import Credentials
@@ -90,10 +90,10 @@ def youtube_short(video_path, title, description, tags):
 
 def tiktok(video_path, caption):
     from tiktok_uploader import upload_to_tiktok, _valid_access_token
-    if not _valid_access_token("TAMRI_"):
+    if not _valid_access_token("TAMRA_"):
         return None
-    direct = _env("TAMRI_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
-    pid = upload_to_tiktok(video_path, caption=caption, direct_post=direct, account="TAMRI_")
+    direct = _env("TAMRA_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
+    pid = upload_to_tiktok(video_path, caption=caption, direct_post=direct, account="TAMRA_")
     if not pid:
         raise RuntimeError("TikTok не принял видео (подробности в логе)")
     return pid
@@ -108,7 +108,7 @@ def publish_all(video_path, texts, caption):
         ("YouTube", lambda: youtube_short(video_path, texts["title"], caption, tags),
          lambda r: f"https://youtube.com/shorts/{r}"),
         ("TikTok", lambda: tiktok(video_path, caption),
-         lambda r: ("опубликовано" if _env("TAMRI_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
+         lambda r: ("опубликовано" if _env("TAMRA_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
                     else "в черновиках — открой TikTok и нажми «Опубликовать»")),
     ]
     results = {}
@@ -118,6 +118,6 @@ def publish_all(video_path, texts, caption):
             results[name] = ("✅ " + ok(r)) if r else "⏭ не настроено (нет ключей)"
         except Exception as e:
             detail = getattr(getattr(e, "response", None), "text", "") or ""
-            print(f"[TAMRI] {name}: {e} {detail[:300]}")
+            print(f"[TAMRA] {name}: {e} {detail[:300]}")
             results[name] = f"🔴 ошибка: {str(e)[:150]}"
     return results

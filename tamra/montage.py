@@ -15,7 +15,7 @@ import os
 import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
-from tamri import brand
+from tamra import brand
 
 W, H, FPS = brand.W, brand.H, brand.FPS
 HOOK_SECONDS = 2.8
@@ -303,7 +303,7 @@ def build(media, voice_path, day, hook, subs, workdir, out_path):
 
 
 if __name__ == "__main__":
-    # Локальная проверка: python -m tamri.montage клип1.mp4 фото.jpg ... [--voice голос.ogg]
+    # Локальная проверка: python -m tamra.montage клип1.mp4 фото.jpg ... [--voice голос.ogg]
     import sys
     args = sys.argv[1:]
     voice = None
@@ -313,4 +313,4 @@ if __name__ == "__main__":
         args = args[:i] + args[i + 2:]
     media = [{"path": p, "kind": "photo" if p.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))
               else "video"} for p in args]
-    print(build(media, voice, 1, "Тестовый хук ролика", [], "output/tamri_test", "output/tamri_test.mp4"))
+    print(build(media, voice, 1, "Тестовый хук ролика", [], "output/tamra_test", "output/tamra_test.mp4"))
