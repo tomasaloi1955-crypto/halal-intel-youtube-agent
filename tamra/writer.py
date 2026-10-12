@@ -2,9 +2,10 @@
 #
 # Нейросеть (Gemini) слушает саму озвучку + заметку, которую ты прислала боту, и пишет
 # тексты только из них и из фактов о школе (brand.SCHOOL_FACTS) — ничего не додумывая.
-# Субтитры с точными таймингами даёт ElevenLabs Speech-to-Text (если есть ключ);
-# без него — тайминги фраз от Gemini, они грубее, но лучше, чем ничего.
-# Нейросеть недоступна — ролик всё равно собирается: хук и подпись из твоей заметки.
+# Субтитры с точными таймингами даёт ElevenLabs Speech-to-Text, а если его ключ не работает —
+# Whisper на Groq (GROQ_API_KEY). Без обоих — тайминги фраз от Gemini, они грубее.
+# Gemini недоступен — тексты пишет модель на Groq по расшифровке озвучки.
+# Не работает ничего — ролик всё равно собирается: хук и подпись из твоей заметки.
 import os
 import json
 import time
@@ -14,12 +15,21 @@ from tamra import brand
 from tamra.montage import phrase_chunks
 
 GEMINI_MODEL = "gemini-2.5-flash"
+GROQ_API = "https://api.groq.com/openai/v1"
+GROQ_TEXT_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+GROQ_STT_MODEL = "whisper-large-v3-turbo"
 _MIME = {"ogg": "audio/ogg", "oga": "audio/ogg", "mp3": "audio/mpeg", "m4a": "audio/mp4",
          "wav": "audio/wav", "mp4": "audio/mp4", "aac": "audio/aac"}
 
 
-def _prompt(day, notes, with_audio, need_subs):
+def _prompt(day, notes, with_audio, need_subs, transcript=""):
     note = "\n".join(notes).strip() or "(заметки нет)"
+    if with_audio:
+        source = "ОЗВУЧКА приложена — главное содержание ролика бери из неё."
+    elif transcript:
+        source = f"РАСШИФРОВКА ОЗВУЧКИ (главное содержание ролика): {transcript}"
+    else:
+        source = "Озвучки нет — опирайся на заметку."
     subs = ('"subtitles": [{"text": "2-4 слова", "start": 0.0, "end": 1.2}, ...]  '
             "— дословная расшифровка озвучки короткими фразами, время в секундах от начала записи,"
             if need_subs else "")
@@ -30,7 +40,7 @@ def _prompt(day, notes, with_audio, need_subs):
 {brand.SCHOOL_FACTS}
 
 ЗАМЕТКА АВТОРА: {note}
-{"ОЗВУЧКА приложена — главное содержание ролика бери из неё." if with_audio else "Озвучки нет — опирайся на заметку."}
+{source}
 
 Аудитория — мусульманские родители (чаще мамы), русскоязычные, в т.ч. живущие за границей.
 Тон тёплый, уважительный, без агрессии к другим школам. Можно «Ассаляму алейкум» в подписи.
@@ -97,6 +107,39 @@ def elevenlabs_words(audio_path):
         return None
 
 
+def groq_words(audio_path):
+    """Тайминги слов от Whisper на Groq. None — если ключа нет или сбой."""
+    key = os.getenv("GROQ_API_KEY")
+    if not key:
+        return None
+    try:
+        with open(audio_path, "rb") as f:
+            r = requests.post(f"{GROQ_API}/audio/transcriptions",
+                              headers={"Authorization": f"Bearer {key}"},
+                              data={"model": GROQ_STT_MODEL, "language": "ru",
+                                    "response_format": "verbose_json",
+                                    "timestamp_granularities[]": "word"},
+                              files={"file": (os.path.basename(audio_path), f)}, timeout=300)
+        r.raise_for_status()
+        words = [{"text": w["word"].strip(), "start": float(w["start"]), "end": float(w["end"])}
+                 for w in r.json().get("words", []) if w.get("word", "").strip()]
+        return words or None
+    except Exception as e:
+        print(f"[TAMRA] Groq Whisper недоступен: {e}")
+        return None
+
+
+def _groq(prompt):
+    key = os.getenv("GROQ_API_KEY")
+    if not key:
+        return None
+    r = requests.post(f"{GROQ_API}/chat/completions", headers={"Authorization": f"Bearer {key}"},
+                      json={"model": GROQ_TEXT_MODEL, "temperature": 0.7,
+                            "messages": [{"role": "user", "content": prompt}]}, timeout=120)
+    r.raise_for_status()
+    return _parse(r.json()["choices"][0]["message"]["content"])
+
+
 def _fallback(day, notes):
     note = " ".join(notes).strip()
     hook = note.split(".")[0][:60] if note else f"Строю исламскую ИИ-школу. День {day}"
@@ -112,13 +155,21 @@ def _fallback(day, notes):
 
 def write(day, notes, audio_path=None):
     """Возвращает dict: hook, title, caption, hashtags (list), subtitles ([{text,start,end}])."""
-    words = elevenlabs_words(audio_path) if audio_path else None
+    notes = [n for n in notes if not n.strip().startswith("/")]  # случайные команды — не заметки
+    words = (elevenlabs_words(audio_path) or groq_words(audio_path)) if audio_path else None
+    transcript = " ".join(w["text"] for w in words) if words else ""
+    data = None
     try:
         data = _gemini(_prompt(day, notes, bool(audio_path), need_subs=bool(audio_path) and not words),
-                       audio_path) or _fallback(day, notes)
+                       audio_path)
     except Exception as e:
-        print(f"[TAMRA] Gemini недоступен, тексты из заметки: {e}")
-        data = _fallback(day, notes)
+        print(f"[TAMRA] Gemini недоступен, пробую Groq: {e}")
+    if not data:
+        try:
+            data = _groq(_prompt(day, notes, False, need_subs=False, transcript=transcript))
+        except Exception as e:
+            print(f"[TAMRA] Groq недоступен, тексты из заметки: {e}")
+    data = data or _fallback(day, notes)
 
     if words:
         data["subtitles"] = phrase_chunks(words)

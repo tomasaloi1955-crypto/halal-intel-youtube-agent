@@ -352,7 +352,9 @@ def handle_message(st, msg):
             b["media"].append({"kind": kind, "file_id": fid, "ext": ext})
         if text:  # подпись к видео — тоже заметка
             b["notes"].append(text)
-        b["updated"] = time.time()
+        # время отправки, а не обработки: в Actions сообщение могло прийти минуты назад,
+        # и тогда собирать можно уже в этом же проходе
+        b["updated"] = msg.get("date", time.time())
         group = msg.get("media_group_id")
         if group and group == b.get("last_group"):
             return  # альбом приходит пачкой сообщений — отвечаем один раз, на первое
@@ -365,7 +367,7 @@ def handle_message(st, msg):
 
     if not text:
         return
-    if low in ("/start", "/help", "помощь", "help"):
+    if low in ("/start", "/help", "помощь", "help", "/старт", "старт", "/помощь"):
         send(chat, HELP)
         return
     if low in ("готово", "/go", "собрать", "/build", "собери"):
@@ -406,8 +408,11 @@ def handle_message(st, msg):
                 b["updated"] = time.time()
                 send(chat, f"Запомнила {'хук' if key == 'hook' else 'подпись'} для следующего ролика.")
             return
+    if text.startswith("/"):
+        send(chat, "Не знаю такой команды. Напиши «помощь» — пришлю список.")
+        return
     b["notes"].append(text)
-    b["updated"] = time.time()
+    b["updated"] = msg.get("date", time.time())
     send(chat, "📝 Заметку учту в хуке и подписи.")
 
 
