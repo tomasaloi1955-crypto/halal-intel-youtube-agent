@@ -3242,67 +3242,259 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-11"
  },
+ "everyoneexists": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-12"
+ },
+ "obratno_io": {
+  "skip": "не наша ниша",
+  "date": "2026-10-12"
+ },
+ "rozacetkin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-12"
+ },
+ "vera_losk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "ninabortnikovaa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "abu_zakaria_armeni": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "arabic_abu_zakariya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "avarnucal": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "furkan21": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "lloveyou_canim": {
+  "skip": "не наша ниша",
+  "date": "2026-10-12"
+ },
+ "markaz_daruzzikr": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "islam_booksss": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tadzhvid": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "ahlulhadis_admin1_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "deti_ahlulhadis1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "ahlulhadis_admin_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "my_quiz_contest_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "abdullah777": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "znanie1_svet": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-12"
+ },
+ "onlinetajvid": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tajweed_app": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tajvid_gulia": {
+  "skip": "не наша ниша",
+  "date": "2026-10-12"
+ },
+ "itkan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tadjvid_love": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "moytadjvid": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "savab_ru": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "suweid_tajweed": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "kalamburvt": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "kalamb_urvt": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "isnadtajvid": {
+  "skip": "не наша ниша",
+  "date": "2026-10-12"
+ },
+ "fatimosh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tajwid_rezerv": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tadjwid_1k": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tadjwid_2020": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tgwad": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tadjweed66": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "tajwid_baksan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "hifz_al_kahf": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "quran_hifz_fr": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "hifz30dua": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "al_mulk_hifz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "ravdahteacher": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "prepodavateli_din": {
+  "skip": "молчит 2313 дн.",
+  "date": "2026-10-12"
+ },
+ "quransuratv": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "arabicmadaris": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "quran_authenticity": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "quran_muaiqly": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-12"
+ },
+ "koran1111111111": {
+  "skip": "подписчиков 184",
+  "date": "2026-10-12"
+ },
+ "quranshifaislam": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "vopros0tvet": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "hadisnabiislam": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "dom_znaniy_kursy": {
+  "sent": "2026-10-12",
+  "title": "ДОМ ЗНАНИЙ | КУРСЫ И НАБОРЫ",
+  "contact": "Furkan21",
+  "score": 80,
+  "silent": 68
+ },
+ "ahlulhadis_deti": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "manasiktrevel": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "marcazachauat": {
+  "sent": "2026-10-12",
+  "title": "مركز الأخوات لتعليم اللغه العربيه",
+  "contact": "Ummyunus2010",
+  "score": 60,
+  "silent": 3
+ },
+ "myarabic2025": {
+  "sent": "2026-10-12",
+  "title": "Будь с нами",
+  "contact": "Manager_AM16",
+  "score": 60,
+  "silent": 2
+ },
+ "koranvdom": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "ep1dersia": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "deti_ahlulhadis_1": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-12"
+ },
+ "tellercompany": {
+  "sent": "2026-10-12",
+  "title": "Teller",
+  "contact": "teller_tg",
+  "score": 25,
+  "silent": 3
+ },
  "_queue": [
-  "everyoneexists",
-  "tellercompany",
-  "obratno_io",
-  "ep1dersia",
-  "rozacetkin",
-  "vera_losk",
-  "ninabortnikovaa",
-  "quranshifaislam",
-  "manasiktrevel",
-  "abu_zakaria_armeni",
-  "arabic_abu_zakariya",
-  "avarnucal",
-  "dom_znaniy_kursy",
-  "furkan21",
-  "marcazachauat",
-  "lloveyou_canim",
-  "markaz_daruzzikr",
-  "islam_booksss",
-  "tadzhvid",
-  "ahlulhadis_admin1_bot",
-  "deti_ahlulhadis1",
-  "ahlulhadis_admin_bot",
-  "my_quiz_contest_bot",
-  "ahlulhadis_deti",
-  "vopros0tvet",
-  "deti_ahlulhadis_1",
-  "myarabic2025",
-  "abdullah777",
-  "znanie1_svet",
-  "hadisnabiislam",
-  "onlinetajvid",
-  "tajweed_app",
-  "tajvid_gulia",
-  "itkan",
-  "tadjvid_love",
-  "moytadjvid",
-  "savab_ru",
-  "suweid_tajweed",
-  "kalamburvt",
-  "kalamb_urvt",
-  "isnadtajvid",
-  "fatimosh",
-  "tajwid_rezerv",
-  "tadjwid_1k",
-  "tadjwid_2020",
-  "tgwad",
-  "tadjweed66",
-  "tajwid_baksan",
-  "hifz_al_kahf",
-  "quran_hifz_fr",
-  "hifz30dua",
-  "al_mulk_hifz",
-  "ravdahteacher",
-  "koranvdom",
-  "prepodavateli_din",
-  "quransuratv",
-  "arabicmadaris",
-  "quran_authenticity",
-  "quran_muaiqly",
-  "koran1111111111",
   "quran_cc",
   "arabskii_uroki",
   "quranschoolkazan",
@@ -3742,7 +3934,60 @@
   "medvedev_telegram",
   "neoreshkins",
   "mig41",
-  "russicaru"
+  "russicaru",
+  "sbs_orel",
+  "hokage_s_druzyami_2048",
+  "dance_family",
+  "cacao24_7",
+  "doctorvladl",
+  "esotericse",
+  "shemka",
+  "i_love_rukodelie",
+  "bhv_95",
+  "dob_mem",
+  "korobkapaper",
+  "w_label",
+  "teller_tg",
+  "zzernoo",
+  "pavlovez",
+  "transfurism",
+  "betweenprigov",
+  "stasmokinpoems",
+  "room_617",
+  "anekrozia",
+  "poesiazdes",
+  "ibolnoismeshno",
+  "twelve_plots",
+  "olyaoknigah",
+  "booklogbook",
+  "musicandprejudice",
+  "polka_knig",
+  "vimbo_audiobooks",
+  "nlosaintpetersburg",
+  "dva_kapitana_dva",
+  "manasiktrevel",
+  "toislam",
+  "otveti_uchenih",
+  "ummyunus2010",
+  "kanzalafifat",
+  "vopros0tvet",
+  "istina_ahlulhadis",
+  "ahlulhadis_admin",
+  "fauzan_ahlulhadis",
+  "zaschita_tauhida",
+  "kur_an",
+  "fikh_ahlulhadis",
+  "deti_ahlulhadis_1",
+  "ahlulhadis",
+  "hadis_ahlulhadis",
+  "ahlulhadis_deti",
+  "manager_am16",
+  "dialang_app",
+  "managerw_am",
+  "bewithusschool",
+  "quranshifaislam",
+  "assistant_kvd_bot",
+  "tafsirkvd"
  ],
- "_query_pos": 13
+ "_query_pos": 21
 }
