@@ -40,6 +40,10 @@ jobs:
           TAMRA_TG_CHAT_ID: ${{ secrets.TAMRA_TG_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # Нет своих клипов — стоковые кадры (руки, ноутбук) с Pexels;
+          # каждый клип проверяет Claude vision: лиц и открытого тела быть не должно
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TAMRA_IG_USER_ID: ${{ secrets.TAMRA_IG_USER_ID }}
           TAMRA_IG_ACCESS_TOKEN: ${{ secrets.TAMRA_IG_ACCESS_TOKEN }}
           TAMRA_YOUTUBE_TOKEN_JSON: ${{ secrets.TAMRA_YOUTUBE_TOKEN_JSON }}
