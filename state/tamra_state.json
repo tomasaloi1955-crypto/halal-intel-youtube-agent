@@ -1,0 +1,15 @@
+{
+  "offset": 0,
+  "owner": null,
+  "day": 1,
+  "batch": {
+    "media": [],
+    "voice": null,
+    "notes": [],
+    "hook": null,
+    "caption": null,
+    "updated": 0
+  },
+  "draft": null,
+  "history": []
+}
