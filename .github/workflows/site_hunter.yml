@@ -1,0 +1,57 @@
+name: site_hunter
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 8:30 по Алматы — список для звонков приходит до начала рабочего дня
+  workflow_dispatch: {}     # кнопка ручного запуска
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site_hunter
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install requests python-dotenv google-generativeai
+
+      - name: Поиск компаний без сайта
+        env:
+          DATA_DIR: state
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          SITE_CARDS: "15"
+          SITE_REQUESTS: "30"
+        run: python site_hunter.py
+
+      - name: Сохранить память (уже присланные компании)
+        if: always()
+        run: |
+          git config user.name "site-hunter"
+          git config user.email "site-hunter@users.noreply.github.com"
+          [ -f state/seen_places.json ] && git add state/seen_places.json
+          git diff --cached --quiet && echo "нет изменений состояния" && exit 0
+          git commit -m "places: $(date -u +%F_%H%M) [skip ci]"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push отклонён (гонка с другим коммитом), пробую снова: попытка $i"
+            git fetch origin master
+            git rebase origin/master || { git rebase --abort; exit 1; }
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "::error::состояние site_hunter сохранить не удалось — компании могут повториться"
+          exit 1

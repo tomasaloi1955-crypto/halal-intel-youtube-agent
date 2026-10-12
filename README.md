@@ -97,3 +97,16 @@ python main.py                 # полный режим с расписание
 4. Start: python main.py
 5. Environment Variables: добавь все из .env
 6. Secret Files: добавь youtube_credentials.json
+
+## Поиск компаний без сайта (site_hunter)
+
+Каждый день в 8:30 по Алматы `site_hunter.py` ищет в Google Картах компании Казахстана
+(18 городов × 35 ниш, по кругу) и присылает в Telegram до 15 штук, у которых нет своего
+сайта (или вместо сайта указан Instagram/2ГИС/WhatsApp). На каждую — три сообщения:
+карточка (телефон, WhatsApp, адрес, рейтинг, ссылка на Карты), скрипт звонка и текст
+для WhatsApp после разговора. Уже присланные компании запоминаются в `state/seen_places.json`.
+
+Ключ: console.cloud.google.com → APIs → включить **Places API (New)** → Credentials →
+API key → секрет репозитория `GOOGLE_MAPS_API_KEY`. Нужен привязанный платёжный
+аккаунт, но 30 запросов в день укладываются в бесплатный лимит Google (1000/мес).
+Количество карточек — `SITE_CARDS` в `.github/workflows/site_hunter.yml`.
