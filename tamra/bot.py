@@ -341,8 +341,11 @@ def handle_message(st, msg):
     if att:
         kind, fid, ext, size = att
         if size and size > TG_DOWNLOAD_LIMIT:
-            send(chat, f"Файл {size // (1024 * 1024)} МБ — боту доступно до 20 МБ. "
-                       "Пришли его обычным видео (не файлом), Telegram сожмёт, или обрежь покороче.")
+            # без этого флага бот собрал бы ролик на стоке, хотя ты ждёшь своё видео
+            b["oversize"] = True
+            send(chat, f"Файл {size // (1024 * 1024)} МБ — боту доступно до 20 МБ, этот не взяла. "
+                       "Пришли его сжатым (при отправке выбери качество 480p/720p) или обрежь покороче. "
+                       "Или напиши «готово» — соберу на стоковых кадрах.")
             return
         if kind == "voice":
             if b["voice"]:
@@ -445,6 +448,7 @@ def maybe_autobuild(st):
     b = st["batch"]
     chat = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
     if (chat and b["voice"] and not b.get("auto_failed")
+            and (b["media"] or not b.get("oversize"))
             and time.time() - b["updated"] >= IDLE_BEFORE_BUILD):
         build_draft(st, chat)
 
