@@ -51,7 +51,7 @@ def _prompt(day, notes, with_audio, need_subs, transcript=""):
   "hook": "хук на экран первых секунд, 3-7 слов, цепляет родителя, без хэштегов и эмодзи",
   "title": "заголовок YouTube Shorts до 70 символов",
   "caption": "подпись для Instagram/TikTok: 2-5 коротких строк по сути ролика, вопрос к зрителям, в конце строка про бесплатный тест уровня по ссылке в профиле. Без хэштегов",
-  "hashtags": ["#до", "#8", "#тематических"],
+  "hashtags": ["#до", "#5", "#нейтральных", "#про_образование_и_семью"],
   {subs}
   "transcript": "дословный текст озвучки или пустая строка"
 }}"""
@@ -173,7 +173,8 @@ def write(day, notes, audio_path=None):
 
     if words:
         data["subtitles"] = phrase_chunks(words)
-    tags = [t if t.startswith("#") else "#" + t for t in data.get("hashtags", []) if t.strip()]
+    tags = [t if t.startswith("#") else "#" + t for t in data.get("hashtags", [])
+            if t.strip() and not any(w in t.lower() for w in _BLOCKED_TAG_WORDS)]
     for t in brand.HASHTAGS:
         if t not in tags:
             tags.append(t)
@@ -184,6 +185,10 @@ def write(day, notes, audio_path=None):
         "hashtags": tags[:12],
         "subtitles": data.get("subtitles") or [],
     }
+
+
+# Нейросеть иногда добавляет политически окрашенные теги — такие не ставим никогда
+_BLOCKED_TAG_WORDS = ("движени", "джихад", "халифат", "умма", "политик", "война", "борьб")
 
 
 def full_caption(texts):
