@@ -3737,67 +3737,256 @@
   "score": 25,
   "silent": 6
  },
+ "tumenskoedelo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "commonground_yerevan": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-14"
+ },
+ "liremourir": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "egalite_book_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "dilettante_voiceover": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "asebeia_fm": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "channeldrawnews": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "archconservation": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "dasha_maliniina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "borderlinewriting": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-14"
+ },
+ "walls_will_fall": {
+  "skip": "подписчиков 2",
+  "date": "2026-10-14"
+ },
+ "wallswillfallbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "lightandpens": {
+  "skip": "подписчиков 171",
+  "date": "2026-10-14"
+ },
+ "yuna_center": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "privetpoideminfo": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "bookflow_party": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "domteleshova": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "kultnasled": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "do450km": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "shkola_gida": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "alpinadeti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "engineer_media": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "reshape_family": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-14"
+ },
+ "moscowweek26_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "true_random_rc_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "brotour_travel": {
+  "skip": "подписчиков 83",
+  "date": "2026-10-14"
+ },
+ "centrinvest": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "aakoren": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "bodega_porfavor": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "cinema1909": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "smirnova_kristina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "oembox": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-14"
+ },
+ "marinagolomazdina": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "clubnerd": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "natasharadko": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "zamena_maslo991": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "dohya_masla": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "zhukova_natalya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "dukhikiev": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "motomaslo": {
+  "skip": "молчит 1599 дн.",
+  "date": "2026-10-14"
+ },
+ "oil_essential": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "mannol_islom": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "vag_luchok": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "lukoil_oil_uz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "uhod_krasnodar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "cosmetic_naumencko": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "victoriya_kismetika": {
+  "skip": "не наша ниша",
+  "date": "2026-10-14"
+ },
+ "beauty_0720_discount": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "cosmetics_k": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "wealth_cat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "kafe_v": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "kafesoul": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "kafe_vstrecha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "cafeklukva_vn": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "kafecaravan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "yaltirok_bonus": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-14"
+ },
+ "blarproject": {
+  "sent": "2026-10-14",
+  "title": "BLAR",
+  "contact": "blar_project",
+  "score": 45,
+  "silent": 5
+ },
+ "pryamukhino": {
+  "sent": "2026-10-14",
+  "title": "Прямухино",
+  "contact": "bakunista",
+  "score": 25,
+  "silent": 4
+ },
+ "lib_soc": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-14"
+ },
+ "guidessa": {
+  "sent": "2026-10-14",
+  "title": "Гидесса в большом городе",
+  "contact": "denatasia",
+  "score": 5,
+  "silent": 3
+ },
  "_queue": [
-  "tumenskoedelo",
-  "commonground_yerevan",
-  "liremourir",
-  "egalite_book_bot",
-  "pryamukhino",
-  "dilettante_voiceover",
-  "asebeia_fm",
-  "channeldrawnews",
-  "archconservation",
-  "dasha_maliniina",
-  "borderlinewriting",
-  "walls_will_fall",
-  "wallswillfallbot",
-  "lib_soc",
-  "lightandpens",
-  "yuna_center",
-  "privetpoideminfo",
-  "bookflow_party",
-  "domteleshova",
-  "kultnasled",
-  "do450km",
-  "shkola_gida",
-  "alpinadeti",
-  "engineer_media",
-  "guidessa",
-  "reshape_family",
-  "moscowweek26_bot",
-  "true_random_rc_bot",
-  "brotour_travel",
-  "centrinvest",
-  "aakoren",
-  "bodega_porfavor",
-  "cinema1909",
-  "blarproject",
-  "smirnova_kristina",
-  "oembox",
-  "marinagolomazdina",
-  "clubnerd",
-  "natasharadko",
-  "zamena_maslo991",
-  "dohya_masla",
-  "zhukova_natalya",
-  "dukhikiev",
-  "motomaslo",
-  "oil_essential",
-  "mannol_islom",
-  "vag_luchok",
-  "lukoil_oil_uz",
-  "uhod_krasnodar",
-  "cosmetic_naumencko",
-  "victoriya_kismetika",
-  "beauty_0720_discount",
-  "cosmetics_k",
-  "wealth_cat",
-  "kafe_v",
-  "kafesoul",
-  "kafe_vstrecha",
-  "cafeklukva_vn",
-  "kafecaravan",
-  "yaltirok_bonus",
   "cafefagioli",
   "superhero_cafe",
   "cafe_yulya_mango",
@@ -4214,7 +4403,85 @@
   "nkavkazsky",
   "ilimbakh",
   "scandicast",
-  "what_am_l"
+  "what_am_l",
+  "hotturua",
+  "ex_tours",
+  "hotest_tour",
+  "hot_travel_group",
+  "idiotbooks",
+  "rusmetan",
+  "mixer_project",
+  "kontext_channel",
+  "oiru_channel",
+  "kpohod",
+  "kamertonclub",
+  "so_hranenie",
+  "mch1961",
+  "o_krakovetskaia",
+  "memorialsociety",
+  "ankuznets",
+  "firesoffreedom",
+  "lib_soc_bot",
+  "alt_fem",
+  "libsoc_school",
+  "norapeople",
+  "lib_soc",
+  "help_yuna",
+  "orbita_yauza",
+  "artoftea",
+  "annadzhudzhi",
+  "foxes_of_randall",
+  "iguanainthejungle",
+  "annaemelianovaa",
+  "uliashhi",
+  "puteshestviesvoimirukami",
+  "archnadzor_official",
+  "ty_tatyana",
+  "viemio",
+  "domteleshova_kids",
+  "sonia_sny",
+  "fromtamerlanetochurchill",
+  "basmaniamuseum",
+  "kult_nasled",
+  "alpinaru",
+  "intervalsfest",
+  "privetpoidemmari",
+  "staritsa_1297",
+  "menchakovo",
+  "mgitravelers",
+  "pr_account_shkola_gida",
+  "manager_shkola_gida",
+  "polkanaprotiv",
+  "alpinaproza",
+  "alpinanonfiction",
+  "bagautdinov_airat",
+  "engineer",
+  "nornickel_life",
+  "trcgorod_lefortovo",
+  "denatasia",
+  "reshape_tg",
+  "dtmskin",
+  "dalbarussiaofficial",
+  "reshapeglobal",
+  "tatyanakashub",
+  "trapezistudio",
+  "clubkommersant",
+  "blar_project",
+  "tolstoymuseum",
+  "yunost_na_futbolke",
+  "kinocostume",
+  "arinainkino",
+  "vadertatooine",
+  "russian_c0de",
+  "onlykinofuns",
+  "watchandvoice",
+  "popsanya",
+  "kinemart",
+  "westside_movieclub",
+  "egorkinofun",
+  "kinoprotebya",
+  "po_motivam",
+  "emmettbrowneffect"
  ],
- "_query_pos": 29
+ "_query_pos": 37
 }
