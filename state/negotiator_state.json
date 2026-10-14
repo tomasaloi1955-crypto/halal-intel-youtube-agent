@@ -2696,12 +2696,19 @@
       "description": "Buscamos referencias orientativas de precio de profesionales que trabajen en Argentina para un sistema que construiremos con nuestro equipo, sin compromiso de contratación. No solicitamos diseño detallado ni trabajo gratuito. Alcance para cotizar: 1.000 contactos nuevos únicos por mes; reutilizar Clay→Supabase, n8n para orquestación, Instantly para email y HeyReach para LinkedIn. Identidad/estado duradero por persona, campaña y canal; correlación de eventos; parar seguimientos en ambos canales al recibir una respuesta sin esperar IA; cierre sin respuesta solo al terminar ambos recorridos. Deduplicación, supresión/bajas, reintentos, confirmación del proveedor y recuperación de errores. Interesados y consultas a Freshsales, sin duplicados. Dashboard web con autenticación/permisos, contactos/estados y KPIs diarios por campaña/canal/período. Crear, editar, activar y pausar campañas; modificar ICP/segmentación y campos de copy mediante APIs. Mantener controles nativos donde las APIs no permitan integrar funciones y señalar los límites. Entregar código/configuración, documentación y capacitación. Opcional separado: chat IA del operador para consultar métricas y preparar/ejecutar acciones permitidas con permisos, vista previa, confirmación y registro. Distinto de clasificación de respuestas o venta automática. Indicar tu precio propio total sin IA y por módulos Base+CRM+dashboard, adicional IA, mantenimiento y horas/tiempos de respuesta, plazo, garantía, moneda/vigencia, experiencia relevante y exclusiones. Licencias, hosting, datos y consumos separados. El rango numérico mostrado es un campo obligatorio de la plataforma, no un presupuesto comprometido ni un límite para tu estimación. Buscamos conocer el precio que propondrías por el alcance, incluso fuera de ese intervalo.",
       "currency": "USD",
       "decision": "Этот проект выходит за рамки моих услуг. Заказчик ищет полнофункциональную B2B-систему с орхестрацией (n8n), интеграцией нескольких платформ (Clay, Supabase, Instantly, HeyReach, Freshsales), собственным веб-dashboard с аутентификацией и правами доступа, AI-ассистентом для операторов и сложной логикой управления кампаниями. Это требует архитектуры уровня SaaS, многомесячной разработки и постоянного обслуживания. Моя специализация — отдельные автоматизации (боты, парсеры, интеграции через API), а не построение интегрированных платформ. Кроме того, заказчик явно указывает использование n8n для орхестрации, а я работаю на Python. Цена (1000–20000 USD) и сложность проекта требуют команды, а я работаю одна. Рекомендую заказчику обратиться к агентствам или разработчикам, специализирующимся на low-code платформах и SaaS-решениях."
+    },
+    "40766645": {
+      "title": "Instagram SaaS Automation Tool Development",
+      "url": "https://www.freelancer.com/projects/saas-development/Instagram-SaaS-Automation-Tool",
+      "description": "Need some one who can instagram buy saas automation tool",
+      "currency": "INR",
+      "decision": "Заказ требует разработку SaaS-платформы (продукта с личным кабинетом, базой данных, интерфейсом для множества пользователей и системой оплаты). Это выходит за рамки моих услуг. Я делаю автоматизации и боты на Python, но не разрабатываю полноценные SaaS-приложения. Это требует фронтенда, бэкенда, хостинга, управления пользователями и технической поддержки — не мой профиль."
     }
   },
   "threads": {},
   "day": {
-    "date": "2026-10-13",
+    "date": "2026-10-14",
     "bids": 0,
-    "evals": 23
+    "evals": 1
   }
 }
