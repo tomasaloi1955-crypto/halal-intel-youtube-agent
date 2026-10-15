@@ -2925,12 +2925,33 @@
       "description": "We are looking for a highly skilled, versatile Automation Expert for a long-term collaboration to automate all aspects of our business. You should be capable of handling all kinds of business and AI automations, including: n8n workflows and complex integrations AI agents and agentic AI systems AI-powered business process automation API integrations, webhooks, and custom workflows CRM, sales, marketing, lead generation, and data automation AI chatbots, assistants, and LLM integrations Custom automations using any tools or technologies required We are not looking for someone limited to a single tool or a specific type of automation. We need an all-round expert who can take any automation requirement, find the right solution, and execute it independently. This is a long-term opportunity with ongoing projects and continuous automation requirements. To apply: Share your experience, examples of automations you have built, the tools you specialize in, and your availability for a long-term engagement. We are looking for a reliable, proactive problem-solver who can become our go-to expert for everything related to automation and AI.",
       "currency": "INR",
       "decision": "Заказчик требует работу с n8n workflows как основной навык. Я работаю только на Python. В профиле прописано: если заказчику важен именно n8n/Make/Zapier — вежливо отказываемся. Кроме того, заказчик просит примеры и портфолио с названиями инструментов и конкретных проектов — это выходит за границы честности (не должны выдумывать опыт с n8n). Отклик не откроет дверь к долгосрочному сотрудничеству, так как основной инструмент, который ищет клиент, мне недоступен."
+    },
+    "40769595": {
+      "title": "End-to-End Flight Booking Automation",
+      "url": "https://www.freelancer.com/projects/automation/End-End-Flight-Booking-Automation",
+      "description": "Once an employee creates a booking ID in our internal tool, I need a service that instantly moves from that trigger to a confirmed ticket on MakeMyTrip, Cleartrip or Air India—no human clicks in between. The flow should: • Run a playwright automation script on MMT/Cleartrip/air india website, navigate through anti bot detection challenges. • choose the specified flight, fill passenger and passport data, • attach add-ons when requested (seats, meals, travel insurance, etc.), • submit our payment method, and enter OTP, which will be provided live. • return the PNR plus a full itinerary that we can log and e-mail. An HTTP endpoint or webhook listener will receive the trigger; low latency and robust error handling are essential. I also need basic audit logs and a simple way to toggle add-on rules without touching the code. Acceptance will be a live demonstration that shows one trigger producing a confirmed PNR, with all sensitive data encrypted at rest, and delivery of clean, deployable source code with setup instructions. The main problem will be navigating anti bot systems, not creating script. Maintaining the script as dom changes happen, ie stability of script over time will also be an important part.",
+      "currency": "INR",
+      "decision": "Этот проект требует автоматизации веб-скрепинга авиабилетов через Playwright с обходом антибот-защиты, долгосрочной поддержкой при изменении DOM и интеграцией с платёжными системами. Это выходит за рамки моих услуг: я делаю Telegram-боты, автопостинг, парсеры с уведомлениями и ИИ-агенты, но не комплексную автоматизацию браузера для критичных транзакций с высокой надёжностью и постоянным техническим обслуживанием. Проект требует специалиста по Playwright и веб-автоматизации, который будет поддерживать скрипт при изменениях сайтов. Срок и сложность также несопоставимы с моей текущей пропускной способностью."
+    },
+    "40769330": {
+      "title": "Urgent .NET CRM Auth Fix",
+      "url": "https://www.freelancer.com/projects/restful/Urgent-NET-CRM-Auth-Fix",
+      "description": "Our in-house CRM, built on .NET, suddenly stopped authenticating against its external API. The calls now fail during Basic Auth hand-shake, even though no credentials or endpoint specifications have changed on our side. I need you to dive into the codebase right away, trace the failure path, and deliver a clean, well-documented fix that restores stable connectivity. Scope of work • Review the existing authentication module, configuration files, and any recent commits for regressions. • Pinpoint the precise cause of the Basic Auth failure—be it certificate issues, header formatting, framework upgrade side-effects, or server response handling. • Implement and test a robust remedy in both staging and production environments. • Provide a concise summary of the root cause and the code changes so future deployments remain trouble-free. Acceptance criteria 1. All API requests authenticate successfully without timeouts or 4xx errors. 2. Automated regression tests covering login and data-sync paths pass in our CI pipeline. 3. A short technical report explains what broke, how it was fixed, and any preventive measures. Tech stack highlights: .NET Framework (C#), RESTful API, Basic Auth, Git, IIS. The issue is blocking our daily operations, so the ability to start immediately and communicate progress in real time is essential.",
+      "currency": "USD",
+      "decision": "Проект требует работы с .NET (C#) и диагностики существующего кода на платформе, которая не входит в мой стек. Я специализируюсь на Python-автоматизациях. Хотя это похоже на доработку скрипта (что я делаю), основной язык — .NET, а не Python. Честнее отказать, чем обещать качество в незнакомой экосистеме."
+    },
+    "40769269": {
+      "title": "AI-Visuals Hindi Storytelling",
+      "url": "https://www.freelancer.com/projects/ai-art-creation/Visuals-Hindi-Storytelling",
+      "description": "I'm creating a Hindi/Hinglish children's storytelling channel focused on short stories from the Ramayan and Mahabharat. The visuals will be AI-generated and cinematic, and should be a mix of realistic and cartoonish styles. The narrative will follow traditional storytelling methods. Ideal Skills and Experience: - Proficiency in Hindi/Hinglish - Experience in storytelling, especially in a traditional format - Familiarity with AI-generated visuals - Strong creative vision and ability to blend realistic and cartoonish elements",
+      "currency": "INR",
+      "decision": "Запрос требует генерации видео с людьми (персонажи из Рамаяны и Махабхараты). В профиле чётко указано: 'Картинки и видео с людьми, сгенерированные ИИ' — делать не буду. Это нарушает правила шариата (честность и чёткость о том, что входит в услугу). Кроме того, клиент ищет скорее творческого режиссёра/художника, а я разработчица автоматизаций на Python, не визуальный дизайнер."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-15",
     "bids": 0,
-    "evals": 8
+    "evals": 11
   }
 }
