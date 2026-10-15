@@ -1,7 +1,7 @@
 {
-  "offset": 30003220,
+  "offset": 30003222,
   "owner": "970882173",
-  "day": 1,
+  "day": 2,
   "batch": {
     "media": [],
     "voice": null,
@@ -12,7 +12,7 @@
   },
   "draft": {
     "id": "20261013_091101_ef08",
-    "day": 1,
+    "day": 2,
     "media": [],
     "voice": {
       "file_id": "CQACAgIAAxkBAAMXas31Jq_nWIY-54nRXryNR8ar8s0AArG0AAKYt2lKtTP_MPSH_O89BA",
@@ -283,8 +283,7 @@
         "id": 27385370,
         "url": "https://videos.pexels.com/video-files/27385370/12131766_1080_1920_24fps.mp4"
       }
-    ],
-    "rendered_hook": "Создаём онлайн‑школу для детей"
+    ]
   },
   "history": [],
   "stock_used": []
