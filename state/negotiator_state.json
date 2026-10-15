@@ -2946,12 +2946,40 @@
       "description": "I'm creating a Hindi/Hinglish children's storytelling channel focused on short stories from the Ramayan and Mahabharat. The visuals will be AI-generated and cinematic, and should be a mix of realistic and cartoonish styles. The narrative will follow traditional storytelling methods. Ideal Skills and Experience: - Proficiency in Hindi/Hinglish - Experience in storytelling, especially in a traditional format - Familiarity with AI-generated visuals - Strong creative vision and ability to blend realistic and cartoonish elements",
       "currency": "INR",
       "decision": "Запрос требует генерации видео с людьми (персонажи из Рамаяны и Махабхараты). В профиле чётко указано: 'Картинки и видео с людьми, сгенерированные ИИ' — делать не буду. Это нарушает правила шариата (честность и чёткость о том, что входит в услугу). Кроме того, клиент ищет скорее творческого режиссёра/художника, а я разработчица автоматизаций на Python, не визуальный дизайнер."
+    },
+    "40770021": {
+      "title": "Commission-Based Sales Partner for AI Certified Courses in Massachusetts",
+      "url": "https://www.freelancer.com/projects/lead-generation/Commission-Based-Sales-Partner-for-40770021",
+      "description": "I'm looking for a driven sales partner to help me sell AI certified courses in Massachusetts (WTFp). My ideal candidate should: - Have experience in AI education or related fields - Possess strong sales skills and proven results - Have connections with students, professionals, or businesses in Massachusetts - Be able to work on a commission basis I have marketing materials and a website ready. I need someone who can actively reach out, generate leads, and close deals to boost my business in this region.",
+      "currency": "USD",
+      "decision": "Заказчик ищет человека для продаж и генерации лидов на комиссионной основе — это работа по найму или партнёрство, а не разработка автоматизации. Профиль предлагает только Python-скрипты и боты для автоматизации, а не услуги продавца-партнёра. Хотя мы можем построить бот для приёма заявок или парсер для поиска контактов в Massachusetts, основная задача (активный аутрич и закрытие сделок) требует живого человека и не входит в услуги профиля."
+    },
+    "40769250": {
+      "title": "TikTok AI Faceswap Editor",
+      "url": "https://www.freelancer.com/projects/actionscript/TikTok-Faceswap-Editor",
+      "description": "I need a compact, AI-driven faceswap editor that works exclusively with pre-recorded videos and lets me finish everything in post before sending the clip to TikTok. The workflow I have in mind is simple: import a video, identify the source and target faces, preview the swap frame-by-frame, then render and export in a TikTok-friendly format (vertical, audio preserved, high-quality H.264). You are free to build on libraries such as MediaPipe, DeepFaceLab, or any other GAN-based solution, as long as the final tool runs reliably on consumer hardware and keeps processing times reasonable. An intuitive timeline and basic trim/crop controls would be great, but the faceswap accuracy and overall stability are the real priorities. Deliverables • A working application (desktop or browser-based) that performs face swaps on uploaded videos in post-processing • Preview window with on/off toggle to compare original vs. swapped frames • Export settings pre-set for TikTok (9:16, up to 60 s, 1080p) • Brief setup guide and example project file to show everything in action If you have proven experience with video ML pipelines and can demonstrate crisp, artifact-free swaps, I’d love to see a sample.",
+      "currency": "INR",
+      "decision": "Это заказ на десктопное или веб-приложение с графическим интерфейсом, обработкой видео и сложной ML-пipelineой. В профиле я указываю только Python-автоматизации (боты, парсеры, интеграции, генерация контента). Десктопные приложения, веб-приложения и видеоредакторы не входят в мой набор услуг. Также заказчик просит примеры работы с ML-видео (sample), а я не могу показать реальные проекты без нарушения правил площадки."
+    },
+    "40769854": {
+      "title": "School Management & Financial Automation System",
+      "url": "https://www.freelancer.com/projects/financial-analysis/School-Management-Financial-Automation",
+      "description": "Project Title: Automated School Management & Financial Billing System The Problem: The school faced time-consuming manual billing processes, messy fee tracking, and difficulty visualizing outstanding student debt, leading to cash flow delays. The Solution & Project Achievements: • Automated Software Architecture: Engineered a 4-tab integrated Excel application consisting of a Master Database, an interactive Executive Dashboard, a Payment Ledger, and an automated Print Invoice template. • VBA Automation Engine: Programmed a custom \"Generate Invoice\" VBA Macro button that automates the invoice creation process, eliminating manual data copying and saving hours of weekly administrative work. • Financial Analytics & Tracking: Structured formulas to calculate critical school KPIs in real-time, including Total Expected Revenue, Total Fees Collected, and Total Outstanding Debt. • Executive Dashboard UI: Designed a clean, professional user interface featuring a dynamic Fees Collection Status pie chart to give school administrators an immediate, visual breakdown of financial health.",
+      "currency": "USD",
+      "decision": "Проект требует разработки системы управления школой с VBA-автоматизацией в Excel. Это не входит в мой стек услуг: я работаю на Python, а не на VBA. Кроме того, задача сочетает элементы дизайна интерфейса и разработки приложения, которые выходят за рамки моих услуг (Telegram-боты, парсинг, ИИ-агенты, интеграции через API). VBA в Excel — это не Python-автоматизация."
+    },
+    "40769676": {
+      "title": "HubSpot setup and support for 6-month B2B partner campaign",
+      "url": "https://www.freelancer.com/projects/hubspot/HubSpot-setup-support-for-month",
+      "description": "We are pricing a six-month Azure partner campaign. It needs HubSpot setup for an existing base of about 450 partners plus new leads: landing page and form, audience segments, email follow-up, webinar registration and reminders, LinkedIn lead tracking, and reporting. Please tell us what you would personally handle, your availability before the 16 November launch, and your estimated hours or fixed price for setup and monthly support. Share one or two examples of similar HubSpot workflows or dashboards with client details removed, and say whether anyone else from your team would work on it.",
+      "currency": "USD",
+      "decision": "Проект требует работы с HubSpot на уровне, выходящем за рамки профиля. Профиль покрывает интеграцию CRM через API (заявки, сделки, контакты, связь с Google Sheets/Calendar/Telegram) — это техническая интеграция Python-скриптов с HubSpot. Заказчик просит комплексную настройку самой платформы HubSpot: создание форм на лендингах, сегментацию аудиторий, email-последовательности, отслеживание LinkedIn, dashboard для отчётов. Это работа HubSpot-администратора/консультанта, которая требует знания UI платформы, настройки workflows в самом HubSpot, и ведения кампании на месяцы. Также заказчик просит портфолио с примерами (не даём ссылки до сделки, но описание своих проектов сделали бы в свободной форме — однако здесь речь именно о примерах HubSpot-работ, которых в профиле нет). Сроки и объём (6 месяцев поддержки) не соответствуют модели одиночных проектов на Python из профиля."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-15",
     "bids": 0,
-    "evals": 11
+    "evals": 15
   }
 }
