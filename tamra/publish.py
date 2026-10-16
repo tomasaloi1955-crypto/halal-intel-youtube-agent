@@ -5,8 +5,8 @@
 #
 #   Instagram: TAMRA_IG_USER_ID, TAMRA_IG_ACCESS_TOKEN
 #     (как получить — шапка instagram_poster.py, только для аккаунта Tamra School)
-#   YouTube:   TAMRA_YOUTUBE_TOKEN_JSON — содержимое youtube_token.json, полученного
-#     авторизацией под каналом Tamra School (scope youtube.upload)
+#   YouTube:   подключается из бота командой «ютуб» (tamra/yt_auth.py) — или секретом
+#     TAMRA_YOUTUBE_TOKEN_JSON: содержимое youtube_token.json канала Tamra School
 #   TikTok:    TAMRA_TIKTOK_ACCESS_TOKEN, TAMRA_TIKTOK_REFRESH_TOKEN (приложение TikTok то же,
 #     что у основного канала: TIKTOK_CLIENT_KEY / TIKTOK_CLIENT_SECRET)
 import os
@@ -58,8 +58,8 @@ def instagram_reel(video_path, caption, thumb_offset_ms=1000):
     return pub.json().get("id")
 
 
-def youtube_short(video_path, title, description, tags):
-    raw = _env("TAMRA_YOUTUBE_TOKEN_JSON")
+def youtube_short(video_path, title, description, tags, token_json=None):
+    raw = token_json or _env("TAMRA_YOUTUBE_TOKEN_JSON")
     if not raw:
         return None
     from google.oauth2.credentials import Credentials
@@ -99,13 +99,13 @@ def tiktok(video_path, caption):
     return pid
 
 
-def publish_all(video_path, texts, caption):
+def publish_all(video_path, texts, caption, yt_token=None):
     """Публикует во все настроенные площадки. Возвращает {площадка: строка-итог для Telegram}."""
     tags = texts.get("hashtags", [])
     jobs = [
         ("Instagram", lambda: instagram_reel(video_path, caption),
          lambda r: "опубликовано"),
-        ("YouTube", lambda: youtube_short(video_path, texts["title"], caption, tags),
+        ("YouTube", lambda: youtube_short(video_path, texts["title"], caption, tags, yt_token),
          lambda r: f"https://youtube.com/shorts/{r}"),
         ("TikTok", lambda: tiktok(video_path, caption),
          lambda r: ("опубликовано" if _env("TAMRA_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")

@@ -43,7 +43,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer, stock, scripts  # noqa: E402
+from tamra import montage, writer, stock, scripts, yt_auth  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
@@ -66,6 +66,7 @@ HELP = (
     "• текст — текст озвучки для следующего дня (текст 7 — для дня 7)\n"
     "• темы — все 30 тем роликов\n"
     "• очередь — что и когда выйдет\n"
+    "• ютуб — подключить YouTube-канал с телефона\n"
     "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
     "• убрать 5 — убрать «День 5» из очереди\n"
     "• время 20 — публиковать в 20:00\n"
@@ -372,7 +373,8 @@ def publish_item(st, chat, d):
     save_state(st)
     try:
         video, _ = render(d)
-        results = publish_all(video, d["texts"], writer.full_caption(d["texts"]))
+        results = publish_all(video, d["texts"], writer.full_caption(d["texts"]),
+                              yt_token=yt_auth.token_json(st))
     except Exception as e:
         st["queue"].insert(0, d)
         send(chat, f"🔴 «День {d['day']}» не опубликован: {str(e)[:300]}. Остаётся в очереди.")
@@ -483,6 +485,36 @@ def handle_message(st, msg):
             enqueue(st, chat, d)
         else:
             send(chat, "Нет черновика. Пришли озвучку — соберу ролик.")
+        return
+    if low in ("ютуб", "youtube", "/youtube", "ютуб подключить"):
+        try:
+            url = yt_auth.auth_url()
+        except Exception as e:
+            send(chat, f"🔴 Не получилось сделать ссылку: {str(e)[:200]}")
+            return
+        send(chat, "Подключаем YouTube:\n\n"
+                   "1️⃣ Открой ссылку ниже на телефоне.\n"
+                   "2️⃣ Выбери свой Google-аккаунт, затем канал TAMRA SCHOOL.\n"
+                   "3️⃣ Если Google напишет «Приложение не проверено» — «Дополнительно» → «Перейти».\n"
+                   "4️⃣ Нажми «Разрешить». Откроется страница с ошибкой «localhost» — так и должно быть.\n"
+                   "5️⃣ Скопируй адрес этой страницы целиком (он начинается с http://localhost) "
+                   "и пришли мне сюда.\n\n" + url)
+        return
+    if "localhost" in low and ("code=" in low or "error=" in low):
+        if "error=" in low:
+            send(chat, "Google не дал доступ (нажата «Отмена»?). Напиши «ютуб» и попробуй ещё раз.")
+            return
+        try:
+            token, name = yt_auth.exchange(yt_auth.extract_code(text))
+        except Exception as e:
+            send(chat, f"🔴 Не получилось подключить: {str(e)[:250]}\n"
+                       "Ссылка живёт несколько минут — напиши «ютуб» и пройди заново.")
+            return
+        st["yt_token_enc"] = yt_auth.encrypt(token)
+        warn = "" if "tamra" in name.lower() else (
+            "\n⚠️ Похоже, это не канал Tamra School. Если ошиблась — напиши «ютуб» и выбери нужный.")
+        send(chat, f"✅ YouTube подключён: канал «{name}». Ролики из очереди будут выходить туда.{warn}\n\n"
+                   + queue_text(st))
         return
     if low in ("темы", "/topics"):
         send(chat, "30 тем роликов:\n" + scripts.titles() + "\n\nНапиши «текст 7» — пришлю текст дня 7.")
