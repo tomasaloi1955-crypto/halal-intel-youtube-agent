@@ -7,9 +7,13 @@
 #      «сегодня делала тест по математике», нейросеть учтёт её в хуке и подписи.
 #   3. Бот склеивает ролик под длину озвучки, ставит плашку «ДЕНЬ N», хук, субтитры,
 #      призыв в конце, делает обложку и пишет подпись с хэштегами — и присылает превью.
-#   4. Кнопка «✅ Опубликовать» — ролик уходит в Instagram, YouTube и TikTok.
+#   4. Кнопка «✅ В очередь» — ролик встаёт в очередь публикаций. Бот выкладывает по одному
+#      ролику в день в своё время (по умолчанию 19:00 по Алматы) в YouTube, Instagram, TikTok.
 #      «🔁 Другой хук» — нейросеть перепишет тексты. «❌ Удалить» — черновик в корзину.
-#      Свой хук/подпись: напиши «хук: …» или «подпись: …».
+#      Свой хук/подпись: напиши «хук: …» или «подпись: …» (относится к последнему черновику).
+#
+# Каждое новое голосовое — новый ролик: можно наговорить несколько дней подряд за раз,
+# бот соберёт каждый отдельно и пронумерует по порядку.
 #
 # Только озвучка, без клипов — кадры подбираются со стока (tamra/stock.py: руки, ноутбук,
 # стол; каждый клип проверяет ИИ — лиц быть не должно).
@@ -20,6 +24,8 @@
 # Окружение:
 #   TAMRA_TG_TOKEN    — токен ОТДЕЛЬНОГО бота от @BotFather (не тот, что у Халяль Интеллидженс)
 #   TAMRA_TG_CHAT_ID  — твой chat id; если не задан, хозяином станет первый, кто напишет /start
+#   TAMRA_PUBLISH_HOUR, TAMRA_TZ — час публикации и часовой пояс (по умолчанию 19 и +5, Алматы);
+#                       час можно поменять и из чата: «время 20»
 #   GEMINI_API_KEY, ELEVENLABS_API_KEY (необязательно) + ключи площадок (см. tamra/publish.py)
 #
 # Запуск: python -m tamra.bot          — постоянно (сервер, Render)
@@ -31,7 +37,7 @@ import time
 import shutil
 import uuid
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -53,9 +59,14 @@ HELP = (
     "Нет своих клипов — пришли только озвучку: подберу кадры сама "
     "(руки, ноутбук, рабочий стол — без лиц).\n\n"
     "Я склею ролик под озвучку, добавлю «ДЕНЬ N», хук, субтитры, обложку и подпись "
-    "и пришлю превью. Дальше — кнопка «Опубликовать».\n\n"
+    "и пришлю превью. Дальше — кнопка «В очередь»: публикую по одному ролику в день.\n"
+    "Можно наговорить несколько дней сразу — каждое голосовое станет отдельным роликом.\n\n"
     "Команды:\n"
     "• готово — собрать сейчас (можно и без озвучки)\n"
+    "• очередь — что и когда выйдет\n"
+    "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
+    "• убрать 5 — убрать «День 5» из очереди\n"
+    "• время 20 — публиковать в 20:00\n"
     "• хук: текст — свой хук на экран\n"
     "• подпись: текст — своя подпись\n"
     "• день 12 — поставить номер дня\n"
@@ -79,9 +90,19 @@ def load_state():
     st.setdefault("owner", None)
     st.setdefault("day", 1)
     st.setdefault("batch", _empty_batch())
-    st.setdefault("draft", None)
+    st.setdefault("drafts", [])
+    if st.get("draft"):  # старый формат: один черновик
+        st["drafts"].append(st["draft"])
+    st.pop("draft", None)
+    st.setdefault("pending", [])   # закрытые пачки (по одной на голосовое), ждут сборки
+    st.setdefault("queue", [])     # одобренные ролики, по одному в день
     st.setdefault("history", [])
     st.setdefault("stock_used", [])
+    st.setdefault("publish_hour", int(os.getenv("TAMRA_PUBLISH_HOUR", "19")))
+    st.setdefault("last_publish_date", None)
+    st.setdefault("last_fail_notice", None)
+    used_days = [d["day"] for d in st["drafts"] + st["queue"]]
+    st["day"] = max([st["day"]] + [x + 1 for x in used_days])  # номер следующего ролика
     return st
 
 
@@ -222,11 +243,11 @@ def _write_texts(draft):
     draft["texts"] = texts
 
 
-def _buttons():
+def _buttons(draft_id):
     return {"inline_keyboard": [[
-        {"text": "✅ Опубликовать", "callback_data": "pub"},
-        {"text": "🔁 Другой хук", "callback_data": "redo"},
-        {"text": "❌ Удалить", "callback_data": "del"},
+        {"text": "✅ В очередь", "callback_data": f"q:{draft_id}"},
+        {"text": "🔁 Другой хук", "callback_data": f"redo:{draft_id}"},
+        {"text": "❌ Удалить", "callback_data": f"del:{draft_id}"},
     ]]}
 
 
@@ -239,29 +260,38 @@ def send_preview(chat, draft):
     with open(video, "rb") as f:
         res = api("sendVideo", chat_id=chat, supports_streaming=True, width=1080, height=1920,
                   caption=f"🎬 День {draft['day']}\nХук: {t['hook']}\nYouTube: {t['title']}"[:1024],
-                  reply_markup=_buttons(),
+                  reply_markup=_buttons(draft["id"]),
                   files={"video": (os.path.basename(video), f, "video/mp4")})
     if not res.get("ok"):
         send(chat, f"Не смогла прислать видео: {res.get('description')}")
     send(chat, "Подпись (для копирования):\n\n" + writer.full_caption(t))
 
 
-def build_draft(st, chat):
-    b = st["batch"]
+def _taken_stock(st):
+    """Стоковые клипы, которые уже вышли или стоят в черновиках/очереди, — не повторяем."""
+    ids = list(st["stock_used"])
+    for d in st["drafts"] + st["queue"]:
+        ids += [c["id"] for c in d.get("stock_clips", [])]
+    return ids[-400:]
+
+
+def build_draft(st, chat, b=None):
+    """Собирает ролик из пачки b (по умолчанию — текущая). Номер дня — следующий по порядку."""
+    current = b is None
+    b = st["batch"] if current else b
     if not b["media"] and not b["voice"]:
         send(chat, "Пришли озвучку (и, если есть, свои клипы или фото) — потом соберу ролик.")
         return
-    if st.get("draft"):
-        send(chat, "Прошлый неопубликованный черновик заменяю новым.")
-        _drop_draft(st)
     draft = {"id": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_") + uuid.uuid4().hex[:4],
              "day": st["day"], "media": b["media"], "voice": b["voice"], "notes": b["notes"],
              "hook_override": b.get("hook"), "caption_override": b.get("caption"),
-             "stock_exclude": st["stock_used"][-300:]}
-    st["batch"] = _empty_batch()
-    st["draft"] = draft
+             "stock_exclude": _taken_stock(st)}
+    if current:
+        st["batch"] = _empty_batch()
+    st["day"] += 1
+    st["drafts"].append(draft)
     what = (f"{len(draft['media'])} клип(ов)" if draft["media"]
-            else "подбираю кадры с руками и ноутбуком")
+            else "подбираю кадры по смыслу озвучки")
     send(chat, f"⏳ Собираю «День {draft['day']}»: {what}"
                f"{', с озвучкой' if draft['voice'] else ', без озвучки'}. Это 1–3 минуты…")
     try:
@@ -269,52 +299,110 @@ def build_draft(st, chat):
         send_preview(chat, draft)
     except Exception as e:
         print(f"[TAMRA] Сборка не удалась: {e}")
-        send(chat, f"🔴 Не получилось собрать ролик: {str(e)[:300]}\n"
-                   "Черновик сохранён — напиши «готово», чтобы попробовать ещё раз.")
-        st["batch"] = {**_empty_batch(), "media": draft["media"], "voice": draft["voice"],
-                       "notes": draft["notes"], "hook": draft.get("hook_override"),
-                       "caption": draft.get("caption_override"),
-                       "updated": time.time(), "auto_failed": True}  # сама не повторяю
-        st["draft"] = None
+        send(chat, f"🔴 Не получилось собрать «День {draft['day']}»: {str(e)[:300]}\n"
+                   "Материалы сохранены — напиши «готово», чтобы попробовать ещё раз.")
+        st["drafts"].remove(draft)
+        if st["day"] == draft["day"] + 1:
+            st["day"] = draft["day"]  # номер не пропадает
+        st["pending"].insert(0, {**_empty_batch(), "media": draft["media"], "voice": draft["voice"],
+                                 "notes": draft["notes"], "hook": draft.get("hook_override"),
+                                 "caption": draft.get("caption_override"),
+                                 "updated": time.time(), "auto_failed": True})  # сама не повторяю
 
 
-def _drop_draft(st):
-    d = st.get("draft")
-    if d:
-        shutil.rmtree(os.path.join(WORK, d["id"]), ignore_errors=True)
-    st["draft"] = None
+def _find_draft(st, draft_id=None):
+    """Черновик по id; без id — последний присланный."""
+    if draft_id:
+        return next((d for d in st["drafts"] if d["id"] == draft_id), None)
+    return st["drafts"][-1] if st["drafts"] else None
 
 
-def publish_draft(st, chat):
+def _drop_draft(st, d):
+    shutil.rmtree(os.path.join(WORK, d["id"]), ignore_errors=True)
+    st["drafts"] = [x for x in st["drafts"] if x["id"] != d["id"]]
+
+
+# ── очередь и расписание ───────────────────────────────────────────────────
+
+def _tz():
+    return timezone(timedelta(hours=float(os.getenv("TAMRA_TZ", "5"))))
+
+
+def _slot_dates(st, n):
+    """Даты выхода для первых n роликов очереди: по одному в день, начиная с ближайшего слота."""
+    now = datetime.now(_tz())
+    first = now.date()
+    if st.get("last_publish_date") == first.isoformat():
+        first += timedelta(days=1)  # сегодня уже выходил ролик
+    return [first + timedelta(days=i) for i in range(n)]
+
+
+def _fmt_date(d):
+    months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
+              "сентября", "октября", "ноября", "декабря"]
+    return f"{d.day} {months[d.month - 1]}"
+
+
+def queue_text(st):
+    if not st["queue"]:
+        return "Очередь пуста. Одобри черновик кнопкой «✅ В очередь»."
+    dates = _slot_dates(st, len(st["queue"]))
+    lines = [f"• {_fmt_date(dt)}, {st['publish_hour']}:00 — День {d['day']}: {d['texts']['hook']}"
+             for dt, d in zip(dates, st["queue"])]
+    return "🗓 Очередь публикаций:\n" + "\n".join(lines)
+
+
+def enqueue(st, chat, d):
+    st["drafts"] = [x for x in st["drafts"] if x["id"] != d["id"]]
+    st["queue"].append(d)
+    st["queue"].sort(key=lambda x: x["day"])
+    dt = _slot_dates(st, len(st["queue"]))[st["queue"].index(d)]
+    send(chat, f"✅ «День {d['day']}» в очереди — выйдет {_fmt_date(dt)} в {st['publish_hour']}:00.\n\n"
+               + queue_text(st))
+
+
+def publish_item(st, chat, d):
+    """Публикует ролик из очереди. True — хотя бы одна площадка приняла."""
     from tamra.publish import publish_all
-    d = st.get("draft")
-    if not d:
-        send(chat, "Нет черновика для публикации. Пришли клипы и озвучку.")
-        return
-    # Снимаем черновик ДО публикации: если процесс упадёт посередине, повторный запуск
-    # не опубликует тот же ролик второй раз.
-    st["draft"] = None
+    # Снимаем ролик с очереди ДО публикации: если процесс упадёт посередине,
+    # следующий запуск не выложит его второй раз.
+    st["queue"] = [x for x in st["queue"] if x["id"] != d["id"]]
     save_state(st)
-    send(chat, f"🚀 Публикую «День {d['day']}»…")
     try:
         video, _ = render(d)
         results = publish_all(video, d["texts"], writer.full_caption(d["texts"]))
     except Exception as e:
-        st["draft"] = d
-        send(chat, f"🔴 Не получилось подготовить видео: {str(e)[:300]}. Черновик на месте — "
-                   "нажми «Опубликовать» ещё раз.")
-        return
-    send(chat, f"Итог «День {d['day']}»:\n" + "\n".join(f"{k}: {v}" for k, v in results.items()))
-    if any(v.startswith("✅") for v in results.values()):
-        st["history"] = (st["history"] + [{
-            "day": d["day"], "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-            "hook": d["texts"]["hook"], "results": results}])[-90:]
-        st["day"] = max(st["day"], d["day"] + 1)
-        st["stock_used"] = (st["stock_used"] + [c["id"] for c in d.get("stock_clips", [])])[-300:]
-        shutil.rmtree(os.path.join(WORK, d["id"]), ignore_errors=True)
-    else:
-        st["draft"] = d
-        send(chat, "Ни одна площадка не приняла ролик — черновик сохранён.")
+        st["queue"].insert(0, d)
+        send(chat, f"🔴 «День {d['day']}» не опубликован: {str(e)[:300]}. Остаётся в очереди.")
+        return False
+    if not any(v.startswith("✅") for v in results.values()):
+        st["queue"].insert(0, d)
+        today = datetime.now(_tz()).date().isoformat()
+        if st.get("last_fail_notice") != today:  # не спамим каждые 15 минут
+            st["last_fail_notice"] = today
+            send(chat, f"⏸ «День {d['day']}» ждёт в очереди — ни одна площадка не приняла:\n"
+                       + "\n".join(f"{k}: {v}" for k, v in results.items()))
+        return False
+    send(chat, f"🚀 Вышел «День {d['day']}»:\n" + "\n".join(f"{k}: {v}" for k, v in results.items()))
+    st["history"] = (st["history"] + [{
+        "day": d["day"], "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "hook": d["texts"]["hook"], "results": results}])[-90:]
+    st["stock_used"] = (st["stock_used"] + [c["id"] for c in d.get("stock_clips", [])])[-300:]
+    shutil.rmtree(os.path.join(WORK, d["id"]), ignore_errors=True)
+    return True
+
+
+def publish_due(st):
+    """Пришло время дня и сегодня ещё ничего не выходило — публикуем следующий из очереди."""
+    chat = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
+    now = datetime.now(_tz())
+    today = now.date().isoformat()
+    if (chat and st["queue"] and now.hour >= st["publish_hour"]
+            and st.get("last_publish_date") != today):
+        if publish_item(st, chat, st["queue"][0]):
+            st["last_publish_date"] = today
+            if st["queue"]:
+                send(chat, queue_text(st))
 
 
 # ── обработка сообщений ────────────────────────────────────────────────────
@@ -350,7 +438,10 @@ def handle_message(st, msg):
             return
         if kind == "voice":
             if b["voice"]:
-                send(chat, "Озвучку заменила на новую.")
+                # новое голосовое — новый ролик: прошлую пачку закрываем и соберём отдельно
+                st["pending"].append(b)
+                st["batch"] = b = _empty_batch()
+                send(chat, "Это уже следующий ролик — прошлый соберу отдельно.")
             b["voice"] = {"file_id": fid, "ext": ext}
         else:
             b["media"].append({"kind": kind, "file_id": fid, "ext": ext})
@@ -375,30 +466,72 @@ def handle_message(st, msg):
         send(chat, HELP)
         return
     if low in ("готово", "/go", "собрать", "/build", "собери"):
-        build_draft(st, chat)
+        build_all(st, chat, force=True)
         return
     if low in ("сброс", "/reset", "отмена", "/cancel"):
         st["batch"] = _empty_batch()
-        _drop_draft(st)
-        send(chat, "Очистила. Присылай новые клипы и озвучку.")
+        st["pending"] = []
+        for d in list(st["drafts"]):
+            _drop_draft(st, d)
+        send(chat, "Очистила присланное и черновики (очередь не трогала). Присылай новое.")
         return
-    if low in ("ок", "да", "публикуй", "опубликовать", "/publish"):
-        publish_draft(st, chat)
+    if low in ("ок", "да", "в очередь", "/queue_add"):
+        d = _find_draft(st)
+        if d:
+            enqueue(st, chat, d)
+        else:
+            send(chat, "Нет черновика. Пришли озвучку — соберу ролик.")
+        return
+    if low in ("очередь", "/queue"):
+        send(chat, queue_text(st))
+        return
+    if low in ("сейчас", "/now", "опубликовать", "публикуй", "/publish"):
+        if st["queue"]:
+            if publish_item(st, chat, st["queue"][0]):
+                st["last_publish_date"] = datetime.now(_tz()).date().isoformat()
+        else:
+            send(chat, "Очередь пуста — сначала одобри черновик кнопкой «✅ В очередь».")
+        return
+    if low.startswith(("убрать ", "/remove ")):
+        try:
+            n = int(low.split()[1])
+            d = next(x for x in st["queue"] if x["day"] == n)
+        except (ValueError, IndexError, StopIteration):
+            send(chat, "В очереди нет такого дня. Напиши «очередь», чтобы посмотреть.")
+            return
+        st["queue"].remove(d)
+        st["drafts"].append(d)
+        send(chat, f"«День {n}» убрала из очереди — он снова черновик. " + queue_text(st))
+        return
+    if low.startswith(("время ", "/time ")):
+        try:
+            h = int(low.split()[1].split(":")[0])
+            assert 0 <= h <= 23
+            st["publish_hour"] = h
+            send(chat, f"Буду публиковать в {h}:00. " + queue_text(st))
+        except (ValueError, IndexError, AssertionError):
+            send(chat, "Напиши так: время 19")
         return
     if low.startswith(("день ", "/day ")):
         try:
-            st["day"] = max(1, int(low.split()[1]))
-            if st.get("draft"):
-                st["draft"]["day"] = st["day"]
-                st["draft"].pop("rendered_hook", None)
-            send(chat, f"Следующий ролик будет «День {st['day']}».")
+            n = max(1, int(low.split()[1]))
         except (ValueError, IndexError):
             send(chat, "Напиши так: день 12")
+            return
+        d = _find_draft(st)
+        if d:  # меняем номер последнего черновика, следующий пойдёт за ним
+            d["day"] = n
+            d.pop("rendered_hook", None)
+            st["day"] = n + 1
+            send(chat, f"Последний черновик теперь «День {n}», следующий будет «День {n + 1}».")
+        else:
+            st["day"] = n
+            send(chat, f"Следующий ролик будет «День {n}».")
         return
     for prefix, key, field in (("хук:", "hook", "hook_override"), ("подпись:", "caption", "caption_override")):
         if low.startswith(prefix):
             value = text[len(prefix):].strip()
-            d = st.get("draft")
+            d = _find_draft(st)
             if d:
                 d[field] = value
                 d["texts"][key] = value
@@ -425,33 +558,51 @@ def handle_callback(st, cq):
     api("answerCallbackQuery", callback_query_id=cq["id"])
     if not _is_owner(st, chat, ""):
         return
-    action = cq.get("data")
-    d = st.get("draft")
-    if action == "pub":
-        publish_draft(st, chat)
+    action, _, draft_id = (cq.get("data") or "").partition(":")
+    action = {"pub": "q"}.get(action, action)  # кнопки старых превью
+    d = _find_draft(st, draft_id or None)
+    if not d:
+        queued = any(x["id"] == draft_id for x in st["queue"])
+        send(chat, "Этот ролик уже в очереди." if queued else "Этот черновик уже опубликован или удалён.")
+        return
+    if action == "q":
+        enqueue(st, chat, d)
     elif action == "del":
-        _drop_draft(st)
-        send(chat, "Черновик удалён.")
-    elif action == "redo" and d:
+        _drop_draft(st, d)
+        send(chat, f"Черновик «День {d['day']}» удалён.")
+    elif action == "redo":
         d.pop("hook_override", None)
-        send(chat, "Переписываю тексты…")
+        send(chat, f"Переписываю тексты «День {d['day']}»…")
         try:
             _write_texts(d)
             send_preview(chat, d)
         except Exception as e:
             send(chat, f"🔴 Не получилось: {str(e)[:300]}")
-    elif not d:
-        send(chat, "Этот черновик уже опубликован или удалён.")
+
+
+def build_all(st, chat, force=False):
+    """Собирает закрытые пачки по порядку, затем текущую. force — по команде «готово»:
+    и неудавшиеся раньше, и текущую без ожидания."""
+    built = 0
+    for b in list(st["pending"]):
+        if force or not b.get("auto_failed"):
+            st["pending"].remove(b)
+            build_draft(st, chat, b)
+            save_state(st)
+            built += 1
+    b = st["batch"]
+    if force or (b["voice"] and not b.get("auto_failed")
+                 and (b["media"] or not b.get("oversize"))
+                 and time.time() - b["updated"] >= IDLE_BEFORE_BUILD):
+        if b["voice"] or b["media"] or not built:
+            build_draft(st, chat)  # пустая пачка — подскажет, что прислать
 
 
 def maybe_autobuild(st):
     """Озвучка на месте (клипы — свои или со стока), минуту ничего не приходило — собираем."""
-    b = st["batch"]
     chat = os.getenv("TAMRA_TG_CHAT_ID", "").strip() or st.get("owner")
-    if (chat and b["voice"] and not b.get("auto_failed")
-            and (b["media"] or not b.get("oversize"))
-            and time.time() - b["updated"] >= IDLE_BEFORE_BUILD):
-        build_draft(st, chat)
+    if chat:
+        build_all(st, chat)
 
 
 def process(st, updates):
@@ -478,6 +629,8 @@ def poll_once():
     api("getUpdates", offset=st["offset"], timeout=0, limit=1)
     maybe_autobuild(st)
     save_state(st)
+    publish_due(st)
+    save_state(st)
 
 
 def poll_loop():
@@ -489,6 +642,7 @@ def poll_loop():
                       allowed_updates=["message", "callback_query"])
             process(st, res.get("result", []))
             maybe_autobuild(st)
+            publish_due(st)
             save_state(st)
         except Exception as e:
             print(f"[TAMRA] Ошибка опроса (не критично): {e}")
