@@ -1,7 +1,7 @@
 {
-  "offset": 30003223,
+  "offset": 30003224,
   "owner": "970882173",
-  "day": 2,
+  "day": 3,
   "batch": {
     "media": [],
     "voice": null,
@@ -10,232 +10,239 @@
     "caption": null,
     "updated": 0
   },
-  "draft": {
-    "id": "20261016_102612_6654",
-    "day": 2,
-    "media": [],
-    "voice": {
-      "file_id": "CQACAgIAAxkBAAMlatH7Y1c14sTl7O8LiGjKVXeFHIsAAkWrAALDT5FK-enppkoK5Vk9BA",
-      "ext": "m4a"
-    },
-    "notes": [],
-    "hook_override": null,
-    "caption_override": null,
-    "stock_exclude": [],
-    "texts": {
-      "hook": "Только 2 часа учёбы в день",
-      "title": "Тамра Скул: 2 часа с ИИ, всё для Корана и семьи",
-      "caption": "Учится ли ваш ребёнок только 2 часа в день?\nС ИИ в Тамра Скул он успевает математику, русский и английский.\nОставшееся время — Коран, арабский, спорт и семья.\nКакой баланс вам нужен?\nБесплатный тест уровня — ссылка в профиле.",
-      "hashtags": [
-        "#образование",
-        "#семья",
-        "#мамавдом",
-        "#исламскоепросвещение",
-        "#онлайншкола",
-        "#tamraschool",
-        "#исламскаяшкола",
-        "#семейноеобучение",
-        "#мусульманскаясемья",
-        "#воспитаниедетей"
-      ],
-      "subtitles": [
+  "history": [],
+  "stock_used": [],
+  "drafts": [
+    {
+      "id": "20261016_102612_6654",
+      "day": 2,
+      "media": [],
+      "voice": {
+        "file_id": "CQACAgIAAxkBAAMlatH7Y1c14sTl7O8LiGjKVXeFHIsAAkWrAALDT5FK-enppkoK5Vk9BA",
+        "ext": "m4a"
+      },
+      "notes": [],
+      "hook_override": null,
+      "caption_override": null,
+      "stock_exclude": [],
+      "texts": {
+        "hook": "Только 2 часа учёбы в день",
+        "title": "Тамра Скул: 2 часа с ИИ, всё для Корана и семьи",
+        "caption": "Учится ли ваш ребёнок только 2 часа в день?\nС ИИ в Тамра Скул он успевает математику, русский и английский.\nОставшееся время — Коран, арабский, спорт и семья.\nКакой баланс вам нужен?\nБесплатный тест уровня — ссылка в профиле.",
+        "hashtags": [
+          "#образование",
+          "#семья",
+          "#мамавдом",
+          "#исламскоепросвещение",
+          "#онлайншкола",
+          "#tamraschool",
+          "#исламскаяшкола",
+          "#семейноеобучение",
+          "#мусульманскаясемья",
+          "#воспитаниедетей"
+        ],
+        "subtitles": [
+          {
+            "text": "Ну что ж,",
+            "start": 1.48,
+            "end": 1.94
+          },
+          {
+            "text": "сегодня второй день,",
+            "start": 1.94,
+            "end": 3.14
+          },
+          {
+            "text": "и давайте подумаем.",
+            "start": 3.14,
+            "end": 4.5
+          },
+          {
+            "text": "Смотрите,",
+            "start": 4.44,
+            "end": 5.22
+          },
+          {
+            "text": "ребенок сидит в школе",
+            "start": 5.22,
+            "end": 6.3
+          },
+          {
+            "text": "6 часов,",
+            "start": 6.3,
+            "end": 6.94
+          },
+          {
+            "text": "потом еще 2 часа",
+            "start": 6.94,
+            "end": 8.4
+          },
+          {
+            "text": "у него домашка,",
+            "start": 8.4,
+            "end": 9.34
+          },
+          {
+            "text": "а когда же ему",
+            "start": 9.34,
+            "end": 10.0
+          },
+          {
+            "text": "учить Коран?",
+            "start": 10.0,
+            "end": 10.68
+          },
+          {
+            "text": "В Тамра Скул учеба",
+            "start": 11.26,
+            "end": 12.4
+          },
+          {
+            "text": "занимает 2 часа в",
+            "start": 12.4,
+            "end": 13.4
+          },
+          {
+            "text": "день.",
+            "start": 13.4,
+            "end": 13.66
+          },
+          {
+            "text": "Ребенок занимается с",
+            "start": 14.24,
+            "end": 15.36
+          },
+          {
+            "text": "искусственным",
+            "start": 15.36,
+            "end": 15.8
+          },
+          {
+            "text": "интеллектом в своем",
+            "start": 15.8,
+            "end": 16.8
+          },
+          {
+            "text": "темпе и не идет",
+            "start": 16.8,
+            "end": 18.24
+          },
+          {
+            "text": "дальше,",
+            "start": 18.24,
+            "end": 18.74
+          },
+          {
+            "text": "пока не понял тему.",
+            "start": 18.74,
+            "end": 19.74
+          },
+          {
+            "text": "Освободившееся время",
+            "start": 20.42,
+            "end": 21.6
+          },
+          {
+            "text": "остается на Коран и",
+            "start": 21.6,
+            "end": 22.8
+          },
+          {
+            "text": "кружки,",
+            "start": 22.8,
+            "end": 23.7
+          },
+          {
+            "text": "на арабский и семью.",
+            "start": 23.7,
+            "end": 25.04
+          },
+          {
+            "text": "Так учатся дети в",
+            "start": 25.72,
+            "end": 26.68
+          },
+          {
+            "text": "американская Альфа Скул.",
+            "start": 26.68,
+            "end": 28.1
+          },
+          {
+            "text": "Я делаю такую же",
+            "start": 28.7,
+            "end": 29.6
+          },
+          {
+            "text": "школу,",
+            "start": 29.6,
+            "end": 30.04
+          },
+          {
+            "text": "только исламскую.",
+            "start": 30.04,
+            "end": 31.06
+          },
+          {
+            "text": "Это день второй.",
+            "start": 31.24,
+            "end": 32.04
+          },
+          {
+            "text": "Подписывайся,",
+            "start": 32.04,
+            "end": 33.08
+          },
+          {
+            "text": "чтобы увидеть,",
+            "start": 33.08,
+            "end": 33.9
+          },
+          {
+            "text": "как она растет.",
+            "start": 33.9,
+            "end": 34.62
+          }
+        ],
+        "stock_queries": [
+          "child hands typing laptop",
+          "AI learning interface animation",
+          "Quran stand on table",
+          "hourglass timer close up",
+          "family reading together without faces"
+        ]
+      },
+      "stock_clips": [
         {
-          "text": "Ну что ж,",
-          "start": 1.48,
-          "end": 1.94
+          "id": 8576079,
+          "url": "https://videos.pexels.com/video-files/8576079/8576079-hd_1080_1920_30fps.mp4"
         },
         {
-          "text": "сегодня второй день,",
-          "start": 1.94,
-          "end": 3.14
+          "id": 31112120,
+          "url": "https://videos.pexels.com/video-files/31112120/13293234_1080_1920_30fps.mp4"
         },
         {
-          "text": "и давайте подумаем.",
-          "start": 3.14,
-          "end": 4.5
+          "id": 18069233,
+          "url": "https://videos.pexels.com/video-files/18069233/18069233-hd_1080_1920_24fps.mp4"
         },
         {
-          "text": "Смотрите,",
-          "start": 4.44,
-          "end": 5.22
+          "id": 5660498,
+          "url": "https://videos.pexels.com/video-files/5660498/5660498-hd_720_1280_30fps.mp4"
         },
         {
-          "text": "ребенок сидит в школе",
-          "start": 5.22,
-          "end": 6.3
+          "id": 18069803,
+          "url": "https://videos.pexels.com/video-files/18069803/18069803-hd_1080_1920_24fps.mp4"
         },
         {
-          "text": "6 часов,",
-          "start": 6.3,
-          "end": 6.94
-        },
-        {
-          "text": "потом еще 2 часа",
-          "start": 6.94,
-          "end": 8.4
-        },
-        {
-          "text": "у него домашка,",
-          "start": 8.4,
-          "end": 9.34
-        },
-        {
-          "text": "а когда же ему",
-          "start": 9.34,
-          "end": 10.0
-        },
-        {
-          "text": "учить Коран?",
-          "start": 10.0,
-          "end": 10.68
-        },
-        {
-          "text": "В Тамра Скул учеба",
-          "start": 11.26,
-          "end": 12.4
-        },
-        {
-          "text": "занимает 2 часа в",
-          "start": 12.4,
-          "end": 13.4
-        },
-        {
-          "text": "день.",
-          "start": 13.4,
-          "end": 13.66
-        },
-        {
-          "text": "Ребенок занимается с",
-          "start": 14.24,
-          "end": 15.36
-        },
-        {
-          "text": "искусственным",
-          "start": 15.36,
-          "end": 15.8
-        },
-        {
-          "text": "интеллектом в своем",
-          "start": 15.8,
-          "end": 16.8
-        },
-        {
-          "text": "темпе и не идет",
-          "start": 16.8,
-          "end": 18.24
-        },
-        {
-          "text": "дальше,",
-          "start": 18.24,
-          "end": 18.74
-        },
-        {
-          "text": "пока не понял тему.",
-          "start": 18.74,
-          "end": 19.74
-        },
-        {
-          "text": "Освободившееся время",
-          "start": 20.42,
-          "end": 21.6
-        },
-        {
-          "text": "остается на Коран и",
-          "start": 21.6,
-          "end": 22.8
-        },
-        {
-          "text": "кружки,",
-          "start": 22.8,
-          "end": 23.7
-        },
-        {
-          "text": "на арабский и семью.",
-          "start": 23.7,
-          "end": 25.04
-        },
-        {
-          "text": "Так учатся дети в",
-          "start": 25.72,
-          "end": 26.68
-        },
-        {
-          "text": "американская Альфа Скул.",
-          "start": 26.68,
-          "end": 28.1
-        },
-        {
-          "text": "Я делаю такую же",
-          "start": 28.7,
-          "end": 29.6
-        },
-        {
-          "text": "школу,",
-          "start": 29.6,
-          "end": 30.04
-        },
-        {
-          "text": "только исламскую.",
-          "start": 30.04,
-          "end": 31.06
-        },
-        {
-          "text": "Это день второй.",
-          "start": 31.24,
-          "end": 32.04
-        },
-        {
-          "text": "Подписывайся,",
-          "start": 32.04,
-          "end": 33.08
-        },
-        {
-          "text": "чтобы увидеть,",
-          "start": 33.08,
-          "end": 33.9
-        },
-        {
-          "text": "как она растет.",
-          "start": 33.9,
-          "end": 34.62
+          "id": 7301686,
+          "url": "https://videos.pexels.com/video-files/7301686/7301686-hd_1080_1920_25fps.mp4"
         }
       ],
-      "stock_queries": [
-        "child hands typing laptop",
-        "AI learning interface animation",
-        "Quran stand on table",
-        "hourglass timer close up",
-        "family reading together without faces"
-      ]
-    },
-    "stock_clips": [
-      {
-        "id": 8576079,
-        "url": "https://videos.pexels.com/video-files/8576079/8576079-hd_1080_1920_30fps.mp4"
-      },
-      {
-        "id": 31112120,
-        "url": "https://videos.pexels.com/video-files/31112120/13293234_1080_1920_30fps.mp4"
-      },
-      {
-        "id": 18069233,
-        "url": "https://videos.pexels.com/video-files/18069233/18069233-hd_1080_1920_24fps.mp4"
-      },
-      {
-        "id": 5660498,
-        "url": "https://videos.pexels.com/video-files/5660498/5660498-hd_720_1280_30fps.mp4"
-      },
-      {
-        "id": 18069803,
-        "url": "https://videos.pexels.com/video-files/18069803/18069803-hd_1080_1920_24fps.mp4"
-      },
-      {
-        "id": 7301686,
-        "url": "https://videos.pexels.com/video-files/7301686/7301686-hd_1080_1920_25fps.mp4"
-      }
-    ],
-    "rendered_hook": "Только 2 часа учёбы в день"
-  },
-  "history": [],
-  "stock_used": []
+      "rendered_hook": "Только 2 часа учёбы в день"
+    }
+  ],
+  "pending": [],
+  "queue": [],
+  "publish_hour": 19,
+  "last_publish_date": null,
+  "last_fail_notice": null
 }
