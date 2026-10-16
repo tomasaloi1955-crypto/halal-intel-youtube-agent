@@ -44,6 +44,7 @@ def _prompt(day, notes, with_audio, need_subs, transcript=""):
 
 Аудитория — мусульманские родители (чаще мамы), русскоязычные, в т.ч. живущие за границей.
 Тон тёплый, уважительный, без агрессии к другим школам. Можно «Ассаляму алейкум» в подписи.
+Название школы пиши всегда латиницей: Tamra School (не «Тамра Скул», даже если так в расшифровке).
 Никакой музыки и ничего, что противоречит исламу.
 
 Верни ТОЛЬКО JSON:
@@ -180,9 +181,9 @@ def write(day, notes, audio_path=None):
         if t not in tags:
             tags.append(t)
     return {
-        "hook": (data.get("hook") or "").strip(),
-        "title": (data.get("title") or f"День {day}: Tamra School").strip()[:90],
-        "caption": (data.get("caption") or "").strip(),
+        "hook": _fix_name(data.get("hook")).strip(),
+        "title": _fix_name(data.get("title") or f"День {day}: Tamra School").strip()[:90],
+        "caption": _fix_name(data.get("caption")).strip(),
         "hashtags": tags[:12],
         "subtitles": data.get("subtitles") or [],
         "stock_queries": [q.strip() for q in data.get("stock_queries", [])
@@ -192,6 +193,12 @@ def write(day, notes, audio_path=None):
 
 # Нейросеть иногда добавляет политически окрашенные теги — такие не ставим никогда
 _BLOCKED_TAG_WORDS = ("движени", "джихад", "халифат", "умма", "политик", "война", "борьб")
+
+
+def _fix_name(text):
+    """Расшифровка голоса пишет «Тамра Скул» — в текстах всегда фирменное «Tamra School»."""
+    import re
+    return re.sub(r"[ТтTt]амр[аеу]\s*[Сс]ку[лл]\w*", "Tamra School", text or "")
 
 
 def full_caption(texts):
