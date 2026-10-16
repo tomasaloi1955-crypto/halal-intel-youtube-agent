@@ -31,7 +31,7 @@ jobs:
       - name: Установить зависимости
         run: |
           pip install requests python-dotenv Pillow==10.4.0 google-generativeai==0.7.2 \
-                      google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1
+                      google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1 cryptography
 
       - name: Бот Tamra School (один проход)
         env:
@@ -49,6 +49,8 @@ jobs:
           TAMRA_IG_USER_ID: ${{ secrets.TAMRA_IG_USER_ID }}
           TAMRA_IG_ACCESS_TOKEN: ${{ secrets.TAMRA_IG_ACCESS_TOKEN }}
           TAMRA_YOUTUBE_TOKEN_JSON: ${{ secrets.TAMRA_YOUTUBE_TOKEN_JSON }}
+          # OAuth-клиент основного агента: им бот выдаёт ссылку «ютуб» для входа с телефона
+          YOUTUBE_CREDENTIALS_JSON: ${{ secrets.YOUTUBE_CREDENTIALS_JSON }}
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TAMRA_TIKTOK_ACCESS_TOKEN: ${{ secrets.TAMRA_TIKTOK_ACCESS_TOKEN }}
