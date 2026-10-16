@@ -43,7 +43,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer, stock  # noqa: E402
+from tamra import montage, writer, stock, scripts  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
@@ -63,6 +63,8 @@ HELP = (
     "Можно наговорить несколько дней сразу — каждое голосовое станет отдельным роликом.\n\n"
     "Команды:\n"
     "• готово — собрать сейчас (можно и без озвучки)\n"
+    "• текст — текст озвучки для следующего дня (текст 7 — для дня 7)\n"
+    "• темы — все 30 тем роликов\n"
     "• очередь — что и когда выйдет\n"
     "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
     "• убрать 5 — убрать «День 5» из очереди\n"
@@ -481,6 +483,17 @@ def handle_message(st, msg):
             enqueue(st, chat, d)
         else:
             send(chat, "Нет черновика. Пришли озвучку — соберу ролик.")
+        return
+    if low in ("темы", "/topics"):
+        send(chat, "30 тем роликов:\n" + scripts.titles() + "\n\nНапиши «текст 7» — пришлю текст дня 7.")
+        return
+    if low in ("текст", "/text") or low.startswith(("текст ", "/text ")):
+        parts = low.split()
+        try:
+            n = int(parts[1]) if len(parts) > 1 else st["day"]
+        except ValueError:
+            n = st["day"]
+        send(chat, scripts.script_text(n) or f"Для дня {n} текста нет — напиши «темы».")
         return
     if low in ("очередь", "/queue"):
         send(chat, queue_text(st))
