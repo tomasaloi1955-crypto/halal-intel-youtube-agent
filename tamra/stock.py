@@ -80,21 +80,38 @@ def is_faceless(path):
                 os.remove(f)
 
 
-def pick(count, used_ids, workdir, max_checks=14):
-    """Подбирает count проверенных клипов. Возвращает [{"id","url","path"}] (может быть меньше)."""
+def pick(count, used_ids, workdir, max_checks=14, queries=None):
+    """Подбирает count проверенных клипов. Возвращает [{"id","url","path"}] (может быть меньше).
+    queries — запросы под содержание ролика (их пишет нейросеть по озвучке, например
+    «countdown timer», «child hands laptop»): идут первыми и по порядку рассказа,
+    общие запросы про ноутбук и стол — только добивают недостающее."""
     if not os.getenv("PEXELS_API_KEY"):
         raise RuntimeError("нет PEXELS_API_KEY — не могу подобрать стоковые кадры")
-    queries = random.sample(QUERIES, len(QUERIES))
-    candidates, seen = [], set(used_ids)
+    seen = set(used_ids)
+
+    def fresh(q, orientation):
+        out = []
+        for c in search(q, orientation):
+            if c["id"] not in seen:
+                seen.add(c["id"])
+                out.append(c)
+        return out
+
+    # по теме ролика: по паре кандидатов с каждого запроса по кругу, чтобы кадры чередовались
+    themed = [fresh(q, "portrait") or fresh(q, "landscape") for q in (queries or [])]
+    candidates = []
+    for i in range(3):
+        candidates += [lst[i] for lst in themed if len(lst) > i]
+
+    general = []
     for orientation in ("portrait", "landscape"):
-        for q in queries:
-            for c in search(q, orientation):
-                if c["id"] not in seen:
-                    seen.add(c["id"])
-                    candidates.append(c)
-        if len(candidates) >= count * 3:
+        for q in random.sample(QUERIES, len(QUERIES)):
+            general += fresh(q, orientation)
+        if len(general) >= count * 3:
             break
-    random.shuffle(candidates)
+    random.shuffle(general)
+    candidates += general
+    max_checks += len(queries or [])  # тематические клипы чаще отсеиваются — даём им попытки
 
     chosen, checks = [], 0
     for c in candidates:
