@@ -3009,12 +3009,19 @@
       "description": "I have just 24 hours to wow my client with three photorealistic images that showcase a new rustic-style fountain scheduled for an airport interior. Each render must look ready for a magazine spread: rich textures in aged stone and metal, subtle water movement, believable reflections on surrounding floor tiles, and lighting that feels naturally integrated with a bustling terminal environment. Any proven toolchain is fine—3ds Max, SketchUp, Blender with V-Ray, Corona, or Cycles—so long as the files you hand over are impeccable. After the initial 3D pass I expect thoughtful Photoshop polish: colour balancing, depth tweaks, and, if needed, a few travellers or potted plants composited in to ground the scene. Deliverables • Three 4K JPG or PNG renders: wide context view, mid-range perspective, and a hero close-up of the fountain. Acceptance criteria • Photoreal quality that stands up to close inspection. • Clear rustic aesthetic matched to an airport setting. • Final files in my inbox no later than 24 hours after award. Send a link to comparable work—especially anything that shows off your Photoshop finishing—along with an all-inclusive price and a firm confirmation you can hit the deadline. If you’re ready to start immediately, let’s move fast.",
       "currency": "USD",
       "decision": "Это проект 3D-визуализации и дизайна (3ds Max, Blender, Photoshop для рендеров и композитинга), который вне моего профиля. Я разработчица ИИ-автоматизаций на Python, не 3D-художник. Также заказ требует портфолио с ссылками на готовые работы, которых у меня нет в этой области."
+    },
+    "40770537": {
+      "title": "15 AI Redevelopment Real Estate Videos",
+      "url": "https://www.freelancer.com/projects/ai-video/Redevelopment-Real-Estate-Videos",
+      "description": "I have a redevelopment proposal that now needs to come alive on screen. I’m commissioning 15 short, AI-generated videos that collectively showcase three intertwined themes: Project Benefits, Community to Advocate, and Architectural Visualization. Each clip should speak clearly to the project’s core benefits—alot of the benefits and housing shortage relief, economic growth, and social & environmental improvement—while persuading local stakeholders that the development is both transit-friendly and a genuine step forward. A brief is attached. Here is the emphasis that must be visible in the finished work: • Addressing housing shortage • Economic growth • Social and environmental improvement • Transit Friendly • Moving Forward Scope – You may leverage generative tools such as Runway, Pika, Synthesia, Midjourney or similar; tool choice is up to you, so long as the output feels cohesive across all 15 pieces. – I expect you to handle light scripting, voice-over or text-overlay, royalty-free music, and brand-consistent color palettes. – Final delivery: 15 ready-to-screen MP4 files in 1080p, plus source project files for future edits. Acceptance Criteria 1. Each video highlights at least one of the five emphasis points above, with no mixed messaging. 2. Visuals must accurately reflect the proposed architecture and public-realm improvements drawn from the attached brief. 3. Tone stays upbeat and community-minded; no stock clichés about “luxury living.” 4. All clips combine smoothly as a playlist and still stand alone when shown individually. 5. Content humanization Send a quick outline of your creative approach, the AI tools you plan to use, and a realistic timeline. I’m ready to move once I know you can hit these marks.",
+      "currency": "USD",
+      "decision": "Заказ требует генерацию видео с людьми и архитектурной визуализацией. В профиле прямой запрет: 'Картинки и видео с людьми, сгенерированные ИИ'. Архитектурные визуализации и сценарии для real estate — это дизайн и видеопроизводство, которые не входят в список услуг (там только ИИ-контент: тексты, картинки без людей, озвучка, шортсы). Хотя технически можно использовать Python + API генераторов видео, основная задача (15 профессиональных видео для презентации проекта недвижимости) выходит за рамки автоматизаций, которые я делаю. Это полноценный видеопроект."
     }
   },
   "threads": {},
   "day": {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "bids": 0,
-    "evals": 20
+    "evals": 1
   }
 }
