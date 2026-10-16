@@ -3065,12 +3065,19 @@
       "description": "I run several learning platforms and now need a steady flow of short, hyper-realistic videos produced entirely with modern AI tools. Each piece will explain a single concept in an engaging, interactive style—think bite-size lessons that feel cinematic rather than slide-deck-boring. The immediate priority is a batch of realistic shorts. You must be fluent with current AI video pipelines (Runway, Pika, HeyGen, Stable Diffusion / ComfyUI, Unreal/MetaHuman, or similar), able to keep characters visually consistent from scene to scene, and comfortable syncing AI-generated or human voice-overs to natural lip movement. Smooth camera moves, proper lighting, and polished color grading are essential; the final result should stand up next to traditional live-action work. Although the focus is on educational shorts, I also have upcoming needs for AI-generated ads, 2D animated explainers, and longer cinematic pieces, so versatility is a plus. Deliverables for each lesson: • One 30–90 sec 4K video (MP4 or MOV) with embedded audio • Project files / prompts so I can iterate internally • A brief hand-off note describing the workflow, models, and settings used I expect quick turnaround, clear communication, and a collaborative mindset as we refine the look and pacing over multiple episodes. If you love pushing the boundaries of AI filmmaking while teaching audiences something new, let’s get started.",
       "currency": "USD",
       "decision": "Заказ требует создания гиперреалистичных видео с людьми, сгенерированными ИИ (HeyGen, MetaHuman, синхронизация движений губ), что явно запрещено профилем: 'Картинки и видео с людьми, сгенерированные ИИ'. Это основной deliverable проекта, а не побочная услуга. Также это скорее видеопродакшн и кинематография, чем автоматизация на Python. Вне моего профиля."
+    },
+    "40771885": {
+      "title": "Retro Brand AI Photo Reel",
+      "url": "https://www.freelancer.com/projects/ai-art-creation/Retro-Brand-Photo-Reel",
+      "description": "My brand launch needs a short, eye-catching reel built from AI-assisted, semi-photographic stills that feel authentically retro and vintage. Think soft film grain, washed-out colour palettes, and subtle analog imperfections—something that looks like it was pulled from a 70s magazine yet carries a modern polish. Scope of work • Generate or composite a cohesive set of vintage-styled images using your preferred AI tools (Midjourney, Stable Diffusion, DALL·E, etc.) and post-process them so they blur the line between real photography and AI art. • Sequence the visuals into a vertical reel (1080×1920) lasting roughly 15–20 seconds, complete with gentle motion, era-appropriate typography overlays, and background music I can license. • Deliver both the finished MP4 ready for Instagram Reels and the editable project files (PSD, AEP, or equivalent) so I can repurpose assets later. Acceptance criteria The reel must instantly communicate my brand identity, maintain consistent retro styling throughout, export flawlessly at full resolution, and stay under Instagram’s 30-second limit. When you reply, weave a clear, detailed project proposal into your message—outline your creative concept, AI workflow, editing pipeline, and expected turnaround so I can see exactly how you’ll bring this nostalgic vision to life.",
+      "currency": "INR",
+      "decision": "Проект требует создание видеорилса с AI-генерированными изображениями людей (retro brand photoshoot style). По профилю я не делаю картинки и видео с людьми, сгенерированные ИИ — это запрещено правилами. Кроме того, объём работы (composite, color grading, motion design, AEP files) выходит за рамки моих услуг 'ИИ-генерация контента' и требует специализированного дизайна и видеомонтажа, которыми я не занимаюсь."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-16",
     "bids": 0,
-    "evals": 8
+    "evals": 9
   }
 }
