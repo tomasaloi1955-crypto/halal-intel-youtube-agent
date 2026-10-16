@@ -19,7 +19,7 @@ from tamra import brand
 
 W, H, FPS = brand.W, brand.H, brand.FPS
 HOOK_SECONDS = 2.8
-END_SECONDS = 2.2
+END_SECONDS = 2.5
 COVER_AT = 1.0
 TG_VIDEO_LIMIT = 48 * 1024 * 1024  # Telegram отдаёт ботом до 50 МБ — с запасом
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -187,12 +187,24 @@ def draw_sub(text, path):
     img.save(path)
 
 
+LOGO = os.path.join(_ROOT, "tamra", "assets", "logo.png")
+
+
 def draw_end(path):
-    img = _blank()
+    """Финальная заставка на весь экран: логотип-финик, название школы, призыв."""
+    img = Image.new("RGBA", (W, H), brand.EMERALD_DARK + (255,))
     d = ImageDraw.Draw(img)
-    d.rounded_rectangle((90, 1180, W - 90, 1480), radius=40, fill=brand.EMERALD + (235,),
-                        outline=brand.GOLD + (255,), width=6)
-    _text_block(img, brand.CTA_END, 1330, W - 260, 240, [62, 54, 48], fill=brand.CREAM, stroke=0)
+    for y in range(H):  # мягкий вертикальный градиент от фирменного изумруда к тёмному
+        t = y / H
+        c = tuple(int(a * (1 - t) + b * t) for a, b in zip(brand.EMERALD, brand.EMERALD_DARK))
+        d.line([(0, y), (W, y)], fill=c + (255,))
+    if os.path.exists(LOGO):
+        logo = Image.open(LOGO).convert("RGBA").resize((420, 420), Image.LANCZOS)
+        img.alpha_composite(logo, ((W - 420) // 2, 470))
+    f = _font(96)
+    tw = d.textlength(brand.BRAND_NAME, font=f)
+    d.text(((W - tw) / 2, 960), brand.BRAND_NAME, font=f, fill=brand.GOLD)
+    _text_block(img, brand.CTA_END, 1290, W - 200, 260, [64, 56, 50], fill=brand.CREAM, stroke=0)
     img.save(path)
 
 

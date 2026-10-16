@@ -184,7 +184,8 @@ def _stock_media(spec, voice, srcdir):
                  "kind": "video"} for c in spec["stock_clips"]]
     seconds = montage.duration(voice) if voice else 15
     count = max(3, min(8, int(seconds / 4) + 1))  # новый кадр примерно каждые 4 секунды
-    picked = stock.pick(count, spec.get("stock_exclude", []), srcdir)
+    picked = stock.pick(count, spec.get("stock_exclude", []), srcdir,
+                        queries=(spec.get("texts") or {}).get("stock_queries"))
     if not picked:
         raise RuntimeError("не нашла подходящих стоковых кадров без лиц — пришли свои клипы")
     spec["stock_clips"] = [{"id": c["id"], "url": c["url"]} for c in picked]
