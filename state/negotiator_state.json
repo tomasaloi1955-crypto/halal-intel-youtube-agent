@@ -3100,12 +3100,33 @@
       "description": "I'm looking for an expert to set up and integrate Zoho CRM, Forms, SalesIQ, and other Zoho applications. The main objective of this setup is the initial setup and to automate business processes, specifically lead management, contract signing. Key Requirements: - Set up and integrate multiple Zoho applications - Automate lead management processes - Improve overall business efficiency Ideal Skills and Experience: - Proven experience with Zoho One setup and automation - Strong understanding of Zoho CRM and other Zoho applications - Ability to analyze and streamline business processes - Excellent project management and communication skills If you have a track record of successfully implementing Zoho solutions and can help me achieve my automation goals, please submit your proposal.",
       "currency": "USD",
       "decision": "Проект требует работы с Zoho One и интеграции множества приложений Zoho (CRM, Forms, SalesIQ). Профиль указывает на интеграцию через API с CRM вроде HubSpot, amoCRM, Bitrix24, Pipedrive — все это стандартные CRM с известными API. Zoho One — это комплексная экосистема с собственными правилами интеграции, которая выходит за рамки простой интеграции CRM через API. Кроме того, задача включает 'contract signing' (электронная подпись), что требует специализированной работы с документооборотом и может потребовать знаний вне Python-автоматизации. У разработчицы нет опыта с Zoho в профиле, и честность (правило шариата) запрещает выдумывать компетенции. Это сложный интеграционный проект, требующий специализации в экосистеме Zoho, а не просто API-интеграция в Python."
+    },
+    "40772793": {
+      "title": "AI Drake Burn Bridge Clip",
+      "url": "https://www.freelancer.com/projects/ai-video-editing/Drake-Burn-Bridge-Clip",
+      "description": "I want to edit the faces of the music video to our faces. Using ai. Will send photos. And video uploaded for reference.",
+      "currency": "USD",
+      "decision": "Задача требует создания видео с лицами людей, сгенерированными или отредактированными ИИ. Профиль явно запрещает: «Картинки и видео с людьми, сгенерированные ИИ». Это нарушает правило шариата о честности и недопустимых нишах."
+    },
+    "40772759": {
+      "title": "AI-Generated 2D Cartoon Videos",
+      "url": "https://www.freelancer.com/projects/2d-animation/Generated-Cartoon-Videos",
+      "description": "I'm looking for a talented creator to produce AI-generated 2D cartoon videos for a kids' YouTube channel. Each video should be 40 to 60 seconds long. Requirements: - 2D animation style - Themes suitable for kids (like Peppa Pig) - Use of bright colors, simple characters, and detailed backgrounds Ideal Skills and Experience: - Experience in 2D animation - Familiarity with kids' content and themes - Proficiency in AI animation tools Please provide samples of similar work.",
+      "currency": "INR",
+      "decision": "Заказ требует создание 2D-анимированных видео с персонажами (картинки с людьми и персонажами, сгенерированные ИИ). Профиль запрещает: 'Картинки и видео с людьми, сгенерированные ИИ'. Кроме того, это творческая работа дизайна/анимации, которая не входит в список услуг (делаю только контент без людей: озвучка, шортсы с тренировками, генерация текстов). Даже если бы это было возможно, заказчик просит 'samples of similar work' — я не могу их предоставить, так как в профиле запрещено делиться ссылками и примерами работ с персонажами."
+    },
+    "40772656": {
+      "title": "Long-Term AI Development Partner Needed",
+      "url": "https://www.freelancer.com/projects/machine-learning/Long-Term-Development-Partner-Needed",
+      "description": "I’m putting together a small, dedicated relationship with an AI developer who can stay on board for the long haul. The exact use cases will grow and shift over time, but the common thread is building production-ready AI features—from architecting models and pipelines to deploying them, monitoring performance, and iterating based on real-world feedback. I NEED A THINKER SOMEONE THAT HAS THE INTELLIGENCE TO WORK WITH US SO WE CAN GET OUR IDEA TO 100% WE ARE A GLOBAL WEBSITE APPEALING TO ALL SPORTS TEAMS SO WE HAVE A HUGE TASK AHEAD TO WELCOME EVERY JUNIOUR SPORTS TEAM TO OUR WEBSITE. WE WILL PAY $100 AUD ONLY BUT YOU WILL ALSO BE PART OF OUR OPERATIONS FOR AS LONG AS IT REMAINS SUCCESSFUL FROM OUR MANY YEARS OF BUSINESS MODELLING AND DEVELOPMENT. IF YOU CAN SEE A FUTURE AND YOU WANT TO EARN BONUSES ON TOP OF OUR AGREED MONTHLY RETAINER then we welcome your enquiry But if you cannot see yourself accepting our terms Then please do not apply. Initially, I’ll share a backlog of tasks experimenting with different model architectures to integrating trained models into existing web and mobile products. You should be able to move comfortably between data wrangling, model training, and API integration, ideally using Python, TensorFlow or PyTorch, plus the usual MLOps stack (Docker, Git, cloud services). Solid communication is crucial because you and I will plan sprints together, review results, and adjust priorities quickly. Acceptance criteria for each milestone will be straightforward: reproducible code in a private repo, clear documentation, and a short demo video or live session that proves the feature works as intended. If that sounds like your kind of partnership, let’s start with a small paid test and grow from there.",
+      "currency": "AUD",
+      "decision": "Заказ требует долгосрочного партнёрства с переменным объёмом работ, архитектуры моделей машинного обучения, тренировки моделей TensorFlow/PyTorch и MLOps — это выходит за границы моего профиля. Я специализируюсь на автоматизациях и интеграциях на Python (боты, парсеры, ИИ-агенты, постинг), а не на разработке ML-моделей и data science. Кроме того, предложение содержит элементы рассрочки и «бонусы в будущем» вместо чёткой оплаты — это нарушает правило шариата о честности и ясности."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-17",
     "bids": 0,
-    "evals": 4
+    "evals": 7
   }
 }
