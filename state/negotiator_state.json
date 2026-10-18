@@ -3177,12 +3177,26 @@
       "description": "Looking for an experienced B2B Sales Closer / Appointment Setter. I run a full-stack engineering setup building custom Next.js web applications, high-converting landing pages, and AI automations ($1,500 - $3,000 deals). I handle 100% of the tech delivery. You bring the clients/leads and close the deals. Payout is an aggressive 40% flat commission per closed deal ($600 - $1,200 per deal directly to you on Day 1 of client payment). Apply only if you have active B2B networks in US/UK/Canada or direct outreach capability. Ready to start immediately.",
       "currency": "USD",
       "decision": "Это не заказ на разработку, а предложение работы на комиссию (Sales Closer / BDM). Я разработчица, делаю автоматизации и боты на Python, не продажи и B2B-аутрич. Кроме того, условие «оплата только на комиссию» нарушает правило шариата о честной фиксированной цене без рибы и спекуляции."
+    },
+    "40773777": {
+      "title": "Strategic AI Business Partner",
+      "url": "https://www.freelancer.com/projects/saas-development/Strategic-Business-Partner",
+      "description": "We are a fast-growing AI startup seeking a dedicated business partner to help drive our strategic vision and overall success. As we expand our market presence, we need a collaborative leader who can bring commercial insight, operational execution, and strategic foresight to our core team. Candidates must be citizens based in the United States or Canada to align with our target market, operational requirements, and regulatory considerations. In this role, you will work closely with leadership to shape business strategy, optimize key operations, and accelerate high-leverage growth initiatives. The ideal partner brings strong communication skills, a proactive mindset, and a shared passion for scaling AI solutions into market-leading products. No deep technical background in AI is required, as our founding team will guide and support you through our product ecosystem and internal processes.",
+      "currency": "USD",
+      "decision": "Проект ищет стратегического бизнес-партнёра и операционного лидера для команды стартапа, а не разработчика автоматизаций. Это фулл-тайм роль, требующая граждане США/Канады и участие в управлении компанией — полностью вне рамок моих услуг (я делаю Python-скрипты и автоматизации, а не работаю в составе команд на постоянной основе). Кроме того, условие гражданства исключает меня как кандидата."
+    },
+    "40773659": {
+      "title": "AI CREATOR / RETOUCHER – XỬ LÝ CHẤT LIỆU & GHÉP PHỐI CẢNH SẢN PHẨM",
+      "url": "https://www.freelancer.com/projects/ai-image-generation/CREATOR-RETOUCHER",
+      "description": "Công ty cần tuyển Freelancer thành thạo các công cụ AI (Midjourney, Stable Diffusion, ComfyUI, Photoshop AI,...) để xử lý hình ảnh sản phẩm từ chất liệu gốc (gỗ/đá) sang chất liệu đồng cao cấp và ghép vào bối cảnh thực tế. Mô tả công việc Chuyển đổi chất liệu: Biến sản phẩm gốc (gỗ/đá) thành chất liệu đồng tự nhiên đặt dưới ánh nắng ngoài trời, xử lý chân thực độ sần, phản quang kim loại, ánh sáng và đổ bóng. Ghép bối cảnh & tỷ lệ: Đặt sản phẩm vào không gian chỉ định với hiệu ứng ống kính máy ảnh (depth-of-field, xóa phông nhẹ, màu sắc trung thực). Ghép thêm người thợ/người sản xuất đúng quy luật phối cảnh xa - gần để làm nổi bật quy mô to lớn của sản phẩm. Góc máy & định dạng bàn giao: Ảnh sản phẩm: 3 góc nhìn (chính diện, nghiêng trái 15°, nghiêng phải 15°). Ảnh xưởng/sản xuất (có người): 1 góc chụp thể hiện độ hoành tráng, kích thước lớn. Tỉ lệ khung hình: Xuất file chất lượng cao tỉ lệ 1:1 (Website) và 3:4 (Catalog). Số lượng & Ngân sách Khối lượng: 300 ảnh (có thể chia theo đợt). Chi phí: 50.000 VNĐ / sản phẩm hoàn thiện bộ 3 góc ảnh (thanh toán theo tiến độ/bàn giao). Yêu cầu ứng viên Thành thạo AI rendering kết hợp Photoshop để kiểm soát chi tiết và phối cảnh chuẩn xác. Mắt thẩm mỹ tốt về ánh sáng thực tế và chất liệu kim loại. Có tinh thần trách nhiệm, đúng deadline. Ứng tuyển: Vui lòng gửi Portfolio,sản phẩm tương tự . Tuyển dụng ưu tiên ứng viên có thể làm mẫu thử (test) 1 ảnh để đánh giá chất lượng.",
+      "currency": "USD",
+      "decision": "Проект требует создание фотореалистичных изображений с людьми, сгенерированных ИИ (AI rendering Midjourney/Stable Diffusion с добавлением человека в сцену для масштаба). По профилю я не делаю картинки и видео с людьми, созданные ИИ — это запрещено правилами шариата (запрет на обман и контрафакт). Кроме того, основной навык здесь — визуальный дизайн и ретушь в Photoshop, а не Python-автоматизация. Это выходит за рамки моих услуг."
     }
   },
   "threads": {},
   "day": {
     "date": "2026-10-18",
     "bids": 0,
-    "evals": 0
+    "evals": 2
   }
 }
