@@ -67,7 +67,7 @@ def youtube_short(video_path, title, description, tags, token_json=None):
     from googleapiclient.discovery import build
     from googleapiclient.http import MediaFileUpload
 
-    creds = Credentials.from_authorized_user_info(json.loads(raw))
+    creds = Credentials.from_authorized_user_info(json.loads(raw.strip().lstrip("\ufeff")))
     if not creds.valid and creds.refresh_token:
         creds.refresh(Request())
     yt = build("youtube", "v3", credentials=creds)

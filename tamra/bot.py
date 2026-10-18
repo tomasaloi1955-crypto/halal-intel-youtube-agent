@@ -388,6 +388,8 @@ def publish_item(st, chat, d):
         return False
     if not any(v.startswith("✅") for v in results.values()):
         st["queue"].insert(0, d)
+        # не пересобирать и не стучаться в площадки каждые 20 секунд — следующая попытка через час
+        st["next_publish_try"] = time.time() + 3600
         today = datetime.now(_tz()).date().isoformat()
         if st.get("last_fail_notice") != today:  # не спамим каждые 15 минут
             st["last_fail_notice"] = today
@@ -409,7 +411,8 @@ def publish_due(st):
     now = datetime.now(_tz())
     today = now.date().isoformat()
     if (chat and st["queue"] and now.hour >= st["publish_hour"]
-            and st.get("last_publish_date") != today):
+            and st.get("last_publish_date") != today
+            and time.time() >= st.get("next_publish_try", 0)):
         if publish_item(st, chat, st["queue"][0]):
             st["last_publish_date"] = today
             if st["queue"]:
