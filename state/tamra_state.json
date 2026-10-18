@@ -1,5 +1,5 @@
 {
-  "offset": 30003226,
+  "offset": 30003227,
   "owner": "970882173",
   "day": 4,
   "batch": {
@@ -238,7 +238,10 @@
         }
       ],
       "rendered_hook": "Только 2 часа учёбы в день"
-    },
+    }
+  ],
+  "pending": [],
+  "queue": [
     {
       "id": "20261018_025909_640e",
       "day": 3,
@@ -386,8 +389,6 @@
       "rendered_hook": "Какой реальный уровень математики?"
     }
   ],
-  "pending": [],
-  "queue": [],
   "publish_hour": 19,
   "last_publish_date": null,
   "last_fail_notice": null
