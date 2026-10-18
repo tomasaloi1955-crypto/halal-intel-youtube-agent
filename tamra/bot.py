@@ -43,7 +43,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer, stock, scripts, yt_auth  # noqa: E402
+from tamra import montage, writer, stock, scripts, yt_auth, faces  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
@@ -65,6 +65,7 @@ HELP = (
     "• готово — собрать сейчас (можно и без озвучки)\n"
     "• текст — текст озвучки для следующего дня (текст 7 — для дня 7)\n"
     "• темы — все 30 тем роликов\n"
+    "• кадры — подобрать новые кадры для последнего черновика\n"
     "• очередь — что и когда выйдет\n"
     "• ютуб — подключить YouTube-канал с телефона\n"
     "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
@@ -204,8 +205,14 @@ def _stock_media(spec, voice, srcdir):
     """Клипов нет — берём сток. Подобранные клипы запоминаются в черновике, чтобы
     пересборка (другой хук, публикация) дала тот же видеоряд без повторной проверки."""
     if spec.get("stock_clips"):
-        return [{"path": stock.download(c["url"], os.path.join(srcdir, f"stock_{c['id']}.mp4")),
-                 "kind": "video"} for c in spec["stock_clips"]]
+        out = []
+        for c in spec["stock_clips"]:
+            raw = stock.download(c["url"], os.path.join(srcdir, f"raw_{c['id']}.mp4"))
+            path = os.path.join(srcdir, f"stock_{c['id']}.mp4")
+            faces.blur_video(raw, path)  # при пересборке лица размываются так же, как при подборе
+            os.remove(raw)
+            out.append({"path": path, "kind": "video"})
+        return out
     seconds = montage.duration(voice) if voice else 15
     count = max(3, min(8, int(seconds / 4) + 1))  # новый кадр примерно каждые 4 секунды
     picked = stock.pick(count, spec.get("stock_exclude", []), srcdir,
@@ -515,6 +522,22 @@ def handle_message(st, msg):
             "\n⚠️ Похоже, это не канал Tamra School. Если ошиблась — напиши «ютуб» и выбери нужный.")
         send(chat, f"✅ YouTube подключён: канал «{name}». Ролики из очереди будут выходить туда.{warn}\n\n"
                    + queue_text(st))
+        return
+    if low in ("кадры", "новые кадры", "/frames"):
+        d = _find_draft(st)
+        if not d or d.get("media"):
+            send(chat, "Новые кадры подбираю только для черновика без своих клипов. "
+                       "Ролик из очереди сначала верни: «убрать N».")
+            return
+        old = [c["id"] for c in d.pop("stock_clips", [])]
+        d["stock_exclude"] = list(d.get("stock_exclude", [])) + old  # те же клипы не берём
+        d.pop("rendered_hook", None)
+        shutil.rmtree(os.path.join(WORK, d["id"], "src"), ignore_errors=True)
+        send(chat, f"Подбираю новые кадры для «День {d['day']}»…")
+        try:
+            send_preview(chat, d)
+        except Exception as e:
+            send(chat, f"🔴 Не получилось: {str(e)[:300]}")
         return
     if low in ("темы", "/topics"):
         send(chat, "30 тем роликов:\n" + scripts.titles() + "\n\nНапиши «текст 7» — пришлю текст дня 7.")
