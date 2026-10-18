@@ -1,7 +1,7 @@
 {
-  "offset": 30003224,
+  "offset": 30003226,
   "owner": "970882173",
-  "day": 3,
+  "day": 4,
   "batch": {
     "media": [],
     "voice": null,
@@ -238,6 +238,152 @@
         }
       ],
       "rendered_hook": "Только 2 часа учёбы в день"
+    },
+    {
+      "id": "20261018_025909_640e",
+      "day": 3,
+      "media": [],
+      "voice": {
+        "file_id": "CQACAgIAAxkBAAMuatQySiSJMj2JJqmTt_rARO2QUJgAAg-lAAKzmaBKE1L716RzEwE9BA",
+        "ext": "m4a"
+      },
+      "notes": [
+        "День3"
+      ],
+      "hook_override": null,
+      "caption_override": null,
+      "stock_exclude": [
+        8576079,
+        31112120,
+        18069233,
+        5660498,
+        18069803,
+        7301686
+      ],
+      "texts": {
+        "hook": "Какой реальный уровень математики?",
+        "title": "Узнайте реальный уровень математики вашего ребёнка – тест Tamra School",
+        "caption": "Ваш ребёнок в пятом классе получает пятёрку, но...\n...не понимает дроби с третьего класса.\nКак вы проверяете истинный уровень знаний?\nTamra School использует адаптивный тест по каждому предмету.\nПройдите бесплатный тест уровня – ссылка в профиле.",
+        "hashtags": [
+          "#образование",
+          "#семья",
+          "#мусульманскиеродители",
+          "#онлайншкола",
+          "#TamraSchool",
+          "#tamraschool",
+          "#исламскаяшкола",
+          "#семейноеобучение",
+          "#мусульманскаясемья",
+          "#воспитаниедетей"
+        ],
+        "subtitles": [
+          {
+            "text": "Ваш ребенок в пятом",
+            "start": 1.0,
+            "end": 2.18
+          },
+          {
+            "text": "классе.",
+            "start": 2.18,
+            "end": 2.88
+          },
+          {
+            "text": "На каком уровне он",
+            "start": 2.88,
+            "end": 4.18
+          },
+          {
+            "text": "знает математику на",
+            "start": 4.18,
+            "end": 5.14
+          },
+          {
+            "text": "самом деле?",
+            "start": 5.14,
+            "end": 6.0
+          },
+          {
+            "text": "Пятерка в дневнике,",
+            "start": 6.56,
+            "end": 8.18
+          },
+          {
+            "text": "а дроби не понимает",
+            "start": 8.18,
+            "end": 9.14
+          },
+          {
+            "text": "с третьего класса.",
+            "start": 9.14,
+            "end": 10.22
+          },
+          {
+            "text": "В там раскол все",
+            "start": 11.12,
+            "end": 12.04
+          },
+          {
+            "text": "начинается с теста.",
+            "start": 12.04,
+            "end": 13.34
+          },
+          {
+            "text": "Он находит реальный",
+            "start": 13.82,
+            "end": 14.8
+          },
+          {
+            "text": "уровень по каждому",
+            "start": 14.8,
+            "end": 15.92
+          },
+          {
+            "text": "предмету отдельно.",
+            "start": 15.92,
+            "end": 17.02
+          },
+          {
+            "text": "Бесплатный тест.",
+            "start": 18.14,
+            "end": 19.26
+          },
+          {
+            "text": "Ссылка в профиле.",
+            "start": 19.26,
+            "end": 20.3
+          }
+        ],
+        "stock_queries": [
+          "child hands writing math worksheet",
+          "close up of laptop screen educational app",
+          "hands holding Quran stand",
+          "countdown timer on desk",
+          "parent reviewing report on tablet"
+        ]
+      },
+      "stock_clips": [
+        {
+          "id": 7249051,
+          "url": "https://videos.pexels.com/video-files/7249051/7249051-hd_1080_1920_24fps.mp4"
+        },
+        {
+          "id": 6782206,
+          "url": "https://videos.pexels.com/video-files/6782206/6782206-hd_1080_1920_30fps.mp4"
+        },
+        {
+          "id": 11267667,
+          "url": "https://videos.pexels.com/video-files/11267667/11267667-hd_1080_1920_30fps.mp4"
+        },
+        {
+          "id": 7698438,
+          "url": "https://videos.pexels.com/video-files/7698438/7698438-hd_1080_2048_25fps.mp4"
+        },
+        {
+          "id": 27385370,
+          "url": "https://videos.pexels.com/video-files/27385370/12131766_1080_1920_24fps.mp4"
+        }
+      ],
+      "rendered_hook": "Какой реальный уровень математики?"
     }
   ],
   "pending": [],
