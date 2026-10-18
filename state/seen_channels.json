@@ -4715,67 +4715,250 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-17"
  },
+ "kazan_7": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "gosuslugi_kazan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kazan_q": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kazan_xtc": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kazann_news": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "my_kazan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "kazan_1": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "kzn_x": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "devushki_chat_kazanij": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "gpi35x": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kazan_massage_relax": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "faridam_mani_devonalar_etma": {
+  "skip": "молчит 2618 дн.",
+  "date": "2026-10-18"
+ },
+ "p_dagestan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "dagestan_01": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "dagestan_1": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "dagestan_26": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "tut_kizlar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "edg_05": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "all_dagestan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "makhachkala8": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "official_moscow_chat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "mockba_channel": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "pectopah_mockba": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "prostitutka_moscow": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "moscow_i": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "moscownews_24": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "halal_lavka_kazan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "tut_mahachkala": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "citynews_makhachkala": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "mkala": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "makh_view": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "dg9900": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "makhachkala": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "sonikx_05": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "dagestan_m": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "official_makhachkala": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "makhachkala_life": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "mahachkalatrud": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "prorab05": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "makhachkala_laba": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "ainagamzatova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "bjij14p": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kazan_vladimir": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "ucmakhachkala": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "islam_audio_books_proroki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "islam_audio_books_angeli": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "islam_audio_books_sira": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "islam_audio_books_vera": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "islam_audio_books_ray_i_ad": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "mckinsey": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "kunuzru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-18"
+ },
+ "hn_jed": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "chiroylimoliya": {
+  "skip": "не наша ниша",
+  "date": "2026-10-18"
+ },
+ "islommoliyasi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-18"
+ },
+ "matana_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-18"
+ },
+ "myj_i_jena777": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-18"
+ },
+ "zilartmuseum_kids": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-18"
+ },
+ "chudesnie_momenti": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-18"
+ },
+ "muslimeco": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-18"
+ },
+ "al_matana": {
+  "sent": "2026-10-18",
+  "title": "Пленница родж⛓️",
+  "contact": "matana_bot2",
+  "score": 75,
+  "silent": 37
+ },
  "_queue": [
-  "kazan_7",
-  "gosuslugi_kazan",
-  "kazan_q",
-  "kazan_xtc",
-  "kazann_news",
-  "my_kazan",
-  "kazan_1",
-  "kzn_x",
-  "devushki_chat_kazanij",
-  "gpi35x",
-  "kazan_massage_relax",
-  "faridam_mani_devonalar_etma",
-  "p_dagestan",
-  "dagestan_01",
-  "dagestan_1",
-  "dagestan_26",
-  "tut_kizlar",
-  "edg_05",
-  "all_dagestan",
-  "makhachkala8",
-  "official_moscow_chat",
-  "mockba_channel",
-  "pectopah_mockba",
-  "prostitutka_moscow",
-  "moscow_i",
-  "moscownews_24",
-  "halal_lavka_kazan",
-  "tut_mahachkala",
-  "citynews_makhachkala",
-  "mkala",
-  "makh_view",
-  "dg9900",
-  "makhachkala",
-  "sonikx_05",
-  "dagestan_m",
-  "official_makhachkala",
-  "makhachkala_life",
-  "mahachkalatrud",
-  "prorab05",
-  "makhachkala_laba",
-  "ainagamzatova",
-  "bjij14p",
-  "kazan_vladimir",
-  "ucmakhachkala",
-  "islam_audio_books_proroki",
-  "islam_audio_books_angeli",
-  "islam_audio_books_sira",
-  "islam_audio_books_vera",
-  "islam_audio_books_ray_i_ad",
-  "muslimeco",
-  "mckinsey",
-  "kunuzru",
-  "hn_jed",
-  "chiroylimoliya",
-  "islommoliyasi",
-  "matana_bot",
-  "al_matana",
-  "myj_i_jena777",
-  "zilartmuseum_kids",
-  "chudesnie_momenti",
   "moskvichka_mag",
   "randomized",
   "brutalism_architecture",
@@ -5210,7 +5393,34 @@
   "novosti_moskow",
   "moskvanovosti",
   "maks_moscow",
-  "mostodaybot"
+  "mostodaybot",
+  "rovnye_zakladki2",
+  "biris",
+  "zakladky_asha",
+  "bradyaga_i",
+  "kings_kanal",
+  "zortvkanalide",
+  "jizn_vorovskoy_janim",
+  "aminakbarovofficial",
+  "guliiiimmm",
+  "shumfm",
+  "finvk",
+  "centralbankuzbekistan",
+  "mezontalim_admin",
+  "diniysavollar",
+  "im_contact",
+  "mavlonof_b",
+  "mezontalim",
+  "isbf_admin",
+  "matana_bot2",
+  "matana_stoikost",
+  "aesteetika",
+  "prava_muja_i_jeni_777",
+  "jaannatt18",
+  "sds7799",
+  "ukrallporezal",
+  "chumavecherinka",
+  "artanna108"
  ],
- "_query_pos": 2
+ "_query_pos": 10
 }
