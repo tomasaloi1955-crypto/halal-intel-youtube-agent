@@ -1,7 +1,11 @@
 name: tamra
 
-# Бот роликов Tamra School: каждые 15 минут забирает из Telegram присланные клипы и озвучку,
-# собирает ролик «День N», присылает превью и публикует по кнопке «Опубликовать».
+# Бот роликов Tamra School: забирает из Telegram присланные клипы и озвучку, собирает ролик
+# «День N», присылает превью, ставит в очередь и публикует по одному в день.
+#
+# Расписание GitHub «каждые 15 минут» на деле срабатывает раз в 2–5 часов. Поэтому один запуск
+# работает почти 6 часов (предел GitHub) и проверяет Telegram каждые ~20 секунд, а cron лишь
+# запускает следующую смену. concurrency не даёт двум сменам работать одновременно.
 on:
   schedule:
     - cron: "*/15 * * * *"
@@ -17,7 +21,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
 
@@ -33,7 +37,7 @@ jobs:
           pip install requests python-dotenv Pillow==10.4.0 google-generativeai==0.7.2 \
                       google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1 cryptography
 
-      - name: Бот Tamra School (один проход)
+      - name: Бот Tamra School (смена ~5,5 часов)
         env:
           DATA_DIR: state
           TAMRA_TG_TOKEN: ${{ secrets.TAMRA_TG_TOKEN }}
@@ -57,7 +61,24 @@ jobs:
           TAMRA_TIKTOK_REFRESH_TOKEN: ${{ secrets.TAMRA_TIKTOK_REFRESH_TOKEN }}
         run: |
           if [ -z "$TAMRA_TG_TOKEN" ]; then echo "TAMRA_TG_TOKEN не задан — пропуск"; exit 0; fi
-          python -m tamra.bot --once
+          git config user.name "tamra-bot"
+          git config user.email "tamra-bot@users.noreply.github.com"
+          save_state() {
+            git add state/tamra_state.json 2>/dev/null || return 0
+            git diff --cached --quiet && return 0
+            git commit -q -m "tamra: $(date -u +%F_%H%M) [skip ci]"
+            for i in 1 2 3 4; do
+              git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q && return 0
+              sleep $((i * 3))
+            done
+            echo "push не удался — попробую на следующем круге"
+          }
+          end=$((SECONDS + 330 * 60))
+          while [ $SECONDS -lt $end ]; do
+            python -m tamra.bot --once || echo "проход упал — продолжаю"
+            save_state   # сразу в репозиторий: если смену оборвут, номер дня и очередь не потеряются
+            sleep 20
+          done
 
       - name: Сохранить состояние бота
         if: always()
