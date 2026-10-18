@@ -35,7 +35,8 @@ jobs:
       - name: Установить зависимости
         run: |
           pip install requests python-dotenv Pillow==10.4.0 google-generativeai==0.7.2 \
-                      google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1 cryptography
+                      google-api-python-client==2.139.0 google-auth-oauthlib==1.2.1 cryptography \
+                      opencv-python-headless==4.10.0.84
 
       - name: Бот Tamra School (смена ~5,5 часов)
         env:

@@ -1,28 +1,33 @@
 # stock.py — стоковые кадры для ролика, когда клипов нет и пришла только озвучка.
 #
-# Канал без лица: в кадре руки, ноутбук, тетрадь, рабочий стол. Видео берутся с Pexels
-# (PEXELS_API_KEY), сначала вертикальные. Каждый клип перед монтажом смотрит ИИ
-# (people_filter.vision_check): руки можно, лицо, голова, волосы, открытое тело — нет.
+# Школа для детей, поэтому в кадре — дети: детские руки над тетрадью и ноутбуком, силуэты,
+# дети в классе со спины. Видео берутся с Pexels (PEXELS_API_KEY), сначала вертикальные.
+# Лица в каждом клипе размываются (tamra/faces.py), а потом клип смотрит ИИ
+# (people_filter.vision_check): различимое лицо, взрослые, открытая одежда — клип не берём.
 # В сомнительном случае клип не берём. Уже использованные клипы не повторяются.
 import os
 import random
 import requests
 
 from people_filter import vision_check, video_frames
+from tamra import faces
 
 QUERIES = [
-    "typing laptop hands", "hands keyboard close up", "laptop desk top view",
-    "writing notebook hands", "laptop coffee desk", "online learning laptop",
-    "hands touchpad laptop", "notebook pen desk", "workspace laptop night",
+    "child hands writing notebook", "kid using laptop", "child hands keyboard",
+    "children classroom", "child silhouette window", "kids hands tablet",
+    "child reading book", "school desk pencil notebook", "kid drawing at desk",
+    "children back view school",
 ]
 
-FACELESS_PROMPT = """Это кадр для исламского канала школы, канал без лица. Посмотри на {n} изображени(е/я)
-внимательно, включая фон, края, отражения в экранах, окнах и зеркалах.
+KIDS_PROMPT = """Это кадр для канала исламской онлайн-школы для детей. Лица людей в кадре должны
+быть размыты. Посмотри на {n} изображени(е/я) внимательно, включая фон, края, отражения.
 
-Можно: руки, кисти, пальцы, предплечья в рукавах; ноутбук, клавиатура, тетради, стол, чашка.
+Можно: дети и детские руки; дети со спины, в профиль без различимого лица, силуэтом; дети
+в классе, если их лица РАЗМЫТЫ; тетради, книги, ноутбук, планшет, парта, карандаши.
 Нельзя:
-- лицо, голова, волосы, шея, силуэт или отражение лица;
-- открытые плечи, ноги, тело, обтягивающая или открытая одежда;
+- различимое (НЕ размытое) лицо любого человека, даже частично или в отражении;
+- взрослые мужчины и женщины, в том числе только их руки;
+- открытая одежда (майки, шорты, открытые плечи), обтягивающая одежда;
 - алкоголь, свинина, кресты, музыкальные инструменты, казино;
 - чужие логотипы крупным планом и текст на экране, который можно прочитать.
 Ответь CLEAN, только если ничего из запрещённого нет ни на одном изображении.
@@ -70,10 +75,10 @@ def download(url, dest):
     return dest
 
 
-def is_faceless(path):
+def is_allowed(path):
     frames = video_frames(path, count=4)
     try:
-        return len(frames) >= 2 and vision_check(frames, FACELESS_PROMPT, "CLEAN")
+        return len(frames) >= 2 and vision_check(frames, KIDS_PROMPT, "CLEAN")
     finally:
         for f in frames:
             if os.path.exists(f):
@@ -118,13 +123,18 @@ def pick(count, used_ids, workdir, max_checks=14, queries=None):
         if len(chosen) >= count or checks >= max_checks:
             break
         checks += 1
+        raw = os.path.join(workdir, f"raw_{c['id']}.mp4")
         path = os.path.join(workdir, f"stock_{c['id']}.mp4")
         try:
-            download(c["url"], path)
+            download(c["url"], raw)
+            faces.blur_video(raw, path)  # лица размываем ДО проверки — ИИ смотрит готовый кадр
         except Exception as e:
-            print(f"[TAMRA] Не скачался клип {c['id']}: {e}")
+            print(f"[TAMRA] Клип {c['id']} не подготовлен: {e}")
             continue
-        if is_faceless(path):
+        finally:
+            if os.path.exists(raw):
+                os.remove(raw)
+        if is_allowed(path):
             chosen.append({**c, "path": path})
         else:
             os.remove(path)

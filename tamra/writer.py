@@ -53,7 +53,7 @@ def _prompt(day, notes, with_audio, need_subs, transcript=""):
   "title": "заголовок YouTube Shorts до 70 символов",
   "caption": "подпись для Instagram/TikTok: 2-5 коротких строк по сути ролика, вопрос к зрителям, в конце строка про бесплатный тест уровня по ссылке в профиле. Без хэштегов",
   "hashtags": ["#до", "#5", "#нейтральных", "#про_образование_и_семью"],
-  "stock_queries": ["3-5 коротких запросов НА АНГЛИЙСКОМ для стоковых видео под содержание озвучки, по порядку рассказа: предметы и руки, без лиц — например countdown timer, child hands laptop, quran stand, hourglass"],
+  "stock_queries": ["3-5 коротких запросов НА АНГЛИЙСКОМ для стоковых видео под содержание озвучки, по порядку рассказа. Это школа для детей: в кадре дети, детские руки, дети в классе, силуэты детей, предметы — НЕ взрослые. Например: child hands writing notebook, kid using laptop, children classroom, child silhouette window, hourglass"],
   {subs}
   "transcript": "дословный текст озвучки или пустая строка"
 }}"""
