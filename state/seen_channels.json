@@ -5204,67 +5204,259 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-19"
  },
+ "tassovkaru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "agregatortruth": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "politpochta": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "drunkenpolitolog": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "kaliyuogatoday": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "kaluginprofit": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "eratrends": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "satirkka": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "politwera": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "e_bash_news": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "pyatiletka111": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "zhivoff": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "ve4niyvoy": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "nebrexnya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "greyshemes": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "belnewsby1": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "medvedev_telegram": {
+  "skip": "подписчиков 1690000",
+  "date": "2026-10-20"
+ },
+ "neoreshkins": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "mig41": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "russicaru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "sbs_orel": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "hokage_s_druzyami_2048": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "dance_family": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "cacao24_7": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "doctorvladl": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "esotericse": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "bhv_95": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "dob_mem": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "korobkapaper": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "teller_tg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "pavlovez": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "transfurism": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "betweenprigov": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "room_617": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "anekrozia": {
+  "skip": "подписчиков 147",
+  "date": "2026-10-20"
+ },
+ "poesiazdes": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "ibolnoismeshno": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "twelve_plots": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "olyaoknigah": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "booklogbook": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "musicandprejudice": {
+  "skip": "не наша ниша",
+  "date": "2026-10-20"
+ },
+ "polka_knig": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "vimbo_audiobooks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "nlosaintpetersburg": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "dva_kapitana_dva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "toislam": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-20"
+ },
+ "otveti_uchenih": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-20"
+ },
+ "ummyunus2010": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "ahlulhadis_admin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "fauzan_ahlulhadis": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "zaschita_tauhida": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "kur_an": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "fikh_ahlulhadis": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-20"
+ },
+ "kanzalafifat": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-20"
+ },
+ "istina_ahlulhadis": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-20"
+ },
+ "shemka": {
+  "sent": "2026-10-20",
+  "title": "Творчество и рукоделие",
+  "contact": "ElenKaVikulya",
+  "score": 65,
+  "silent": 318
+ },
+ "zzernoo": {
+  "sent": "2026-10-20",
+  "title": "«егор зернов»",
+  "contact": "daregorka",
+  "score": 55,
+  "silent": 29
+ },
+ "stasmokinpoems": {
+  "sent": "2026-10-20",
+  "title": "стас мокин",
+  "contact": "stas_mokin",
+  "score": 55,
+  "silent": 8
+ },
+ "i_love_rukodelie": {
+  "sent": "2026-10-20",
+  "title": "Я люблю рукоделие",
+  "contact": "juliakornienko",
+  "score": 45,
+  "silent": 7
+ },
+ "w_label": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-20"
+ },
  "_queue": [
-  "tassovkaru",
-  "agregatortruth",
-  "politpochta",
-  "drunkenpolitolog",
-  "kaliyuogatoday",
-  "kaluginprofit",
-  "eratrends",
-  "satirkka",
-  "politwera",
-  "e_bash_news",
-  "pyatiletka111",
-  "zhivoff",
-  "ve4niyvoy",
-  "nebrexnya",
-  "greyshemes",
-  "belnewsby1",
-  "medvedev_telegram",
-  "neoreshkins",
-  "mig41",
-  "russicaru",
-  "sbs_orel",
-  "hokage_s_druzyami_2048",
-  "dance_family",
-  "cacao24_7",
-  "doctorvladl",
-  "esotericse",
-  "shemka",
-  "i_love_rukodelie",
-  "bhv_95",
-  "dob_mem",
-  "korobkapaper",
-  "w_label",
-  "teller_tg",
-  "zzernoo",
-  "pavlovez",
-  "transfurism",
-  "betweenprigov",
-  "stasmokinpoems",
-  "room_617",
-  "anekrozia",
-  "poesiazdes",
-  "ibolnoismeshno",
-  "twelve_plots",
-  "olyaoknigah",
-  "booklogbook",
-  "musicandprejudice",
-  "polka_knig",
-  "vimbo_audiobooks",
-  "nlosaintpetersburg",
-  "dva_kapitana_dva",
-  "toislam",
-  "otveti_uchenih",
-  "ummyunus2010",
-  "kanzalafifat",
-  "istina_ahlulhadis",
-  "ahlulhadis_admin",
-  "fauzan_ahlulhadis",
-  "zaschita_tauhida",
-  "kur_an",
-  "fikh_ahlulhadis",
   "ahlulhadis",
   "hadis_ahlulhadis",
   "manager_am16",
@@ -5634,10 +5826,8 @@
   "khamovniky",
   "fond_khamovniki",
   "health_in_all_policies",
-  "antropole",
   "alexandra_martyn",
   "dom_modele",
-  "postneklyudov",
   "grimi_pf",
   "club_antropologia_visualnogo",
   "folkupmedia",
@@ -5704,7 +5894,69 @@
   "vneshvrag",
   "melnitsa21",
   "notes_veterans",
-  "matveevkomment"
+  "matveevkomment",
+  "hello_tassovka",
+  "vchkogpu_2",
+  "mwgrenade",
+  "prokurator_ru",
+  "oleg_pushist",
+  "kremlinperesmeshnik",
+  "faridaily24",
+  "banksta",
+  "tchk14",
+  "svoidanash",
+  "oprichniksday",
+  "kremlin_matryoshka",
+  "taynaya_kantselyariya",
+  "kuzbassinfo",
+  "regpol",
+  "rus_demiurge",
+  "oreshkins",
+  "dimonundmir",
+  "bigtransfer2024",
+  "clubpravda",
+  "rosskandal",
+  "gosdumaem",
+  "arhsvoboda",
+  "korifeyhab",
+  "ostorozhno_novosti",
+  "saratovshyna",
+  "landofsiberia",
+  "kremlebezbashennik",
+  "dr_alex_sosnowski",
+  "dumayem",
+  "politpochta_bot",
+  "carbdensat",
+  "angara18",
+  "thegraschenkov",
+  "toporlive",
+  "kuraifutlar",
+  "birmanalex",
+  "streli_kazbeka",
+  "cho_opyat",
+  "zakupki_time",
+  "severnygorod",
+  "rbc_news",
+  "bbbreaking",
+  "polit70",
+  "pankin_ivan",
+  "drunkenpolitobot",
+  "bazabazon",
+  "insomar",
+  "agdchan",
+  "politburo2",
+  "enminchenko",
+  "tzigan",
+  "paraklett",
+  "radioray",
+  "maester",
+  "polittehnologi",
+  "polittemnik",
+  "uanotru",
+  "vibornyk",
+  "tgrussia",
+  "voidreport",
+  "boilerroomchannel"
  ],
- "_query_pos": 18
+ "_query_pos": 26
 }
