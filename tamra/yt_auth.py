@@ -12,7 +12,7 @@
 #
 # Ключ канала лежит в state/tamra_state.json ЗАШИФРОВАННЫМ (Fernet): репозиторий публичный,
 # а расшифровать можно только ключом, выведенным из токена бота (TAMRA_TG_TOKEN — секрет).
-# Секрет TAMRA_YOUTUBE_TOKEN_JSON, если задан, по-прежнему главнее.
+# Если ключа из бота нет — берётся секрет TAMRA_YOUTUBE_TOKEN_JSON.
 import base64
 import hashlib
 import json
@@ -86,15 +86,20 @@ def decrypt(blob):
 
 
 def token_json(st):
-    """Ключ канала для публикации: секрет TAMRA_YOUTUBE_TOKEN_JSON или зашифрованный из состояния."""
-    env = os.getenv("TAMRA_YOUTUBE_TOKEN_JSON", "").strip()
-    if env:
-        return env
+    """Ключ канала для публикации. Сначала — подключённый из бота (канал виден по имени при
+    подключении), потом секрет TAMRA_YOUTUBE_TOKEN_JSON."""
     blob = st.get("yt_token_enc")
-    if not blob:
-        return None
-    try:
-        return decrypt(blob)
-    except Exception as e:
-        print(f"[TAMRA] Не расшифровала ключ YouTube: {e}")
-        return None
+    if blob:
+        try:
+            return decrypt(blob)
+        except Exception as e:
+            print(f"[TAMRA] Не расшифровала ключ YouTube: {e}")
+    # Секрет, вставленный из Windows, часто начинается с невидимого BOM — срезаем.
+    env = os.getenv("TAMRA_YOUTUBE_TOKEN_JSON", "").strip().lstrip("\ufeff").strip()
+    if env:
+        try:
+            json.loads(env)
+            return env
+        except ValueError:
+            print("[TAMRA] Секрет TAMRA_YOUTUBE_TOKEN_JSON не читается как JSON")
+    return None
