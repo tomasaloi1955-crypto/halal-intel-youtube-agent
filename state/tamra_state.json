@@ -1,5 +1,5 @@
 {
-  "offset": 30003242,
+  "offset": 30003243,
   "owner": "970882173",
   "day": 4,
   "batch": {
@@ -12,7 +12,9 @@
   },
   "history": [],
   "stock_used": [],
-  "drafts": [
+  "drafts": [],
+  "pending": [],
+  "queue": [
     {
       "id": "20261018_025909_640e",
       "day": 3,
@@ -159,8 +161,6 @@
       ]
     }
   ],
-  "pending": [],
-  "queue": [],
   "publish_hour": 19,
   "last_publish_date": null,
   "last_fail_notice": "2026-10-19",
