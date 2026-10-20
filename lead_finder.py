@@ -158,8 +158,37 @@ def fetch_freelancer():
 # Разделы, где заказчики ищут исполнителей. Одним запросом через «+»: по одному
 # Reddit уже на третьем запросе отвечает 429 (слишком часто).
 REDDIT_SUBS = "forhire+hiring+slavelabour+freelance_forhire+n8n+automation+zapier+Automate"
-REDDIT_REQUEST_RE = re.compile(r"\[(hiring|task)\]|\bhiring\b|looking for|need (a|an|someone)|\bpaid\b", re.I)
+# Разделы-биржи: там у каждого поста метка, заказ — это [Hiring]/[Task].
+REDDIT_JOB_SUBS = {"forhire", "hiring", "slavelabour", "freelance_forhire"}
+REDDIT_TAG_RE = re.compile(r"\[(hiring|task)\]", re.I)
+# Остальные разделы — обсуждения: там заказ только при явной просьбе нанять.
+# Голые «paid» и «looking for» сюда не входят: «morning email with paid orders»,
+# «have you paid for…», «looking for experiences» — это не заказы.
+REDDIT_REQUEST_RE = re.compile(
+    r"\bhiring\b|\bwill pay\b|\bpaid (gig|job|project|task|work)\b"
+    r"|\b(looking for|need|want to hire|seeking)\s+(a|an|someone|somebody)?\s*"
+    r"(freelancer|developer|dev|expert|consultant|engineer|builder|someone|somebody)\b",
+    re.I,
+)
 REDDIT_OFFER_RE = re.compile(r"\[(for hire|offer)\]", re.I)
+# Не заказы: опросы, «как сделать», выложенные бесплатно workflow, хвастовство.
+REDDIT_NOT_JOB_RE = re.compile(
+    r"^\s*(have|has|did|does|do|is|are|how|what|why|which|anyone|can)\b.*\?\s*$"
+    r"|\bfree (workflow|template)\b|\b(i|we) (built|made|created)\b"
+    r"|\[(showcase|discussion|question|meta)\]|\btutorial\b",
+    re.I,
+)
+
+
+def is_reddit_request(title, sub):
+    """Пост — запрос заказчика, а не обсуждение или объявление исполнителя."""
+    if REDDIT_OFFER_RE.search(title):
+        return False
+    if REDDIT_TAG_RE.search(title):
+        return True
+    if sub.lower() in REDDIT_JOB_SUBS:
+        return False  # на биржах пост без [Hiring]/[Task] — не заказ
+    return bool(REDDIT_REQUEST_RE.search(title)) and not REDDIT_NOT_JOB_RE.search(title)
 ATOM = {"a": "http://www.w3.org/2005/Atom"}
 
 
@@ -172,14 +201,14 @@ def fetch_reddit():
     leads = []
     for e in ET.fromstring(resp.content).findall("a:entry", ATOM):
         title = html.unescape(e.findtext("a:title", "", ATOM)).strip()
-        if REDDIT_OFFER_RE.search(title) or not REDDIT_REQUEST_RE.search(title):
+        sub = (e.find("a:category", ATOM).get("term") if e.find("a:category", ATOM) is not None else "")
+        if not is_reddit_request(title, sub):
             continue
         top = title_budget_usd(title)
         if top is not None and top < MIN_REDDIT_USD:
             continue
         link = e.find("a:link", ATOM)
         url = link.get("href") if link is not None else ""
-        sub = (e.find("a:category", ATOM).get("term") if e.find("a:category", ATOM) is not None else "")
         leads.append(make_lead(
             f"Reddit r/{sub}", f"reddit:{e.findtext('a:id', '', ATOM)}", title, url,
             clean(e.findtext("a:content", "", ATOM)).replace("submitted by", "").strip(),
@@ -258,7 +287,8 @@ PITCH_TEMPLATES = {
 # и заказчики его пролистывают. Платно, но копейки (~$0.002 за отклик); лимит на
 # запуск — чтобы не тратиться на хвост списка. Нет ключа или ошибка — шаблон.
 PITCH_MODEL = os.getenv("LEAD_PITCH_MODEL", "claude-haiku-4-5")
-MAX_PITCHES_PER_RUN = int(os.getenv("LEAD_MAX_PITCHES_PER_RUN", "6"))
+# Заказы, которые ИИ счёл «не твой профиль», не присылаются, поэтому проверяем больше.
+MAX_PITCHES_PER_RUN = int(os.getenv("LEAD_MAX_PITCHES_PER_RUN", "10"))
 PROFILE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "negotiator_profile.md")
 
 PITCH_SCHEMA = {
@@ -332,8 +362,6 @@ def format_lead(lead):
         text += f"\n{lead['snippet'][:220]}"
     if lead.get("pitch"):
         text += f"\n✍️ Отклик (скопируй и отправь):\n{lead['pitch']}"
-    elif lead.get("unfit"):
-        text += f"\n⚠️ Похоже, не твой профиль: {lead['unfit']}"
     return text
 
 
@@ -392,6 +420,12 @@ def run():
 
     if to_send:
         write_pitches(to_send)
+        # «Не твой профиль» по оценке ИИ не шлём — только засоряют чат.
+        for lead in to_send:
+            if lead.get("unfit"):
+                print(f"[lead_finder] Отсеян ИИ: «{lead['title'][:60]}» — {lead['unfit']}")
+        to_send = [l for l in to_send if not l.get("unfit")]
+    if to_send:
         send_digest(to_send, len(rest))
         print(f"[lead_finder] Отправлено находок: {len(to_send)}")
     else:
