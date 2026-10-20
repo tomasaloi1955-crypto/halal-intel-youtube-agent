@@ -35,6 +35,7 @@ import sys
 import json
 import time
 import shutil
+import subprocess
 import uuid
 import requests
 from datetime import datetime, timezone, timedelta
@@ -43,12 +44,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer, stock, scripts, yt_auth, faces  # noqa: E402
+from tamra import montage, writer, stock, scripts, yt_auth, faces, rawcut  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
 WORK = dpath(os.path.join("output", "tamra"))
 IDLE_BEFORE_BUILD = 60       # сек тишины после последнего файла — и можно собирать
+IDLE_BEFORE_RAW = 180        # видео без озвучки ждём дольше: вдруг озвучка ещё придёт
 TG_DOWNLOAD_LIMIT = 20 * 1024 * 1024  # Bot API не отдаёт файлы тяжелее 20 МБ
 
 HELP = (
@@ -185,7 +187,34 @@ def classify(msg):
 
 # ── сборка и публикация ────────────────────────────────────────────────────
 
+def _prepare_raw(spec, workdir):
+    """Сырой ролик со своим голосом: склейка, вырезание пауз и «эээ», ускорение при нужде.
+    Возвращает (видео без звука, звук) или None, если в присланных видео нет звука."""
+    rawdir = os.path.join(workdir, "raw")
+    v_out, a_out = os.path.join(rawdir, "cut.mp4"), os.path.join(rawdir, "cut.wav")
+    if os.path.exists(v_out) and os.path.exists(a_out):
+        return v_out, a_out
+    os.makedirs(rawdir, exist_ok=True)
+    paths = [download(m["file_id"], os.path.join(workdir, "src", f"{i:02d}.{m['ext']}"))
+             for i, m in enumerate(spec["media"]) if m["kind"] == "video"]
+    if not paths or not any(rawcut.has_audio(p) for p in paths):
+        return None
+    joined = rawcut.join(paths, os.path.join(rawdir, "joined.mp4"))
+    if not spec.get("cut"):  # план резки считаем один раз — пересборка режет так же
+        speech = os.path.join(rawdir, "speech.wav")
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", joined, "-vn", "-ac", "1",
+                        "-ar", "16000", speech], check=True, timeout=600)
+        words = writer.elevenlabs_words(speech) or writer.groq_words(speech)
+        spec["cut"] = rawcut.plan(joined, words)
+    return rawcut.apply(joined, spec["cut"], v_out, a_out, rawdir)
+
+
 def _fetch_sources(spec, workdir):
+    if spec.get("raw"):
+        prepared = _prepare_raw(spec, workdir)
+        if prepared:
+            return [{"path": prepared[0], "kind": "video"}], prepared[1]
+        spec["raw"] = False  # звука в видео нет — обычный монтаж
     voice = None
     if spec.get("voice"):
         v = spec["voice"]
@@ -239,6 +268,8 @@ def render(draft):
 
 def _write_texts(draft):
     voice = None
+    if draft.get("raw"):
+        _, voice = _fetch_sources(draft, os.path.join(WORK, draft["id"]))
     if draft.get("voice"):
         workdir = os.path.join(WORK, draft["id"])
         v = draft["voice"]
@@ -295,18 +326,25 @@ def build_draft(st, chat, b=None):
     draft = {"id": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_") + uuid.uuid4().hex[:4],
              "day": st["day"], "media": b["media"], "voice": b["voice"], "notes": b["notes"],
              "hook_override": b.get("hook"), "caption_override": b.get("caption"),
-             "stock_exclude": _taken_stock(st)}
+             "stock_exclude": _taken_stock(st),
+             # видео без отдельной озвучки — значит, озвучка в самом видео
+             "raw": not b["voice"] and any(m["kind"] == "video" for m in b["media"])}
     if current:
         st["batch"] = _empty_batch()
     st["day"] += 1
     st["drafts"].append(draft)
-    what = (f"{len(draft['media'])} клип(ов)" if draft["media"]
+    what = ("твоё видео: убираю паузы и «эээ»" if draft["raw"]
+            else f"{len(draft['media'])} клип(ов)" if draft["media"]
             else "подбираю кадры по смыслу озвучки")
     send(chat, f"⏳ Собираю «День {draft['day']}»: {what}"
-               f"{', с озвучкой' if draft['voice'] else ', без озвучки'}. Это 1–3 минуты…")
+               f"{', с озвучкой' if draft['voice'] or draft['raw'] else ', без озвучки'}. Это 1–3 минуты…")
     try:
         _write_texts(draft)
         send_preview(chat, draft)
+        c = draft.get("cut")
+        if c:
+            send(chat, f"✂️ Вырезала паузы: было {c['orig']} с, стало {c['final']} с"
+                       + (f", ускорила в {c['speed']} раза." if c["speed"] > 1 else "."))
     except Exception as e:
         print(f"[TAMRA] Сборка не удалась: {e}")
         send(chat, f"🔴 Не получилось собрать «День {draft['day']}»: {str(e)[:300]}\n"
@@ -470,7 +508,10 @@ def handle_message(st, msg):
         b["last_group"] = group
         got = f"клипов/фото: {len(b['media'])}, озвучка: {'есть' if b['voice'] else 'нет'}"
         tail = ("\nСвоих клипов нет — подберу кадры с руками и ноутбуком сама. "
-                "Хочешь свои — пришли их в ближайшую минуту." if kind == "voice" and not b["media"] else "")
+                "Хочешь свои — пришли их в ближайшую минуту." if kind == "voice" and not b["media"]
+                else "\nЕсли это ролик с твоим голосом — через 3 минуты соберу из него сама: "
+                     "уберу паузы и «эээ». Будет отдельная озвучка — пришли её сейчас."
+                if kind == "video" and not b["voice"] else "")
         send(chat, f"👌 Приняла ({got}).{tail}")
         return
 
@@ -662,9 +703,12 @@ def build_all(st, chat, force=False):
             save_state(st)
             built += 1
     b = st["batch"]
-    if force or (b["voice"] and not b.get("auto_failed")
-                 and (b["media"] or not b.get("oversize"))
-                 and time.time() - b["updated"] >= IDLE_BEFORE_BUILD):
+    idle = time.time() - b["updated"]
+    raw_ready = (not b["voice"] and any(m["kind"] == "video" for m in b["media"])
+                 and idle >= IDLE_BEFORE_RAW)
+    if force or (not b.get("auto_failed") and (raw_ready or (
+                 b["voice"] and (b["media"] or not b.get("oversize"))
+                 and idle >= IDLE_BEFORE_BUILD))):
         if b["voice"] or b["media"] or not built:
             build_draft(st, chat)  # пустая пачка — подскажет, что прислать
 
