@@ -1,5 +1,5 @@
 {
-  "offset": 30003239,
+  "offset": 30003240,
   "owner": "970882173",
   "day": 4,
   "batch": {
@@ -12,9 +12,7 @@
   },
   "history": [],
   "stock_used": [],
-  "drafts": [],
-  "pending": [],
-  "queue": [
+  "drafts": [
     {
       "id": "20261018_025909_640e",
       "day": 3,
@@ -162,6 +160,8 @@
       "rendered_hook": "Какой реальный уровень математики?"
     }
   ],
+  "pending": [],
+  "queue": [],
   "publish_hour": 19,
   "last_publish_date": null,
   "last_fail_notice": "2026-10-19",
