@@ -1,5 +1,5 @@
 {
-  "offset": 30003240,
+  "offset": 30003241,
   "owner": "970882173",
   "day": 4,
   "batch": {
@@ -156,8 +156,7 @@
           "id": 27385370,
           "url": "https://videos.pexels.com/video-files/27385370/12131766_1080_1920_24fps.mp4"
         }
-      ],
-      "rendered_hook": "Какой реальный уровень математики?"
+      ]
     }
   ],
   "pending": [],
