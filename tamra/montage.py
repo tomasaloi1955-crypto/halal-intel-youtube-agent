@@ -239,7 +239,8 @@ def build(media, voice_path, day, hook, subs, workdir, out_path):
 
     lengths = [None if m["kind"] == "photo" else (duration(m["path"]) or None) for m in media]
     if voice_path:
-        total = duration(voice_path) + 0.4
+        # заставка с логотипом идёт ПОСЛЕ речи, а не поверх последних слов
+        total = duration(voice_path) + 0.3 + END_SECONDS
     else:
         total = min(30.0, sum(3.0 if x is None else x for x in lengths))
     total = max(total, HOOK_SECONDS + END_SECONDS)
@@ -291,7 +292,7 @@ def build(media, voice_path, day, hook, subs, workdir, out_path):
         nxt = f"v{k}"
         chain.append(f"[{prev}][{k + 2}:v]overlay=0:0:enable='between(t,{a:.2f},{b:.2f})'[{nxt}]")
         prev = nxt
-    audio = ("[1:a]highpass=f=80,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=44100[aout]"
+    audio = ("[1:a]highpass=f=80,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=44100,apad[aout]"
              if voice_path else "[1:a]anull[aout]")
     graph = os.path.join(workdir, "graph.txt")
     with open(graph, "w", encoding="utf-8") as f:
