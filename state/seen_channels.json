@@ -5456,67 +5456,256 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-20"
  },
+ "hadis_ahlulhadis": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "manager_am16": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "managerw_am": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "assistant_kvd_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "tafsirkvd": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "tajwidiqra1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "bill_ben": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "perfluence": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "lokhmatik": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "dasi_ya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "editorinsaddle": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "afsamara": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "danilamir": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "bakunista": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "intomsc": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "citygigbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "okhlupeng": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "koinsidentolog": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "cheapcherrybooks": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "napilnik_books": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "blacksquarepublishing": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "gnosis_shop": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "pivoteka465tulskaya": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "yamyamkids": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "bridgeofwords": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-21"
+ },
+ "posylnybook_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "vprdkbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "koroed_plus": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "lacunafeels": {
+  "skip": "подписчиков 146",
+  "date": "2026-10-21"
+ },
+ "donleprikon": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "collagevporyadke": {
+  "skip": "подписчиков 43",
+  "date": "2026-10-21"
+ },
+ "kinoru61": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-21"
+ },
+ "artyom_bright": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "miraiufa": {
+  "skip": "подписчиков 27",
+  "date": "2026-10-21"
+ },
+ "rinki_rika": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "fpeppersalt": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "melina_shariff": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "bookclubufabc": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "antiraiok": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "platie_dochke_lapochke": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "psy_film_club": {
+  "skip": "подписчиков 124",
+  "date": "2026-10-21"
+ },
+ "antijob_main_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "mediaantijob": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "antijob_reviews_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "nkavkazsky": {
+  "skip": "не наша ниша",
+  "date": "2026-10-21"
+ },
+ "ilimbakh": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "scandicast": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "what_am_l": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-21"
+ },
+ "hotturua": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "ex_tours": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "hotest_tour": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-21"
+ },
+ "bewithusschool": {
+  "sent": "2026-10-21",
+  "title": "BeWithUs | Арабский и Коран",
+  "contact": "Manager_AM16",
+  "score": 90,
+  "silent": 35
+ },
+ "ahlulhadis": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "dialang_app": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "mc_publisher": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "don_leprikon": {
+  "sent": "2026-10-21",
+  "title": "Леша Леприкон: Зарисовки у конца вселенной 🍀👀",
+  "contact": "donleprikon",
+  "score": 50,
+  "silent": 22
+ },
+ "publishellf": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "ichtivo": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "smolaveshaet": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-21"
+ },
+ "linguistka_gedonistka": {
+  "sent": "2026-10-21",
+  "title": "Лингвист(ка)-гедонист(ка)",
+  "contact": "Seitova_Ksenia",
+  "score": 0,
+  "silent": 2
+ },
  "_queue": [
-  "ahlulhadis",
-  "hadis_ahlulhadis",
-  "manager_am16",
-  "dialang_app",
-  "managerw_am",
-  "bewithusschool",
-  "assistant_kvd_bot",
-  "tafsirkvd",
-  "tajwidiqra1",
-  "bill_ben",
-  "perfluence",
-  "lokhmatik",
-  "dasi_ya",
-  "editorinsaddle",
-  "afsamara",
-  "danilamir",
-  "mc_publisher",
-  "bakunista",
-  "intomsc",
-  "citygigbot",
-  "okhlupeng",
-  "koinsidentolog",
-  "cheapcherrybooks",
-  "napilnik_books",
-  "blacksquarepublishing",
-  "gnosis_shop",
-  "pivoteka465tulskaya",
-  "yamyamkids",
-  "publishellf",
-  "bridgeofwords",
-  "posylnybook_bot",
-  "linguistka_gedonistka",
-  "vprdkbot",
-  "koroed_plus",
-  "don_leprikon",
-  "lacunafeels",
-  "donleprikon",
-  "collagevporyadke",
-  "kinoru61",
-  "artyom_bright",
-  "miraiufa",
-  "rinki_rika",
-  "fpeppersalt",
-  "ichtivo",
-  "melina_shariff",
-  "bookclubufabc",
-  "antiraiok",
-  "platie_dochke_lapochke",
-  "psy_film_club",
-  "smolaveshaet",
-  "antijob_main_bot",
-  "mediaantijob",
-  "antijob_reviews_bot",
-  "nkavkazsky",
-  "ilimbakh",
-  "scandicast",
-  "what_am_l",
-  "hotturua",
-  "ex_tours",
-  "hotest_tour",
   "hot_travel_group",
   "idiotbooks",
   "rusmetan",
@@ -5956,7 +6145,67 @@
   "vibornyk",
   "tgrussia",
   "voidreport",
-  "boilerroomchannel"
+  "boilerroomchannel",
+  "shekh_muhammad_ibn_ibrahim",
+  "dialang_app",
+  "svyazkvd_bot",
+  "ifrussiespb",
+  "ifrussiemoscou",
+  "afrus",
+  "ekataf",
+  "sbercentre",
+  "shikiartschool",
+  "ladylibra_1410",
+  "pperedelkino",
+  "pticeva",
+  "wordsnletters",
+  "vesperomusic",
+  "psychoratband",
+  "hehjeesd",
+  "saynband",
+  "vetkhiyzapret",
+  "kartrika",
+  "yes_fest",
+  "minbrobit",
+  "retrosarcasm",
+  "sektat_band",
+  "glia67",
+  "dnpp_band",
+  "punkid3",
+  "orelseband",
+  "mfazzza",
+  "egorchaev",
+  "cheremukha_1",
+  "avraboty",
+  "epokhalconvertor",
+  "raznuzdan",
+  "mmmdrop",
+  "raniaband",
+  "krackelure",
+  "sadwavefeedbackbot",
+  "restoned",
+  "backbreakinggig",
+  "win_bezdie",
+  "pyatnitsa13",
+  "sadwave",
+  "vsevolna",
+  "sliinie",
+  "korshoon_dnb",
+  "png_band_official",
+  "wasteburn",
+  "aeroslavikmusic",
+  "opencband",
+  "pmjsony",
+  "opheliaband",
+  "qticketsbuybot",
+  "fivethirty0530",
+  "angel_of_sorr0w",
+  "omuraisuu",
+  "suhankonstantin",
+  "v2duo",
+  "sixteentons_club",
+  "detuneband",
+  "shila_band"
  ],
- "_query_pos": 26
+ "_query_pos": 34
 }
