@@ -53,6 +53,7 @@ def _prompt(day, notes, with_audio, need_subs, transcript=""):
   "title": "заголовок YouTube Shorts до 70 символов",
   "caption": "подпись для Instagram/TikTok: 2-5 коротких строк по сути ролика, вопрос к зрителям, в конце строка про бесплатный тест уровня по ссылке в профиле. Без хэштегов",
   "hashtags": ["#до", "#5", "#нейтральных", "#про_образование_и_семью"],
+  "cover_scene": "по-английски, 8-15 слов: какие ПРЕДМЕТЫ из кубиков нарисовать на обложке под тему ролика (например: hourglass and stack of books, laptop showing a map with holes, arabic letter blocks). Без людей, без текста",
   "stock_queries": ["3-5 коротких запросов НА АНГЛИЙСКОМ для стоковых видео под содержание озвучки, по порядку рассказа. Это школа для детей: в кадре дети, детские руки, дети в классе, силуэты детей, предметы — НЕ взрослые. Например: child hands writing notebook, kid using laptop, children classroom, child silhouette window, hourglass"],
   {subs}
   "transcript": "дословный текст озвучки или пустая строка"
@@ -186,6 +187,7 @@ def write(day, notes, audio_path=None):
         "caption": _fix_name(data.get("caption")).strip(),
         "hashtags": tags[:12],
         "subtitles": data.get("subtitles") or [],
+        "cover_scene": str(data.get("cover_scene") or "").strip()[:200],
         "stock_queries": [q.strip() for q in data.get("stock_queries", [])
                           if isinstance(q, str) and q.strip()][:5],
     }

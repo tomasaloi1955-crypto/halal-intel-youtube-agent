@@ -21,6 +21,7 @@ W, H, FPS = brand.W, brand.H, brand.FPS
 HOOK_SECONDS = 2.8
 END_SECONDS = 2.5
 COVER_AT = 1.0
+COVER_SECONDS = 1.2   # обложка-картинка в начале ролика (её же берёт YouTube/Instagram как превью)
 TG_VIDEO_LIMIT = 48 * 1024 * 1024  # Telegram отдаёт ботом до 50 МБ — с запасом
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -226,11 +227,13 @@ def _segment(src, kind, seconds, out):
           "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-r", str(FPS), out])
 
 
-def build(media, voice_path, day, hook, subs, workdir, out_path):
+def build(media, voice_path, day, hook, subs, workdir, out_path, cover_png=None):
     """
     media: [{"path", "kind": "video"|"photo"}] в порядке присылки.
     voice_path: озвучка или None (тогда ролик немой, длина — по клипам, до 30 с).
     subs: [{"text","start","end"}] — субтитры в секундах (можно пустой список).
+    cover_png: готовая обложка 1080×1920 (cover_art.compose) — показывается первые
+    COVER_SECONDS, и обложкой ролика становится она; хук идёт сразу после неё.
     Возвращает (путь к mp4, путь к обложке jpg).
     """
     os.makedirs(workdir, exist_ok=True)
@@ -267,14 +270,18 @@ def build(media, voice_path, day, hook, subs, workdir, out_path):
     badge = os.path.join(workdir, "badge.png")
     draw_badge(day, badge)
     overlays.append((badge, 0, total))
+    cover_end = COVER_SECONDS if cover_png else 0.0
+    hook_end = cover_end + (HOOK_SECONDS - (1.0 if cover_png else 0.0)) if hook else cover_end
     if hook:
         hp = os.path.join(workdir, "hook.png")
         draw_hook(hook, hp)
-        overlays.append((hp, 0, HOOK_SECONDS))
+        overlays.append((hp, cover_end, hook_end))
     for i, s in enumerate(clean_subs(subs or [], total - END_SECONDS)):
         sp = os.path.join(workdir, f"sub_{i:03d}.png")
         draw_sub(s["text"], sp)
-        overlays.append((sp, max(s["start"], HOOK_SECONDS if hook else 0), s["end"]))
+        overlays.append((sp, max(s["start"], hook_end), s["end"]))
+    if cover_png:  # поверх всего, на весь экран
+        overlays.append((cover_png, 0, cover_end))
     ep = os.path.join(workdir, "end.png")
     draw_end(ep)
     overlays.append((ep, total - END_SECONDS, total))
@@ -310,7 +317,7 @@ def build(media, voice_path, day, hook, subs, workdir, out_path):
         encode(27)  # иначе бот не сможет прислать превью
 
     cover = os.path.splitext(out_path)[0] + "_cover.jpg"
-    _run(["ffmpeg", "-y", "-ss", f"{COVER_AT:.2f}", "-i", out_path,
+    _run(["ffmpeg", "-y", "-ss", f"{(0.5 if cover_png else COVER_AT):.2f}", "-i", out_path,
           "-frames:v", "1", "-q:v", "2", cover])
     return out_path, cover
 

@@ -44,7 +44,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from paths import dpath  # noqa: E402
-from tamra import montage, writer, stock, scripts, yt_auth, faces, rawcut  # noqa: E402
+from tamra import montage, writer, stock, scripts, yt_auth, faces, rawcut, cover_art  # noqa: E402
 
 TOKEN = os.getenv("TAMRA_TG_TOKEN", "")
 STATE_FILE = dpath("tamra_state.json")
@@ -68,6 +68,7 @@ HELP = (
     "• текст — текст озвучки для следующего дня (текст 7 — для дня 7)\n"
     "• темы — все 30 тем роликов\n"
     "• кадры — подобрать новые кадры для последнего черновика\n"
+    "• обложка — нарисовать другую обложку для последнего черновика\n"
     "• очередь — что и когда выйдет\n"
     "• ютуб — подключить YouTube-канал с телефона\n"
     "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
@@ -261,9 +262,28 @@ def render(draft):
         return out, cover
     media, voice = _fetch_sources(draft, workdir)
     montage.build(media, voice, draft["day"], draft["texts"]["hook"],
-                  draft["texts"]["subtitles"], os.path.join(workdir, "work"), out)
+                  draft["texts"]["subtitles"], os.path.join(workdir, "work"), out,
+                  cover_png=_cover_png(draft, workdir))
     draft["rendered_hook"] = draft["texts"]["hook"]
     return out, cover
+
+
+def _cover_png(draft, workdir):
+    """Игровая обложка из кубиков (cover_art). Не вышло нарисовать — ролик без неё, как раньше."""
+    if draft.get("cover_off"):
+        return None
+    art = os.path.join(workdir, "cover_art.jpg")
+    png = os.path.join(workdir, "cover_full.png")
+    try:
+        if not os.path.exists(art):
+            seed = draft.setdefault("cover_seed", cover_art.new_seed())  # тот же seed — та же картинка
+            if not cover_art.generate(draft["texts"].get("cover_scene"), seed, art):
+                print("[TAMRA] Обложка не нарисовалась — ролик без неё")
+                return None
+        return cover_art.compose(art, draft["texts"]["hook"], draft["day"], png)
+    except Exception as e:
+        print(f"[TAMRA] Обложка не собралась: {e}")
+        return None
 
 
 def _write_texts(draft):
@@ -417,9 +437,9 @@ def publish_item(st, chat, d):
     st["queue"] = [x for x in st["queue"] if x["id"] != d["id"]]
     save_state(st)
     try:
-        video, _ = render(d)
+        video, cover = render(d)
         results = publish_all(video, d["texts"], writer.full_caption(d["texts"]),
-                              yt_token=yt_auth.token_json(st))
+                              yt_token=yt_auth.token_json(st), thumb=cover)
     except Exception as e:
         st["queue"].insert(0, d)
         send(chat, f"🔴 «День {d['day']}» не опубликован: {str(e)[:300]}. Остаётся в очереди.")
@@ -578,6 +598,24 @@ def handle_message(st, msg):
         d.pop("rendered_hook", None)
         shutil.rmtree(os.path.join(WORK, d["id"], "src"), ignore_errors=True)
         send(chat, f"Подбираю новые кадры для «День {d['day']}»…")
+        try:
+            send_preview(chat, d)
+        except Exception as e:
+            send(chat, f"🔴 Не получилось: {str(e)[:300]}")
+        return
+    if low in ("обложка", "новая обложка", "/cover"):
+        d = _find_draft(st)
+        if not d:
+            send(chat, "Нет черновика. Ролик из очереди сначала верни: «убрать N».")
+            return
+        d["cover_seed"] = cover_art.new_seed()
+        d.pop("cover_off", None)
+        d.pop("rendered_hook", None)
+        for f in ("cover_art.jpg", "cover_full.png"):
+            p = os.path.join(WORK, d["id"], f)
+            if os.path.exists(p):
+                os.remove(p)
+        send(chat, f"Рисую новую обложку для «День {d['day']}»…")
         try:
             send_preview(chat, d)
         except Exception as e:

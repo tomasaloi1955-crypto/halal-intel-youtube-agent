@@ -21,7 +21,7 @@ def _env(k):
     return (os.getenv(k) or "").strip()
 
 
-def instagram_reel(video_path, caption, thumb_offset_ms=1000):
+def instagram_reel(video_path, caption, thumb_offset_ms=500):
     """Reels через Instagram Graph API с прямой загрузкой файла (resumable upload) —
     публичная ссылка на видео не нужна. Возвращает id публикации или бросает исключение."""
     uid, token = _env("TAMRA_IG_USER_ID"), _env("TAMRA_IG_ACCESS_TOKEN")
@@ -58,7 +58,7 @@ def instagram_reel(video_path, caption, thumb_offset_ms=1000):
     return pub.json().get("id")
 
 
-def youtube_short(video_path, title, description, tags, token_json=None):
+def youtube_short(video_path, title, description, tags, token_json=None, thumb=None):
     raw = token_json or _env("TAMRA_YOUTUBE_TOKEN_JSON")
     if not raw:
         return None
@@ -85,6 +85,12 @@ def youtube_short(video_path, title, description, tags, token_json=None):
     resp = None
     while resp is None:
         _, resp = req.next_chunk()
+    if thumb and os.path.exists(thumb):
+        try:  # для Shorts YouTube может не принять свою обложку — тогда возьмёт первый кадр (та же картинка)
+            yt.thumbnails().set(videoId=resp["id"],
+                                media_body=MediaFileUpload(thumb, mimetype="image/jpeg")).execute()
+        except Exception as e:
+            print(f"[TAMRA] Обложку YouTube не принял: {e}")
     return resp["id"]
 
 
@@ -99,13 +105,13 @@ def tiktok(video_path, caption):
     return pid
 
 
-def publish_all(video_path, texts, caption, yt_token=None):
+def publish_all(video_path, texts, caption, yt_token=None, thumb=None):
     """Публикует во все настроенные площадки. Возвращает {площадка: строка-итог для Telegram}."""
     tags = texts.get("hashtags", [])
     jobs = [
         ("Instagram", lambda: instagram_reel(video_path, caption),
          lambda r: "опубликовано"),
-        ("YouTube", lambda: youtube_short(video_path, texts["title"], caption, tags, yt_token),
+        ("YouTube", lambda: youtube_short(video_path, texts["title"], caption, tags, yt_token, thumb),
          lambda r: f"https://youtube.com/shorts/{r}"),
         ("TikTok", lambda: tiktok(video_path, caption),
          lambda r: ("опубликовано" if _env("TAMRA_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
