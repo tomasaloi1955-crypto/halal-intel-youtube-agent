@@ -1,5 +1,5 @@
 {
-  "offset": 30003245,
+  "offset": 30003246,
   "owner": "970882173",
   "day": 4,
   "batch": {
@@ -12,11 +12,12 @@
     ],
     "voice": null,
     "notes": [
-      "В очередь день 4"
+      "В очередь день 4",
+      "Озвучки нет"
     ],
     "hook": null,
     "caption": null,
-    "updated": 1792565138,
+    "updated": 1792565160,
     "last_group": null
   },
   "history": [
