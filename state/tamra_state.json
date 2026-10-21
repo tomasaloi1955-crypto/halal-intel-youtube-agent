@@ -1,5 +1,5 @@
 {
-  "offset": 30003246,
+  "offset": 30003248,
   "owner": "970882173",
   "day": 5,
   "batch": {
@@ -558,6 +558,7 @@
           "black website background"
         ]
       },
+      "cover_seed": 5761704,
       "rendered_hook": "Проверьте знания ребёнка онлайн"
     }
   ],
