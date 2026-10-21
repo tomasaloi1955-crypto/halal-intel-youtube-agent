@@ -6,7 +6,8 @@
 #     пустой под заголовок. Людей и лиц нет (картинку проверяет ИИ, как сток);
 #   • сверху — белая плашка с крупным хуком и изумрудная полоска «ДЕНЬ N · TAMRA SCHOOL».
 #
-# Генератор: Gemini (gemini-2.5-flash-image), если ключ рабочий, иначе Pollinations (без ключа).
+# Генератор: Gemini «Nano Banana» (TAMRA_IMAGE_MODEL, по умолчанию gemini-2.5-flash-image) по ключу
+# TAMRA_GEMINI_API_KEY (или GEMINI_API_KEY); без рабочего ключа — Pollinations (бесплатно, хуже).
 # Сцену под тему ролика описывает writer (texts["cover_scene"]); seed хранится в черновике,
 # чтобы пересборка перед публикацией нарисовала ту же картинку.
 import base64
@@ -20,12 +21,18 @@ from PIL import Image, ImageDraw
 from tamra import brand
 
 W, H = brand.W, brand.H
-STYLE = ("3D voxel art, chunky blocky toy style like Minecraft, glossy plastic bricks, "
-         "cute blocky robot whose head is a smooth blank screen with no eyes and no mouth, "
-         "blocky date palm tree with golden dates, {scene}, emerald green and warm gold accents, "
-         "soft light-blue gradient background with subtle dots, objects in the lower two thirds, "
-         "top third is empty plain background, bright cheerful lighting, high detail, "
-         "no text, no letters, no logos, no people, no human faces, no animals")
+STYLE = ("Vertical 9:16 YouTube Shorts cover illustration. Polished 3D render of toy building "
+         "bricks with round studs mixed with chunky Minecraft-like voxel blocks, glossy plastic, "
+         "soft studio lighting, gentle shadows, crisp details, playful and kid-friendly. "
+         "Main character: a cute blocky toy robot built from emerald-green and gold bricks whose "
+         "head is a smooth dark glossy screen with NO eyes, NO mouth, NO face. "
+         "Scene: {scene}. Also a small blocky date palm tree with golden dates. "
+         "Scattered loose colorful bricks (emerald, gold, blue, white) around, little sparkles. "
+         "Background: soft light-blue gradient with a subtle dot grid. "
+         "Composition: all objects in the lower 60% of the image, the top 35% is EMPTY plain "
+         "background (a title will be placed there). "
+         "Strictly: no text, no letters, no numbers, no logos, no people, no human faces, "
+         "no eyes on any object, no animals.")
 
 ART_PROMPT = """Это картинка для обложки детской исламской онлайн-школы. Посмотри на {n} изображени(е/я).
 Нельзя: люди или их части, человеческие лица (в том числе у игрушек и роботов: глаза, рот),
@@ -33,17 +40,28 @@ ART_PROMPT = """Это картинка для обложки детской и�
 Ответь CLEAN, если ничего из этого нет, иначе REJECT. Одним словом."""
 
 
+IMAGE_MODEL = os.getenv("TAMRA_IMAGE_MODEL", "gemini-2.5-flash-image")
+last_error = ""  # почему не нарисовала Gemini — бот покажет это в превью
+
+
 def _gemini(prompt):
-    key = os.getenv("GEMINI_API_KEY", "")
+    global last_error
+    key = os.getenv("TAMRA_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY", "")
     if not key:
+        last_error = "нет ключа Gemini"
         return None
     r = requests.post(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent",
+        f"https://generativelanguage.googleapis.com/v1beta/models/{IMAGE_MODEL}:generateContent",
         params={"key": key}, timeout=180,
         json={"contents": [{"parts": [{"text": prompt}]}],
               "generationConfig": {"responseModalities": ["IMAGE"],
                                    "imageConfig": {"aspectRatio": "9:16"}}})
-    r.raise_for_status()
+    if r.status_code != 200:
+        try:
+            last_error = r.json()["error"]["message"][:200]
+        except Exception:
+            last_error = f"HTTP {r.status_code}"
+        return None
     for part in r.json()["candidates"][0]["content"]["parts"]:
         data = part.get("inlineData") or part.get("inline_data")
         if data:
@@ -62,20 +80,29 @@ def _pollinations(prompt, seed):
 
 
 def generate(scene, seed, out_path):
-    """Рисует фон обложки в out_path. True — получилось и прошло проверку."""
+    """Рисует фон обложки в out_path. Возвращает имя генератора ("gemini"/"pollinations")
+    или None, если не получилось нарисовать картинку, прошедшую проверку."""
     from people_filter import vision_check
-    prompt = STYLE.format(scene=scene or "laptop, open books and pencils on a blocky desk")
-    for attempt in range(3):
-        data = None
-        try:
-            data = _gemini(prompt) if attempt == 0 else None
-        except Exception as e:
-            print(f"[TAMRA] Gemini-картинка недоступна: {e}")
-        try:
-            data = data or _pollinations(prompt, seed + attempt)
-        except Exception as e:
-            print(f"[TAMRA] Pollinations недоступен: {e}")
-            continue
+    global last_error
+    last_error = ""
+    prompt = STYLE.format(scene=scene or "a blocky laptop, open books and pencils on a brick desk")
+    gemini_ok = True
+    for attempt in range(4):
+        data, source = None, "gemini"
+        if gemini_ok:
+            try:
+                data = _gemini(prompt)
+            except Exception as e:
+                last_error = str(e)[:200]
+            if data is None:
+                gemini_ok = False  # ключа нет или отказ — дальше не стучимся
+        if data is None:
+            source = "pollinations"
+            try:
+                data = _pollinations(prompt, seed + attempt)
+            except Exception as e:
+                print(f"[TAMRA] Pollinations недоступен: {e}")
+                continue
         with open(out_path, "wb") as f:
             f.write(data)
         try:
@@ -83,10 +110,10 @@ def generate(scene, seed, out_path):
         except Exception:
             continue
         if vision_check([out_path], ART_PROMPT, "CLEAN"):
-            return True
+            return source
     if os.path.exists(out_path):
         os.remove(out_path)
-    return False
+    return None
 
 
 def new_seed():

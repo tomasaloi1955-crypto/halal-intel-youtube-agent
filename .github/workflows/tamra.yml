@@ -44,6 +44,8 @@ jobs:
           TAMRA_TG_TOKEN: ${{ secrets.TAMRA_TG_TOKEN }}
           TAMRA_TG_CHAT_ID: ${{ secrets.TAMRA_TG_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # отдельный ключ Gemini для обложек («Nano Banana»); нет — берётся GEMINI_API_KEY
+          TAMRA_GEMINI_API_KEY: ${{ secrets.TAMRA_GEMINI_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # резерв: Whisper (субтитры) и модель для текстов на Groq, если Gemini/ElevenLabs не отвечают
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}

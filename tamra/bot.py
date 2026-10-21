@@ -277,7 +277,11 @@ def _cover_png(draft, workdir):
     try:
         if not os.path.exists(art):
             seed = draft.setdefault("cover_seed", cover_art.new_seed())  # тот же seed — та же картинка
-            if not cover_art.generate(draft["texts"].get("cover_scene"), seed, art):
+            source = cover_art.generate(draft["texts"].get("cover_scene"), seed, art)
+            draft["cover_note"] = ("" if source == "gemini" else
+                                   f"Обложку рисовала запасная нейросеть — Gemini не ответил: "
+                                   f"{cover_art.last_error or 'неизвестно'}")
+            if not source:
                 print("[TAMRA] Обложка не нарисовалась — ролик без неё")
                 return None
         return cover_art.compose(art, draft["texts"]["hook"], draft["day"], png)
@@ -326,6 +330,8 @@ def send_preview(chat, draft):
     if not res.get("ok"):
         send(chat, f"Не смогла прислать видео: {res.get('description')}")
     send(chat, "Подпись (для копирования):\n\n" + writer.full_caption(t))
+    if draft.get("cover_note"):
+        send(chat, "ℹ️ " + draft["cover_note"])
 
 
 def _taken_stock(st):
