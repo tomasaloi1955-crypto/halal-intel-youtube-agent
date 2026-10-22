@@ -5705,67 +5705,259 @@
   "score": 0,
   "silent": 2
  },
+ "hot_travel_group": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "rusmetan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "mixer_project": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "kontext_channel": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "kpohod": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "kamertonclub": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "mch1961": {
+  "skip": "подписчиков 43",
+  "date": "2026-10-22"
+ },
+ "o_krakovetskaia": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "memorialsociety": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "ankuznets": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "firesoffreedom": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "lib_soc_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "norapeople": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "orbita_yauza": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "artoftea": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "annadzhudzhi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "foxes_of_randall": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "iguanainthejungle": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "annaemelianovaa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "uliashhi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "puteshestviesvoimirukami": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "archnadzor_official": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "ty_tatyana": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "viemio": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "sonia_sny": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "fromtamerlanetochurchill": {
+  "skip": "подписчиков 142",
+  "date": "2026-10-22"
+ },
+ "basmaniamuseum": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "kult_nasled": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "alpinaru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "privetpoidemmari": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "staritsa_1297": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "menchakovo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "mgitravelers": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "pr_account_shkola_gida": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "manager_shkola_gida": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "polkanaprotiv": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "alpinaproza": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "alpinanonfiction": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "bagautdinov_airat": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "engineer": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "nornickel_life": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "trcgorod_lefortovo": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "denatasia": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "reshape_tg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "dtmskin": {
+  "skip": "не наша ниша",
+  "date": "2026-10-22"
+ },
+ "dalbarussiaofficial": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-22"
+ },
+ "reshapeglobal": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "tatyanakashub": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "clubkommersant": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "blar_project": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-22"
+ },
+ "tolstoymuseum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-22"
+ },
+ "help_yuna": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-22"
+ },
+ "alt_fem": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-22"
+ },
+ "so_hranenie": {
+  "sent": "2026-10-22",
+  "title": "Лаборатория «Со_хранение»",
+  "contact": "AlexandraMozhaeva",
+  "score": 55,
+  "silent": 4
+ },
+ "intervalsfest": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-22"
+ },
+ "idiotbooks": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-22"
+ },
+ "trapezistudio": {
+  "sent": "2026-10-22",
+  "title": "Τραπέζι",
+  "contact": "TatyanaKashub",
+  "score": 45,
+  "silent": 7
+ },
+ "libsoc_school": {
+  "sent": "2026-10-22",
+  "title": "Навигация_1",
+  "contact": "giles2304",
+  "score": 40,
+  "silent": 6
+ },
+ "domteleshova_kids": {
+  "sent": "2026-10-22",
+  "title": "Дом Телешова. Дети",
+  "contact": "TY_Tatyana",
+  "score": 40,
+  "silent": 4
+ },
+ "oiru_channel": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-22"
+ },
  "_queue": [
-  "hot_travel_group",
-  "idiotbooks",
-  "rusmetan",
-  "mixer_project",
-  "kontext_channel",
-  "oiru_channel",
-  "kpohod",
-  "kamertonclub",
-  "so_hranenie",
-  "mch1961",
-  "o_krakovetskaia",
-  "memorialsociety",
-  "ankuznets",
-  "firesoffreedom",
-  "lib_soc_bot",
-  "alt_fem",
-  "libsoc_school",
-  "norapeople",
-  "help_yuna",
-  "orbita_yauza",
-  "artoftea",
-  "annadzhudzhi",
-  "foxes_of_randall",
-  "iguanainthejungle",
-  "annaemelianovaa",
-  "uliashhi",
-  "puteshestviesvoimirukami",
-  "archnadzor_official",
-  "ty_tatyana",
-  "viemio",
-  "domteleshova_kids",
-  "sonia_sny",
-  "fromtamerlanetochurchill",
-  "basmaniamuseum",
-  "kult_nasled",
-  "alpinaru",
-  "intervalsfest",
-  "privetpoidemmari",
-  "staritsa_1297",
-  "menchakovo",
-  "mgitravelers",
-  "pr_account_shkola_gida",
-  "manager_shkola_gida",
-  "polkanaprotiv",
-  "alpinaproza",
-  "alpinanonfiction",
-  "bagautdinov_airat",
-  "engineer",
-  "nornickel_life",
-  "trcgorod_lefortovo",
-  "denatasia",
-  "reshape_tg",
-  "dtmskin",
-  "dalbarussiaofficial",
-  "reshapeglobal",
-  "tatyanakashub",
-  "trapezistudio",
-  "clubkommersant",
-  "blar_project",
-  "tolstoymuseum",
   "yunost_na_futbolke",
   "kinocostume",
   "arinainkino",
@@ -6147,7 +6339,6 @@
   "voidreport",
   "boilerroomchannel",
   "shekh_muhammad_ibn_ibrahim",
-  "dialang_app",
   "svyazkvd_bot",
   "ifrussiespb",
   "ifrussiemoscou",
@@ -6205,7 +6396,68 @@
   "v2duo",
   "sixteentons_club",
   "detuneband",
-  "shila_band"
+  "shila_band",
+  "babelbookstlv",
+  "gardensandtime",
+  "archvozrojdenie",
+  "excursovodrossii",
+  "natalyagromovadnevnik",
+  "bureevairina",
+  "ilovemuseum",
+  "azarova",
+  "alexandramozhaeva",
+  "pzk_memorial",
+  "ne_poslednee_slovo",
+  "october29_live",
+  "free_ruslan_sidiki",
+  "bolshaya_zona",
+  "rupression",
+  "freeazat",
+  "ilyashakursky",
+  "kanskdelo",
+  "krksledkom",
+  "protonmail",
+  "solidarity_zone",
+  "chtotvoryatzhenshinibot",
+  "lastochki_penza",
+  "fem_perehodnitsa",
+  "nitochkihihi",
+  "sisterhood_screaming",
+  "herartisherheart",
+  "kirsbier",
+  "from_practice",
+  "dissertaciya_malinovich",
+  "ura_women",
+  "altleftorgbot",
+  "valuha_i_yamy",
+  "rfo_ona",
+  "altleft_org",
+  "annzettart",
+  "rosyanka_fem",
+  "fem_chel",
+  "shorokhi_krovi",
+  "feminespace",
+  "sisters_lilith",
+  "regfem",
+  "eto_ya_allochka",
+  "azatkatyn",
+  "locfem",
+  "gene_mercy_bot",
+  "femafisha",
+  "azatkatyan",
+  "prostpolitika_spb",
+  "anarchoma",
+  "anthropologs",
+  "libsoc_bot",
+  "giles2304",
+  "no_future_press",
+  "noftrbot",
+  "nora_psyhelp_bot",
+  "yylmeludymo",
+  "tochkasborkii",
+  "gazefemclub1",
+  "solidarity_union",
+  "plpzk"
  ],
- "_query_pos": 34
+ "_query_pos": 42
 }
