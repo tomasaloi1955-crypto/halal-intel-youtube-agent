@@ -5957,67 +5957,250 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-22"
  },
+ "yunost_na_futbolke": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "kinocostume": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "arinainkino": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "russian_c0de": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "onlykinofuns": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "watchandvoice": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "popsanya": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "kinemart": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "westside_movieclub": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "egorkinofun": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "kinoprotebya": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "po_motivam": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "emmettbrowneffect": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "razvitie_em": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "polovoevospitanie": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "sve_flymama": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "eyforia_serialy": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "womenupbringing": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "zhivoi_put": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "headliner_detskysad": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "ycschool": {
+  "skip": "подписчиков 143",
+  "date": "2026-10-23"
+ },
+ "supermassaj": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "xidjama": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "hijama_otvet": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "xijamamedik": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "hidjamacenter_osh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "hijama_dlya_sester": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "physiotherapy_massaj_xijoma": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "hijam_rinatabyulgatin979": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "fagiolifeedbackbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "tramdrey_art": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "antzblog": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "korovany": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-23"
+ },
+ "e628b7b7": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "krai_games": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "avito_kavkazru": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "ertugrul_musk_parfume": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "mahdi_parfumer": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "shurshata_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "autsudan_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "watamota_tatiana": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "shurshata": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "autsudan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "watamota_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "vasha_literaturnaya_gospozha": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "onewomanpoetry": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "open_living": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-23"
+ },
+ "thesismedia": {
+  "skip": "подписчиков 139",
+  "date": "2026-10-23"
+ },
+ "travy_cc": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "lechebnietravitata": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "travi_lek": {
+  "skip": "не наша ниша",
+  "date": "2026-10-23"
+ },
+ "my_plants223": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "slpharma": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "pasekagor": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-23"
+ },
+ "pan_meditat": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-23"
+ },
+ "nooneshouldeverwork": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-23"
+ },
+ "vadertatooine": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-23"
+ },
+ "hyperduh": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-23"
+ },
+ "zulinzulin": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-23"
+ },
+ "uslovniy_marquez": {
+  "sent": "2026-10-23",
+  "title": "Условный Маркес | Полина Максимова",
+  "contact": "polinamaksi",
+  "score": 35,
+  "silent": 8
+ },
  "_queue": [
-  "yunost_na_futbolke",
-  "kinocostume",
-  "arinainkino",
-  "vadertatooine",
-  "russian_c0de",
-  "onlykinofuns",
-  "watchandvoice",
-  "popsanya",
-  "kinemart",
-  "westside_movieclub",
-  "egorkinofun",
-  "kinoprotebya",
-  "po_motivam",
-  "emmettbrowneffect",
-  "razvitie_em",
-  "polovoevospitanie",
-  "sve_flymama",
-  "eyforia_serialy",
-  "womenupbringing",
-  "zhivoi_put",
-  "headliner_detskysad",
-  "ycschool",
-  "supermassaj",
-  "xidjama",
-  "hijama_otvet",
-  "xijamamedik",
-  "hidjamacenter_osh",
-  "hijama_dlya_sester",
-  "physiotherapy_massaj_xijoma",
-  "hijam_rinatabyulgatin979",
-  "fagiolifeedbackbot",
-  "tramdrey_art",
-  "antzblog",
-  "korovany",
-  "e628b7b7",
-  "zulinzulin",
-  "pan_meditat",
-  "hyperduh",
-  "nooneshouldeverwork",
-  "krai_games",
-  "avito_kavkazru",
-  "ertugrul_musk_parfume",
-  "mahdi_parfumer",
-  "shurshata_bot",
-  "autsudan_bot",
-  "watamota_tatiana",
-  "shurshata",
-  "autsudan",
-  "watamota_bot",
-  "vasha_literaturnaya_gospozha",
-  "uslovniy_marquez",
-  "onewomanpoetry",
-  "open_living",
-  "thesismedia",
-  "travy_cc",
-  "lechebnietravitata",
-  "travi_lek",
-  "my_plants223",
-  "slpharma",
-  "pasekagor",
   "gornietravi",
   "songofgrass",
   "russian_herbs",
@@ -6457,7 +6640,67 @@
   "tochkasborkii",
   "gazefemclub1",
   "solidarity_union",
-  "plpzk"
+  "plpzk",
+  "muzikalniy25xona18",
+  "expodiscounts",
+  "cherny_altai",
+  "black_escort",
+  "black_edem",
+  "encanto_official",
+  "piepierrr1",
+  "uablack",
+  "vgikpodcast",
+  "vorovskoy11",
+  "yvesalnt",
+  "atlas_black",
+  "blackbizz",
+  "shasha_com",
+  "chornie_delfin",
+  "blackletual",
+  "ovod_razvitie",
+  "for_children",
+  "kniga_deti",
+  "kids_la",
+  "deti_ya",
+  "silka125",
+  "annbashtovaya",
+  "bsbp_otavtorov",
+  "russiancode",
+  "niidpo_logoped_bot",
+  "flymama",
+  "rowenlaan",
+  "stopgameru",
+  "yanis_does",
+  "vzvesotvet",
+  "hyperduh",
+  "yadvidchuk",
+  "petapdtg",
+  "bekagaming2007",
+  "shmupsisalife",
+  "prometa",
+  "yashernet",
+  "yetanotherqa",
+  "locaroundtheworld",
+  "bomboragames",
+  "before_is_over",
+  "siliquaart",
+  "vatamota",
+  "sisters",
+  "sistershelp",
+  "dekabristki_graphic_novel",
+  "gospozha_glavred",
+  "vsyovslova",
+  "bibliotekapolka",
+  "polynpublishing",
+  "master_piece_lander",
+  "polinamaksi",
+  "yugenofart",
+  "uslovniy_marquez",
+  "speechka_media",
+  "speaking_city",
+  "orientalwitches",
+  "ttbalt",
+  "rezidenty_vavilov"
  ],
- "_query_pos": 42
+ "_query_pos": 50
 }
