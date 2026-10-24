@@ -1,14 +1,16 @@
 {
-  "offset": 30003250,
+  "offset": 30003252,
   "owner": "970882173",
-  "day": 5,
+  "day": 6,
   "batch": {
     "media": [],
     "voice": null,
-    "notes": [],
+    "notes": [
+      "В очередь."
+    ],
     "hook": null,
     "caption": null,
-    "updated": 0
+    "updated": 1792817363
   },
   "history": [
     {
@@ -32,7 +34,7 @@
   "drafts": [
     {
       "id": "20261021_064904_87ff",
-      "day": 4,
+      "day": 5,
       "media": [
         {
           "kind": "video",
@@ -559,8 +561,7 @@
         ]
       },
       "cover_seed": 1806246,
-      "cover_note": "Обложку рисовала запасная нейросеть — Gemini не ответил: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
-      "rendered_hook": "Проверьте знания ребёнка онлайн"
+      "cover_note": "Обложку рисовала запасная нейросеть — Gemini не ответил: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa"
     }
   ],
   "pending": [],
