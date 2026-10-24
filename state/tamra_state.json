@@ -1,16 +1,18 @@
 {
-  "offset": 30003252,
+  "offset": 30003254,
   "owner": "970882173",
   "day": 6,
   "batch": {
     "media": [],
     "voice": null,
     "notes": [
-      "В очередь."
+      "В очередь.",
+      "Вырежи пустоты и т.д.",
+      "Ускорить немного"
     ],
     "hook": null,
     "caption": null,
-    "updated": 1792817363
+    "updated": 1792817375
   },
   "history": [
     {
