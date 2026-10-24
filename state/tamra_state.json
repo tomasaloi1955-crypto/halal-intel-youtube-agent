@@ -1,9 +1,15 @@
 {
-  "offset": 30003254,
+  "offset": 30003255,
   "owner": "970882173",
   "day": 6,
   "batch": {
-    "media": [],
+    "media": [
+      {
+        "kind": "video",
+        "file_id": "BAACAgIAAxkBAAN_atw5J0KpLiVw8aaRnGBn7qmpj9gAAi2kAAKJYelK-KTpVUDyCO49BA",
+        "ext": "mp4"
+      }
+    ],
     "voice": null,
     "notes": [
       "В очередь.",
@@ -12,7 +18,8 @@
     ],
     "hook": null,
     "caption": null,
-    "updated": 1792817375
+    "updated": 1792817447,
+    "last_group": null
   },
   "history": [
     {
