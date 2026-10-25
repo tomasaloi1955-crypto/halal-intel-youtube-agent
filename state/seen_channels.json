@@ -47,10 +47,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-25"
  },
- "marinagrinkova": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-25"
- },
  "z_ansh": {
   "skip": "не канал или закрыт",
   "date": "2026-09-25"
@@ -207,16 +203,8 @@
   "skip": "молчит 1233 дн.",
   "date": "2026-09-25"
  },
- "madinaayub": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-09-25"
- },
  "marina_grinkova": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-25"
- },
- "arabicle_ru": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-25"
  },
  "halal_english_bot": {
@@ -6440,67 +6428,253 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-24"
  },
+ "kazan_ok": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "kazan_medicina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "speed_mi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "aif_dagestan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "bessovestniidagestan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "dagestan_chp": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "etodag": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "echo_dagestan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "freedag": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "free_dagestan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "praguebooktower": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-25"
+ },
+ "berlinbebelplatz": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "mediazona_exclusive": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "reforumspace": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-25"
+ },
+ "slovavnesebjabot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "liz_hhh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "litradio_link": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "hotanovskie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "chechnya_95_05": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "rostov_na_donu_64_258": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "chechnya_9595": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "chechnya_not_free": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "evkgv": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "tut_fotochr": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "fdfdffdfdfd": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "urusss": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "nohcho_teman_zama": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "evro_perevozki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "chechnya_now": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "av9i5to": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "work_almaty": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_pp": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_2": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "tdfa_a_alm_01": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_b": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_go": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_din": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-25"
+ },
+ "almaty_rabota_work": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-25"
+ },
+ "almatywork2": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "kizdaralmaty_sexalmaty": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "almaty_eskort": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "djaman066": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "nedvizhimost_02": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "vakanst": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "towkent_udar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "tashkent_0": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "tashkentskiy_000": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "kolibr777_channel": {
+  "skip": "не наша ниша",
+  "date": "2026-10-25"
+ },
+ "dosug_mahachkala": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "tramadol_lirika20": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "neon005info": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "hadija7575": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "hijama_al_sihat1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "veronikastepanova20011": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-25"
+ },
+ "nastenka_hair": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "adm_al_madrasa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "al_madrasa_95": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-25"
+ },
+ "dagestan": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-25"
+ },
+ "shelllllf": {
+  "sent": "2026-10-25",
+  "title": "shell(f)",
+  "contact": "nonsanzdroict",
+  "score": 25,
+  "silent": 2
+ },
+ "shavlovskytexts": {
+  "sent": "2026-10-25",
+  "title": "Пишущего толкни",
+  "contact": "kshavlovsky",
+  "score": 15,
+  "silent": 2
+ },
  "_queue": [
-  "kazan_ok",
-  "kazan_medicina",
-  "speed_mi",
-  "aif_dagestan",
-  "bessovestniidagestan",
-  "dagestan_chp",
-  "dagestan",
-  "etodag",
-  "echo_dagestan",
-  "freedag",
-  "free_dagestan",
-  "shelllllf",
-  "praguebooktower",
-  "berlinbebelplatz",
-  "mediazona_exclusive",
-  "reforumspace",
-  "slovavnesebjabot",
-  "shavlovskytexts",
-  "liz_hhh",
-  "litradio_link",
-  "hotanovskie",
-  "chechnya_95_05",
-  "rostov_na_donu_64_258",
-  "chechnya_9595",
-  "chechnya_not_free",
-  "evkgv",
-  "tut_fotochr",
-  "fdfdffdfdfd",
-  "urusss",
-  "nohcho_teman_zama",
-  "evro_perevozki",
-  "chechnya_now",
-  "av9i5to",
-  "work_almaty",
-  "almaty_pp",
-  "almaty_2",
-  "tdfa_a_alm_01",
-  "almaty_b",
-  "almaty_go",
-  "almaty_din",
-  "almaty_rabota_work",
-  "almatywork2",
-  "kizdaralmaty_sexalmaty",
-  "almaty_eskort",
-  "djaman066",
-  "nedvizhimost_02",
-  "vakanst",
-  "towkent_udar",
-  "tashkent_0",
-  "tashkentskiy_000",
-  "kolibr777_channel",
-  "dosug_mahachkala",
-  "tramadol_lirika20",
-  "neon005info",
-  "hadija7575",
-  "hijama_al_sihat1",
-  "veronikastepanova20011",
-  "nastenka_hair",
-  "adm_al_madrasa",
-  "al_madrasa_95",
   "mukhammad_madaev",
   "mukhammad_koran_arabic",
   "interesnomoscow",
@@ -6889,7 +7063,38 @@
   "znakomstva_qz",
   "kontakt_almaty",
   "almatyrab0ta",
-  "whs_95_bot_alm"
+  "whs_95_bot_alm",
+  "marinagrinkova",
+  "madinaayub",
+  "arabicle_ru",
+  "minmolru",
+  "civil_lidersrd",
+  "procuratura05",
+  "kamilsaidov1",
+  "minzdravrd",
+  "mvd_dagestan",
+  "dagestan_sledcom05",
+  "mapamagrus",
+  "shellllllf",
+  "mkongodze",
+  "nonsanzdroict",
+  "vkaramurza2022",
+  "tooloudsolitude",
+  "koshkinachitaet",
+  "kvartirnik_bcn",
+  "meduza_books",
+  "reforumvilniusbot",
+  "bookswithklishin",
+  "ivmichael",
+  "freedom_zone_bot",
+  "the_zona_svobody",
+  "auditoria_tbilisi_bot",
+  "vasilieva_balabanova",
+  "republicmag",
+  "auditoria_tbilisi",
+  "tgchns",
+  "dashellla",
+  "sale_caviar"
  ],
- "_query_pos": 58
+ "_query_pos": 7
 }
