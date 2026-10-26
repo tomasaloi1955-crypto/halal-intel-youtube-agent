@@ -309,14 +309,6 @@
   "skip": "не наша ниша",
   "date": "2026-09-26"
  },
- "budryaadom": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-26"
- },
- "ideastudent": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-26"
- },
  "arabicle_edu_bot": {
   "skip": "не канал или закрыт",
   "date": "2026-09-26"
@@ -421,20 +413,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-26"
  },
- "jannatga_oshiq_qalblar_4": {
-  "skip": "подписчиков 8",
-  "date": "2026-09-26"
- },
  "dunyam_4": {
   "skip": "не канал или закрыт",
   "date": "2026-09-26"
  },
  "isl_produksiya": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-26"
- },
- "koran_obuchenie": {
-  "skip": "подписчиков 93",
   "date": "2026-09-26"
  },
  "audio_kuran": {
@@ -457,16 +441,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-26"
  },
- "quran_isunna": {
-  "skip": "подписчиков 0",
-  "date": "2026-09-26"
- },
  "hafizulquran": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-26"
- },
- "quran_ponimai": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-26"
  },
  "mdrasah": {
@@ -6674,67 +6650,262 @@
   "score": 15,
   "silent": 2
  },
+ "mukhammad_madaev": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-26"
+ },
+ "mukhammad_koran_arabic": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "interesnomoscow": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-26"
+ },
+ "rgdbru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "kary_nos": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "pr_moskva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "pricetgmoskow": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "moskownovosti": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "mosknovosti": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "novostymoscow": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "maks_moscow": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "mostodaybot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "rovnye_zakladki2": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "biris": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "zakladky_asha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "bradyaga_i": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "kings_kanal": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "zortvkanalide": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "jizn_vorovskoy_janim": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "aminakbarovofficial": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "guliiiimmm": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "shumfm": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "finvk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "centralbankuzbekistan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "mezontalim_admin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "diniysavollar": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "im_contact": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "mavlonof_b": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "mezontalim": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-26"
+ },
+ "isbf_admin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "matana_bot2": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "matana_stoikost": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "sds7799": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "chumavecherinka": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "artanna108": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "orgasmic_food": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "tveda": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-26"
+ },
+ "edakievv": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "konopizza": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "ilona45": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "pidoraeda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "besplatnaya_edaa": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "insanitygallery": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "dekotechru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "insanity_cut": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "alpina": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "hellogoosegoose_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "videlchat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "anthropologhetto": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-26"
+ },
+ "povsednevn0": {
+  "skip": "не наша ниша",
+  "date": "2026-10-26"
+ },
+ "sturluson51": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-26"
+ },
+ "confsci": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-26"
+ },
+ "smu_rudn": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-26"
+ },
+ "prava_muja_i_jeni_777": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-26"
+ },
+ "jaannatt18": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-26"
+ },
+ "aesteetika": {
+  "sent": "2026-10-26",
+  "title": "Мой мир - мой Рай 💓",
+  "contact": "SDS7799",
+  "score": 60,
+  "silent": 4
+ },
+ "novostirossii_24": {
+  "sent": "2026-10-26",
+  "title": "Новости России",
+  "contact": "kristinaa94",
+  "score": 25,
+  "silent": 3
+ },
+ "novosti_moskow": {
+  "sent": "2026-10-26",
+  "title": "Московские новости | Москва |Подмосковье",
+  "contact": "AnastasiaKarpo",
+  "score": 25,
+  "silent": 3
+ },
+ "moskvanovosti": {
+  "sent": "2026-10-26",
+  "title": "Новости Москвы",
+  "contact": "pavelborisovic",
+  "score": 25,
+  "silent": 3
+ },
+ "ukrallporezal": {
+  "sent": "2026-10-26",
+  "title": "УКРАЛПОРЕЗАЛ / коллажная мастерская",
+  "contact": "vlaverin",
+  "score": 15,
+  "silent": 2
+ },
  "_queue": [
-  "mukhammad_madaev",
-  "mukhammad_koran_arabic",
-  "interesnomoscow",
-  "rgdbru",
-  "kary_nos",
-  "pr_moskva",
-  "novostirossii_24",
-  "pricetgmoskow",
-  "moskownovosti",
-  "mosknovosti",
-  "novostymoscow",
-  "novosti_moskow",
-  "moskvanovosti",
-  "maks_moscow",
-  "mostodaybot",
-  "rovnye_zakladki2",
-  "biris",
-  "zakladky_asha",
-  "bradyaga_i",
-  "kings_kanal",
-  "zortvkanalide",
-  "jizn_vorovskoy_janim",
-  "aminakbarovofficial",
-  "guliiiimmm",
-  "shumfm",
-  "finvk",
-  "centralbankuzbekistan",
-  "mezontalim_admin",
-  "diniysavollar",
-  "im_contact",
-  "mavlonof_b",
-  "mezontalim",
-  "isbf_admin",
-  "matana_bot2",
-  "matana_stoikost",
-  "aesteetika",
-  "prava_muja_i_jeni_777",
-  "jaannatt18",
-  "sds7799",
-  "ukrallporezal",
-  "chumavecherinka",
-  "artanna108",
-  "orgasmic_food",
-  "tveda",
-  "edakievv",
-  "konopizza",
-  "ilona45",
-  "pidoraeda",
-  "besplatnaya_edaa",
-  "insanitygallery",
-  "dekotechru",
-  "insanity_cut",
-  "alpina",
-  "hellogoosegoose_bot",
-  "videlchat",
-  "anthropologhetto",
-  "povsednevn0",
-  "sturluson51",
-  "confsci",
-  "smu_rudn",
   "eskinetal",
   "idiomsofdistress",
   "voicetextai_bot",
@@ -7094,7 +7265,41 @@
   "auditoria_tbilisi",
   "tgchns",
   "dashellla",
-  "sale_caviar"
+  "sale_caviar",
+  "jannatga_oshiq_qalblar_4",
+  "koran_obuchenie",
+  "quran_isunna",
+  "quran_ponimai",
+  "budryaadom",
+  "ideastudent",
+  "mukhammad_moderator",
+  "reklama_russia2022",
+  "russiareklamaa",
+  "kristinaa94",
+  "novostisanktpeterburg",
+  "kubanskienovosti",
+  "novostichelyabinsk",
+  "novostiekaterinburgg",
+  "anastasiakarpo",
+  "pavelborisovic",
+  "price_moscow",
+  "mezonkengashi",
+  "groupa_777_bot",
+  "muslimtg_1",
+  "vlaverin",
+  "lampa_art_market",
+  "kukuteatr",
+  "miptstemlab",
+  "anthropokryk",
+  "ukszh1988",
+  "profgorozhanka",
+  "culturolog_fly",
+  "souchastie",
+  "smart_lab_news",
+  "directntp",
+  "rsf_news",
+  "minobrnaukiofficial",
+  "rudnstudentslife"
  ],
- "_query_pos": 7
+ "_query_pos": 15
 }
