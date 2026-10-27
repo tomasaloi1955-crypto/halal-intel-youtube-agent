@@ -89,9 +89,13 @@ def _empty_batch():
 
 
 def load_state():
-    try:
-        st = json.load(open(STATE_FILE, encoding="utf-8"))
-    except Exception:
+    # Файла нет — первый запуск. Файл есть, но не читается (например, застрял git-конфликт) —
+    # падаем, НЕ начиная с чистого листа: иначе бот забудет хозяйку, примет и выбросит
+    # присланные видео. Упавший проход не трогает Telegram — сообщения дождутся.
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, encoding="utf-8") as f:
+            st = json.load(f)
+    else:
         st = {}
     st.setdefault("offset", 0)
     st.setdefault("owner", None)

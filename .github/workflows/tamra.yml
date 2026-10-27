@@ -66,18 +66,29 @@ jobs:
           if [ -z "$TAMRA_TG_TOKEN" ]; then echo "TAMRA_TG_TOKEN не задан — пропуск"; exit 0; fi
           git config user.name "tamra-bot"
           git config user.email "tamra-bot@users.noreply.github.com"
+          # Состояние бота пишет только эта смена, поэтому при конфликте права наша версия
+          # (-X theirs при rebase — это коммит, который переносится, то есть наш). Застрявший
+          # rebase обязательно отменяем: иначе в файле остаются маркеры конфликта, бот не может
+          # прочитать состояние и молча теряет присланные видео (так было 27.10).
+          unstick() { [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ] && git rebase --abort; true; }
           save_state() {
+            unstick
             git add state/tamra_state.json 2>/dev/null || return 0
             git diff --cached --quiet && return 0
             git commit -q -m "tamra: $(date -u +%F_%H%M) [skip ci]"
             for i in 1 2 3 4; do
-              git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q && return 0
+              if git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}"; then
+                git push -q && return 0
+              else
+                unstick
+              fi
               sleep $((i * 3))
             done
             echo "push не удался — попробую на следующем круге"
           }
           end=$((SECONDS + 330 * 60))
           while [ $SECONDS -lt $end ]; do
+            unstick
             python -m tamra.bot --once || echo "проход упал — продолжаю"
             save_state   # сразу в репозиторий: если смену оборвут, номер дня и очередь не потеряются
             sleep 20
