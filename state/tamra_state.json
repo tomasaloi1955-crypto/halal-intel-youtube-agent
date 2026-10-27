@@ -1,14 +1,16 @@
 {
-  "offset": 30003260,
+  "offset": 30003261,
   "owner": "970882173",
   "day": 5,
   "batch": {
     "media": [],
     "voice": null,
-    "notes": [],
+    "notes": [
+      "Пришли текст"
+    ],
     "hook": null,
     "caption": null,
-    "updated": 0
+    "updated": 1793067650
   },
   "history": [
     {
