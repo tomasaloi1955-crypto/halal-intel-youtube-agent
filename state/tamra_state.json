@@ -1,5 +1,5 @@
 {
-  "offset": 30003257,
+  "offset": 30003260,
   "owner": "970882173",
   "day": 5,
   "batch": {
@@ -39,7 +39,9 @@
     7698438,
     27385370
   ],
-  "drafts": [
+  "drafts": [],
+  "pending": [],
+  "queue": [
     {
       "id": "20261021_064904_87ff",
       "day": 4,
@@ -572,8 +574,6 @@
       "cover_note": "Обложку рисовала запасная нейросеть — Gemini не ответил: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa"
     }
   ],
-  "pending": [],
-  "queue": [],
   "publish_hour": 19,
   "last_publish_date": "2026-10-24",
   "last_fail_notice": "2026-10-19",
