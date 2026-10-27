@@ -4,17 +4,11 @@
   "day": 5,
   "batch": {
     "media": [],
-    "voice": {
-      "file_id": "CQACAgIAAxkBAAOYauBIVdI4cU499kU3U6coygsn6h0AAsOnAAJmzAFLbZHbZvB-JOk9BA",
-      "ext": "m4a"
-    },
-    "notes": [
-      "Пришли текст"
-    ],
+    "voice": null,
+    "notes": [],
     "hook": null,
     "caption": null,
-    "updated": 1793111611,
-    "last_group": null
+    "updated": 0
   },
   "history": [
     {
@@ -56,7 +50,22 @@
     27385370
   ],
   "drafts": [],
-  "pending": [],
+  "pending": [
+    {
+      "media": [],
+      "voice": {
+        "file_id": "CQACAgIAAxkBAAOYauBIVdI4cU499kU3U6coygsn6h0AAsOnAAJmzAFLbZHbZvB-JOk9BA",
+        "ext": "m4a"
+      },
+      "notes": [
+        "Пришли текст"
+      ],
+      "hook": null,
+      "caption": null,
+      "updated": 1793112857.5235004,
+      "auto_failed": true
+    }
+  ],
   "queue": [],
   "publish_hour": 19,
   "last_publish_date": "2026-10-27",
