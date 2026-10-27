@@ -516,10 +516,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-27"
  },
- "qamarunkids": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-09-27"
- },
  "zainabnorm": {
   "skip": "не канал или закрыт",
   "date": "2026-09-27"
@@ -556,16 +552,8 @@
   "skip": "не наша ниша",
   "date": "2026-09-27"
  },
- "umma_school": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-27"
- },
  "badratkhaier": {
   "skip": "не наша ниша",
-  "date": "2026-09-27"
- },
- "koran_isunna": {
-  "skip": "молчит 1 дн.",
   "date": "2026-09-27"
  },
  "sestra5_bot": {
@@ -586,10 +574,6 @@
  },
  "ponimai_quran_bot": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-27"
- },
- "bookhadith": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-27"
  },
  "islam_095_7": {
@@ -636,10 +620,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-27"
  },
- "jetownersru": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-27"
- },
  "malakoot27": {
   "skip": "не канал или закрыт",
   "date": "2026-09-27"
@@ -670,10 +650,6 @@
  },
  "salafiya5_bot": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-27"
- },
- "v_niqabe97": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-27"
  },
  "visualarabic": {
@@ -6905,67 +6881,250 @@
   "score": 15,
   "silent": 2
  },
+ "voicetextai_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "struja_dobra": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "lanabarsukova": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "stalinov_antropole": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "khamovniky": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "fond_khamovniki": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-27"
+ },
+ "alexandra_martyn": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "dom_modele": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "grimi_pf": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "club_antropologia_visualnogo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "anthrosocks": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "leninka_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "arabic_mubin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "riyadulfavaidi": {
+  "skip": "подписчиков 65",
+  "date": "2026-10-27"
+ },
+ "teplo_nadezhda": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "nadezhda_psylight": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "cdprtvi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "telega_spravedlivosti": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "solovievlive": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "aksenenko137": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-27"
+ },
+ "sovintern_ru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "grigorevgd75": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "abnchanel_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-27"
+ },
+ "vedomosti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "bankrollo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "banki_oil": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "nosovichchannel": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "nilov_official": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "master_pera": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "shingarkin": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "deputatdumy": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "polittransit": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "uzelsv": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "pwnow": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "rusanctions": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "orhoresistanse": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "barantchik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "anapapapa": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "kremlin_mother_expert": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "sidpolit": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "chp_crimea": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "ruthless_retail_business": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "kanzlerdaddy": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "ejdailyru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "vadim_trukhachyov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "russtrat": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "nedvizha": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "stranaua": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "citiesinmotion": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "lipsits_again": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "polsat203": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "pdmnews": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "lomovkaa": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "lamp_priemnik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-27"
+ },
+ "peoplesredaction": {
+  "skip": "не наша ниша",
+  "date": "2026-10-27"
+ },
+ "eskinetal": {
+  "sent": "2026-10-27",
+  "title": "[Ескин et. al.]",
+  "contact": "kupujiji61",
+  "score": 65,
+  "silent": 131
+ },
+ "health_in_all_policies": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-27"
+ },
+ "folkupmedia": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-27"
+ },
+ "idiomsofdistress": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-27"
+ },
+ "ambabakov": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-27"
+ },
  "_queue": [
-  "eskinetal",
-  "idiomsofdistress",
-  "voicetextai_bot",
-  "struja_dobra",
-  "lanabarsukova",
-  "stalinov_antropole",
-  "khamovniky",
-  "fond_khamovniki",
-  "health_in_all_policies",
-  "alexandra_martyn",
-  "dom_modele",
-  "grimi_pf",
-  "club_antropologia_visualnogo",
-  "folkupmedia",
-  "anthrosocks",
-  "leninka_ru",
-  "arabic_mubin",
-  "riyadulfavaidi",
-  "teplo_nadezhda",
-  "nadezhda_psylight",
-  "cdprtvi",
-  "telega_spravedlivosti",
-  "solovievlive",
-  "aksenenko137",
-  "ambabakov",
-  "sovintern_ru",
-  "grigorevgd75",
-  "abnchanel_bot",
-  "vedomosti",
-  "bankrollo",
-  "banki_oil",
-  "nosovichchannel",
-  "nilov_official",
-  "master_pera",
-  "shingarkin",
-  "deputatdumy",
-  "polittransit",
-  "uzelsv",
-  "pwnow",
-  "rusanctions",
-  "orhoresistanse",
-  "barantchik",
-  "anapapapa",
-  "kremlin_mother_expert",
-  "sidpolit",
-  "chp_crimea",
-  "ruthless_retail_business",
-  "kanzlerdaddy",
-  "ejdailyru",
-  "vadim_trukhachyov",
-  "russtrat",
-  "nedvizha",
-  "stranaua",
-  "citiesinmotion",
-  "lipsits_again",
-  "polsat203",
-  "pdmnews",
-  "lomovkaa",
-  "lamp_priemnik",
-  "peoplesredaction",
   "lenskybridge",
   "mos_sobyanin",
   "chestnienovosti",
@@ -7299,7 +7458,173 @@
   "directntp",
   "rsf_news",
   "minobrnaukiofficial",
-  "rudnstudentslife"
+  "rudnstudentslife",
+  "devochki_p",
+  "qamarunkids",
+  "umma_school",
+  "koran_isunna",
+  "bookhadith",
+  "jetownersru",
+  "v_niqabe97",
+  "addemoji",
+  "anthroherb",
+  "urbnsht",
+  "professionalboundaries",
+  "chekr_pust",
+  "hornysaurus",
+  "opia_me",
+  "cleanponds747",
+  "kupujiji61",
+  "greka_progorod",
+  "inurbane_hinterland",
+  "kayaking_expedition",
+  "vogulich",
+  "eronina",
+  "lana_barsukova",
+  "vikibookiyachat",
+  "vikibookiya",
+  "zapovednik",
+  "rooms_msk",
+  "shkolapavlenko",
+  "kate_watches_films",
+  "lectorient",
+  "russianstatelibrary",
+  "restavratorleninki",
+  "aboutasia",
+  "hadith_isnad_online",
+  "muhammadbnumar",
+  "gksadovoekoltso",
+  "travnikovandrey",
+  "sq_metre",
+  "ggreat_of_development",
+  "artem_kirianov",
+  "dmitriysimes",
+  "veschijbondi",
+  "rubaltic",
+  "vprorok",
+  "rkadyrov_95",
+  "donbasscase",
+  "ip_oleg_stixi",
+  "gusev_tg",
+  "mariavladimirovnazakharova",
+  "evsiutkin",
+  "kabanovkv",
+  "roman_khudyacov",
+  "vrogov",
+  "nevernyyput",
+  "hinshtein",
+  "proboknet",
+  "olgapavlovatatarstan",
+  "parlament_novosti",
+  "skurlatovlive",
+  "aleksandrsemchenko",
+  "tsvetkov_avgd",
+  "chto_delat_2022",
+  "wek_ru",
+  "ddofa",
+  "leoanalitics",
+  "prpolitics",
+  "iron_feliks",
+  "madam_secretar",
+  "chadayevru",
+  "narubeze",
+  "politicalislam_russia",
+  "politjoystic",
+  "plutovstvo007",
+  "evpanina",
+  "netlenkanet",
+  "dmitrys1964",
+  "plnpskov",
+  "leningrad_guide",
+  "moderno_antiquum",
+  "policyonline",
+  "medvedevvesti",
+  "fabrika_russ",
+  "wisedruidd",
+  "sosediasia",
+  "kharkov_perviy",
+  "enabludatel",
+  "gr_turan",
+  "belarus_vpo",
+  "sektorgor",
+  "expressasia",
+  "baraeva_vidit",
+  "kstati_p",
+  "ebuldinskyspez",
+  "zhivetzhebelarus",
+  "delyagin",
+  "yarmundep",
+  "osman_devil",
+  "preemnik",
+  "tretyakov_n",
+  "riakatysha",
+  "tenipribaltiki",
+  "tasmanian_diablo",
+  "stan_center",
+  "politnext",
+  "zapiskitrad",
+  "turan_express",
+  "rybar_stan",
+  "allbillboards",
+  "union_unbreakable",
+  "balkanist2019",
+  "obshina_ru",
+  "ainurkurmanov",
+  "politnavigator",
+  "zyuganov",
+  "prforlove",
+  "bloodysx",
+  "chesnokmedia",
+  "andreykrasov",
+  "dumatv",
+  "victorbout_official",
+  "abramchenko_channel",
+  "q1ma1q",
+  "ashdenis",
+  "demin_captains",
+  "shatunov_da",
+  "africaninitiative",
+  "bosteleg",
+  "dnkobylkin",
+  "artketman",
+  "rvvoenkor",
+  "novosti_efir",
+  "dmitrynikotin",
+  "oper_goblin",
+  "readovkanews",
+  "sergeykolyasnikov",
+  "epoddubny",
+  "sheyhtamir1974",
+  "economica",
+  "rt_russian",
+  "rian_ru",
+  "bfmnews",
+  "moscowtimes_ru",
+  "astrapress",
+  "astrvpn_bot",
+  "nevlastny",
+  "sbelkovskiy",
+  "agentstvonews",
+  "hizbullahru",
+  "nstarikovru",
+  "komandanews",
+  "ssigny",
+  "exarchate_mp",
+  "majorselivanov",
+  "russianorthodoxchurchmauritius",
+  "olegyasynsky",
+  "pravosukr",
+  "khayalpressa313",
+  "srochnow",
+  "meehas",
+  "yumytg",
+  "foremyx",
+  "iwazowski",
+  "streetwall",
+  "zamkadist",
+  "v_tuapse",
+  "arhsvfb",
+  "mir_russkoi_mysli"
  ],
- "_query_pos": 15
+ "_query_pos": 23
 }
