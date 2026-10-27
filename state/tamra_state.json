@@ -1,7 +1,7 @@
 {
-  "offset": 30003256,
+  "offset": 30003257,
   "owner": "970882173",
-  "day": 7,
+  "day": 5,
   "batch": {
     "media": [],
     "voice": null,
@@ -42,7 +42,7 @@
   "drafts": [
     {
       "id": "20261021_064904_87ff",
-      "day": 5,
+      "day": 4,
       "media": [
         {
           "kind": "video",
