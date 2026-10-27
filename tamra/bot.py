@@ -238,6 +238,8 @@ def _fetch_sources(spec, workdir):
 def _stock_media(spec, voice, srcdir):
     """Клипов нет — берём сток. Подобранные клипы запоминаются в черновике, чтобы
     пересборка (другой хук, публикация) дала тот же видеоряд без повторной проверки."""
+    if spec.get("stock_fallback"):
+        return _fallback_media(spec, srcdir)
     if spec.get("stock_clips"):
         out = []
         for c in spec["stock_clips"]:
@@ -252,9 +254,24 @@ def _stock_media(spec, voice, srcdir):
     picked = stock.pick(count, spec.get("stock_exclude", []), srcdir,
                         queries=(spec.get("texts") or {}).get("stock_queries"))
     if not picked:
-        raise RuntimeError("не нашла подходящих стоковых кадров без лиц — пришли свои клипы")
+        # Сток не дал ни одного клипа без лиц и взрослых — не роняем сборку: фоном идёт
+        # нарисованная картинка в стиле обложки (с плавным наездом), а если и её нет —
+        # фирменный фон с логотипом. Субтитры, хук и озвучка — как обычно.
+        print("[TAMRA] Сток пуст — фон из нарисованной картинки")
+        spec["stock_fallback"] = True
+        return _fallback_media(spec, srcdir)
     spec["stock_clips"] = [{"id": c["id"], "url": c["url"]} for c in picked]
     return [{"path": c["path"], "kind": "video"} for c in picked]
+
+
+def _fallback_media(spec, srcdir):
+    """Фон без стока: картинка обложки (тот же seed — та же картинка) или фирменный фон."""
+    art = os.path.join(os.path.dirname(srcdir), "cover_art.jpg")
+    if not os.path.exists(art):
+        seed = spec.setdefault("cover_seed", cover_art.new_seed())
+        if not cover_art.generate((spec.get("texts") or {}).get("cover_scene"), seed, art):
+            art = montage.draw_brand_bg(os.path.join(srcdir, "brand_bg.png"))
+    return [{"path": art, "kind": "photo"}]
 
 
 def render(draft):
