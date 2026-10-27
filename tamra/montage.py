@@ -209,6 +209,24 @@ def draw_end(path):
     img.save(path)
 
 
+def draw_brand_bg(path):
+    """Запасной фон ролика: фирменный изумрудный градиент и крупный логотип-финик."""
+    img = Image.new("RGBA", (W, H))
+    d = ImageDraw.Draw(img)
+    for y in range(H):
+        t = y / H
+        c = tuple(int(a * (1 - t) + b * t) for a, b in zip(brand.EMERALD, brand.EMERALD_DARK))
+        d.line([(0, y), (W, y)], fill=c + (255,))
+    for x in range(0, W, 120):  # еле заметная сетка точек
+        for y in range(0, H, 120):
+            d.ellipse((x + 56, y + 56, x + 64, y + 64), fill=brand.GOLD + (40,))
+    if os.path.exists(LOGO):
+        logo = Image.open(LOGO).convert("RGBA").resize((520, 520), Image.LANCZOS)
+        img.alpha_composite(logo, ((W - 520) // 2, (H - 520) // 2))
+    img.convert("RGB").save(path)
+    return path
+
+
 # ── монтаж ─────────────────────────────────────────────────────────────────
 
 def _segment(src, kind, seconds, out):
