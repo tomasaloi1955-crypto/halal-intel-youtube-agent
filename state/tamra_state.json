@@ -1,16 +1,20 @@
 {
-  "offset": 30003266,
+  "offset": 30003267,
   "owner": "970882173",
   "day": 5,
   "batch": {
     "media": [],
-    "voice": null,
+    "voice": {
+      "file_id": "CQACAgIAAxkBAAOYauBIVdI4cU499kU3U6coygsn6h0AAsOnAAJmzAFLbZHbZvB-JOk9BA",
+      "ext": "m4a"
+    },
     "notes": [
       "Пришли текст"
     ],
     "hook": null,
     "caption": null,
-    "updated": 1793067650
+    "updated": 1793111611,
+    "last_group": null
   },
   "history": [
     {
