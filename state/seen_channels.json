@@ -684,28 +684,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
  },
- "iscelenieserdets": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-09-28"
- },
  "assajdahbot": {
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
  },
- "xnfksa": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-09-28"
- },
- "iqraskhool": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-28"
- },
  "iqraskhoolonline": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-28"
- },
- "huna_islam": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-28"
  },
  "iqrauroki": {
@@ -724,14 +708,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
  },
- "pznaniya": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-09-28"
- },
- "good_time_jt": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-28"
- },
  "umra2030": {
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
@@ -748,24 +724,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
  },
- "klyukva_v_sahare": {
-  "skip": "подписчиков 69",
-  "date": "2026-09-28"
- },
- "psych_help": {
-  "skip": "подписчиков 47",
-  "date": "2026-09-28"
- },
  "rodnaya_dysha": {
   "skip": "не канал или закрыт",
   "date": "2026-09-28"
  },
  "glebpsiholog": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-28"
- },
- "psiholog_askarova": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-28"
  },
  "tvoypsihologgg": {
@@ -798,14 +762,6 @@
  },
  "moder_umm_imran": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-28"
- },
- "diroya": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-28"
- },
- "muslim_school_online": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-28"
  },
  "muslim_school_online_bot": {
@@ -842,14 +798,6 @@
  },
  "institute_diroya_bot": {
   "skip": "не канал или закрыт",
-  "date": "2026-09-28"
- },
- "salihalusaimi": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-09-28"
- },
- "diroya_for_sisters": {
-  "skip": "молчит 0 дн.",
   "date": "2026-09-28"
  },
  "ashabualquran": {
@@ -7124,67 +7072,247 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-27"
  },
+ "lenskybridge": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "mos_sobyanin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "chestnienovosti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "maximgrigoryev": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "vasiliybeltsev": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "infoagency_ts": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "moneyandpolarfox": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "korotkopodelu": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "control_zakupka": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "cis91": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "fox_news_novozybkov": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "inferno_retail": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "prorokrussia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "vneshvrag": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "melnitsa21": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-28"
+ },
+ "notes_veterans": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "matveevkomment": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "hello_tassovka": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-28"
+ },
+ "vchkogpu_2": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "mwgrenade": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "prokurator_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "oleg_pushist": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-28"
+ },
+ "kremlinperesmeshnik": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "faridaily24": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "banksta": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "tchk14": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "svoidanash": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "oprichniksday": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "kremlin_matryoshka": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "taynaya_kantselyariya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "kuzbassinfo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "regpol": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-28"
+ },
+ "rus_demiurge": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "oreshkins": {
+  "skip": "молчит 1089 дн.",
+  "date": "2026-10-28"
+ },
+ "dimonundmir": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "bigtransfer2024": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "clubpravda": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "rosskandal": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "gosdumaem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "arhsvoboda": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "korifeyhab": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "ostorozhno_novosti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "saratovshyna": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "landofsiberia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "kremlebezbashennik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "dr_alex_sosnowski": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "dumayem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "politpochta_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-28"
+ },
+ "carbdensat": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "angara18": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "thegraschenkov": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "toporlive": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "kuraifutlar": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "birmanalex": {
+  "skip": "не наша ниша",
+  "date": "2026-10-28"
+ },
+ "streli_kazbeka": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "cho_opyat": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "zakupki_time": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "severnygorod": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "rbc_news": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-28"
+ },
+ "koshelevvladimir": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-28"
+ },
  "_queue": [
-  "lenskybridge",
-  "mos_sobyanin",
-  "chestnienovosti",
-  "maximgrigoryev",
-  "koshelevvladimir",
-  "vasiliybeltsev",
-  "infoagency_ts",
-  "moneyandpolarfox",
-  "korotkopodelu",
-  "control_zakupka",
-  "cis91",
-  "fox_news_novozybkov",
-  "inferno_retail",
-  "prorokrussia",
-  "vneshvrag",
-  "melnitsa21",
-  "notes_veterans",
-  "matveevkomment",
-  "hello_tassovka",
-  "vchkogpu_2",
-  "mwgrenade",
-  "prokurator_ru",
-  "oleg_pushist",
-  "kremlinperesmeshnik",
-  "faridaily24",
-  "banksta",
-  "tchk14",
-  "svoidanash",
-  "oprichniksday",
-  "kremlin_matryoshka",
-  "taynaya_kantselyariya",
-  "kuzbassinfo",
-  "regpol",
-  "rus_demiurge",
-  "oreshkins",
-  "dimonundmir",
-  "bigtransfer2024",
-  "clubpravda",
-  "rosskandal",
-  "gosdumaem",
-  "arhsvoboda",
-  "korifeyhab",
-  "ostorozhno_novosti",
-  "saratovshyna",
-  "landofsiberia",
-  "kremlebezbashennik",
-  "dr_alex_sosnowski",
-  "dumayem",
-  "politpochta_bot",
-  "carbdensat",
-  "angara18",
-  "thegraschenkov",
-  "toporlive",
-  "kuraifutlar",
-  "birmanalex",
-  "streli_kazbeka",
-  "cho_opyat",
-  "zakupki_time",
-  "severnygorod",
-  "rbc_news",
   "bbbreaking",
   "polit70",
   "pankin_ivan",
@@ -7624,7 +7752,67 @@
   "zamkadist",
   "v_tuapse",
   "arhsvfb",
-  "mir_russkoi_mysli"
+  "mir_russkoi_mysli",
+  "help202",
+  "tadg002",
+  "tadjvid_lezgidaldi",
+  "linda_kadieva",
+  "urokitajvida2",
+  "iscelenieserdets",
+  "xnfksa",
+  "iqraskhool",
+  "huna_islam",
+  "pznaniya",
+  "good_time_jt",
+  "klyukva_v_sahare",
+  "psych_help",
+  "psiholog_askarova",
+  "diroya",
+  "muslim_school_online",
+  "salihalusaimi",
+  "diroya_for_sisters",
+  "hellotransfer",
+  "developers_policy",
+  "bamway",
+  "trubapodneglinnoy",
+  "politmanagertg",
+  "stoxvostov",
+  "karaulny_accountant",
+  "russianeconomism",
+  "suverenka",
+  "mcrepostru",
+  "bezposhady",
+  "afgan220",
+  "under_carriage",
+  "finkrolik",
+  "ostashkonews",
+  "informef",
+  "holmogor_talks",
+  "mikle1on",
+  "grigoriev_maxim",
+  "oprf_official",
+  "alexandr_malkevich",
+  "matveychev",
+  "koshelevvladimir",
+  "igor_korotchenko",
+  "asgasparyan",
+  "anna_news",
+  "boris_rozhin",
+  "apwagner",
+  "sashakots",
+  "tbite",
+  "ru_global",
+  "zovcrimea",
+  "davosdv",
+  "gutenev_vv",
+  "federation_towers",
+  "gusyandrew",
+  "vybora",
+  "redacted6",
+  "volgabrief",
+  "tivanych78",
+  "mozgoffurban",
+  "za_4_morya"
  ],
- "_query_pos": 23
+ "_query_pos": 31
 }
