@@ -40,6 +40,16 @@
         "YouTube": "✅ https://youtube.com/shorts/-sq7GRsJgfg",
         "TikTok": "⏭ не настроено (нет ключей)"
       }
+    },
+    {
+      "day": 5,
+      "date": "2026-10-28",
+      "hook": "Учимся без двойки, без стыда",
+      "results": {
+        "Instagram": "⏭ не настроено (нет ключей)",
+        "YouTube": "✅ https://youtube.com/shorts/IFQtgH345rk",
+        "TikTok": "⏭ не настроено (нет ключей)"
+      }
     }
   ],
   "stock_used": [
@@ -51,152 +61,9 @@
   ],
   "drafts": [],
   "pending": [],
-  "queue": [
-    {
-      "id": "20261027_170215_f70f",
-      "day": 5,
-      "media": [],
-      "voice": {
-        "file_id": "CQACAgIAAxkBAAOYauBIVdI4cU499kU3U6coygsn6h0AAsOnAAJmzAFLbZHbZvB-JOk9BA",
-        "ext": "m4a"
-      },
-      "notes": [
-        "Пришли текст"
-      ],
-      "hook_override": null,
-      "caption_override": null,
-      "stock_exclude": [
-        7249051,
-        6782206,
-        11267667,
-        7698438,
-        27385370
-      ],
-      "raw": false,
-      "texts": {
-        "hook": "Учимся без двойки, без стыда",
-        "title": "День 5: Как Tamra School обеспечивает полное понимание темы",
-        "caption": "Почему в обычных школах допускают незасвоенные темы?\nВ Tamra School урок считается пройденным только без более одной ошибки.\nРебёнок получает тот же материал другими словами, пока не поймёт.\nКак вы проверяете, что ваш ребёнок действительно понял материал?\nБесплатный тест уровня – ссылка в профиле.",
-        "hashtags": [
-          "#образование",
-          "#семья",
-          "#мусульмане",
-          "#онлайншкола",
-          "#tamraschool",
-          "#исламскаяшкола",
-          "#семейноеобучение",
-          "#мусульманскаясемья",
-          "#воспитаниедетей"
-        ],
-        "subtitles": [
-          {
-            "text": "итак это день 5",
-            "start": 0.74,
-            "end": 2.0
-          },
-          {
-            "text": "дальше только тогда",
-            "start": 2.0,
-            "end": 3.76
-          },
-          {
-            "text": "когда понял что я",
-            "start": 3.76,
-            "end": 5.72
-          },
-          {
-            "text": "имею ввиду в обычной",
-            "start": 5.72,
-            "end": 7.18
-          },
-          {
-            "text": "школе тему прошли и",
-            "start": 7.18,
-            "end": 8.64
-          },
-          {
-            "text": "едем дальше даже если",
-            "start": 8.02,
-            "end": 10.16
-          },
-          {
-            "text": "ребенок не понял у",
-            "start": 10.16,
-            "end": 11.82
-          },
-          {
-            "text": "нас так нельзя там",
-            "start": 11.82,
-            "end": 13.58
-          },
-          {
-            "text": "раскул урок засчитан",
-            "start": 13.58,
-            "end": 14.94
-          },
-          {
-            "text": "только если не больше",
-            "start": 14.94,
-            "end": 16.14
-          },
-          {
-            "text": "одной ошибки не",
-            "start": 16.14,
-            "end": 18.02
-          },
-          {
-            "text": "получилось ребенок",
-            "start": 18.02,
-            "end": 19.14
-          },
-          {
-            "text": "получает тот же урок",
-            "start": 19.14,
-            "end": 20.24
-          },
-          {
-            "text": "только другими словами и",
-            "start": 20.24,
-            "end": 22.36
-          },
-          {
-            "text": "пробует снова и снова",
-            "start": 22.36,
-            "end": 23.7
-          },
-          {
-            "text": "без двоек и без",
-            "start": 23.7,
-            "end": 25.5
-          },
-          {
-            "text": "стыда подписывайся следи",
-            "start": 25.5,
-            "end": 27.66
-          },
-          {
-            "text": "за нашей школы",
-            "start": 27.66,
-            "end": 28.44
-          }
-        ],
-        "cover_scene": "stack of math books, Russian alphabet blocks, English dictionary, Arabic calligraphy tiles, laptop with calendar",
-        "stock_queries": [
-          "child solving math problem on tablet",
-          "kid listening to Arabic lesson on laptop",
-          "child reading Russian alphabet blocks",
-          "parent reviewing progress report on phone",
-          "child celebrating with dates fruit"
-        ]
-      },
-      "stock_fallback": true,
-      "cover_seed": 8962603,
-      "cover_note": "Обложку рисовала запасная нейросеть — Gemini не ответил: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
-      "rendered_hook": "Учимся без двойки, без стыда"
-    }
-  ],
+  "queue": [],
   "publish_hour": 19,
-  "last_publish_date": "2026-10-27",
+  "last_publish_date": "2026-10-28",
   "last_fail_notice": "2026-10-19",
   "yt_token_enc": "gAAAAABq1Dmmvb0F_iT9VLabIkhrysUflI-oTdl3vXBOt4eCKot4rv_-qhGS07rwQ6jh8rTEXjT93BQODkz9XeiHjh-AxTsxbu_c3G1WZ7nlRU9XrNUMv_0BhMju09YhAc3t-gCGxB3SG9uJl4cWf5yKMC-jYjaShddiIKcRVZe3nFj0YAB_-eczpqVoPTdgq8bp4p6ab4HJd0stRNYegfXl4aZe_eJVbzwh_CVYU52HlooiogXlfb0oGnGktnKO1xosZ3uZ7d3bb5kuILsgnM345QJuSxWtSCNsqXrTHBATLEzdUKSbu1eRSEM2fx1X5zoL0qjdG-J8s94uLZd36hn3woxuO5bkBatwPXBX_0TUYhBb_xPGQ83DPVKQOs7kmK-LGRpY_cxzmjpsFtzAwKEhAJaj2Wd4L-3O2rrVJcCJ7j0eWacIfZGGgEZd8AcKOKITWac5pa-XAKT4mVvTzDk0nUOFzb2E54jt5irgyQiGdWtnN4l3K241t9tijlMDEwwSNzMYz3ejdS3c_-4EdTKRHpZJ6CAswSa7aBMekbBbkgdDrm0dd5toUgq7kujX_rKbD8Z3_LMlCC0Xuc6xVbT-lQPDAShmko_QkKOEtT7eFR0qAsgN_DJBw_jp587b_ZLrqyu14Ftkk4jI8Cz6X8xh-RV75W_LkesCHhOruuEmcDGa2pE8IJ86gvbgQxUBzNsxfKig1mxvt_VE21FA5eI9k3Xi2vi3jDyDFPtZ92lHYNaVVz5CvTniaz2KtoJMTd_D8aqKL65SY720MzB4bsR_V_1HfOIr0XtrhG3liYoxADUcxOGtTMVtzIsgyCLPTb_UO1heyEk-Ll3Mw3toXAKCPQJ31Nz9xBKqOdcknDt8pvhLXaAiXsDI_8bJxJjLT0zhbfoBTEenayyf5QvkV8Yjv3mlIkSaQkz8O4kbyLgPJVLjXI2104RGzlfpgY-LlkP2ILU_vawmjDruNNK6JkeyBMdBR9b2P1jpeEu8aIsr0n6e1dAh0hgrW-snepu1VSthvbCxRtJBhPCiPRnF7xJgJvy_G3xNIYF1jhPGKkuOt764ODCmI71a0drEXuaJfyrZY7AYONZibvTD3mTsl-aNEnkBX8v3G7JzVOJPWBOfdKSHQatr9vU="
 }
