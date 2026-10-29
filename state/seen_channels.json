@@ -878,10 +878,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-09-29"
  },
- "polinkamalinkahandmade": {
-  "skip": "подписчиков 32",
-  "date": "2026-09-29"
- },
  "hobby_chat": {
   "skip": "не канал или закрыт",
   "date": "2026-09-29"
@@ -7312,67 +7308,247 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-28"
  },
+ "bbbreaking": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "polit70": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "pankin_ivan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "drunkenpolitobot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "bazabazon": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "insomar": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "agdchan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "politburo2": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "tzigan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "paraklett": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "radioray": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "maester": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "polittehnologi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "polittemnik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "uanotru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "vibornyk": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "tgrussia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "voidreport": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "boilerroomchannel": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "shekh_muhammad_ibn_ibrahim": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "svyazkvd_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "ifrussiespb": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "ifrussiemoscou": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "afrus": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "ekataf": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-29"
+ },
+ "sbercentre": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-29"
+ },
+ "pperedelkino": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "pticeva": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "wordsnletters": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "vesperomusic": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "psychoratband": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "hehjeesd": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "saynband": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-29"
+ },
+ "vetkhiyzapret": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "kartrika": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-29"
+ },
+ "yes_fest": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "minbrobit": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "retrosarcasm": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "sektat_band": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "glia67": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "dnpp_band": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "punkid3": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "orelseband": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "mfazzza": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "egorchaev": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "cheremukha_1": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "avraboty": {
+  "skip": "подписчиков 106",
+  "date": "2026-10-29"
+ },
+ "epokhalconvertor": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "raznuzdan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "mmmdrop": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-29"
+ },
+ "raniaband": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "krackelure": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "sadwavefeedbackbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-29"
+ },
+ "restoned": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "backbreakinggig": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "win_bezdie": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "pyatnitsa13": {
+  "skip": "не наша ниша",
+  "date": "2026-10-29"
+ },
+ "shikiartschool": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-29"
+ },
+ "enminchenko": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-29"
+ },
+ "ladylibra_1410": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-29"
+ },
  "_queue": [
-  "bbbreaking",
-  "polit70",
-  "pankin_ivan",
-  "drunkenpolitobot",
-  "bazabazon",
-  "insomar",
-  "agdchan",
-  "politburo2",
-  "enminchenko",
-  "tzigan",
-  "paraklett",
-  "radioray",
-  "maester",
-  "polittehnologi",
-  "polittemnik",
-  "uanotru",
-  "vibornyk",
-  "tgrussia",
-  "voidreport",
-  "boilerroomchannel",
-  "shekh_muhammad_ibn_ibrahim",
-  "svyazkvd_bot",
-  "ifrussiespb",
-  "ifrussiemoscou",
-  "afrus",
-  "ekataf",
-  "sbercentre",
-  "shikiartschool",
-  "ladylibra_1410",
-  "pperedelkino",
-  "pticeva",
-  "wordsnletters",
-  "vesperomusic",
-  "psychoratband",
-  "hehjeesd",
-  "saynband",
-  "vetkhiyzapret",
-  "kartrika",
-  "yes_fest",
-  "minbrobit",
-  "retrosarcasm",
-  "sektat_band",
-  "glia67",
-  "dnpp_band",
-  "punkid3",
-  "orelseband",
-  "mfazzza",
-  "egorchaev",
-  "cheremukha_1",
-  "avraboty",
-  "epokhalconvertor",
-  "raznuzdan",
-  "mmmdrop",
-  "raniaband",
-  "krackelure",
-  "sadwavefeedbackbot",
-  "restoned",
-  "backbreakinggig",
-  "win_bezdie",
-  "pyatnitsa13",
   "sadwave",
   "vsevolna",
   "sliinie",
@@ -7793,7 +7969,6 @@
   "oprf_official",
   "alexandr_malkevich",
   "matveychev",
-  "koshelevvladimir",
   "igor_korotchenko",
   "asgasparyan",
   "anna_news",
@@ -7812,7 +7987,68 @@
   "volgabrief",
   "tivanych78",
   "mozgoffurban",
-  "za_4_morya"
+  "za_4_morya",
+  "digitalmy",
+  "escort_tour1",
+  "polinkamalinkahandmade",
+  "navideovidno",
+  "mynnovgorod",
+  "sibcyrulik",
+  "ulkompr",
+  "ostrovisland",
+  "krslooking24",
+  "stepdozor",
+  "dfonews",
+  "sakhco",
+  "platform_digoriya",
+  "regionallllll",
+  "prigimdv",
+  "torprim",
+  "live_kuban",
+  "khabpolitcentr",
+  "politcentr",
+  "yasno123",
+  "art_of_politics",
+  "rostov_na_konu",
+  "silapomorya",
+  "voteraz",
+  "zloysamarityanin",
+  "ceiaiordo",
+  "amursovet",
+  "affectvyiheeytopotentialpolitics",
+  "gossovet",
+  "enminchenko",
+  "lantratovadobro",
+  "newkissinger",
+  "rasopr",
+  "government_rus",
+  "kadmitriev",
+  "matrosou",
+  "mkotyukov",
+  "minchenkotrump",
+  "igor_artamonov48",
+  "kozhemiakoofficial",
+  "yellow_sky_policy",
+  "gubery",
+  "mcrepostregion",
+  "drozdenko_au_lo",
+  "electionsquad",
+  "namvsemkinets",
+  "architectsocial",
+  "silverrainradio",
+  "e_v_kovalchuk",
+  "minchenkohistory",
+  "politcinema",
+  "minchenkoconsulting",
+  "elina_urtaeva",
+  "ravensletter",
+  "deepvisionary",
+  "falenkov_m",
+  "temnavoda",
+  "izvestia",
+  "ru_south",
+  "russ_orientalist",
+  "vibornyk_info"
  ],
- "_query_pos": 31
+ "_query_pos": 39
 }
