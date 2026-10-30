@@ -7548,67 +7548,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-29"
  },
+ "sadwave": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "vsevolna": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "sliinie": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "korshoon_dnb": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "png_band_official": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "wasteburn": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "aeroslavikmusic": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "opencband": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "pmjsony": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "opheliaband": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "qticketsbuybot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "fivethirty0530": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "angel_of_sorr0w": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "omuraisuu": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-30"
+ },
+ "suhankonstantin": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "v2duo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "sixteentons_club": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "detuneband": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "shila_band": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "babelbookstlv": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "gardensandtime": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "natalyagromovadnevnik": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "bureevairina": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "ilovemuseum": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "azarova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "alexandramozhaeva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "pzk_memorial": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "ne_poslednee_slovo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "october29_live": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "free_ruslan_sidiki": {
+  "skip": "подписчиков 159",
+  "date": "2026-10-30"
+ },
+ "kanskdelo": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "krksledkom": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "protonmail": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "chtotvoryatzhenshinibot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "nitochkihihi": {
+  "skip": "подписчиков 16",
+  "date": "2026-10-30"
+ },
+ "sisterhood_screaming": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "herartisherheart": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-30"
+ },
+ "kirsbier": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "from_practice": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "dissertaciya_malinovich": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "altleftorgbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-30"
+ },
+ "valuha_i_yamy": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-30"
+ },
+ "rfo_ona": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "altleft_org": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "annzettart": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "rosyanka_fem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "fem_chel": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-30"
+ },
+ "shorokhi_krovi": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "feminespace": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "sisters_lilith": {
+  "skip": "не наша ниша",
+  "date": "2026-10-30"
+ },
+ "archvozrojdenie": {
+  "sent": "2026-10-30",
+  "title": "ЦВЕТЫ в Усадьбе",
+  "contact": "gevolvet",
+  "score": 65,
+  "silent": 21
+ },
+ "rupression": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "fem_perehodnitsa": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "excursovodrossii": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "bolshaya_zona": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "solidarity_zone": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "lastochki_penza": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "ura_women": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
+ "freeazat": {
+  "sent": "2026-10-30",
+  "title": "FreeAzat!",
+  "contact": "free_azat",
+  "score": 15,
+  "silent": 3
+ },
+ "ilyashakursky": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-30"
+ },
  "_queue": [
-  "sadwave",
-  "vsevolna",
-  "sliinie",
-  "korshoon_dnb",
-  "png_band_official",
-  "wasteburn",
-  "aeroslavikmusic",
-  "opencband",
-  "pmjsony",
-  "opheliaband",
-  "qticketsbuybot",
-  "fivethirty0530",
-  "angel_of_sorr0w",
-  "omuraisuu",
-  "suhankonstantin",
-  "v2duo",
-  "sixteentons_club",
-  "detuneband",
-  "shila_band",
-  "babelbookstlv",
-  "gardensandtime",
-  "archvozrojdenie",
-  "excursovodrossii",
-  "natalyagromovadnevnik",
-  "bureevairina",
-  "ilovemuseum",
-  "azarova",
-  "alexandramozhaeva",
-  "pzk_memorial",
-  "ne_poslednee_slovo",
-  "october29_live",
-  "free_ruslan_sidiki",
-  "bolshaya_zona",
-  "rupression",
-  "freeazat",
-  "ilyashakursky",
-  "kanskdelo",
-  "krksledkom",
-  "protonmail",
-  "solidarity_zone",
-  "chtotvoryatzhenshinibot",
-  "lastochki_penza",
-  "fem_perehodnitsa",
-  "nitochkihihi",
-  "sisterhood_screaming",
-  "herartisherheart",
-  "kirsbier",
-  "from_practice",
-  "dissertaciya_malinovich",
-  "ura_women",
-  "altleftorgbot",
-  "valuha_i_yamy",
-  "rfo_ona",
-  "altleft_org",
-  "annzettart",
-  "rosyanka_fem",
-  "fem_chel",
-  "shorokhi_krovi",
-  "feminespace",
-  "sisters_lilith",
   "regfem",
   "eto_ya_allochka",
   "azatkatyn",
@@ -8017,7 +8203,6 @@
   "amursovet",
   "affectvyiheeytopotentialpolitics",
   "gossovet",
-  "enminchenko",
   "lantratovadobro",
   "newkissinger",
   "rasopr",
@@ -8048,7 +8233,68 @@
   "izvestia",
   "ru_south",
   "russ_orientalist",
-  "vibornyk_info"
+  "vibornyk_info",
+  "vasya_kondrashov",
+  "amgzn",
+  "swideteli",
+  "panzer_photoplenk",
+  "fadefest",
+  "potexaxaxahinki",
+  "mgtour2021",
+  "smbrnr",
+  "berenikamusic",
+  "clubsixteentons",
+  "affinageofficial",
+  "princesseangine_official",
+  "toozytunes",
+  "ilwt_official",
+  "balzak_on",
+  "auditoria_tbi",
+  "readingarden",
+  "kilimanjarodaily",
+  "lelya_ba",
+  "gevolvet",
+  "decode",
+  "greenmay",
+  "ediswater",
+  "ingaalev",
+  "julia_guide_moscow",
+  "vlesainagory",
+  "e_pliss",
+  "fondmostime",
+  "moskvichmag",
+  "kustodia_collection",
+  "bureeva_guide",
+  "state_historical_museum",
+  "lettersinriga",
+  "mosyabloko",
+  "russiagainstwar",
+  "spb_yabloko",
+  "eventsmelbourne",
+  "russianagainstwar_italia",
+  "lettersforfreedom_amsterdam",
+  "endoflaw",
+  "pzk_vasilisa_bot",
+  "russiansagainstwarpolska",
+  "pisma_politzekam",
+  "far_hamburg",
+  "auditoriabudva",
+  "october29_bot",
+  "akrkbremen",
+  "futurerussia_ch",
+  "reforumspaceberlin",
+  "solidarity_zone",
+  "lettersnewzealand",
+  "pzktoulouse",
+  "nrwfreiesrussland",
+  "mailforhelp",
+  "rusnews",
+  "mediazzzona",
+  "yabloko_tat",
+  "lettersforfreedom",
+  "chelyabloko",
+  "mailforhelp_bot",
+  "demrucy"
  ],
- "_query_pos": 39
+ "_query_pos": 47
 }
