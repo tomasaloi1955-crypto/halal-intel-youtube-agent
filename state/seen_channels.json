@@ -7794,67 +7794,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-30"
  },
+ "regfem": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "azatkatyn": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "gene_mercy_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "femafisha": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-10-31"
+ },
+ "azatkatyan": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "anarchoma": {
+  "skip": "подписчиков 39",
+  "date": "2026-10-31"
+ },
+ "anthropologs": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "libsoc_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "giles2304": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "no_future_press": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "noftrbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "nora_psyhelp_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "yylmeludymo": {
+  "skip": "подписчиков 39",
+  "date": "2026-10-31"
+ },
+ "tochkasborkii": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "gazefemclub1": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "solidarity_union": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "plpzk": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "muzikalniy25xona18": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "expodiscounts": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "cherny_altai": {
+  "skip": "молчит 570 дн.",
+  "date": "2026-10-31"
+ },
+ "black_escort": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "black_edem": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "encanto_official": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "piepierrr1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "uablack": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "vgikpodcast": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "vorovskoy11": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "yvesalnt": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "atlas_black": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "blackbizz": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "shasha_com": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "chornie_delfin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "blackletual": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "ovod_razvitie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "for_children": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "kniga_deti": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "kids_la": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "deti_ya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "silka125": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "annbashtovaya": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "bsbp_otavtorov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "russiancode": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "niidpo_logoped_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "flymama": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "rowenlaan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-10-31"
+ },
+ "stopgameru": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "yanis_does": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "vzvesotvet": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "prometa": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-10-31"
+ },
+ "yashernet": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "locaroundtheworld": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "bomboragames": {
+  "skip": "не наша ниша",
+  "date": "2026-10-31"
+ },
+ "locfem": {
+  "sent": "2026-10-31",
+  "title": "Локфем",
+  "contact": "LynxMatriarchixTG",
+  "score": 75,
+  "silent": 360
+ },
+ "prostpolitika_spb": {
+  "sent": "2026-10-31",
+  "title": "Пространство Политика СПб",
+  "contact": "ppodprostranstvo",
+  "score": 70,
+  "silent": 4
+ },
+ "petapdtg": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
+ "yetanotherqa": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
+ "eto_ya_allochka": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
+ "bekagaming2007": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
+ "yadvidchuk": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
+ "shmupsisalife": {
+  "skip": "нет контакта владельца",
+  "date": "2026-10-31"
+ },
  "_queue": [
-  "regfem",
-  "eto_ya_allochka",
-  "azatkatyn",
-  "locfem",
-  "gene_mercy_bot",
-  "femafisha",
-  "azatkatyan",
-  "prostpolitika_spb",
-  "anarchoma",
-  "anthropologs",
-  "libsoc_bot",
-  "giles2304",
-  "no_future_press",
-  "noftrbot",
-  "nora_psyhelp_bot",
-  "yylmeludymo",
-  "tochkasborkii",
-  "gazefemclub1",
-  "solidarity_union",
-  "plpzk",
-  "muzikalniy25xona18",
-  "expodiscounts",
-  "cherny_altai",
-  "black_escort",
-  "black_edem",
-  "encanto_official",
-  "piepierrr1",
-  "uablack",
-  "vgikpodcast",
-  "vorovskoy11",
-  "yvesalnt",
-  "atlas_black",
-  "blackbizz",
-  "shasha_com",
-  "chornie_delfin",
-  "blackletual",
-  "ovod_razvitie",
-  "for_children",
-  "kniga_deti",
-  "kids_la",
-  "deti_ya",
-  "silka125",
-  "annbashtovaya",
-  "bsbp_otavtorov",
-  "russiancode",
-  "niidpo_logoped_bot",
-  "flymama",
-  "rowenlaan",
-  "stopgameru",
-  "yanis_does",
-  "vzvesotvet",
-  "yadvidchuk",
-  "petapdtg",
-  "bekagaming2007",
-  "shmupsisalife",
-  "prometa",
-  "yashernet",
-  "yetanotherqa",
-  "locaroundtheworld",
-  "bomboragames",
   "before_is_over",
   "siliquaart",
   "vatamota",
@@ -8283,7 +8469,6 @@
   "akrkbremen",
   "futurerussia_ch",
   "reforumspaceberlin",
-  "solidarity_zone",
   "lettersnewzealand",
   "pzktoulouse",
   "nrwfreiesrussland",
@@ -8294,7 +8479,68 @@
   "lettersforfreedom",
   "chelyabloko",
   "mailforhelp_bot",
-  "demrucy"
+  "demrucy",
+  "moripuk",
+  "femkyzlar",
+  "feminitivekld",
+  "fire_krasnodar",
+  "rfemul_bot",
+  "chavaga_media",
+  "zhannamental",
+  "regfem_bot",
+  "spravimsiavmeste",
+  "sapportart",
+  "femforfem",
+  "malyshki_1822",
+  "femclub40cats",
+  "minam_izh",
+  "la_brasilia",
+  "levoradikal",
+  "whalesgohigh",
+  "oktobernd",
+  "my_class_war_only",
+  "eurydice_nsk",
+  "kurkynys",
+  "taywbike",
+  "kitabychufa",
+  "victory_for_radfem",
+  "feminizmprosto",
+  "mfrradfem",
+  "hhawkee",
+  "locfem_bot",
+  "lynxmatriarchixtg",
+  "alice_rf",
+  "voprekifem",
+  "ursaminortg",
+  "ursa_clothes",
+  "onnxie",
+  "wwwomancorespb",
+  "femglow",
+  "womancorespbadmins",
+  "femglowbot",
+  "ona_feedback_bot",
+  "feminespace_bot",
+  "ppodprostranstvo",
+  "knizrad",
+  "anthropochats",
+  "lesfilmru",
+  "anthropoquestionbot",
+  "kino_u_nini",
+  "lubovetosotryasenijemozga",
+  "never_ending_adventure",
+  "syndicat_studio",
+  "zhenskisrok",
+  "veganizeyou",
+  "vegan_community_moscow",
+  "meduzalive",
+  "big_eurasia",
+  "spektrurgent",
+  "lentadnya",
+  "blackaltai_bot",
+  "redaltaya",
+  "aytashevlive",
+  "tele_eve",
+  "altainfonews"
  ],
- "_query_pos": 47
+ "_query_pos": 55
 }
