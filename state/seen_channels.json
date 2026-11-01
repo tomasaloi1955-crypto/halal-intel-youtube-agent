@@ -8040,67 +8040,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-10-31"
  },
+ "before_is_over": {
+  "skip": "подписчиков 93",
+  "date": "2026-11-01"
+ },
+ "vatamota": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "sisters": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "sistershelp": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-01"
+ },
+ "dekabristki_graphic_novel": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "gospozha_glavred": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "vsyovslova": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "bibliotekapolka": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "polynpublishing": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "master_piece_lander": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "polinamaksi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "yugenofart": {
+  "skip": "подписчиков 31",
+  "date": "2026-11-01"
+ },
+ "speaking_city": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "orientalwitches": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "ttbalt": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "rezidenty_vavilov": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "v_islame": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "obyavlenie_dagestan": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "mamky_ebal": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "rgvkdagestan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "dag_istorii": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "dag5g": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "hehamcha": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "znakomstva_qz": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "kontakt_almaty": {
+  "skip": "молчит 636 дн.",
+  "date": "2026-11-01"
+ },
+ "almatyrab0ta": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "whs_95_bot_alm": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "madinaayub": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "arabicle_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "minmolru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "civil_lidersrd": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "procuratura05": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "kamilsaidov1": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "minzdravrd": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "mvd_dagestan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "dagestan_sledcom05": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-01"
+ },
+ "mapamagrus": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "shellllllf": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "mkongodze": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "nonsanzdroict": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "vkaramurza2022": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "tooloudsolitude": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "koshkinachitaet": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "kvartirnik_bcn": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "meduza_books": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-01"
+ },
+ "reforumvilniusbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "bookswithklishin": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "ivmichael": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "freedom_zone_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "the_zona_svobody": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "auditoria_tbilisi_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "vasilieva_balabanova": {
+  "skip": "не наша ниша",
+  "date": "2026-11-01"
+ },
+ "republicmag": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "auditoria_tbilisi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "dashellla": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-01"
+ },
+ "sale_caviar": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-01"
+ },
+ "siliquaart": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-01"
+ },
+ "marinagrinkova": {
+  "sent": "2026-11-01",
+  "title": "🌊 𝓜𝓪𝓻𝓲𝓷𝓪",
+  "contact": "marina_grinkova",
+  "score": 70,
+  "silent": 13
+ },
+ "tgchns": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-01"
+ },
+ "speechka_media": {
+  "sent": "2026-11-01",
+  "title": "спичка",
+  "contact": "womancorespbadmins",
+  "score": 35,
+  "silent": 3
+ },
  "_queue": [
-  "before_is_over",
-  "siliquaart",
-  "vatamota",
-  "sisters",
-  "sistershelp",
-  "dekabristki_graphic_novel",
-  "gospozha_glavred",
-  "vsyovslova",
-  "bibliotekapolka",
-  "polynpublishing",
-  "master_piece_lander",
-  "polinamaksi",
-  "yugenofart",
-  "speechka_media",
-  "speaking_city",
-  "orientalwitches",
-  "ttbalt",
-  "rezidenty_vavilov",
-  "v_islame",
-  "obyavlenie_dagestan",
-  "mamky_ebal",
-  "rgvkdagestan",
-  "dag_istorii",
-  "dag5g",
-  "hehamcha",
-  "znakomstva_qz",
-  "kontakt_almaty",
-  "almatyrab0ta",
-  "whs_95_bot_alm",
-  "marinagrinkova",
-  "madinaayub",
-  "arabicle_ru",
-  "minmolru",
-  "civil_lidersrd",
-  "procuratura05",
-  "kamilsaidov1",
-  "minzdravrd",
-  "mvd_dagestan",
-  "dagestan_sledcom05",
-  "mapamagrus",
-  "shellllllf",
-  "mkongodze",
-  "nonsanzdroict",
-  "vkaramurza2022",
-  "tooloudsolitude",
-  "koshkinachitaet",
-  "kvartirnik_bcn",
-  "meduza_books",
-  "reforumvilniusbot",
-  "bookswithklishin",
-  "ivmichael",
-  "freedom_zone_bot",
-  "the_zona_svobody",
-  "auditoria_tbilisi_bot",
-  "vasilieva_balabanova",
-  "republicmag",
-  "auditoria_tbilisi",
-  "tgchns",
-  "dashellla",
-  "sale_caviar",
   "jannatga_oshiq_qalblar_4",
   "koran_obuchenie",
   "quran_isunna",
@@ -8540,7 +8726,51 @@
   "redaltaya",
   "aytashevlive",
   "tele_eve",
-  "altainfonews"
+  "altainfonews",
+  "pekron",
+  "mundra_hideout",
+  "yanny_s",
+  "sredasvoih",
+  "krylovazh",
+  "lindadelaartcentr",
+  "haiku_kanjihead",
+  "spasibo_firstov",
+  "studiomymafia",
+  "psylaborant",
+  "burninghut",
+  "bandschool",
+  "key_lander",
+  "shkaflib_tg",
+  "yourowncinema",
+  "minkultrd",
+  "pravitelstvord",
+  "emiliashahabutinovna",
+  "xxsavebot",
+  "nujayma",
+  "buenoami",
+  "glava_rd",
+  "gibdd05rus",
+  "ivolk",
+  "sledcom_press",
+  "srbijabiz",
+  "mapamag_rs",
+  "parhomenkobooks",
+  "angrypublisher",
+  "mkknst",
+  "krasilanna",
+  "zhskii",
+  "vinegret_cz",
+  "kvartirnik_petit",
+  "lana1251",
+  "irandezhurniy",
+  "vidimbooks",
+  "meduza",
+  "dancespectrum",
+  "svobodumorozovu",
+  "poslemedia",
+  "littera_x",
+  "caviar2",
+  "alexdali"
  ],
- "_query_pos": 55
+ "_query_pos": 4
 }
