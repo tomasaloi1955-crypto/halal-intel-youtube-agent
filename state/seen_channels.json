@@ -985,10 +985,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-03"
  },
- "halyqstan": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-03"
- },
  "fitnation_kostanay": {
   "skip": "молчит 3072 дн.",
   "date": "2026-10-03"
@@ -1033,60 +1029,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-03"
  },
- "vnimanielab": {
-  "skip": "подписчиков 138",
-  "date": "2026-10-03"
- },
  "valuesandorder": {
   "skip": "не наша ниша",
   "date": "2026-10-03"
  },
- "thirdhandsecond": {
-  "skip": "подписчиков 40",
-  "date": "2026-10-03"
- },
- "orientmuseum": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-03"
- },
- "autowierd": {
-  "skip": "подписчиков 61",
-  "date": "2026-10-03"
- },
  "desesseinteslibrary": {
   "skip": "не наша ниша",
-  "date": "2026-10-03"
- },
- "desesseintespress": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-03"
- },
- "polemedia": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-03"
- },
- "schoolofletters": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-03"
- },
- "mardjanifoundation": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-03"
- },
- "textortexel": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-03"
- },
- "farsi_shirin": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-03"
- },
- "syncweather": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-03"
- },
- "cool666zip": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-03"
  },
  "yandex": {
@@ -1103,10 +1051,6 @@
  },
  "griffith_dar": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-03"
- },
- "africanculturefestival": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-03"
  },
  "elena_panchishena": {
@@ -1129,28 +1073,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-03"
  },
- "freewomenoftheeast": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-03"
- },
  "muslimworlds_hse": {
   "sent": "2026-10-03",
   "title": "Мусульманские миры в России",
   "contact": "badzhva",
   "score": 80,
   "silent": 24
- },
- "fieldworkpain": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-03"
- },
- "iocs_hse": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-03"
- },
- "paxiranica": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-03"
  },
  "ordinaryyylife": {
   "sent": "2026-10-03",
@@ -8286,67 +8214,259 @@
   "score": 35,
   "silent": 3
  },
+ "jannatga_oshiq_qalblar_4": {
+  "skip": "подписчиков 7",
+  "date": "2026-11-02"
+ },
+ "koran_obuchenie": {
+  "skip": "подписчиков 94",
+  "date": "2026-11-02"
+ },
+ "quran_isunna": {
+  "skip": "подписчиков 0",
+  "date": "2026-11-02"
+ },
+ "quran_ponimai": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "budryaadom": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "ideastudent": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "mukhammad_moderator": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "reklama_russia2022": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "russiareklamaa": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "kristinaa94": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "novostisanktpeterburg": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "kubanskienovosti": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "novostichelyabinsk": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "novostiekaterinburgg": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "anastasiakarpo": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "pavelborisovic": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "price_moscow": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "groupa_777_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "muslimtg_1": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "vlaverin": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "anthropokryk": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "ukszh1988": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "profgorozhanka": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "culturolog_fly": {
+  "skip": "подписчиков 98",
+  "date": "2026-11-02"
+ },
+ "souchastie": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "smart_lab_news": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "directntp": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "rsf_news": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "minobrnaukiofficial": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "rudnstudentslife": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "devochki_p": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "qamarunkids": {
+  "skip": "подписчиков 139",
+  "date": "2026-11-02"
+ },
+ "umma_school": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "koran_isunna": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-02"
+ },
+ "bookhadith": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "jetownersru": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "addemoji": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "anthroherb": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "urbnsht": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "professionalboundaries": {
+  "skip": "подписчиков 154",
+  "date": "2026-11-02"
+ },
+ "hornysaurus": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "opia_me": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "kupujiji61": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "greka_progorod": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "inurbane_hinterland": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "kayaking_expedition": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "vogulich": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "eronina": {
+  "skip": "не наша ниша",
+  "date": "2026-11-02"
+ },
+ "lana_barsukova": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "vikibookiyachat": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-02"
+ },
+ "rooms_msk": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-02"
+ },
+ "v_niqabe97": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-02"
+ },
+ "mezonkengashi": {
+  "sent": "2026-11-02",
+  "title": "Mezon Kengashi",
+  "contact": "Mezon_adm",
+  "score": 70,
+  "silent": 6
+ },
+ "miptstemlab": {
+  "sent": "2026-11-02",
+  "title": "STEM-лаба МФТИ",
+  "contact": "ilya101010",
+  "score": 45,
+  "silent": 7
+ },
+ "kukuteatr": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-02"
+ },
+ "cleanponds747": {
+  "sent": "2026-11-02",
+  "title": "Ethnically Clean Ponds",
+  "contact": "EAV747",
+  "score": 35,
+  "silent": 3
+ },
+ "zapovednik": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-02"
+ },
+ "lampa_art_market": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-02"
+ },
+ "chekr_pust": {
+  "sent": "2026-11-02",
+  "title": "Чекрыгин и пустота",
+  "contact": "a_chekr",
+  "score": 15,
+  "silent": 3
+ },
+ "vikibookiya": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-02"
+ },
  "_queue": [
-  "jannatga_oshiq_qalblar_4",
-  "koran_obuchenie",
-  "quran_isunna",
-  "quran_ponimai",
-  "budryaadom",
-  "ideastudent",
-  "mukhammad_moderator",
-  "reklama_russia2022",
-  "russiareklamaa",
-  "kristinaa94",
-  "novostisanktpeterburg",
-  "kubanskienovosti",
-  "novostichelyabinsk",
-  "novostiekaterinburgg",
-  "anastasiakarpo",
-  "pavelborisovic",
-  "price_moscow",
-  "mezonkengashi",
-  "groupa_777_bot",
-  "muslimtg_1",
-  "vlaverin",
-  "lampa_art_market",
-  "kukuteatr",
-  "miptstemlab",
-  "anthropokryk",
-  "ukszh1988",
-  "profgorozhanka",
-  "culturolog_fly",
-  "souchastie",
-  "smart_lab_news",
-  "directntp",
-  "rsf_news",
-  "minobrnaukiofficial",
-  "rudnstudentslife",
-  "devochki_p",
-  "qamarunkids",
-  "umma_school",
-  "koran_isunna",
-  "bookhadith",
-  "jetownersru",
-  "v_niqabe97",
-  "addemoji",
-  "anthroherb",
-  "urbnsht",
-  "professionalboundaries",
-  "chekr_pust",
-  "hornysaurus",
-  "opia_me",
-  "cleanponds747",
-  "kupujiji61",
-  "greka_progorod",
-  "inurbane_hinterland",
-  "kayaking_expedition",
-  "vogulich",
-  "eronina",
-  "lana_barsukova",
-  "vikibookiyachat",
-  "vikibookiya",
-  "zapovednik",
-  "rooms_msk",
   "shkolapavlenko",
   "kate_watches_films",
   "lectorient",
@@ -8770,7 +8890,83 @@
   "poslemedia",
   "littera_x",
   "caviar2",
-  "alexdali"
+  "alexdali",
+  "halyqstan",
+  "sysadm_in_up",
+  "vnimanielab",
+  "thirdhandsecond",
+  "orientmuseum",
+  "autowierd",
+  "desesseintespress",
+  "polemedia",
+  "schoolofletters",
+  "mardjanifoundation",
+  "textortexel",
+  "farsi_shirin",
+  "syncweather",
+  "cool666zip",
+  "africanculturefestival",
+  "freewomenoftheeast",
+  "fieldworkpain",
+  "iocs_hse",
+  "paxiranica",
+  "lwmathwl",
+  "abb_041",
+  "utrujja_center",
+  "novostroyki_eskov",
+  "anyaignatyk",
+  "pricelistetg",
+  "annsulima",
+  "islomuz",
+  "aaoifi_uzbekistan",
+  "oliymahad",
+  "mezon_adm",
+  "koranmedi",
+  "secretnilfitnes",
+  "hifz_al_kyr1an",
+  "hafiz_al_kyr1an",
+  "nashidrec_and_koran",
+  "the_quran_video",
+  "napominanie_islam_sunna",
+  "muslimotzi",
+  "koran_prekrasniy",
+  "quran_annur",
+  "berrywaterfest",
+  "volzhina_e",
+  "ilya101010",
+  "ilovesociology",
+  "universitydevelopment",
+  "klimkou",
+  "tamara_mkhitaryan",
+  "radio_drift_motors",
+  "shiaprosoviet",
+  "petr_v_ivanov",
+  "iramaslova",
+  "ubrnsht",
+  "naggingcorner",
+  "centersefer",
+  "sefer",
+  "sergeybelyanin_10",
+  "chronicles_of_the_british_isles",
+  "naukatv_ru",
+  "skoltech_daily",
+  "rasofficial",
+  "nikolskaya_e",
+  "fondnid",
+  "fcntp",
+  "naukamsu",
+  "itmoru",
+  "kurchatovnrcki",
+  "tomskuniversity",
+  "instarchaeolog",
+  "politehperm",
+  "news_susu",
+  "gbsad",
+  "msal_kutafina",
+  "nsuniversity",
+  "volgogradpolitech",
+  "demidyarsu",
+  "news_novsu"
  ],
- "_query_pos": 4
+ "_query_pos": 12
 }
