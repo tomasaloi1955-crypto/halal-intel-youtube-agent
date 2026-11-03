@@ -1098,24 +1098,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-04"
  },
- "delaikulturu": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
  "booksyandex": {
   "skip": "не наша ниша",
-  "date": "2026-10-04"
- },
- "admarginem": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "kinoartru": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "moscowbookweek": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-04"
  },
  "bookelab": {
@@ -1124,10 +1108,6 @@
  },
  "pennlab": {
   "skip": "не наша ниша",
-  "date": "2026-10-04"
- },
- "vsealism": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-04"
  },
  "eugeniasuslova": {
@@ -1146,20 +1126,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-04"
  },
- "hum_hse": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "sfiru": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
  "badzhva": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-04"
- },
- "rosebud_publishing": {
-  "skip": "подписчиков 163",
   "date": "2026-10-04"
  },
  "voznesenskycenter": {
@@ -1170,16 +1138,8 @@
   "skip": "не наша ниша",
   "date": "2026-10-04"
  },
- "smena_kazan": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
  "oriental_centre": {
   "skip": "не наша ниша",
-  "date": "2026-10-04"
- },
- "dahlbooks": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-04"
  },
  "materialandscience": {
@@ -1198,48 +1158,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-04"
  },
- "ershovfilm": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
  "mrtextortexel": {
   "skip": "не канал или закрыт",
   "date": "2026-10-04"
  },
  "boost": {
   "skip": "не наша ниша",
-  "date": "2026-10-04"
- },
- "veretenofilms": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "iva_poetry": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
- "o0_0o_00o0": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
- "spvzh": {
-  "skip": "подписчиков 169",
-  "date": "2026-10-04"
- },
- "forestjournal_org": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
- "vs_ave_liev": {
-  "skip": "подписчиков 134",
-  "date": "2026-10-04"
- },
- "krishe4ki": {
-  "skip": "подписчиков 96",
-  "date": "2026-10-04"
- },
- "druckarnya_salasz": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-04"
  },
  "araepic": {
@@ -1250,48 +1174,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-04"
  },
- "antihauntologyhauntologyclub": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "halomedia": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "nlobooks": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "experimental_writing": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
- "holistic_p": {
-  "skip": "подписчиков 97",
-  "date": "2026-10-04"
- },
- "so_slowly": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
  "ethnocinema": {
   "skip": "не наша ниша",
   "date": "2026-10-04"
  },
- "hsekoreanstudies": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-04"
- },
- "armmuseum": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-04"
- },
  "ivran": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-04"
- },
- "mihyar_damascene": {
-  "skip": "нет контакта владельца",
   "date": "2026-10-04"
  },
  "hauntology_dm": {
@@ -1308,10 +1196,6 @@
   "score": 65,
   "silent": 17
  },
- "lavender_and_the_like": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-04"
- },
  "antroeast": {
   "sent": "2026-10-04",
   "title": "Отдел антропологии Востока ИВ РАН",
@@ -1319,24 +1203,12 @@
   "score": 45,
   "silent": 2
  },
- "nerabotahere": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-04"
- },
  "yazykizhizn": {
   "sent": "2026-10-04",
   "title": "Язык и жизнь",
   "contact": "eugeniasuslova",
   "score": 40,
   "silent": 6
- },
- "subduplicata": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-04"
- },
- "zemlzeml": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-04"
  },
  "dariayashinav": {
   "sent": "2026-10-04",
@@ -8466,67 +8338,250 @@
   "skip": "нет контакта владельца",
   "date": "2026-11-02"
  },
+ "shkolapavlenko": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "kate_watches_films": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "lectorient": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "russianstatelibrary": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-03"
+ },
+ "hadith_isnad_online": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-03"
+ },
+ "muhammadbnumar": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-03"
+ },
+ "gksadovoekoltso": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "travnikovandrey": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "sq_metre": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "ggreat_of_development": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "artem_kirianov": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "dmitriysimes": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "rubaltic": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "vprorok": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "rkadyrov_95": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "donbasscase": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "ip_oleg_stixi": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "gusev_tg": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "mariavladimirovnazakharova": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "evsiutkin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "kabanovkv": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "roman_khudyacov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "vrogov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "nevernyyput": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "hinshtein": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "proboknet": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "olgapavlovatatarstan": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-03"
+ },
+ "parlament_novosti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "skurlatovlive": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "aleksandrsemchenko": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "tsvetkov_avgd": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-03"
+ },
+ "chto_delat_2022": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "wek_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "ddofa": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "leoanalitics": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "prpolitics": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "iron_feliks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "madam_secretar": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "chadayevru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "narubeze": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "politicalislam_russia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "politjoystic": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "plutovstvo007": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-03"
+ },
+ "evpanina": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "netlenkanet": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "dmitrys1964": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-03"
+ },
+ "plnpskov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "leningrad_guide": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "moderno_antiquum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "policyonline": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-03"
+ },
+ "medvedevvesti": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "fabrika_russ": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "wisedruidd": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "sosediasia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "kharkov_perviy": {
+  "skip": "не наша ниша",
+  "date": "2026-11-03"
+ },
+ "enabludatel": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "gr_turan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-03"
+ },
+ "aboutasia": {
+  "sent": "2026-11-03",
+  "title": "Азиатский клуб",
+  "contact": "alien_isla",
+  "score": 100,
+  "silent": 34
+ },
+ "veschijbondi": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-03"
+ },
+ "restavratorleninki": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-03"
+ },
  "_queue": [
-  "shkolapavlenko",
-  "kate_watches_films",
-  "lectorient",
-  "russianstatelibrary",
-  "restavratorleninki",
-  "aboutasia",
-  "hadith_isnad_online",
-  "muhammadbnumar",
-  "gksadovoekoltso",
-  "travnikovandrey",
-  "sq_metre",
-  "ggreat_of_development",
-  "artem_kirianov",
-  "dmitriysimes",
-  "veschijbondi",
-  "rubaltic",
-  "vprorok",
-  "rkadyrov_95",
-  "donbasscase",
-  "ip_oleg_stixi",
-  "gusev_tg",
-  "mariavladimirovnazakharova",
-  "evsiutkin",
-  "kabanovkv",
-  "roman_khudyacov",
-  "vrogov",
-  "nevernyyput",
-  "hinshtein",
-  "proboknet",
-  "olgapavlovatatarstan",
-  "parlament_novosti",
-  "skurlatovlive",
-  "aleksandrsemchenko",
-  "tsvetkov_avgd",
-  "chto_delat_2022",
-  "wek_ru",
-  "ddofa",
-  "leoanalitics",
-  "prpolitics",
-  "iron_feliks",
-  "madam_secretar",
-  "chadayevru",
-  "narubeze",
-  "politicalislam_russia",
-  "politjoystic",
-  "plutovstvo007",
-  "evpanina",
-  "netlenkanet",
-  "dmitrys1964",
-  "plnpskov",
-  "leningrad_guide",
-  "moderno_antiquum",
-  "policyonline",
-  "medvedevvesti",
-  "fabrika_russ",
-  "wisedruidd",
-  "sosediasia",
-  "kharkov_perviy",
-  "enabludatel",
-  "gr_turan",
   "belarus_vpo",
   "sektorgor",
   "expressasia",
@@ -8966,7 +9021,67 @@
   "nsuniversity",
   "volgogradpolitech",
   "demidyarsu",
-  "news_novsu"
+  "news_novsu",
+  "delaikulturu",
+  "admarginem",
+  "kinoartru",
+  "moscowbookweek",
+  "vsealism",
+  "hum_hse",
+  "sfiru",
+  "rosebud_publishing",
+  "smena_kazan",
+  "dahlbooks",
+  "ershovfilm",
+  "veretenofilms",
+  "iva_poetry",
+  "o0_0o_00o0",
+  "spvzh",
+  "forestjournal_org",
+  "vs_ave_liev",
+  "krishe4ki",
+  "druckarnya_salasz",
+  "antihauntologyhauntologyclub",
+  "halomedia",
+  "nlobooks",
+  "experimental_writing",
+  "holistic_p",
+  "so_slowly",
+  "hsekoreanstudies",
+  "armmuseum",
+  "mihyar_damascene",
+  "lavender_and_the_like",
+  "nerabotahere",
+  "subduplicata",
+  "zemlzeml",
+  "hemoncru",
+  "cancer_care_weekly",
+  "turk_kulubu",
+  "lectorient_bot",
+  "tklbspbu",
+  "alien_isla",
+  "worldpicturesrus",
+  "koreanmoscows",
+  "jpan_bistro",
+  "givesharebot",
+  "ramenmoscow",
+  "roxy_zhilina",
+  "k_movieclub",
+  "darulhadisizdat",
+  "kursistka",
+  "netovetz",
+  "nedvij_etagi",
+  "grigorianthouths",
+  "zametkivysokogodirektora",
+  "inna_tkachenko98",
+  "ggreat_of_development_bot",
+  "kommersant",
+  "sashakon",
+  "sonofmonarchy",
+  "sevseal",
+  "lubiczonline",
+  "oleg_blokhin",
+  "istrkalkglk"
  ],
- "_query_pos": 12
+ "_query_pos": 20
 }
