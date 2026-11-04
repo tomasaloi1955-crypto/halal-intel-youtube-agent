@@ -1217,56 +1217,16 @@
   "score": 15,
   "silent": 2
  },
- "seminarov7": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-05"
- },
- "persianmatchbox": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
- "ethiopia_and_arab_world": {
-  "skip": "подписчиков 172",
-  "date": "2026-10-05"
- },
  "7seminarov": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-05"
- },
- "japkenkyu_sinbun": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-05"
  },
  "ossi_bar_spb": {
   "skip": "не наша ниша",
   "date": "2026-10-05"
  },
- "varia_arabica": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-05"
- },
- "polylog_expertise": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
- "factory_culture": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-05"
- },
- "philosophero": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-05"
- },
- "lines_is": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
  "marzialspb": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-05"
- },
- "ivanovdirect": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-05"
  },
  "rothkoskimono": {
@@ -1277,24 +1237,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-05"
  },
- "soloma_1008": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
  "ssolloma": {
   "skip": "не канал или закрыт",
   "date": "2026-10-05"
  },
  "soloma1008": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-05"
- },
- "nosorogmagazine": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
- "netbylo": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-05"
  },
  "moda_looking": {
@@ -1369,10 +1317,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-05"
  },
- "arabicdeti": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-05"
- },
  "arabic_l": {
   "skip": "не канал или закрыт",
   "date": "2026-10-05"
@@ -1432,36 +1376,12 @@
   "score": 100,
   "silent": 61
  },
- "uchim_arabskiy": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
- },
- "quran_znaniedeti": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
- },
- "to_arabic": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
- },
- "mongoliaclubhse": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
- },
  "nina_bortnikova": {
   "sent": "2026-10-05",
   "title": "Астрологично ✨",
   "contact": "NinaBortnikovaa",
   "score": 45,
   "silent": 266
- },
- "garagemca_academy": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
- },
- "mediacenter_brics": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-05"
  },
  "kurva_moyva": {
   "skip": "не канал или закрыт",
@@ -8581,67 +8501,247 @@
   "skip": "нет контакта владельца",
   "date": "2026-11-03"
  },
+ "belarus_vpo": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "sektorgor": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "expressasia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "baraeva_vidit": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "kstati_p": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "ebuldinskyspez": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "zhivetzhebelarus": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "delyagin": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "yarmundep": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "osman_devil": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "preemnik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "tretyakov_n": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "riakatysha": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "tenipribaltiki": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "tasmanian_diablo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "stan_center": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "politnext": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "zapiskitrad": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "turan_express": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "rybar_stan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "allbillboards": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "union_unbreakable": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "balkanist2019": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "obshina_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "ainurkurmanov": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "politnavigator": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "zyuganov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-04"
+ },
+ "prforlove": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "bloodysx": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "chesnokmedia": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "dumatv": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "victorbout_official": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "abramchenko_channel": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "q1ma1q": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-04"
+ },
+ "ashdenis": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "demin_captains": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-04"
+ },
+ "shatunov_da": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "africaninitiative": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "bosteleg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-04"
+ },
+ "dnkobylkin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "artketman": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-04"
+ },
+ "rvvoenkor": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "novosti_efir": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "dmitrynikotin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "oper_goblin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "readovkanews": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "sergeykolyasnikov": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "epoddubny": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "sheyhtamir1974": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "economica": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "rt_russian": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-04"
+ },
+ "rian_ru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "bfmnews": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "moscowtimes_ru": {
+  "skip": "не наша ниша",
+  "date": "2026-11-04"
+ },
+ "astrapress": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "astrvpn_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-04"
+ },
+ "nevlastny": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "sbelkovskiy": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "agentstvonews": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-04"
+ },
+ "andreykrasov": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-04"
+ },
  "_queue": [
-  "belarus_vpo",
-  "sektorgor",
-  "expressasia",
-  "baraeva_vidit",
-  "kstati_p",
-  "ebuldinskyspez",
-  "zhivetzhebelarus",
-  "delyagin",
-  "yarmundep",
-  "osman_devil",
-  "preemnik",
-  "tretyakov_n",
-  "riakatysha",
-  "tenipribaltiki",
-  "tasmanian_diablo",
-  "stan_center",
-  "politnext",
-  "zapiskitrad",
-  "turan_express",
-  "rybar_stan",
-  "allbillboards",
-  "union_unbreakable",
-  "balkanist2019",
-  "obshina_ru",
-  "ainurkurmanov",
-  "politnavigator",
-  "zyuganov",
-  "prforlove",
-  "bloodysx",
-  "chesnokmedia",
-  "andreykrasov",
-  "dumatv",
-  "victorbout_official",
-  "abramchenko_channel",
-  "q1ma1q",
-  "ashdenis",
-  "demin_captains",
-  "shatunov_da",
-  "africaninitiative",
-  "bosteleg",
-  "dnkobylkin",
-  "artketman",
-  "rvvoenkor",
-  "novosti_efir",
-  "dmitrynikotin",
-  "oper_goblin",
-  "readovkanews",
-  "sergeykolyasnikov",
-  "epoddubny",
-  "sheyhtamir1974",
-  "economica",
-  "rt_russian",
-  "rian_ru",
-  "bfmnews",
-  "moscowtimes_ru",
-  "astrapress",
-  "astrvpn_bot",
-  "nevlastny",
-  "sbelkovskiy",
-  "agentstvonews",
   "hizbullahru",
   "nstarikovru",
   "komandanews",
@@ -9081,7 +9181,67 @@
   "sevseal",
   "lubiczonline",
   "oleg_blokhin",
-  "istrkalkglk"
+  "istrkalkglk",
+  "seminarov7",
+  "persianmatchbox",
+  "ethiopia_and_arab_world",
+  "japkenkyu_sinbun",
+  "varia_arabica",
+  "polylog_expertise",
+  "factory_culture",
+  "philosophero",
+  "lines_is",
+  "ivanovdirect",
+  "soloma_1008",
+  "nosorogmagazine",
+  "netbylo",
+  "arabicdeti",
+  "uchim_arabskiy",
+  "quran_znaniedeti",
+  "to_arabic",
+  "mongoliaclubhse",
+  "garagemca_academy",
+  "mediacenter_brics",
+  "polit_kavkaz",
+  "inmemorych",
+  "vahedavtyan",
+  "zarinaexasia",
+  "expressasiaa_bot",
+  "grpatkz",
+  "kabinetanalitic",
+  "creon",
+  "toughbuthones",
+  "informatorkz",
+  "privetkzhstn",
+  "adilet_partiyasy",
+  "off_shores",
+  "prokadrykz",
+  "kozachkow",
+  "yedilov_online",
+  "baraeva_bot",
+  "kzgovernment",
+  "aqorda_resmi",
+  "kstati_i",
+  "visitkstati_bot",
+  "vinogradov74",
+  "povest_let",
+  "milinfolive",
+  "artjockey",
+  "kobanistan",
+  "espez_bot",
+  "semenovcons",
+  "matter_of_chance",
+  "set_partia",
+  "mediamedics",
+  "rustroyka1945",
+  "yuradolgoruk",
+  "aarussian",
+  "turkeyabout",
+  "tr24news",
+  "osman_devilbot",
+  "russian_turkiye",
+  "turknws",
+  "mfa_azerbaijan"
  ],
- "_query_pos": 20
+ "_query_pos": 28
 }
