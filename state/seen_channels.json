@@ -1387,10 +1387,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
  },
- "nenastoyashchijpsiholog": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-06"
- },
  "psy_go": {
   "skip": "не наша ниша",
   "date": "2026-10-06"
@@ -1515,10 +1511,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
  },
- "d_za40": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-06"
- },
  "lady_go": {
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
@@ -1555,24 +1547,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
  },
- "wallswillfall": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-06"
- },
- "privetpoidem": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-06"
- },
- "engineerhistory": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-06"
- },
  "anpisman": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-06"
- },
- "slovonadonu": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-06"
  },
  "v1gvam": {
@@ -1587,10 +1563,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
  },
- "aonefilms": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-06"
- },
  "besedyfest": {
   "skip": "не наша ниша",
   "date": "2026-10-06"
@@ -1599,32 +1571,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-06"
  },
- "moneyfiction": {
-  "skip": "подписчиков 196",
-  "date": "2026-10-06"
- },
  "kp_pyl": {
   "sent": "2026-10-06",
   "title": "кп пыль",
   "contact": "dasha_maliniina",
   "score": 55,
   "silent": 8
- },
- "compost_coop": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-06"
- },
- "edacheloveka": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-06"
- },
- "editorial_egalite": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-06"
- },
- "randomcoffeeru": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-06"
  },
  "russos_subscription_bot": {
   "skip": "не канал или закрыт",
@@ -8741,67 +8693,256 @@
   "skip": "нет контакта владельца",
   "date": "2026-11-04"
  },
+ "hizbullahru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "nstarikovru": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "komandanews": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "ssigny": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "exarchate_mp": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "majorselivanov": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "russianorthodoxchurchmauritius": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "pravosukr": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "khayalpressa313": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "srochnow": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "meehas": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "yumytg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "foremyx": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "iwazowski": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "streetwall": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "zamkadist": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "v_tuapse": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "arhsvfb": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "mir_russkoi_mysli": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "help202": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "tadg002": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "tadjvid_lezgidaldi": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "linda_kadieva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "urokitajvida2": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "iscelenieserdets": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "xnfksa": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-05"
+ },
+ "iqraskhool": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "huna_islam": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-05"
+ },
+ "pznaniya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "good_time_jt": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "klyukva_v_sahare": {
+  "skip": "подписчиков 70",
+  "date": "2026-11-05"
+ },
+ "psych_help": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-05"
+ },
+ "diroya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "muslim_school_online": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "diroya_for_sisters": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "hellotransfer": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "developers_policy": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "bamway": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "trubapodneglinnoy": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "politmanagertg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "stoxvostov": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "karaulny_accountant": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "russianeconomism": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "suverenka": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "mcrepostru": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "bezposhady": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "afgan220": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-05"
+ },
+ "under_carriage": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "finkrolik": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "ostashkonews": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "informef": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "holmogor_talks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "mikle1on": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "grigoriev_maxim": {
+  "skip": "не наша ниша",
+  "date": "2026-11-05"
+ },
+ "oprf_official": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "alexandr_malkevich": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "matveychev": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-05"
+ },
+ "salihalusaimi": {
+  "sent": "2026-11-05",
+  "title": "Шейх Салих Бин 'Абдиллях аль-'Усайми",
+  "contact": "diroya_deti",
+  "score": 60,
+  "silent": 7
+ },
+ "olegyasynsky": {
+  "sent": "2026-11-05",
+  "title": "Олег Ясинский",
+  "contact": "Oleg_Vladislavovich_Yasinsky",
+  "score": 5,
+  "silent": 2
+ },
+ "psiholog_askarova": {
+  "sent": "2026-11-05",
+  "title": "Асқарова Нилуфар Ибрагимовна",
+  "contact": "Askarova_Nilufar",
+  "score": 5,
+  "silent": 3
+ },
  "_queue": [
-  "hizbullahru",
-  "nstarikovru",
-  "komandanews",
-  "ssigny",
-  "exarchate_mp",
-  "majorselivanov",
-  "russianorthodoxchurchmauritius",
-  "olegyasynsky",
-  "pravosukr",
-  "khayalpressa313",
-  "srochnow",
-  "meehas",
-  "yumytg",
-  "foremyx",
-  "iwazowski",
-  "streetwall",
-  "zamkadist",
-  "v_tuapse",
-  "arhsvfb",
-  "mir_russkoi_mysli",
-  "help202",
-  "tadg002",
-  "tadjvid_lezgidaldi",
-  "linda_kadieva",
-  "urokitajvida2",
-  "iscelenieserdets",
-  "xnfksa",
-  "iqraskhool",
-  "huna_islam",
-  "pznaniya",
-  "good_time_jt",
-  "klyukva_v_sahare",
-  "psych_help",
-  "psiholog_askarova",
-  "diroya",
-  "muslim_school_online",
-  "salihalusaimi",
-  "diroya_for_sisters",
-  "hellotransfer",
-  "developers_policy",
-  "bamway",
-  "trubapodneglinnoy",
-  "politmanagertg",
-  "stoxvostov",
-  "karaulny_accountant",
-  "russianeconomism",
-  "suverenka",
-  "mcrepostru",
-  "bezposhady",
-  "afgan220",
-  "under_carriage",
-  "finkrolik",
-  "ostashkonews",
-  "informef",
-  "holmogor_talks",
-  "mikle1on",
-  "grigoriev_maxim",
-  "oprf_official",
-  "alexandr_malkevich",
-  "matveychev",
   "igor_korotchenko",
   "asgasparyan",
   "anna_news",
@@ -9241,7 +9382,67 @@
   "osman_devilbot",
   "russian_turkiye",
   "turknws",
-  "mfa_azerbaijan"
+  "mfa_azerbaijan",
+  "rekonstruktsiya_kafe",
+  "cafe_kiziki",
+  "kafe_bar_yut",
+  "randevu_ahtari",
+  "dagarafybbs",
+  "nenastoyashchijpsiholog",
+  "d_za40",
+  "wallswillfall",
+  "privetpoidem",
+  "engineerhistory",
+  "slovonadonu",
+  "aonefilms",
+  "moneyfiction",
+  "compost_coop",
+  "edacheloveka",
+  "editorial_egalite",
+  "randomcoffeeru",
+  "ansarullaru",
+  "hizbullahru_bot",
+  "nstarikov_audio",
+  "nstarikov_video",
+  "pfci_grants",
+  "blondinka_dk",
+  "nstarikov_gp_bot",
+  "fondvo",
+  "oleg_vladislavovich_yasinsky",
+  "tatig87",
+  "paradigmaacademy",
+  "retinski",
+  "pressa313",
+  "front_narod",
+  "dva_majors",
+  "voenkor23",
+  "muratkumpilov",
+  "chistovtuapse",
+  "v_tuapse_bot",
+  "philosophyclubbot",
+  "books_knyazzz_myshkin",
+  "mylandbelarus",
+  "literatvoronezh",
+  "spbuniversity1724",
+  "knigosmotr",
+  "ottiskjournal",
+  "balticbridge",
+  "philosmsuofficial",
+  "buki_news",
+  "egi_official",
+  "aksoncenter",
+  "stranavozmojnostey",
+  "neweraspace",
+  "reklamaiqro",
+  "urokisalyafov",
+  "hatfa_app",
+  "huna_coffee",
+  "huna_kutub",
+  "huna_arabic",
+  "siraj_abu_talha",
+  "toislamsite",
+  "progrevadmin",
+  "manarat_putnika"
  ],
- "_query_pos": 28
+ "_query_pos": 36
 }
