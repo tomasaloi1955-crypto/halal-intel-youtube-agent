@@ -1586,14 +1586,6 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-07"
  },
- "wlagru": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "mf24_42": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
  "yakov_podolny": {
   "skip": "не канал или закрыт",
   "date": "2026-10-07"
@@ -1606,60 +1598,12 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-07"
  },
- "ffotografika": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
  "khantao": {
   "skip": "не наша ниша",
   "date": "2026-10-07"
  },
- "neomenia_books": {
-  "skip": "подписчиков 126",
-  "date": "2026-10-07"
- },
- "metajournal": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
- "skhronpoetry": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "thelongkissgoodnight": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "sketchbug": {
-  "skip": "подписчиков 178",
-  "date": "2026-10-07"
- },
- "alexeylyzlov": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
- "chitnes": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "tnkmr": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
- "na_kolenke_zin": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "utkometasy": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
  "nsvrmnk": {
   "skip": "не наша ниша",
-  "date": "2026-10-07"
- },
- "moscowcalling": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-07"
  },
  "hauntology": {
@@ -1674,10 +1618,6 @@
   "skip": "не наша ниша",
   "date": "2026-10-07"
  },
- "uraloperaballet": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
  "sergeidesev": {
   "skip": "не наша ниша",
   "date": "2026-10-07"
@@ -1686,44 +1626,8 @@
   "skip": "не наша ниша",
   "date": "2026-10-07"
  },
- "chekhovandcompany": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "timepadru": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "vsesvobodny": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "ooosmenaknigi": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "magisteria_ru": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "dvorbooks": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
- "izdaniya": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "mastersbookstore": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
  "s_shvyrev": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-07"
- },
- "moscowbooks_ru": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-07"
  },
  "avamilova": {
@@ -1734,48 +1638,8 @@
   "skip": "не наша ниша",
   "date": "2026-10-07"
  },
- "mdk_books": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
  "falanster_delivery": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-07"
- },
- "schusevshop": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-07"
- },
- "gorky_media": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "piotrovskybook": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "almet_biblio": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "mig_mendeleevsk": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "smena_deti": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "pollimona_illustration": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "kafarabphil": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-07"
- },
- "news_oasis": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-07"
  },
  "dahlbookstore": {
@@ -1807,28 +1671,12 @@
   "score": 70,
   "silent": 8
  },
- "ymozrenie": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-07"
- },
  "qifa_nabki": {
   "sent": "2026-10-07",
   "title": "постойте поплачем قِفا نَبْكِ",
   "contact": "tnalitch",
   "score": 60,
   "silent": 6
- },
- "norma_smallpress": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-07"
- },
- "podpisnie_v_myzee": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-07"
- },
- "skbprometheus": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-07"
  },
  "borisovhistory": {
   "skip": "не наша ниша",
@@ -8942,67 +8790,247 @@
   "score": 5,
   "silent": 3
  },
+ "igor_korotchenko": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "asgasparyan": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "anna_news": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "boris_rozhin": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "apwagner": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "sashakots": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "tbite": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "ru_global": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "zovcrimea": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "davosdv": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "gutenev_vv": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "federation_towers": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "gusyandrew": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "vybora": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "redacted6": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "volgabrief": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "tivanych78": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "mozgoffurban": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "digitalmy": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-06"
+ },
+ "escort_tour1": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-06"
+ },
+ "polinkamalinkahandmade": {
+  "skip": "подписчиков 30",
+  "date": "2026-11-06"
+ },
+ "navideovidno": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "mynnovgorod": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "ulkompr": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "ostrovisland": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "krslooking24": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "dfonews": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "sakhco": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "regionallllll": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-06"
+ },
+ "prigimdv": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "torprim": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "live_kuban": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "khabpolitcentr": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "politcentr": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "yasno123": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "art_of_politics": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "rostov_na_konu": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "silapomorya": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "voteraz": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "zloysamarityanin": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "ceiaiordo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "amursovet": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "affectvyiheeytopotentialpolitics": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "gossovet": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "lantratovadobro": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "newkissinger": {
+  "skip": "подписчиков 143",
+  "date": "2026-11-06"
+ },
+ "government_rus": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "kadmitriev": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "matrosou": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "mkotyukov": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "minchenkotrump": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "igor_artamonov48": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "kozhemiakoofficial": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "yellow_sky_policy": {
+  "skip": "не наша ниша",
+  "date": "2026-11-06"
+ },
+ "gubery": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-06"
+ },
+ "za_4_morya": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-06"
+ },
+ "stepdozor": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-06"
+ },
+ "sibcyrulik": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-06"
+ },
+ "platform_digoriya": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-06"
+ },
+ "rasopr": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-06"
+ },
  "_queue": [
-  "igor_korotchenko",
-  "asgasparyan",
-  "anna_news",
-  "boris_rozhin",
-  "apwagner",
-  "sashakots",
-  "tbite",
-  "ru_global",
-  "zovcrimea",
-  "davosdv",
-  "gutenev_vv",
-  "federation_towers",
-  "gusyandrew",
-  "vybora",
-  "redacted6",
-  "volgabrief",
-  "tivanych78",
-  "mozgoffurban",
-  "za_4_morya",
-  "digitalmy",
-  "escort_tour1",
-  "polinkamalinkahandmade",
-  "navideovidno",
-  "mynnovgorod",
-  "sibcyrulik",
-  "ulkompr",
-  "ostrovisland",
-  "krslooking24",
-  "stepdozor",
-  "dfonews",
-  "sakhco",
-  "platform_digoriya",
-  "regionallllll",
-  "prigimdv",
-  "torprim",
-  "live_kuban",
-  "khabpolitcentr",
-  "politcentr",
-  "yasno123",
-  "art_of_politics",
-  "rostov_na_konu",
-  "silapomorya",
-  "voteraz",
-  "zloysamarityanin",
-  "ceiaiordo",
-  "amursovet",
-  "affectvyiheeytopotentialpolitics",
-  "gossovet",
-  "lantratovadobro",
-  "newkissinger",
-  "rasopr",
-  "government_rus",
-  "kadmitriev",
-  "matrosou",
-  "mkotyukov",
-  "minchenkotrump",
-  "igor_artamonov48",
-  "kozhemiakoofficial",
-  "yellow_sky_policy",
-  "gubery",
   "mcrepostregion",
   "drozdenko_au_lo",
   "electionsquad",
@@ -9442,7 +9470,67 @@
   "siraj_abu_talha",
   "toislamsite",
   "progrevadmin",
-  "manarat_putnika"
+  "manarat_putnika",
+  "wlagru",
+  "mf24_42",
+  "ffotografika",
+  "neomenia_books",
+  "metajournal",
+  "skhronpoetry",
+  "thelongkissgoodnight",
+  "sketchbug",
+  "alexeylyzlov",
+  "chitnes",
+  "tnkmr",
+  "na_kolenke_zin",
+  "utkometasy",
+  "moscowcalling",
+  "uraloperaballet",
+  "chekhovandcompany",
+  "timepadru",
+  "vsesvobodny",
+  "ooosmenaknigi",
+  "magisteria_ru",
+  "dvorbooks",
+  "izdaniya",
+  "mastersbookstore",
+  "moscowbooks_ru",
+  "mdk_books",
+  "schusevshop",
+  "gorky_media",
+  "piotrovskybook",
+  "almet_biblio",
+  "mig_mendeleevsk",
+  "smena_deti",
+  "pollimona_illustration",
+  "kafarabphil",
+  "news_oasis",
+  "ymozrenie",
+  "norma_smallpress",
+  "podpisnie_v_myzee",
+  "skbprometheus",
+  "rviorf",
+  "annanews_feedback_bot",
+  "actually_in_zaporozhye_fb_bot",
+  "name_a14",
+  "sasha_kots",
+  "lena_sutormina",
+  "vasseekk",
+  "aksenov82",
+  "tbrand_ghost",
+  "razvozhaev",
+  "ourevp",
+  "crimeagum",
+  "crimeazv4at_bot",
+  "ribacrimea",
+  "lexrus_1",
+  "mosrutop",
+  "spbzaks",
+  "sovfedofficial",
+  "ergosdumaofficial",
+  "er_molnia",
+  "gutenev_er",
+  "soyuzmash1"
  ],
- "_query_pos": 36
+ "_query_pos": 44
 }
