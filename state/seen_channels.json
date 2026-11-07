@@ -9030,67 +9030,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-11-06"
  },
+ "mcrepostregion": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "drozdenko_au_lo": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "electionsquad": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "namvsemkinets": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "architectsocial": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "silverrainradio": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "e_v_kovalchuk": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "minchenkohistory": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "politcinema": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "elina_urtaeva": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "ravensletter": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "deepvisionary": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "falenkov_m": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "temnavoda": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "izvestia": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "ru_south": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "russ_orientalist": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "vibornyk_info": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "vasya_kondrashov": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-07"
+ },
+ "amgzn": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "swideteli": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "panzer_photoplenk": {
+  "skip": "подписчиков 50",
+  "date": "2026-11-07"
+ },
+ "fadefest": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "potexaxaxahinki": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "mgtour2021": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "smbrnr": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "berenikamusic": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "clubsixteentons": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "affinageofficial": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "princesseangine_official": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "toozytunes": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "auditoria_tbi": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "kilimanjarodaily": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "lelya_ba": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "gevolvet": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "decode": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "greenmay": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "ediswater": {
+  "skip": "молчит 631 дн.",
+  "date": "2026-11-07"
+ },
+ "ingaalev": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-07"
+ },
+ "julia_guide_moscow": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "vlesainagory": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-07"
+ },
+ "e_pliss": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "fondmostime": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-07"
+ },
+ "moskvichmag": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "bureeva_guide": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "state_historical_museum": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "lettersinriga": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "mosyabloko": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-07"
+ },
+ "russiagainstwar": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "spb_yabloko": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "eventsmelbourne": {
+  "skip": "подписчиков 96",
+  "date": "2026-11-07"
+ },
+ "lettersforfreedom_amsterdam": {
+  "skip": "не наша ниша",
+  "date": "2026-11-07"
+ },
+ "endoflaw": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-07"
+ },
+ "pzk_vasilisa_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-07"
+ },
+ "minchenkoconsulting": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-07"
+ },
+ "kustodia_collection": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-07"
+ },
+ "ilwt_official": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-07"
+ },
+ "readingarden": {
+  "sent": "2026-11-07",
+  "title": "_garden_of_books_",
+  "contact": "the_garden_of_books",
+  "score": 35,
+  "silent": 6
+ },
+ "balzak_on": {
+  "sent": "2026-11-07",
+  "title": "Бальзак на душу",
+  "contact": "arinako_korina",
+  "score": 25,
+  "silent": 2
+ },
+ "russianagainstwar_italia": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-07"
+ },
  "_queue": [
-  "mcrepostregion",
-  "drozdenko_au_lo",
-  "electionsquad",
-  "namvsemkinets",
-  "architectsocial",
-  "silverrainradio",
-  "e_v_kovalchuk",
-  "minchenkohistory",
-  "politcinema",
-  "minchenkoconsulting",
-  "elina_urtaeva",
-  "ravensletter",
-  "deepvisionary",
-  "falenkov_m",
-  "temnavoda",
-  "izvestia",
-  "ru_south",
-  "russ_orientalist",
-  "vibornyk_info",
-  "vasya_kondrashov",
-  "amgzn",
-  "swideteli",
-  "panzer_photoplenk",
-  "fadefest",
-  "potexaxaxahinki",
-  "mgtour2021",
-  "smbrnr",
-  "berenikamusic",
-  "clubsixteentons",
-  "affinageofficial",
-  "princesseangine_official",
-  "toozytunes",
-  "ilwt_official",
-  "balzak_on",
-  "auditoria_tbi",
-  "readingarden",
-  "kilimanjarodaily",
-  "lelya_ba",
-  "gevolvet",
-  "decode",
-  "greenmay",
-  "ediswater",
-  "ingaalev",
-  "julia_guide_moscow",
-  "vlesainagory",
-  "e_pliss",
-  "fondmostime",
-  "moskvichmag",
-  "kustodia_collection",
-  "bureeva_guide",
-  "state_historical_museum",
-  "lettersinriga",
-  "mosyabloko",
-  "russiagainstwar",
-  "spb_yabloko",
-  "eventsmelbourne",
-  "russianagainstwar_italia",
-  "lettersforfreedom_amsterdam",
-  "endoflaw",
-  "pzk_vasilisa_bot",
   "russiansagainstwarpolska",
   "pisma_politzekam",
   "far_hamburg",
@@ -9530,7 +9716,67 @@
   "ergosdumaofficial",
   "er_molnia",
   "gutenev_er",
-  "soyuzmash1"
+  "soyuzmash1",
+  "besprozvannih",
+  "oanikolaev",
+  "politteh",
+  "zdunov",
+  "alexeytexlerofficial",
+  "a_beglov",
+  "andrey_chibis",
+  "minchenkoconsulting",
+  "forummalayarodina",
+  "sergeimeniaylo",
+  "aleksandrsokolov43",
+  "filimonov_official",
+  "shapsha_vv",
+  "gamburgprize",
+  "gusev_36",
+  "turchak_andrey",
+  "yuri_slusar",
+  "glebnikitin_nn",
+  "hocenkovp",
+  "kostuyk",
+  "i_gekht",
+  "rustamminnikhanov",
+  "varmsu",
+  "anohin67",
+  "campaignwarrior",
+  "uncleunion",
+  "one_big_union",
+  "altimurla",
+  "cinema_plod_bot",
+  "takotita",
+  "socarchcom",
+  "architectsocialbot",
+  "fedorovwciom",
+  "kuharuk_ruslan",
+  "karpova_polit",
+  "politessakislitsyna",
+  "socialarchitects",
+  "chuvstvoritmarec",
+  "komissargone_bot",
+  "obuhovpro",
+  "wehistory",
+  "historiographe",
+  "mcrepostenergy",
+  "minchenko",
+  "lauradjagadiary",
+  "elina_01",
+  "infopovodsbot",
+  "izvestia_ru",
+  "tolk_tolk",
+  "texstratdevelopment",
+  "wcommando",
+  "alter_vij",
+  "mikaprok",
+  "mikaprok_news",
+  "mikaprok_boosty",
+  "germansadulaev",
+  "vitatamquamars",
+  "big3russia",
+  "mikaprok_reading",
+  "politota_plus"
  ],
- "_query_pos": 44
+ "_query_pos": 52
 }
