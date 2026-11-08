@@ -1726,24 +1726,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
- "licenza_poetica": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-09"
- },
- "strawberryshortcakebrainfire": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-09"
- },
  "rost_rus": {
   "skip": "не канал или закрыт",
   "date": "2026-10-09"
  },
  "appeaul": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-09"
- },
- "terminal_nn": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-09"
  },
  "ilia_dolgov": {
@@ -1758,36 +1746,16 @@
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
- "charlie_krd": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-09"
- },
  "knijniy_v_klube": {
   "skip": "не наша ниша",
-  "date": "2026-10-09"
- },
- "poetrymag": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-09"
  },
  "poetry": {
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
- "ozerobooks": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-09"
- },
  "noise_pines": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-09"
- },
- "newhausmann": {
-  "skip": "подписчиков 170",
-  "date": "2026-10-09"
- },
- "nolliquo_poems": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-09"
  },
  "nanastitchhh": {
@@ -1800,14 +1768,6 @@
  },
  "huligun4ikkk": {
   "skip": "не наша ниша",
-  "date": "2026-10-09"
- },
- "grigorysannikov": {
-  "skip": "подписчиков 144",
-  "date": "2026-10-09"
- },
- "vladimir_koshelev_poet": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-09"
  },
  "sunyzny": {
@@ -1830,24 +1790,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
- "poetlib": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-09"
- },
- "kultinfo": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-09"
- },
  "mospoetryslam": {
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
  "cci_fabrika": {
   "skip": "не наша ниша",
-  "date": "2026-10-09"
- },
- "vacges2": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-09"
  },
  "dariayashinax": {
@@ -1870,24 +1818,12 @@
   "skip": "не наша ниша",
   "date": "2026-10-09"
  },
- "dniculture": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-09"
- },
  "francispink": {
   "skip": "не канал или закрыт",
   "date": "2026-10-09"
  },
- "egrooves": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-09"
- },
  "rrealli": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-09"
- },
- "talwegpress": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-09"
  },
  "norm_stihi_hi_hi": {
@@ -1897,24 +1833,12 @@
   "score": 90,
   "silent": 43
  },
- "soyapress": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-09"
- },
  "yl_mor": {
   "sent": "2026-10-09",
   "title": "у.мора",
   "contact": "murcam",
   "score": 40,
   "silent": 4
- },
- "svetovoiden": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-09"
- },
- "tubuscvarciuvch": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-09"
  },
  "centrezotov": {
   "skip": "не наша ниша",
@@ -9276,67 +9200,253 @@
   "skip": "нет контакта владельца",
   "date": "2026-11-07"
  },
+ "russiansagainstwarpolska": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "pisma_politzekam": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "far_hamburg": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-08"
+ },
+ "auditoriabudva": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "october29_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "akrkbremen": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-08"
+ },
+ "futurerussia_ch": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "reforumspaceberlin": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "lettersnewzealand": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "pzktoulouse": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "nrwfreiesrussland": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-08"
+ },
+ "rusnews": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-08"
+ },
+ "mediazzzona": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "lettersforfreedom": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "mailforhelp_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "demrucy": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "femkyzlar": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "feminitivekld": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-08"
+ },
+ "fire_krasnodar": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "rfemul_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "chavaga_media": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "zhannamental": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "regfem_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "sapportart": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "femforfem": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "malyshki_1822": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "femclub40cats": {
+  "skip": "подписчиков 101",
+  "date": "2026-11-08"
+ },
+ "minam_izh": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "la_brasilia": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "levoradikal": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "whalesgohigh": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "oktobernd": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "my_class_war_only": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "eurydice_nsk": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "kurkynys": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "taywbike": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "victory_for_radfem": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "feminizmprosto": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "mfrradfem": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "hhawkee": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "locfem_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "lynxmatriarchixtg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "alice_rf": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "ursaminortg": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "ursa_clothes": {
+  "skip": "не наша ниша",
+  "date": "2026-11-08"
+ },
+ "onnxie": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "wwwomancorespb": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-08"
+ },
+ "femglow": {
+  "skip": "подписчиков 197",
+  "date": "2026-11-08"
+ },
+ "womancorespbadmins": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "femglowbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "ona_feedback_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "feminespace_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "ppodprostranstvo": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-08"
+ },
+ "voprekifem": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-08"
+ },
+ "chelyabloko": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-08"
+ },
+ "moripuk": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-08"
+ },
+ "spravimsiavmeste": {
+  "sent": "2026-11-08",
+  "title": "Справимся Вместе",
+  "contact": "ov_help",
+  "score": 25,
+  "silent": 3
+ },
+ "mailforhelp": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-08"
+ },
+ "yabloko_tat": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-08"
+ },
+ "kitabychufa": {
+  "sent": "2026-11-08",
+  "title": "]{итабыч",
+  "contact": "Kitabych_ufa",
+  "score": 15,
+  "silent": 2
+ },
  "_queue": [
-  "russiansagainstwarpolska",
-  "pisma_politzekam",
-  "far_hamburg",
-  "auditoriabudva",
-  "october29_bot",
-  "akrkbremen",
-  "futurerussia_ch",
-  "reforumspaceberlin",
-  "lettersnewzealand",
-  "pzktoulouse",
-  "nrwfreiesrussland",
-  "mailforhelp",
-  "rusnews",
-  "mediazzzona",
-  "yabloko_tat",
-  "lettersforfreedom",
-  "chelyabloko",
-  "mailforhelp_bot",
-  "demrucy",
-  "moripuk",
-  "femkyzlar",
-  "feminitivekld",
-  "fire_krasnodar",
-  "rfemul_bot",
-  "chavaga_media",
-  "zhannamental",
-  "regfem_bot",
-  "spravimsiavmeste",
-  "sapportart",
-  "femforfem",
-  "malyshki_1822",
-  "femclub40cats",
-  "minam_izh",
-  "la_brasilia",
-  "levoradikal",
-  "whalesgohigh",
-  "oktobernd",
-  "my_class_war_only",
-  "eurydice_nsk",
-  "kurkynys",
-  "taywbike",
-  "kitabychufa",
-  "victory_for_radfem",
-  "feminizmprosto",
-  "mfrradfem",
-  "hhawkee",
-  "locfem_bot",
-  "lynxmatriarchixtg",
-  "alice_rf",
-  "voprekifem",
-  "ursaminortg",
-  "ursa_clothes",
-  "onnxie",
-  "wwwomancorespb",
-  "femglow",
-  "womancorespbadmins",
-  "femglowbot",
-  "ona_feedback_bot",
-  "feminespace_bot",
-  "ppodprostranstvo",
   "knizrad",
   "anthropochats",
   "lesfilmru",
@@ -9724,7 +9834,6 @@
   "alexeytexlerofficial",
   "a_beglov",
   "andrey_chibis",
-  "minchenkoconsulting",
   "forummalayarodina",
   "sergeimeniaylo",
   "aleksandrsokolov43",
@@ -9776,7 +9885,68 @@
   "vitatamquamars",
   "big3russia",
   "mikaprok_reading",
-  "politota_plus"
+  "politota_plus",
+  "licenza_poetica",
+  "strawberryshortcakebrainfire",
+  "terminal_nn",
+  "charlie_krd",
+  "poetrymag",
+  "ozerobooks",
+  "newhausmann",
+  "nolliquo_poems",
+  "grigorysannikov",
+  "vladimir_koshelev_poet",
+  "poetlib",
+  "kultinfo",
+  "vacges2",
+  "dniculture",
+  "egrooves",
+  "talwegpress",
+  "soyapress",
+  "svetovoiden",
+  "tubuscvarciuvch",
+  "vnutri_fest",
+  "lgbtiqmilitary",
+  "far_hamburg_bot",
+  "avtonomorg",
+  "bremerina",
+  "bvre_de",
+  "reforum",
+  "auctionfrnrw_bot",
+  "tvrain",
+  "antiwarserbia",
+  "cemu4eba",
+  "tochka_opory_kr",
+  "yabloko_tat",
+  "lettersforfreedom_praha",
+  "mailforhelp_turin",
+  "lettersfromla",
+  "omskyabloko",
+  "goodlettersnicosia",
+  "pismalj",
+  "rusoslibres",
+  "south_postcards",
+  "pp_rassvet_perm",
+  "dobronastyaiturma",
+  "lettersfromtokyo",
+  "bcnpolitzek",
+  "raw_vienna",
+  "kartochkipzk",
+  "russiansbatumi",
+  "rassvet_rostov",
+  "letters_miami",
+  "seattlepolitpostcards",
+  "yabloko_stav",
+  "lettersofsupportillinois",
+  "letterslimassol",
+  "pochtasizo212",
+  "lettersfromturku",
+  "pzkletters_saar",
+  "rassvet_party_msk",
+  "rusolidaritybe",
+  "teamnavalny_ny",
+  "politmail_mne",
+  "digestpz"
  ],
- "_query_pos": 52
+ "_query_pos": 1
 }
