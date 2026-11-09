@@ -1848,16 +1848,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-10"
  },
- "lifeinspace_rymbu": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-10"
- },
  "experimentalwriting": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-10"
- },
- "derevoiptiza": {
-  "skip": "подписчиков 68",
   "date": "2026-10-10"
  },
  "mariapoznanskaya": {
@@ -1868,10 +1860,6 @@
   "skip": "не наша ниша",
   "date": "2026-10-10"
  },
- "negodni": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-10"
- },
  "engine_press": {
   "skip": "не наша ниша",
   "date": "2026-10-10"
@@ -1880,24 +1868,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-10"
  },
- "therealtesli": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-10"
- },
- "nielitnimass": {
-  "skip": "молчит 1 дн.",
-  "date": "2026-10-10"
- },
  "vyslushat": {
   "skip": "не наша ниша",
-  "date": "2026-10-10"
- },
- "pushkinskaya10": {
-  "skip": "молчит 0 дн.",
-  "date": "2026-10-10"
- },
- "postscriptumbooks": {
-  "skip": "молчит 0 дн.",
   "date": "2026-10-10"
  },
  "fbchu": {
@@ -1906,10 +1878,6 @@
  },
  "artasia_gallery": {
   "skip": "не наша ниша",
-  "date": "2026-10-10"
- },
- "armsouvenir": {
-  "skip": "молчит 1 дн.",
   "date": "2026-10-10"
  },
  "narekatsiofficial": {
@@ -1932,20 +1900,8 @@
   "skip": "не канал или закрыт",
   "date": "2026-10-10"
  },
- "rukodelnicacom": {
-  "skip": "подписчиков 67",
-  "date": "2026-10-10"
- },
- "narodnoe_tvorchestvo": {
-  "skip": "подписчиков 6",
-  "date": "2026-10-10"
- },
  "homemadewithlove": {
   "skip": "не канал или закрыт",
-  "date": "2026-10-10"
- },
- "uma_mk": {
-  "skip": "подписчиков 4",
   "date": "2026-10-10"
  },
  "rukodeliemade": {
@@ -2047,36 +2003,12 @@
   "score": 75,
   "silent": 44
  },
- "env_eco_readings": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
- },
  "tashkent_tbilisi": {
   "sent": "2026-10-10",
   "title": "Ташкент-Тбилиси",
   "contact": "fur_qat",
   "score": 65,
   "silent": 22
- },
- "yanazyf03": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
- },
- "syg_ma": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
- },
- "cherni_rynok": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
- },
- "nekrasovkalibrary": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
- },
- "triumphgallery": {
-  "skip": "нет контакта владельца",
-  "date": "2026-10-10"
  },
  "muslim_line": {
   "skip": "не канал или закрыт",
@@ -9446,67 +9378,256 @@
   "score": 15,
   "silent": 2
  },
+ "knizrad": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "anthropochats": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "lesfilmru": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "anthropoquestionbot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "lubovetosotryasenijemozga": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "never_ending_adventure": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "syndicat_studio": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "veganizeyou": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-09"
+ },
+ "meduzalive": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "big_eurasia": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "spektrurgent": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "lentadnya": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "blackaltai_bot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "aytashevlive": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "tele_eve": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "pekron": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "mundra_hideout": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "yanny_s": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "sredasvoih": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "krylovazh": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "lindadelaartcentr": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-09"
+ },
+ "haiku_kanjihead": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "studiomymafia": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-09"
+ },
+ "psylaborant": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-09"
+ },
+ "burninghut": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "bandschool": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "key_lander": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "shkaflib_tg": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "minkultrd": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "pravitelstvord": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "xxsavebot": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "nujayma": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "buenoami": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "glava_rd": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "gibdd05rus": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "ivolk": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "sledcom_press": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "mapamag_rs": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "angrypublisher": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "mkknst": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "krasilanna": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "vinegret_cz": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "lana1251": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "irandezhurniy": {
+  "skip": "молчит 1 дн.",
+  "date": "2026-11-09"
+ },
+ "vidimbooks": {
+  "skip": "молчит 0 дн.",
+  "date": "2026-11-09"
+ },
+ "meduza": {
+  "skip": "не канал или закрыт",
+  "date": "2026-11-09"
+ },
+ "dancespectrum": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "svobodumorozovu": {
+  "skip": "не наша ниша",
+  "date": "2026-11-09"
+ },
+ "redaltaya": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "yourowncinema": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "kino_u_nini": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "zhenskisrok": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "altainfonews": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "spasibo_firstov": {
+  "sent": "2026-11-09",
+  "title": "Спасибо, Фирстов",
+  "contact": "firstow",
+  "score": 50,
+  "silent": 17
+ },
+ "emiliashahabutinovna": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "vegan_community_moscow": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "srbijabiz": {
+  "sent": "2026-11-09",
+  "title": "СБК: Сербия — Бизнес и Карьера",
+  "contact": "pobedarazuma",
+  "score": 15,
+  "silent": 2
+ },
+ "parhomenkobooks": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "kvartirnik_petit": {
+  "skip": "нет контакта владельца",
+  "date": "2026-11-09"
+ },
+ "zhskii": {
+  "sent": "2026-11-09",
+  "title": "Калужская правда",
+  "contact": "zhsky",
+  "score": 5,
+  "silent": 2
+ },
  "_queue": [
-  "knizrad",
-  "anthropochats",
-  "lesfilmru",
-  "anthropoquestionbot",
-  "kino_u_nini",
-  "lubovetosotryasenijemozga",
-  "never_ending_adventure",
-  "syndicat_studio",
-  "zhenskisrok",
-  "veganizeyou",
-  "vegan_community_moscow",
-  "meduzalive",
-  "big_eurasia",
-  "spektrurgent",
-  "lentadnya",
-  "blackaltai_bot",
-  "redaltaya",
-  "aytashevlive",
-  "tele_eve",
-  "altainfonews",
-  "pekron",
-  "mundra_hideout",
-  "yanny_s",
-  "sredasvoih",
-  "krylovazh",
-  "lindadelaartcentr",
-  "haiku_kanjihead",
-  "spasibo_firstov",
-  "studiomymafia",
-  "psylaborant",
-  "burninghut",
-  "bandschool",
-  "key_lander",
-  "shkaflib_tg",
-  "yourowncinema",
-  "minkultrd",
-  "pravitelstvord",
-  "emiliashahabutinovna",
-  "xxsavebot",
-  "nujayma",
-  "buenoami",
-  "glava_rd",
-  "gibdd05rus",
-  "ivolk",
-  "sledcom_press",
-  "srbijabiz",
-  "mapamag_rs",
-  "parhomenkobooks",
-  "angrypublisher",
-  "mkknst",
-  "krasilanna",
-  "zhskii",
-  "vinegret_cz",
-  "kvartirnik_petit",
-  "lana1251",
-  "irandezhurniy",
-  "vidimbooks",
-  "meduza",
-  "dancespectrum",
-  "svobodumorozovu",
   "poslemedia",
   "littera_x",
   "caviar2",
@@ -9917,7 +10038,6 @@
   "antiwarserbia",
   "cemu4eba",
   "tochka_opory_kr",
-  "yabloko_tat",
   "lettersforfreedom_praha",
   "mailforhelp_turin",
   "lettersfromla",
@@ -9946,7 +10066,68 @@
   "rusolidaritybe",
   "teamnavalny_ny",
   "politmail_mne",
-  "digestpz"
+  "digestpz",
+  "lifeinspace_rymbu",
+  "derevoiptiza",
+  "negodni",
+  "therealtesli",
+  "nielitnimass",
+  "pushkinskaya10",
+  "postscriptumbooks",
+  "armsouvenir",
+  "rukodelnicacom",
+  "narodnoe_tvorchestvo",
+  "uma_mk",
+  "env_eco_readings",
+  "yanazyf03",
+  "syg_ma",
+  "cherni_rynok",
+  "nekrasovkalibrary",
+  "triumphgallery",
+  "fedyafokin",
+  "kinoclub_verticals",
+  "fros_fairytales",
+  "varyary",
+  "callthemjoe_channel",
+  "sisterswithtransistors",
+  "yatskovanatoly",
+  "thegrasshopperliesheavy",
+  "ya3ba_band",
+  "zuyefa",
+  "motygapishet",
+  "malquova",
+  "olakotr",
+  "woterm_bot",
+  "freedomforanna",
+  "sasharogova7",
+  "veganday_spb",
+  "katusita_k",
+  "vegan_community_moscow",
+  "so_mnenye",
+  "insomnya_me",
+  "saysei_vegan",
+  "lvlupp7",
+  "barkingstore",
+  "pinkveganfairy",
+  "klan_tyav",
+  "elska_cosmetic",
+  "veganmoscowbot",
+  "veganleftie",
+  "sittingonatree",
+  "m_needs_you",
+  "meduza_news",
+  "gonzobarnaul",
+  "nenegeev",
+  "lugovoyandrey",
+  "vecherniy_tgbot",
+  "rusembpol",
+  "dasha_matushinets",
+  "commteleeve",
+  "prokgorny04",
+  "ryabovaoglavnom22",
+  "this_is_barnaul",
+  "listurochak",
+  "yabloko_press"
  ],
- "_query_pos": 1
+ "_query_pos": 9
 }
