@@ -296,17 +296,64 @@ PITCH_PROMPT = """Ты пишешь первое сообщение в личк�
 Выведи ТОЛЬКО текст сообщения."""
 
 
+def activity_hint(silent, per_week):
+    """Как описать ИИ активность канала. Пауза в 2–6 дней у канала, где выходит
+    пара постов в неделю, — норма: упрекать ею владельца нельзя (иначе выходит
+    «заметила, что последние три дня посты не выходили» — звучит как придирка)."""
+    base = f"последний пост {silent} дн. назад, в среднем {per_week} постов в неделю"
+    if silent >= 10:
+        return base + ". Канал давно молчит — можно мягко, без упрёка, это упомянуть."
+    return base + (". Канал ведётся нормально — НЕ упоминай перерывы, паузы и "
+                   "«давно не было постов», вообще не говори о частоте постов.")
+
+
+_WORD_RE = re.compile(r"[А-Яа-яЁёA-Za-z]+")
+
+
+def clean_pitch(text):
+    """Проверяет текст от ИИ и возвращает его в порядке или None.
+    Запасная модель (Groq) иногда ломается в конце: «Прислать присылать примеры
+    на пробу? Отменить это тоже приостановить». Такое владелице не отдаём."""
+    text = re.sub(r"\s+", " ", text or "").strip()
+    if "?" not in text:
+        return None                       # по заданию текст кончается вопросом
+    text = text[:text.rindex("?") + 1]    # хвост после последнего вопроса — мусор
+    words = [w.lower() for w in _WORD_RE.findall(text)]
+    for a, b in zip(words, words[1:]):
+        # «Прислать присылать», «вам вам» — заикание модели
+        if a == b or (len(a) >= 5 and len(b) >= 5 and a[:4] == b[:4] and a != b
+                      and a[-2:] == b[-2:]):
+            return None
+    if len(text) < 120 or len(text) > 1200:
+        return None
+    return text
+
+
+def template_pitch(info, niche):
+    """Простой проверенный текст — когда ИИ дважды написал криво."""
+    greeting = "Ас-саляму алейкум!" if niche == "muslim" else "Здравствуйте!"
+    return (f"{greeting} Наткнулась на ваш канал «{info['title']}», он мне очень понравился. "
+            "Я настраиваю ведение каналов так, чтобы посты выходили каждый день сами, "
+            "а владелец только утверждал темы за пару минут. Могу бесплатно написать "
+            "3 примера постов в стиле вашего канала, чтобы вы оценили. Прислать?")
+
+
 def make_pitch(info, silent, per_week, niche):
     from example_generator import ask_ai  # тот же Gemini, что и в генераторе примеров
-    activity_text = f"последний пост {silent} дн. назад, в среднем {per_week} постов в неделю"
     prompt = PITCH_PROMPT.format(
         title=info["title"], name=info["name"], subs=info["subscribers"] or "неизвестно",
-        description=info["description"] or "нет", activity=activity_text,
+        description=info["description"] or "нет", activity=activity_hint(silent, per_week),
         posts="\n---\n".join(p[:400] for p in info["posts"][-3:]) or "нет",
         greeting="Ас-саляму алейкум!" if niche == "muslim" else "Здравствуйте!",
     )
-    answer = ask_ai(f"{prompt}\n\nОтвет — строго JSON: {{\"message\": \"текст\"}}")
-    return (answer or {}).get("message", "").strip()
+    # Две попытки (у Gemini мало запросов в сутки), потом — готовый шаблон.
+    for _ in range(2):
+        answer = ask_ai(f"{prompt}\n\nОтвет — строго JSON: {{\"message\": \"текст\"}}")
+        pitch = clean_pitch((answer or {}).get("message", ""))
+        if pitch:
+            return pitch
+        print(f"[hunter] @{info['name']}: ИИ написал криво, пробую ещё раз")
+    return template_pitch(info, niche)
 
 
 def load_seen():
