@@ -1,26 +1,14 @@
 {
-  "offset": 30003278,
+  "offset": 30003279,
   "owner": "970882173",
   "day": 6,
   "batch": {
-    "media": [
-      {
-        "kind": "photo",
-        "file_id": "AgACAgIAAxkBAAO3avLog1BdB5zPTj9Xk4U8IATofsIAAnkdaxuvn5lLgXnWmIRi6jcBAAMCAAN5AAM9BA",
-        "ext": "jpg"
-      },
-      {
-        "kind": "photo",
-        "file_id": "AgACAgIAAxkBAAO3avLog1BdB5zPTj9Xk4U8IATofsIAAnkdaxuvn5lLgXnWmIRi6jcBAAMCAAN5AAM9BA",
-        "ext": "jpg"
-      }
-    ],
+    "media": [],
     "voice": null,
     "notes": [],
     "hook": null,
     "caption": null,
-    "updated": 1794304141,
-    "last_group": null
+    "updated": 0
   },
   "history": [
     {
