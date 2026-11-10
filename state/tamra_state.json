@@ -1,14 +1,21 @@
 {
-  "offset": 30003279,
+  "offset": 30003281,
   "owner": "970882173",
   "day": 6,
   "batch": {
-    "media": [],
+    "media": [
+      {
+        "kind": "video",
+        "file_id": "BAACAgIAAxkBAAPAavLtp7N1f2d48lMevA2f3KYPhvQAAvmoAAKvn5lLKK5CF2H0uSo9BA",
+        "ext": "mp4"
+      }
+    ],
     "voice": null,
     "notes": [],
     "hook": null,
     "caption": null,
-    "updated": 0
+    "updated": 1794305447,
+    "last_group": null
   },
   "history": [
     {
