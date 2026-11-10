@@ -9,6 +9,8 @@
 #     TAMRA_YOUTUBE_TOKEN_JSON: содержимое youtube_token.json канала Tamra School
 #   TikTok:    TAMRA_TIKTOK_ACCESS_TOKEN, TAMRA_TIKTOK_REFRESH_TOKEN (приложение TikTok то же,
 #     что у основного канала: TIKTOK_CLIENT_KEY / TIKTOK_CLIENT_SECRET)
+#   Telegram-канал: подключается из бота командой «канал» (бот должен быть админом канала),
+#     публикует тот же бот (TAMRA_TG_TOKEN)
 import os
 import json
 import time
@@ -105,7 +107,30 @@ def tiktok(video_path, caption):
     return pid
 
 
-def publish_all(video_path, texts, caption, yt_token=None, thumb=None):
+def telegram_channel(video_path, caption, channel):
+    """Ролик в Telegram-канал. channel — {"id", "username", "title"} из состояния бота.
+    Возвращает ссылку на пост (или «опубликовано», если у канала нет адреса)."""
+    if not channel:
+        return None
+    token = _env("TAMRA_TG_TOKEN")
+    # обложку не прикладываем: Telegram берёт превью только до 320 px и 200 КБ,
+    # а первый кадр ролика у нас и так с хуком
+    with open(video_path, "rb") as f:
+        r = requests.post(f"https://api.telegram.org/bot{token}/sendVideo",
+                          data={"chat_id": channel["id"], "caption": caption[:1024],
+                                "supports_streaming": "true"},
+                          files={"video": (os.path.basename(video_path), f, "video/mp4")},
+                          timeout=600)
+    res = r.json()
+    if not res.get("ok"):
+        raise RuntimeError(res.get("description") or f"HTTP {r.status_code}")
+    mid = res["result"]["message_id"]
+    if channel.get("username"):
+        return f"https://t.me/{channel['username']}/{mid}"
+    return "опубликовано"
+
+
+def publish_all(video_path, texts, caption, yt_token=None, thumb=None, tg_channel=None):
     """Публикует во все настроенные площадки. Возвращает {площадка: строка-итог для Telegram}."""
     tags = texts.get("hashtags", [])
     jobs = [
@@ -116,6 +141,8 @@ def publish_all(video_path, texts, caption, yt_token=None, thumb=None):
         ("TikTok", lambda: tiktok(video_path, caption),
          lambda r: ("опубликовано" if _env("TAMRA_TIKTOK_DIRECT_POST").lower() in ("1", "true", "yes")
                     else "в черновиках — открой TikTok и нажми «Опубликовать»")),
+        ("Telegram", lambda: telegram_channel(video_path, caption, tg_channel),
+         lambda r: r if r.startswith("http") else "опубликовано"),
     ]
     results = {}
     for name, run, ok in jobs:

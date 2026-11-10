@@ -71,6 +71,7 @@ HELP = (
     "• обложка — нарисовать другую обложку для последнего черновика\n"
     "• очередь — что и когда выйдет\n"
     "• ютуб — подключить YouTube-канал с телефона\n"
+    "• канал — подключить Telegram-канал (ролики будут выходить и туда)\n"
     "• сейчас — опубликовать следующий ролик из очереди немедленно\n"
     "• убрать 5 — убрать «День 5» из очереди\n"
     "• время 20 — публиковать в 20:00\n"
@@ -78,7 +79,8 @@ HELP = (
     "• подпись: текст — своя подпись\n"
     "• день 12 — поставить номер дня\n"
     "• сброс — очистить присланное\n\n"
-    "Видео присылай обычным видео, не файлом — так Telegram его сожмёт (боту доступно до 20 МБ)."
+    "Боту доступны видео до 20 МБ. Запись экрана тяжелее — сохрани её в CapCut "
+    "в 720p, 30 кадров, и пришли файлом (скрепка → Файл)."
 )
 
 
@@ -112,6 +114,7 @@ def load_state():
     st.setdefault("publish_hour", int(os.getenv("TAMRA_PUBLISH_HOUR", "19")))
     st.setdefault("last_publish_date", None)
     st.setdefault("last_fail_notice", None)
+    st.setdefault("tg_channel", None)   # {"id", "username", "title"} — куда ещё публикуем
     used_days = [d["day"] for d in st["drafts"] + st["queue"]]
     st["day"] = max([st["day"]] + [x + 1 for x in used_days])  # номер следующего ролика
     return st
@@ -466,7 +469,8 @@ def publish_item(st, chat, d):
     try:
         video, cover = render(d)
         results = publish_all(video, d["texts"], writer.full_caption(d["texts"]),
-                              yt_token=yt_auth.token_json(st), thumb=cover)
+                              yt_token=yt_auth.token_json(st), thumb=cover,
+                              tg_channel=st.get("tg_channel"))
     except Exception as e:
         st["queue"].insert(0, d)
         send(chat, f"🔴 «День {d['day']}» не опубликован: {str(e)[:300]}. Остаётся в очереди.")
@@ -516,6 +520,40 @@ def _is_owner(st, chat, text):
     return False
 
 
+CHANNEL_HOWTO = (
+    "Подключаем Telegram-канал:\n\n"
+    "1️⃣ Открой канал → название вверху → «Изменить» → «Администраторы» → «Добавить администратора».\n"
+    "2️⃣ Найди меня по имени и добавь. Право «Публикация сообщений» должно быть включено.\n"
+    "3️⃣ Пришли мне адрес канала, например: канал @tamra_school\n"
+    "   Если у канала нет адреса (закрытый) — перешли мне сюда любой пост из канала.\n\n"
+    "Отключить: «канал выкл»."
+)
+
+
+def connect_channel(st, chat, ref):
+    """Проверяет, что бот — админ канала с правом публикации, и запоминает канал."""
+    info = api("getChat", chat_id=ref)
+    if not info.get("ok"):
+        send(chat, "Не нашла такой канал. Проверь адрес (начинается с @) или сначала добавь меня "
+                   "в канал администратором — закрытый канал я вижу только после этого.\n\n"
+                   + CHANNEL_HOWTO)
+        return
+    ch = info["result"]
+    if ch.get("type") != "channel":
+        send(chat, "Это не канал. Пришли адрес именно канала, например: канал @tamra_school")
+        return
+    me = api("getMe").get("result", {})
+    member = api("getChatMember", chat_id=ch["id"], user_id=me.get("id")).get("result", {})
+    if member.get("status") not in ("administrator", "creator") or member.get("can_post_messages") is False:
+        send(chat, f"Канал «{ch.get('title')}» нашла, но я в нём не администратор "
+                   "(или нет права «Публикация сообщений»).\n\n" + CHANNEL_HOWTO)
+        return
+    st["tg_channel"] = {"id": ch["id"], "username": ch.get("username"), "title": ch.get("title")}
+    st.pop("await_channel", None)
+    send(chat, f"✅ Telegram-канал «{ch.get('title')}» подключён. Ролики из очереди будут выходить "
+               "и туда — в то же время, что и на остальных площадках.")
+
+
 def handle_message(st, msg):
     chat = msg["chat"]["id"]
     text = (msg.get("text") or msg.get("caption") or "").strip()
@@ -523,6 +561,12 @@ def handle_message(st, msg):
     if not _is_owner(st, chat, low):
         return
     b = st["batch"]
+
+    origin = msg.get("forward_origin") or {}
+    fwd_chat = origin.get("chat") if origin.get("type") == "channel" else msg.get("forward_from_chat")
+    if fwd_chat and fwd_chat.get("type") == "channel" and st.get("await_channel"):
+        connect_channel(st, chat, fwd_chat["id"])  # пересланный пост — подключаем его канал
+        return
 
     b.pop("auto_failed", None)  # что-то новое пришло — можно снова собирать автоматически
     att = classify(msg)
@@ -597,6 +641,26 @@ def handle_message(st, msg):
                    "4️⃣ Нажми «Разрешить». Откроется страница с ошибкой «localhost» — так и должно быть.\n"
                    "5️⃣ Скопируй адрес этой страницы целиком (он начинается с http://localhost) "
                    "и пришли мне сюда.\n\n" + url)
+        return
+    if low in ("канал", "/channel", "телеграм", "телеграм канал", "канал подключить"):
+        ch = st.get("tg_channel")
+        st["await_channel"] = True
+        send(chat, (f"Сейчас подключён канал «{ch['title']}». Чтобы сменить — пришли другой.\n\n"
+                    if ch else "") + CHANNEL_HOWTO)
+        return
+    if low in ("канал выкл", "канал отключить", "канал нет"):
+        st["tg_channel"] = None
+        st.pop("await_channel", None)
+        send(chat, "Telegram-канал отключён — туда больше не публикую.")
+        return
+    if low.startswith(("канал ", "/channel ")):
+        ref = text.split(None, 1)[1].strip()
+        for pre in ("https://t.me/", "http://t.me/", "t.me/"):
+            if ref.lower().startswith(pre):
+                ref = "@" + ref[len(pre):].split("/")[0]
+        if not ref.startswith("@") and not ref.lstrip("-").isdigit():
+            ref = "@" + ref
+        connect_channel(st, chat, ref)
         return
     if "localhost" in low and ("code=" in low or "error=" in low):
         if "error=" in low:
