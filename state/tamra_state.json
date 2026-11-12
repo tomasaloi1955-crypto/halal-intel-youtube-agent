@@ -1,5 +1,5 @@
 {
-  "offset": 30003281,
+  "offset": 30003282,
   "owner": "970882173",
   "day": 7,
   "batch": {
@@ -59,7 +59,9 @@
     7698438,
     27385370
   ],
-  "drafts": [
+  "drafts": [],
+  "pending": [],
+  "queue": [
     {
       "id": "20261110_101407_c96b",
       "day": 6,
@@ -533,8 +535,6 @@
       "rendered_hook": "Увидьте путь обучения вашего ребёнка"
     }
   ],
-  "pending": [],
-  "queue": [],
   "publish_hour": 19,
   "last_publish_date": "2026-10-28",
   "last_fail_notice": "2026-10-19",
