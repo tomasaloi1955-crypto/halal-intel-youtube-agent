@@ -59,7 +59,9 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
-          THREADS_ENABLED: "true"
+          # Threads на ПАУЗЕ с 12.11.2026: Meta закрыла доступ до входа в аккаунт
+          # на threads.com (ошибка 190). Чтобы включить — снова поставить "true".
+          THREADS_ENABLED: "false"
           # Токен продлевать вручную НЕ нужно: его каждый день автоматически
           # продлевает воркфлоу autopost.yml в репо social-autopost (аккаунт
           # brend_boss общий) и кладёт свежее значение в секрет
